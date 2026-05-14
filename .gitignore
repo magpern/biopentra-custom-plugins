@@ -1,3 +1,6 @@
+# Accidental / local write probes
+**/.write-test
+
 # OS / editor
 .DS_Store
 Thumbs.db
