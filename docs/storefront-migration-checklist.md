@@ -1,6 +1,6 @@
 # Storefront consolidation — phased migration checklist
 
-**Status:** Phase **1** (Information mega-menu) is **implemented in this repo** (`biopentra-storefront` module + copied CSS). Phases 2–4 are **not** migrated. Legacy plugin folders remain; **production `wp-content/plugins` is not updated by this repository workflow.**
+**Status:** Phase **1** (Information mega-menu) **CSS + JS** are implemented in `biopentra-storefront` (enqueue from module). **Production cutover** still requires **removing or replacing** the Elementor HTML widget that injects the **old** `biopentra-information-megamenu/.../information-mega.js` URL — see `docs/information-mega-js-cutover-plan.md`. Phases 2–4 are **not** migrated. Legacy plugin folders remain in the repo; **do not** delete until Elementor cleanup is done.
 
 **Out of scope for this consolidation:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of these phases.
 
@@ -12,12 +12,13 @@
 |------|---------|
 | `biopentra-storefront.php` | Plugin header, constants, `plugins_loaded` → `Biopentra_Storefront::init()` |
 | `includes/class-biopentra-storefront.php` | Loads **Information megamenu** module when its class file is readable |
-| `modules/information-megamenu/class-information-megamenu-module.php` | Phase 1: enqueue CSS (same handle/version/priority as legacy) |
-| `assets/information-megamenu/information-mega.css` | Copy of legacy `information-mega.css` |
+| `modules/information-megamenu/class-information-megamenu-module.php` | Phase 1: enqueue **CSS** (handle `biopentra-information-mega`) + **JS** (handle `biopentra-storefront-information-mega`, `defer`, footer) |
+| `assets/information-megamenu/information-mega.css` | Copy of legacy CSS |
+| `assets/information-megamenu/information-mega.js` | Copy of legacy JS |
 | `modules/*/README.md` | Notes per module |
-| `information-mega.js` | **Not** migrated — legacy plugin does not enqueue it (see module README) |
+| Elementor HTML widget | May still reference **legacy** JS URL — **remove/replace** before deleting legacy plugin dir (`docs/information-mega-js-cutover-plan.md`) |
 
-**Cutover:** Do **not** run `biopentra-information-megamenu` and `biopentra-storefront` **both active** for the same site, or the stylesheet will load twice. Deactivate the legacy plugin when you activate storefront for this feature (after QA).
+**Cutover:** Do **not** run `biopentra-information-megamenu` and `biopentra-storefront` **both active** for the same site, or the **stylesheet** loads twice. After switching to storefront, plan Elementor cleanup so **JS** is not requested twice from different URLs (runtime guard prevents double execution, but Network will show duplicates until the widget is fixed).
 
 **Do not activate** `biopentra-storefront` in production until you complete QA; instructions unchanged for safety.
 
@@ -36,48 +37,50 @@
 
 ---
 
-## Phase 1 — `biopentra-information-megamenu` ✅ *implemented in repo copy*
+## Phase 1 — `biopentra-information-megamenu` ✅ *CSS + JS in storefront; Elementor cleanup pending*
 
-**Goal:** Front-end CSS for the Information mega-menu panel.
+**Goal:** Information mega-menu **CSS and JS** owned by `biopentra-storefront` so the legacy plugin can eventually be removed **after** Elementor no longer hardcodes the old script URL.
 
-**Repo status:** Logic lives in `plugins/biopentra-storefront/modules/information-megamenu/class-information-megamenu-module.php`. CSS path: `plugins/biopentra-storefront/assets/information-megamenu/information-mega.css`. Legacy plugin **not** removed.
+**Repo status:** `class-information-megamenu-module.php` enqueues CSS + JS on `wp_enqueue_scripts` @ **25** (front-end only). Paths: `assets/information-megamenu/information-mega.css` and `information-mega.js`. Legacy plugin **not** removed.
+
+**Production cutover:** Still requires **removing or replacing** the Elementor-injected `<script src="…/biopentra-information-megamenu/assets/information-mega.js">` — see **`docs/information-mega-js-cutover-plan.md`** (recommended: remove HTML widget, rely on `wp_enqueue_script`).
 
 ### Source layout
 
 | File | Role |
 |------|------|
-| `biopentra-information-megamenu.php` | Legacy: registers/enqueues style `biopentra-information-mega` on `wp_enqueue_scripts` (priority **25**). |
-| `assets/information-mega.css` | Legacy original; copied into storefront as `assets/information-megamenu/information-mega.css`. |
-| `assets/information-mega.js` | **Not enqueued** by legacy main file — **not copied** to storefront (documented in module README). |
-| `cli-update-megamenu.php` | CLI / maintenance script — **not** loaded by storefront; still under legacy plugin. |
+| `biopentra-information-megamenu.php` | Legacy: CSS only on `wp_enqueue_scripts` @ 25. |
+| `assets/information-mega.css` / `.js` | Legacy originals; **copied** into storefront `assets/information-megamenu/`. |
+| `cli-update-megamenu.php` | Injects script tag into Elementor JSON — **cutover** must address DB/widget, not only PHP. |
 
 ### Hooks to preserve
 
 | Hook | Type | Priority | Callback purpose |
 |------|------|----------|------------------|
-| `wp_enqueue_scripts` | action | **25** | Register + enqueue mega-menu CSS (skip `is_admin()`). |
+| `wp_enqueue_scripts` | action | **25** | Register + enqueue mega-menu **CSS** and **JS** (skip `is_admin()`). |
+| `script_loader_tag` | filter | 10 | Add `defer` to storefront mega-menu script handle only. |
 
 ### Shortcodes
 
 None.
 
-### Assets to move (into `modules/information-megamenu/`)
+### Assets (storefront)
 
-- `assets/information-mega.css` (required) — **done** under storefront `assets/information-megamenu/information-mega.css`
-- `assets/information-mega.js` — **skipped** (not enqueued by legacy bootstrap)
-- Consider shared `assets/` at storefront root only if multiple modules share files (not required for phase 1).
+- `assets/information-megamenu/information-mega.css` — **done**
+- `assets/information-megamenu/information-mega.js` — **done** (enqueued; handle `biopentra-storefront-information-mega`)
 
 ### Implementation notes
 
-- Preserve style handle **`biopentra-information-mega`** or document a new handle and clear caches/CDN if anything references the old handle (unlikely).
-- Version string **`1.3.2`** is preserved via `Biopentra_Storefront_Information_Megamenu_Module::STYLE_VERSION` (matches legacy `wp_register_style` fourth argument).
+- Style handle **`biopentra-information-mega`** unchanged for CSS parity.
+- Script handle **`biopentra-storefront-information-mega`** (new) to distinguish from legacy Elementor tag.
+- Version **`1.3.2`** for both CSS and JS `ver` query args.
 
 ### Test steps
 
-1. Staging: implement module; **deactivate** `biopentra-information-megamenu`; **activate** `biopentra-storefront` with phase-1 module enabled.
-2. Front: open pages using the Information mega-menu; compare computed styles / layout to baseline (screenshots or visual diff).
-3. Confirm **one** enqueue of the stylesheet in page source (no duplicate `<link>`).
-4. Admin: confirm no PHP notices with `WP_DEBUG`.
+1. Staging: **deactivate** `biopentra-information-megamenu`; **activate** `biopentra-storefront`.
+2. Front: mega-menu interactions (desktop flyout / mobile accordion).
+3. **Network:** confirm `biopentra-storefront/.../information-mega.css` and `.../information-mega.js` load; plan Elementor edit to drop duplicate legacy script request.
+4. Admin: no PHP notices with `WP_DEBUG`.
 
 ### Rollback
 

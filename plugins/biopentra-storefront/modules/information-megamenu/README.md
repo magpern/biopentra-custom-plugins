@@ -1,21 +1,17 @@
 # Module: information-megamenu
 
-**Migrated from:** `plugins/biopentra-information-megamenu/` (legacy plugin folder is **retained**; do not run both plugins active for this behavior — duplicate CSS).
+**Migrated from:** `plugins/biopentra-information-megamenu/` (legacy folder retained in repo; do not delete until Elementor cutover is done).
 
 ## Implementation
 
-- `class-information-megamenu-module.php` — `wp_enqueue_scripts` @ **25**, handle **`biopentra-information-mega`**, version **`1.3.2`**, skips when `is_admin()`.
+- `class-information-megamenu-module.php`
+  - **CSS:** `wp_enqueue_scripts` @ **25**, handle `biopentra-information-mega`, version `1.3.2`, path `assets/information-megamenu/information-mega.css`.
+  - **JS:** same hook, handle `biopentra-storefront-information-mega`, version `1.3.2`, path `assets/information-megamenu/information-mega.js`, footer + `defer` via `script_loader_tag`.
 
-## Assets
+## Duplicate loading (Elementor)
 
-| Legacy | Storefront |
-|--------|------------|
-| `assets/information-mega.css` | `assets/information-megamenu/information-mega.css` |
+The mega-menu template may still include an **HTML widget** with a hardcoded `<script src="…/biopentra-information-megamenu/assets/information-mega.js">` (from `cli-update-megamenu.php`). With **storefront** also enqueuing the same logic from a **new URL**, the browser may **download twice**. The script uses `window.__BIOPENTRA_INFO_MEGA_JS__` so **only the first execution runs** — behavior stays correct, but cutover should **remove or replace** that widget per `docs/information-mega-js-cutover-plan.md` before deleting the legacy plugin directory.
 
-## `information-mega.js` — not migrated
+## `cli-update-megamenu.php`
 
-The legacy plugin **does not enqueue** `assets/information-mega.js` in `biopentra-information-megamenu.php`. That file remains only under the legacy plugin folder for reference; no JS was copied into storefront for Phase 1.
-
-## Ops script
-
-`cli-update-megamenu.php` was not moved; it still lives under the legacy plugin until you decide to relocate it to `docs/` or a `bin/` folder.
+Still only under the legacy plugin; not loaded by storefront. Future: point CLI output at storefront URLs or stop emitting inline script HTML once enqueue-only path is verified.
