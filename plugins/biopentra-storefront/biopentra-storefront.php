@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Biopentra Storefront
- * Description: Consolidated storefront modules. Phase 1: Information mega-menu. Phase 2: Footer contact shortcode and placeholder noindex (legacy plugins retained; deactivate duplicates when activating this plugin).
- * Version: 0.2.0
+ * Description: Consolidated storefront modules. Phases 1–3: mega-menu, footer contact, variation stock selector (legacy plugins retained; deactivate duplicates when activating this plugin).
+ * Version: 0.3.0
  * Author: Biopentra
  * Text Domain: biopentra-storefront
  * Requires at least: 6.0
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BIOPENTRA_STOREFRONT_VERSION', '0.2.0' );
+define( 'BIOPENTRA_STOREFRONT_VERSION', '0.3.0' );
 define( 'BIOPENTRA_STOREFRONT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BIOPENTRA_STOREFRONT_URL', plugin_dir_url( __FILE__ ) );
 define( 'BIOPENTRA_STOREFRONT_FILE', __FILE__ );

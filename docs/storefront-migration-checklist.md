@@ -1,6 +1,6 @@
 # Storefront consolidation — phased migration checklist
 
-**Status:** Phase **1** (Information mega-menu) and **Phase 2** (footer contact shortcode + placeholder `noindex`) live in `biopentra-storefront`. **Production cutover** for Phase 1 still requires Elementor legacy script cleanup where applicable — see `docs/information-mega-js-cutover-plan.md` and `docs/phase-1-production-cutover.md`. **Phases 3–4** are **not** migrated. Legacy plugin folders remain in the repo; **do not** delete until cutover soak completes.
+**Status:** Phases **1–3** live in `biopentra-storefront` (mega-menu, footer contact, **variation stock selector / CVSS**). **Phase 4** (`biopentra-header-auth`) is **not** migrated. Elementor megamenu legacy script cleanup remains part of Phase 1 production hygiene where applicable. Legacy plugin folders stay in the repo; **do not** delete until soak completes.
 
 **Out of scope for this consolidation:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of these phases.
 
@@ -11,7 +11,9 @@
 | Path | Purpose |
 |------|---------|
 | `biopentra-storefront.php` | Plugin header, constants, `plugins_loaded` → `Biopentra_Storefront::init()` |
-| `includes/class-biopentra-storefront.php` | Loads **Information megamenu** + **Footer contact** modules when class files are readable |
+| `includes/class-biopentra-storefront.php` | Loads **Information megamenu**, **Footer contact**, and **Variation stock selector** modules when class files are readable |
+| `modules/variation-stock-selector/class-variation-stock-selector-module.php` | Phase 3: HPOS declare + `woocommerce_before_variations_form` inline CVSS (bridge JS handle) |
+| `assets/variation-stock-selector/cvss-bridge.js` | Phase 3: minimal real `src` for enqueue; logic is inline |
 | `modules/footer-contact/class-footer-contact-module.php` | Phase 2: shortcode `[biopentra_footer_email]`, `wp_robots` placeholder noindex, script @ priority **5** |
 | `assets/footer-contact/footer-contact-email.js` | Phase 2: copied from legacy |
 | `assets/footer-contact/bp-e1.png` | Phase 2: optional image (add from deploy if not in repo) |
@@ -152,48 +154,49 @@ See **`docs/staging-test-phase-2-footer-contact.md`**.
 
 ---
 
-## Phase 3 — `custom-variation-stock-selector` (CVSS)
+## Phase 3 — `custom-variation-stock-selector` (CVSS) ✅ *migrated into storefront; legacy retained*
 
 **Goal:** Auto-select highest-priced in-stock purchasable variation when WC embeds `product_variations` JSON.
 
-### Source layout
+**Repo status:** `modules/variation-stock-selector/` + `assets/variation-stock-selector/cvss-bridge.js`. See **`docs/variation-stock-selector-migration-notes.md`** and **`docs/staging-test-phase-3-variation-stock-selector.md`**.
+
+### Source layout (legacy)
 
 | File | Role |
 |------|------|
 | `custom-variation-stock-selector.php` | HPOS declare + enqueue + inline jQuery. |
 
+### Storefront layout
+
+| File | Role |
+|------|------|
+| `modules/variation-stock-selector/class-variation-stock-selector-module.php` | Same hooks + inline JS; bridge `src`; bails if legacy plugin active. |
+| `assets/variation-stock-selector/cvss-bridge.js` | Minimal script URL for `wp_register_script`. |
+
 ### Hooks to preserve
 
-| Hook | Type | Purpose |
-|------|------|---------|
-| `before_woocommerce_init` | action | `FeaturesUtil::declare_compatibility( 'custom_order_tables', … )` |
-| `woocommerce_before_variations_form` | action | Register empty-src script handle `custom-variation-stock-selector`, deps `jquery` + `wc-add-to-cart-variation`, `wp_add_inline_script` after. |
+| Hook | Type | Priority | Purpose |
+|------|------|----------|---------|
+| `before_woocommerce_init` | action | default | `FeaturesUtil::declare_compatibility( 'custom_order_tables', … )` |
+| `woocommerce_before_variations_form` | action | default | Register/enqueue bridge + inline script (deps `jquery`, `wc-add-to-cart-variation`). |
 
 ### Shortcodes
 
 None.
 
-### Assets to move
-
-- Inline script only today — optional refactor: move JS to `modules/variation-stock-selector/assets/variation-stock-selector.js` and enqueue with `filemtime` versioning (behavior must stay identical).
-
 ### Test steps
 
-1. Variable product **under** `woocommerce_ajax_variation_threshold`: embedded variations present → after load, attributes select to highest in-stock purchasable price (compare to legacy).
-2. URL with `attribute_*` query params: **must not** override (preserve current behavior).
-3. Already-selected `variation_id`: no change.
-4. Product **over** threshold (no embedded JSON): plugin still no-op (documented).
-5. HPOS: no compatibility notices from WooCommerce.
+See **`docs/staging-test-phase-3-variation-stock-selector.md`**.
 
 ### Rollback
 
-- Deactivate storefront module; reactivate `custom-variation-stock-selector`.
+- Activate `custom-variation-stock-selector`; deactivate `biopentra-storefront` only if safe for other storefront features.
 
 ### Legacy plugin during migration
 
 | Stage | `custom-variation-stock-selector` |
 |-------|-----------------------------------|
-| Implementation | **Active** until cutover |
+| Before cutover | **Active** until storefront validated |
 | After QA | **Deactivated** when storefront owns hooks |
 
 ---

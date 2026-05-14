@@ -45,5 +45,13 @@ class Biopentra_Storefront {
 				Biopentra_Storefront_Footer_Contact_Module::init();
 			}
 		}
+
+		$cvss_module = BIOPENTRA_STOREFRONT_PATH . 'modules/variation-stock-selector/class-variation-stock-selector-module.php';
+		if ( is_readable( $cvss_module ) ) {
+			require_once $cvss_module;
+			if ( class_exists( 'Biopentra_Storefront_Variation_Stock_Selector_Module' ) ) {
+				Biopentra_Storefront_Variation_Stock_Selector_Module::init();
+			}
+		}
 	}
 }
