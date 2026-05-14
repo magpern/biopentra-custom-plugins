@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Storefront Phase 4 may have already loaded these callbacks; avoid redeclare during same-request activation.
+if ( function_exists( 'biopentra_header_auth_register_assets' ) ) {
+	return;
+}
+
 define( 'BIOPENTRA_HEADER_AUTH_VERSION', '1.5.0' );
 define( 'BIOPENTRA_HEADER_AUTH_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BIOPENTRA_HEADER_AUTH_URL', plugin_dir_url( __FILE__ ) );
