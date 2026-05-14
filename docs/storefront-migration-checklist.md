@@ -1,6 +1,6 @@
 # Storefront consolidation — phased migration checklist
 
-**Status:** Phases **1–3** live in `biopentra-storefront` (mega-menu, footer contact, **variation stock selector / CVSS**). **Phase 4** (`biopentra-header-auth`): **audit started / migration not started** — see **`docs/header-auth-phase-4-audit.md`**. Elementor megamenu legacy script cleanup remains part of Phase 1 production hygiene where applicable. Legacy plugin folders stay in the repo; **do not** delete until soak completes.
+**Status:** Phases **1–4 code** live in `biopentra-storefront` (mega-menu, footer contact, variation stock selector, **header auth**). **Phase 4 production cutover** (deactivate standalone `biopentra-header-auth`) is **not** implied until staging QA passes — see **`docs/staging-test-phase-4-header-auth.md`** and **`docs/header-auth-migration-notes.md`**. Pre-migration audit: **`docs/header-auth-phase-4-audit.md`**. Elementor megamenu legacy script cleanup remains part of Phase 1 production hygiene where applicable. Legacy plugin folders stay in the repo; **do not** delete until soak completes.
 
 **Out of scope for this consolidation:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of these phases.
 
@@ -11,7 +11,9 @@
 | Path | Purpose |
 |------|---------|
 | `biopentra-storefront.php` | Plugin header, constants, `plugins_loaded` → `Biopentra_Storefront::init()` |
-| `includes/class-biopentra-storefront.php` | Loads **Information megamenu**, **Footer contact**, and **Variation stock selector** modules when class files are readable |
+| `includes/class-biopentra-storefront.php` | Loads **Information megamenu**, **Footer contact**, **Variation stock selector**, and **Header auth** modules when class files are readable |
+| `modules/header-auth/class-header-auth-module.php` | Phase 4: guarded init; shortcode + Elementor + WC + Blocksy + cart; skips if legacy `biopentra-header-auth` active |
+| `modules/header-auth/assets/*`, `modules/header-auth/includes/*` | Phase 4: copied from legacy header-auth plugin |
 | `modules/variation-stock-selector/class-variation-stock-selector-module.php` | Phase 3: HPOS declare + `woocommerce_before_variations_form` inline CVSS (bridge JS handle) |
 | `assets/variation-stock-selector/cvss-bridge.js` | Phase 3: minimal real `src` for enqueue; logic is inline |
 | `modules/footer-contact/class-footer-contact-module.php` | Phase 2: shortcode `[biopentra_footer_email]`, `wp_robots` placeholder noindex, script @ priority **5** |
@@ -201,9 +203,9 @@ See **`docs/staging-test-phase-3-variation-stock-selector.md`**.
 
 ---
 
-## Phase 4 — `biopentra-header-auth`
+## Phase 4 — `biopentra-header-auth` ✅ *migrated into storefront; legacy retained*
 
-**Status:** **Audit started / migration not started** — full pre-migration inventory and risks: **`docs/header-auth-phase-4-audit.md`**. Do not ship storefront header-auth code to production until that document’s test matrix is satisfied on staging.
+**Status:** Module code under `modules/header-auth/`; **deactivate legacy only after staging QA**. Notes: **`docs/header-auth-migration-notes.md`**, staging: **`docs/staging-test-phase-4-header-auth.md`**, audit: **`docs/header-auth-phase-4-audit.md`**.
 
 **Goal:** Header auth Elementor widget + shortcode, WC account/checkout styling, cart enhancements, Blocksy filters, optional Blocksy palette admin hook.
 

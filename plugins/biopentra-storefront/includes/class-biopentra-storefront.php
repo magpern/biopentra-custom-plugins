@@ -53,5 +53,13 @@ class Biopentra_Storefront {
 				Biopentra_Storefront_Variation_Stock_Selector_Module::init();
 			}
 		}
+
+		$header_auth_module = BIOPENTRA_STOREFRONT_PATH . 'modules/header-auth/class-header-auth-module.php';
+		if ( is_readable( $header_auth_module ) ) {
+			require_once $header_auth_module;
+			if ( class_exists( 'Biopentra_Storefront_Header_Auth_Module' ) ) {
+				Biopentra_Storefront_Header_Auth_Module::init();
+			}
+		}
 	}
 }

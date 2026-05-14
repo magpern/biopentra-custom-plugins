@@ -1,0 +1,135 @@
+/**
+ * Biopentra Header Auth — trigger + icon + dropdown (Elementor widget + shortcode).
+ */
+
+.biopentra-header-auth {
+	--bph-color: #3d4f66;
+	--bph-color-hover: #2a3a4d;
+	--bph-dropdown-bg: #fff;
+	--bph-dropdown-border: #e2e6eb;
+	--bph-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.2;
+	color: var(--bph-color);
+}
+
+.biopentra-header-auth__trigger {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	background: transparent;
+	font: inherit;
+	font-weight: 500;
+	color: inherit;
+	cursor: pointer;
+	text-decoration: none;
+	text-align: left;
+	max-width: 100%;
+}
+
+a.biopentra-header-auth__trigger {
+	cursor: pointer;
+}
+
+.biopentra-header-auth__trigger:hover,
+.biopentra-header-auth__trigger:focus-visible {
+	color: var(--bph-color-hover);
+	outline: none;
+}
+
+.biopentra-header-auth__label {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 220px;
+}
+
+.biopentra-header-auth__icon {
+	display: inline-flex;
+	flex-shrink: 0;
+	color: inherit;
+}
+
+.biopentra-header-auth__svg {
+	display: block;
+}
+
+/* Dropdown (logged in) */
+.biopentra-header-auth__dropdown {
+	position: absolute;
+	top: calc(100% + 6px);
+	right: 0;
+	min-width: 11.5rem;
+	padding: 0.35rem 0;
+	background: var(--bph-dropdown-bg);
+	border: 1px solid var(--bph-dropdown-border);
+	border-radius: 8px;
+	box-shadow: var(--bph-shadow);
+	z-index: 100000;
+	flex-direction: column;
+	gap: 0;
+}
+
+.biopentra-header-auth__dropdown[hidden] {
+	display: none !important;
+}
+
+.biopentra-header-auth__dropdown--open:not([hidden]) {
+	display: flex;
+}
+
+.biopentra-header-auth__menuitem {
+	display: block;
+	padding: 0.55rem 1rem;
+	color: var(--bph-color);
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 500;
+	transition: background 0.12s ease, color 0.12s ease;
+}
+
+.biopentra-header-auth__menuitem--row {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.biopentra-header-auth__menuitem--divider-before {
+	margin-top: 0.35rem;
+	padding-top: 0.55rem;
+	border-top: 1px solid var(--bph-dropdown-border, #e2e6eb);
+}
+
+.biopentra-header-auth__menu-icon {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	line-height: 0;
+	color: inherit;
+}
+
+.biopentra-header-auth__menu-icon .biopentra-header-auth__i,
+.biopentra-header-auth__menu-icon i {
+	line-height: 1;
+}
+
+.biopentra-header-auth__menuitem:hover,
+.biopentra-header-auth__menuitem:focus-visible {
+	background: #f4f6f9;
+	color: var(--bph-color-hover);
+	outline: none;
+}
+
+.biopentra-header-auth__menuitem--danger:hover,
+.biopentra-header-auth__menuitem--danger:focus-visible {
+	color: #b42318;
+}
