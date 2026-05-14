@@ -37,5 +37,13 @@ class Biopentra_Storefront {
 				Biopentra_Storefront_Information_Megamenu_Module::init();
 			}
 		}
+
+		$footer_module = BIOPENTRA_STOREFRONT_PATH . 'modules/footer-contact/class-footer-contact-module.php';
+		if ( is_readable( $footer_module ) ) {
+			require_once $footer_module;
+			if ( class_exists( 'Biopentra_Storefront_Footer_Contact_Module' ) ) {
+				Biopentra_Storefront_Footer_Contact_Module::init();
+			}
+		}
 	}
 }

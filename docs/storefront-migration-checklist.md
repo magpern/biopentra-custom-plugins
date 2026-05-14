@@ -1,6 +1,6 @@
 # Storefront consolidation — phased migration checklist
 
-**Status:** Phase **1** (Information mega-menu) **CSS + JS** are implemented in `biopentra-storefront` (enqueue from module). **Production cutover** still requires **removing or replacing** the Elementor HTML widget that injects the **old** `biopentra-information-megamenu/.../information-mega.js` URL — see `docs/information-mega-js-cutover-plan.md`. Phases 2–4 are **not** migrated. Legacy plugin folders remain in the repo; **do not** delete until Elementor cleanup is done.
+**Status:** Phase **1** (Information mega-menu) and **Phase 2** (footer contact shortcode + placeholder `noindex`) live in `biopentra-storefront`. **Production cutover** for Phase 1 still requires Elementor legacy script cleanup where applicable — see `docs/information-mega-js-cutover-plan.md` and `docs/phase-1-production-cutover.md`. **Phases 3–4** are **not** migrated. Legacy plugin folders remain in the repo; **do not** delete until cutover soak completes.
 
 **Out of scope for this consolidation:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of these phases.
 
@@ -11,10 +11,10 @@
 | Path | Purpose |
 |------|---------|
 | `biopentra-storefront.php` | Plugin header, constants, `plugins_loaded` → `Biopentra_Storefront::init()` |
-| `includes/class-biopentra-storefront.php` | Loads **Information megamenu** module when its class file is readable |
-| `modules/information-megamenu/class-information-megamenu-module.php` | Phase 1: enqueue **CSS** (handle `biopentra-information-mega`) + **JS** (handle `biopentra-storefront-information-mega`, `defer`, footer) |
-| `assets/information-megamenu/information-mega.css` | Copy of legacy CSS |
-| `assets/information-megamenu/information-mega.js` | Copy of legacy JS |
+| `includes/class-biopentra-storefront.php` | Loads **Information megamenu** + **Footer contact** modules when class files are readable |
+| `modules/footer-contact/class-footer-contact-module.php` | Phase 2: shortcode `[biopentra_footer_email]`, `wp_robots` placeholder noindex, script @ priority **5** |
+| `assets/footer-contact/footer-contact-email.js` | Phase 2: copied from legacy |
+| `assets/footer-contact/bp-e1.png` | Phase 2: optional image (add from deploy if not in repo) |
 | `modules/*/README.md` | Notes per module |
 | Elementor HTML widget | May still reference **legacy** JS URL — **remove/replace** before deleting legacy plugin dir (`docs/information-mega-js-cutover-plan.md`) |
 
@@ -95,18 +95,28 @@ None.
 
 ---
 
-## Phase 2 — `biopentra-footer-contact`
+## Phase 2 — `biopentra-footer-contact` ✅ *migrated into storefront; legacy retained*
 
 **Goal:** Placeholder `noindex`, footer email shortcode with JS-built mailto.
 
-### Source layout
+**Repo status:** Implemented under `modules/footer-contact/` and `assets/footer-contact/`. See **`docs/footer-contact-migration-notes.md`** and staging **`docs/staging-test-phase-2-footer-contact.md`**. Legacy plugin **not** removed.
+
+### Source layout (legacy, unchanged in repo)
 
 | File | Role |
 |------|------|
 | `biopentra-footer-contact.php` | All logic (constants, assets, filter, shortcode). |
 | `assets/footer-contact-email.js` | Client script for mailto behavior. |
-| `assets/bp-e1.png` | Email image asset. |
-| `index.php` | Silence / direct access guard (optional in new structure). |
+| `assets/bp-e1.png` | Email image asset (may exist only on some deploy trees). |
+| `index.php` | Silence / direct access guard. |
+
+### Storefront layout
+
+| File | Role |
+|------|------|
+| `modules/footer-contact/class-footer-contact-module.php` | Same hooks + shortcode; skips init if legacy shortcode already registered. |
+| `assets/footer-contact/footer-contact-email.js` | Same script as legacy. |
+| `assets/footer-contact/bp-e1.png` | Optional; copy from legacy/deploy when available. |
 
 ### Hooks / filters to preserve
 
@@ -123,33 +133,22 @@ None.
 
 ### Constants / data contract
 
-- **`BIOPENTRA_PLACEHOLDER_META`** / post meta key **`_biopentra_placeholder_page`** — must remain **`'1'`** when set on placeholder pages, or provide a one-time migration if renamed (not recommended).
-
-### Assets to move
-
-- `assets/footer-contact-email.js`
-- `assets/bp-e1.png`
-
-### Public URLs / content
-
-- Shortcode uses `home_url( '/contact' )` for the “Contact form” link — verify path still correct after any routing changes.
+- Post meta key **`_biopentra_placeholder_page`** — value **`'1'`** when set on placeholder pages (class constant `PLACEHOLDER_META` in module).
 
 ### Test steps
 
-1. Placeholder page with meta: confirm `noindex` in robots meta / `wp_robots` output.
-2. Page with `[biopentra_footer_email]`: image loads, button works, mailto built via JS; **no** raw email in HTML source (privacy requirement).
-3. Non-placeholder singular: no unintended `noindex` from this module alone.
+See **`docs/staging-test-phase-2-footer-contact.md`**.
 
 ### Rollback
 
-- Deactivate storefront module; reactivate `biopentra-footer-contact`.
+- Deactivate `biopentra-storefront` (if footer contact is the only blocker) or leave storefront active for Phase 1 while reactivating legacy footer contact only if module guard allows — **simpler:** deactivate storefront, reactivate `biopentra-footer-contact`.
 
 ### Legacy plugin during migration
 
 | Stage | `biopentra-footer-contact` |
 |-------|------------------------------|
-| Implementation | **Active** until cutover |
-| After QA | **Deactivated** when storefront owns these hooks |
+| Implementation / Phase 1-only sites | **Active** until Phase 2 cutover |
+| After Phase 2 QA | **Deactivated** when storefront owns these hooks |
 
 ---
 
