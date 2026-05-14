@@ -1,6 +1,6 @@
 # Storefront consolidation — phased migration checklist
 
-**Status:** Phases **1–3** live in `biopentra-storefront` (mega-menu, footer contact, **variation stock selector / CVSS**). **Phase 4** (`biopentra-header-auth`) is **not** migrated. Elementor megamenu legacy script cleanup remains part of Phase 1 production hygiene where applicable. Legacy plugin folders stay in the repo; **do not** delete until soak completes.
+**Status:** Phases **1–3** live in `biopentra-storefront` (mega-menu, footer contact, **variation stock selector / CVSS**). **Phase 4** (`biopentra-header-auth`): **audit started / migration not started** — see **`docs/header-auth-phase-4-audit.md`**. Elementor megamenu legacy script cleanup remains part of Phase 1 production hygiene where applicable. Legacy plugin folders stay in the repo; **do not** delete until soak completes.
 
 **Out of scope for this consolidation:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of these phases.
 
@@ -203,6 +203,8 @@ See **`docs/staging-test-phase-3-variation-stock-selector.md`**.
 
 ## Phase 4 — `biopentra-header-auth`
 
+**Status:** **Audit started / migration not started** — full pre-migration inventory and risks: **`docs/header-auth-phase-4-audit.md`**. Do not ship storefront header-auth code to production until that document’s test matrix is satisfied on staging.
+
 **Goal:** Header auth Elementor widget + shortcode, WC account/checkout styling, cart enhancements, Blocksy filters, optional Blocksy palette admin hook.
 
 ### Source layout
@@ -245,6 +247,9 @@ Preserve these **filter names** and semantics if themes customize them:
 
 - `biopentra_header_auth_wc_account_accent`
 - `biopentra_header_auth_wc_account_accent_hover`
+- `biopentra_header_auth_cart_free_shipping_threshold`
+- `biopentra_header_auth_cart_free_shipping_subtotal`
+- `biopentra_header_auth_skip_blocksy_palette_migration` (admin palette routine)
 
 ### Elementor
 
