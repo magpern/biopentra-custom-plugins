@@ -1,6 +1,6 @@
 # Storefront consolidation — phased migration checklist
 
-**Status:** Planning only. **No code has been migrated** into `biopentra-storefront` yet. Legacy plugins remain the source of truth.
+**Status:** Phase **1** (Information mega-menu) is **implemented in this repo** (`biopentra-storefront` module + copied CSS). Phases 2–4 are **not** migrated. Legacy plugin folders remain; **production `wp-content/plugins` is not updated by this repository workflow.**
 
 **Out of scope for this consolidation:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of these phases.
 
@@ -11,13 +11,15 @@
 | Path | Purpose |
 |------|---------|
 | `biopentra-storefront.php` | Plugin header, constants, `plugins_loaded` → `Biopentra_Storefront::init()` |
-| `includes/class-biopentra-storefront.php` | Empty `init()` — **no modules loaded** |
-| `modules/*/README.md` | Placeholder notes per future module |
-| `assets/` | Empty (reserved for shared or relocated assets) |
+| `includes/class-biopentra-storefront.php` | Loads **Information megamenu** module when its class file is readable |
+| `modules/information-megamenu/class-information-megamenu-module.php` | Phase 1: enqueue CSS (same handle/version/priority as legacy) |
+| `assets/information-megamenu/information-mega.css` | Copy of legacy `information-mega.css` |
+| `modules/*/README.md` | Notes per module |
+| `information-mega.js` | **Not** migrated — legacy plugin does not enqueue it (see module README) |
 
-**Do not activate** `biopentra-storefront` in production until a phase is implemented and tested; the scaffold does nothing visible today.
+**Cutover:** Do **not** run `biopentra-information-megamenu` and `biopentra-storefront` **both active** for the same site, or the stylesheet will load twice. Deactivate the legacy plugin when you activate storefront for this feature (after QA).
 
----
+**Do not activate** `biopentra-storefront` in production until you complete QA; instructions unchanged for safety.
 
 ## Global rules (every phase)
 
@@ -34,24 +36,26 @@
 
 ---
 
-## Phase 1 — `biopentra-information-megamenu`
+## Phase 1 — `biopentra-information-megamenu` ✅ *implemented in repo copy*
 
 **Goal:** Front-end CSS for the Information mega-menu panel.
+
+**Repo status:** Logic lives in `plugins/biopentra-storefront/modules/information-megamenu/class-information-megamenu-module.php`. CSS path: `plugins/biopentra-storefront/assets/information-megamenu/information-mega.css`. Legacy plugin **not** removed.
 
 ### Source layout
 
 | File | Role |
 |------|------|
-| `biopentra-information-megamenu.php` | Registers/enqueues style `biopentra-information-mega` on `wp_enqueue_scripts` (priority **25**). |
-| `assets/information-mega.css` | Main stylesheet. |
-| `assets/information-mega.js` | **Not enqueued** by the current main plugin file; keep in repo for future or drop if unused after review. |
-| `cli-update-megamenu.php` | CLI / maintenance script — **not** loaded by the plugin bootstrap; relocate to `modules/information-megamenu/bin/` or `docs/` as ops tooling. |
+| `biopentra-information-megamenu.php` | Legacy: registers/enqueues style `biopentra-information-mega` on `wp_enqueue_scripts` (priority **25**). |
+| `assets/information-mega.css` | Legacy original; copied into storefront as `assets/information-megamenu/information-mega.css`. |
+| `assets/information-mega.js` | **Not enqueued** by legacy main file — **not copied** to storefront (documented in module README). |
+| `cli-update-megamenu.php` | CLI / maintenance script — **not** loaded by storefront; still under legacy plugin. |
 
 ### Hooks to preserve
 
 | Hook | Type | Priority | Callback purpose |
 |------|------|----------|------------------|
-| `wp_enqueue_scripts` | action | **25** | Register + enqueue `information-mega.css` (skip `is_admin()`). |
+| `wp_enqueue_scripts` | action | **25** | Register + enqueue mega-menu CSS (skip `is_admin()`). |
 
 ### Shortcodes
 
@@ -59,14 +63,14 @@ None.
 
 ### Assets to move (into `modules/information-megamenu/`)
 
-- `assets/information-mega.css` (required)
-- `assets/information-mega.js` (optional, only if you decide to enqueue it)
+- `assets/information-mega.css` (required) — **done** under storefront `assets/information-megamenu/information-mega.css`
+- `assets/information-mega.js` — **skipped** (not enqueued by legacy bootstrap)
 - Consider shared `assets/` at storefront root only if multiple modules share files (not required for phase 1).
 
 ### Implementation notes
 
 - Preserve style handle **`biopentra-information-mega`** or document a new handle and clear caches/CDN if anything references the old handle (unlikely).
-- Version string is currently hardcoded `'1.3.2'` in `wp_register_style` — align with `BIOPENTRA_STOREFRONT_VERSION` or module constant after merge.
+- Version string **`1.3.2`** is preserved via `Biopentra_Storefront_Information_Megamenu_Module::STYLE_VERSION` (matches legacy `wp_register_style` fourth argument).
 
 ### Test steps
 

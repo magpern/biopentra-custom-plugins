@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Biopentra Storefront
- * Description: Consolidated storefront modules (header auth, footer contact, mega-menu styles, variation selector). Logic migration pending — keep legacy plugins active until migration is complete.
+ * Description: Consolidated storefront modules. Phase 1: Information mega-menu CSS (legacy plugin retained; deactivate duplicate when activating this plugin).
  * Version: 0.1.0
  * Author: Biopentra
  * Text Domain: biopentra-storefront

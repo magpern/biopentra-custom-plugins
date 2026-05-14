@@ -1,8 +1,6 @@
 <?php
 /**
- * Main plugin controller (scaffold).
- *
- * Future: load module classes from modules/{header-auth,footer-contact,information-megamenu,variation-stock-selector}/.
+ * Main plugin controller.
  *
  * @package Biopentra_Storefront
  */
@@ -29,9 +27,15 @@ class Biopentra_Storefront {
 	}
 
 	/**
-	 * Initialize plugin (no modules registered yet).
+	 * Load storefront modules (safe if optional files are absent).
 	 */
 	public function init() {
-		// Intentionally empty: migration will require_once module bootstraps here.
+		$module_file = BIOPENTRA_STOREFRONT_PATH . 'modules/information-megamenu/class-information-megamenu-module.php';
+		if ( is_readable( $module_file ) ) {
+			require_once $module_file;
+			if ( class_exists( 'Biopentra_Storefront_Information_Megamenu_Module' ) ) {
+				Biopentra_Storefront_Information_Megamenu_Module::init();
+			}
+		}
 	}
 }
