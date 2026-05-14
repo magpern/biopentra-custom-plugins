@@ -104,6 +104,7 @@ class Biopentra_Storefront_Information_Megamenu_Module {
 		if ( strpos( $tag, ' defer' ) !== false ) {
 			return $tag;
 		}
-		return str_replace( '<script ', '<script defer ', $tag, 1 );
+		// PHP 8.3+: str_replace() fourth argument is &$count (by ref), not a replace limit.
+		return preg_replace( '/^<script\s+/i', '<script defer ', $tag, 1 );
 	}
 }
