@@ -104,9 +104,9 @@ mv wp-content/plugins/biopentra-contact-inbox.backup-2026-05-15-101126 \
 
 1. **Dual folder confusion** — backup folder must not be activated accidentally; remove after 7–14 days stable.
 2. **Monorepo drift** — `custom-wordpress-plugins/plugins/biopentra-contact-inbox/` still exists; sync policy: patch **fluent-imap-support-desk-repo** first, then rsync to production.
-3. **Integrity check** — update `custom-plugin-integrity-check.sh` manifest to expect `fluent-imap-support-desk` instead of `biopentra-contact-inbox` (follow-up).
+3. **Integrity check** — updated 2026-05-15; expects `fluent-imap-support-desk` active, deployable file compare vs `fluent-imap-support-desk-repo`.
 4. **REST health metadata** — cosmetic; change in a future release when renaming internals.
-5. **Plugin directory permissions** — use Docker `chown` or `magpern:magpern` `775` after deploys (same lesson as loop-card).
+5. **Plugin directory permissions** — deployable files must be world-readable (`755` dirs, `644` files). Cutover ZIP left `770`/`660`; WordPress could not register the plugin until corrected and activated.
 
 ---
 

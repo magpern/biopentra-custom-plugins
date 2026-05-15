@@ -43,7 +43,7 @@ This plan assumes **no further storefront consolidation** during recovery — re
 5. Restore wp-content bind mount (themes, plugins, uploads, mu-plugins)
 6. docker compose up -d wordpress (+ mail-worker, proton-bridge if used)
 7. Verify wpcli user 33:33 in compose; ./wp core version
-8. ./wp plugin list — activate biopentra-storefront, loop-card, inventory as needed
+8. `./wp plugin list` — activate `biopentra-storefront`, `biopentra-loop-card`, `fluent-imap-support-desk`, `wc-inventory-overview` as needed
 9. ./wp option update woocommerce_coming_soon no
 10. ./wp elementor flush-css --regenerate + per-page CSS if needed
 11. chown/chmod uploads/elementor/css (www-data, 775) — see hardening doc
@@ -66,7 +66,7 @@ cd biopentra-custom-plugins
 
 Deploy custom plugins to `wp-content/plugins/`:
 
-- **Preferred:** unzip `builds/zips/biopentra-storefront-0.4.0.zip` (and `biopentra-loop-card-*.zip`, `wc-inventory-overview-*.zip`) via WP admin or CLI
+- **Preferred:** unzip release ZIPs via WP admin or CLI: `biopentra-storefront-0.4.0.zip`, `biopentra-loop-card-*.zip`, `fluent-imap-support-desk-2.0.0.zip` (from `fluent-imap-support-desk-repo/builds/`), `wc-inventory-overview-*.zip`
 - **Dev/staging:** rsync `plugins/biopentra-storefront/` → `wp-content/plugins/biopentra-storefront/`
 
 Copy `deploy/docker-compose.yml` to server `woocommerce/docker-compose.yml`. Recreate external networks/volumes or adjust compose for greenfield volumes.

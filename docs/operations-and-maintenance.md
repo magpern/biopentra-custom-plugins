@@ -15,7 +15,9 @@ Routine operations for a **stable storefront 0.4.0** deployment. Do **not** cons
 | `biopentra-storefront` 0.4.0 | Megamenu, footer, header auth, CVSS |
 | `biopentra-loop-card` | Standalone shop loop |
 | `wc-inventory-overview` | Standalone |
-| Legacy 4 plugins | **Removed** from production; sources + ZIPs in git for rollback |
+| `fluent-imap-support-desk` 2.0.0 | **Active** Support Desk (cutover 2026-05-15); source: `fluent-imap-support-desk-repo` |
+| `biopentra-contact-inbox` | **Legacy** — backup folder only; not active |
+| Legacy 4 storefront plugins | **Removed** from production; sources + ZIPs in git for rollback |
 | Docker | `wordpress`, `db`, `wpcli`, `biopentra-mail-worker` |
 | WP-CLI | `./wp` → `docker compose run wpcli` (**user 33:33**) |
 
@@ -166,30 +168,33 @@ Checks: storefront active, coming soon off, Elementor CSS dir writable, critical
 
 ## Custom plugin integrity check
 
-Detects **partial plugin folder loss** (e.g. missing main `biopentra-contact-inbox.php`) before WordPress drops the admin menu.
+Detects **partial plugin folder loss** (e.g. missing main `fluent-imap-support-desk.php`) before WordPress drops the admin menu.
 
 ```bash
 /home/magpern/woocommerce/custom-wordpress-plugins/scripts/custom-plugin-integrity-check.sh
 ```
 
-Checks per active custom plugin (`biopentra-storefront`, `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview`):
+Checks per active custom plugin (`biopentra-storefront`, `biopentra-loop-card`, `fluent-imap-support-desk`, `wc-inventory-overview`):
 
 - Production folder and main plugin PHP file exist
 - Critical `includes/`, `assets/`, and module paths exist
-- File count vs `custom-wordpress-plugins/plugins/<slug>/` (flags large gaps)
-- Plugin active in WordPress
-- Support Desk REST `/wp-json/biopentra-support/v1/health` → HTTP 200
+- File count vs source tree (monorepo `plugins/<slug>/` or `fluent-imap-support-desk-repo` for Support Desk)
+- Plugin active in WordPress; **legacy `biopentra-contact-inbox` must be inactive**
+- Support Desk REST `/wp-json/biopentra-support/v1/health` → HTTP 200 (health JSON may still report `plugin: biopentra-contact-inbox` — compatibility)
+- Admin menu slug `biopentra-inbox`, capability `manage_biopentra_inbox`, options/tables `biopentra_inbox_*` unchanged
 - Elementor CSS directory writable via `wpcli` (uid 33)
 
 **Recommended schedule:** daily via cron (e.g. 06:00) and after any deploy/rsync into `wp-content/plugins/`. On **FAIL**, compare production to source and restore:
 
 ```bash
-rsync -a custom-wordpress-plugins/plugins/biopentra-contact-inbox/ \
-  wp-content/plugins/biopentra-contact-inbox/
-./wp plugin activate biopentra-contact-inbox
+rsync -a /home/magpern/fluent-imap-support-desk-repo/ \
+  wp-content/plugins/fluent-imap-support-desk/
+./wp plugin activate fluent-imap-support-desk
 ```
 
-See `docs/plugin-integrity-check-report.md` and `docs/support-desk-menu-restoration.md`.
+See `docs/plugin-integrity-check-report.md`, `docs/fluent-imap-support-desk-production-cutover.md`, and `docs/support-desk-menu-restoration.md`.
+
+**Legacy backup folder** (remove after 7–14 stable days): `wp-content/plugins/biopentra-contact-inbox.backup-*`
 
 ---
 
@@ -243,7 +248,7 @@ Alert on: repeated PHP Fatal, disk >85%, health-check FAIL, checkout error rate 
 | “Great things are on the horizon” | `woocommerce_coming_soon=yes` | `./wp option update woocommerce_coming_soon no` |
 | `./wp` fails | Missing `docker-compose.yml` | Restore from `deploy/docker-compose.yml` |
 | Contact form broken | FluentForm / unrelated | Check FluentForm plugin, not storefront |
-| Support Desk menu missing | Incomplete `wp-content/plugins/biopentra-contact-inbox/` | Run integrity check; rsync from `custom-wordpress-plugins/plugins/` |
+| Support Desk menu missing | Incomplete `wp-content/plugins/fluent-imap-support-desk/` | Run integrity check; rsync from `fluent-imap-support-desk-repo/` |
 | 404 legacy plugin assets | Stale Elementor HTML | DB cleanup + purge CDN |
 | Shop loop wrong | `biopentra-loop-card` | Update loop-card only; not storefront |
 
@@ -283,3 +288,4 @@ Clean clone build test: `git clone` + `./scripts/build-zips.sh` → **8 ZIPs** b
 - `docs/github-backup-plan.md`
 - `docs/plugin-integrity-check-report.md`
 - `docs/support-desk-menu-restoration.md`
+- `docs/fluent-imap-support-desk-production-cutover.md`
