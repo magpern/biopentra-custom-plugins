@@ -1,0 +1,91 @@
+# Restored 2026-05-15: matches running stack (inspect). DB credentials: `.env`. Worker secrets: `.env.worker`.
+name: woocommerce
+
+services:
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - default
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    env_file:
+      - .env
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+    depends_on:
+      - db
+    volumes:
+      - wp_data:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
+      - ./php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    networks:
+      - default
+      - bridge-net
+
+  wpcli:
+    image: wordpress:cli
+    # Match wordpress:php8.3-apache www-data (uid/gid 33). Default cli image uses 82 and cannot write Elementor CSS to bind-mounted uploads.
+    user: "33:33"
+    env_file:
+      - .env
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      PHP_MEMORY_LIMIT: 1G
+      WP_CLI_PHP_ARGS: -d memory_limit=1G
+    volumes:
+      - wp_data:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
+      - ./php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    networks:
+      - default
+
+  biopentra-mail-worker:
+    image: ghcr.io/magpern/proton-mail-worker:latest
+    restart: unless-stopped
+    env_file:
+      - .env.worker
+    environment:
+      API_BASE_URL: http://wordpress/wp-json/biopentra-support/v1
+      IMAP_HOST: proton-bridge
+      IMAP_PORT: "2143"
+      IMAP_MAILBOX: INBOX
+      MESSAGE_CAP: "50"
+      POLL_INTERVAL: "300"
+      WORKER_HTTP_PORT: "8080"
+      WORKER_VERSION: "1.0.0"
+    depends_on:
+      - wordpress
+    networks:
+      - default
+      - bridge-net
+
+networks:
+  default:
+    name: woocommerce_default
+    external: true
+  bridge-net:
+    name: woocommerce_bridge-net
+    external: true
+
+volumes:
+  wp_data:
+    name: woocommerce_wp_data
+    external: true
+  db_data:
+    name: woocommerce_db_data
+    external: true
