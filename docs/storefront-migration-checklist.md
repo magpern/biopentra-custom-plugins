@@ -2,7 +2,9 @@
 
 **Status:** Phases **1–4 code** live in `biopentra-storefront` (mega-menu, footer contact, variation stock selector, **header auth**). **Phase 4 production cutover** (deactivate standalone `biopentra-header-auth`) is **not** implied until staging QA passes — see **`docs/staging-test-phase-4-header-auth.md`** and **`docs/header-auth-migration-notes.md`**. Pre-migration audit: **`docs/header-auth-phase-4-audit.md`**. Elementor megamenu legacy script cleanup remains part of Phase 1 production hygiene where applicable. Legacy plugin folders stay in the repo; **do not** delete until soak completes.
 
-**Out of scope for this consolidation:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of these phases.
+**Phase 5 (`biopentra-loop-card`):** **Audit started / migration not started** — see **`docs/loop-card-phase-5-audit.md`**. Current recommendation: **keep standalone**; do not merge until audit follow-up approves.
+
+**Out of scope for Phases 1–4 cutover:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of Phases 1–4.
 
 ---
 
@@ -280,6 +282,39 @@ All under `assets/` listed above, plus all `includes/*.php` for this feature set
 |-------|-------------------------|
 | Implementation | **Active** until cutover |
 | After QA | **Deactivated** when storefront owns all hooks |
+
+---
+
+## Phase 5 — `biopentra-loop-card`
+
+**Status:** **Audit started / migration not started** — pre-migration inventory and merge decision: **`docs/loop-card-phase-5-audit.md`**.
+
+**Goal (if ever merged):** Elementor Loop Grid product cards, shop query fix, live search, price formatting, optional Age Gate + store notice helpers.
+
+**Audit recommendation:** **Keep standalone** for now (high-risk `pre_get_posts`, Elementor Pro + DB template upgrades, CLI shop setup). Do not add to `biopentra-storefront` until staging matrix passes and site-specific `init` upgrades are gated or moved to CLI.
+
+### Source layout (legacy, unchanged)
+
+| File | Role |
+|------|------|
+| `biopentra-loop-card.php` | Main runtime hooks |
+| `includes/age-gate-confirm-fix.php` | Age Gate compatibility |
+| `includes/store-notice.php` | WC demo store notice |
+| `includes/setup-shop-page-cli.php` | **CLI only** — not loaded at runtime |
+| `assets/loop-card.css`, `loop-card.js` | Grid overlay + AJAX ATC |
+| `assets/shop-live-search.js` | REST suggestions on shop |
+| `assets/store-notice.css` | Notice styling |
+
+### Hooks to preserve (summary)
+
+See audit doc for full priority table. Notable: `pre_get_posts` **9999**, `woocommerce_get_price_html` **50**, `elementor/document/wrapper_attributes` **20**, `elementor/query/query_args` **25**, `wp_enqueue_scripts` **20** / **30**.
+
+### Legacy plugin during migration
+
+| Stage | `biopentra-loop-card` |
+|-------|-------------------------|
+| Current | **Active** (standalone) |
+| If merge approved later | **Deactivate** when storefront module owns hooks + guard verified |
 
 ---
 
