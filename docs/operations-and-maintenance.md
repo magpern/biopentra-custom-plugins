@@ -164,6 +164,35 @@ Checks: storefront active, coming soon off, Elementor CSS dir writable, critical
 
 ---
 
+## Custom plugin integrity check
+
+Detects **partial plugin folder loss** (e.g. missing main `biopentra-contact-inbox.php`) before WordPress drops the admin menu.
+
+```bash
+/home/magpern/woocommerce/custom-wordpress-plugins/scripts/custom-plugin-integrity-check.sh
+```
+
+Checks per active custom plugin (`biopentra-storefront`, `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview`):
+
+- Production folder and main plugin PHP file exist
+- Critical `includes/`, `assets/`, and module paths exist
+- File count vs `custom-wordpress-plugins/plugins/<slug>/` (flags large gaps)
+- Plugin active in WordPress
+- Support Desk REST `/wp-json/biopentra-support/v1/health` → HTTP 200
+- Elementor CSS directory writable via `wpcli` (uid 33)
+
+**Recommended schedule:** daily via cron (e.g. 06:00) and after any deploy/rsync into `wp-content/plugins/`. On **FAIL**, compare production to source and restore:
+
+```bash
+rsync -a custom-wordpress-plugins/plugins/biopentra-contact-inbox/ \
+  wp-content/plugins/biopentra-contact-inbox/
+./wp plugin activate biopentra-contact-inbox
+```
+
+See `docs/plugin-integrity-check-report.md` and `docs/support-desk-menu-restoration.md`.
+
+---
+
 ## Backup strategy (current vs recommended)
 
 ### Current (observed)
@@ -196,6 +225,7 @@ Full DR steps: `docs/disaster-recovery-plan.md`
 | **PHP fatals** | `docker logs woocommerce-wordpress-1 --since 24h \| grep -i 'PHP Fatal'` |
 | **Disk usage** | `df -h`; `du -sh wp-content/uploads` |
 | **Elementor CSS 404** | `scripts/health-check.sh` or cron curl spot-check |
+| **Partial plugin loss** | `scripts/custom-plugin-integrity-check.sh` (daily + post-deploy) |
 | **WooCommerce logs** | `wp-content/wc-logs/` (enable if missing) |
 | **WP-Cron** | `./wp cron event list`; ensure system cron if traffic low |
 | **Uptime** | External monitor on `/` and `/shop/` (200, keyword) |
@@ -213,6 +243,7 @@ Alert on: repeated PHP Fatal, disk >85%, health-check FAIL, checkout error rate 
 | “Great things are on the horizon” | `woocommerce_coming_soon=yes` | `./wp option update woocommerce_coming_soon no` |
 | `./wp` fails | Missing `docker-compose.yml` | Restore from `deploy/docker-compose.yml` |
 | Contact form broken | FluentForm / unrelated | Check FluentForm plugin, not storefront |
+| Support Desk menu missing | Incomplete `wp-content/plugins/biopentra-contact-inbox/` | Run integrity check; rsync from `custom-wordpress-plugins/plugins/` |
 | 404 legacy plugin assets | Stale Elementor HTML | DB cleanup + purge CDN |
 | Shop loop wrong | `biopentra-loop-card` | Update loop-card only; not storefront |
 
@@ -225,7 +256,7 @@ Alert on: repeated PHP Fatal, disk >85%, health-check FAIL, checkout error rate 
 | All `plugins/*` custom sources | Yes (8 plugin dirs) |
 | `deploy/docker-compose.yml` | Yes |
 | `docs/**` operational + consolidation | Yes |
-| `scripts/build-zips.sh`, `scripts/health-check.sh` | Yes |
+| `scripts/build-zips.sh`, `scripts/health-check.sh`, `scripts/custom-plugin-integrity-check.sh` | Yes |
 | `builds/zips/*.zip` | No (gitignored; rebuild via script) |
 | `.env` / secrets | **No** (correct) |
 | Live `wp-content` (uploads, third-party plugins) | **No** — backup separately |
@@ -250,3 +281,5 @@ Clean clone build test: `git clone` + `./scripts/build-zips.sh` → **8 ZIPs** b
 - `docs/release-process.md`
 - `docs/elementor-css-generation-hardening.md`
 - `docs/github-backup-plan.md`
+- `docs/plugin-integrity-check-report.md`
+- `docs/support-desk-menu-restoration.md`
