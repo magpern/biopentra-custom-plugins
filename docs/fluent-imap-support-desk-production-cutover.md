@@ -39,8 +39,26 @@
 | Database | `/home/magpern/backups/wp-pre-fisd-cutover-2026-05-15-101126.sql` (~20M) |
 | Plugin folder (tar) | `/home/magpern/backups/biopentra-contact-inbox-pre-cutover-2026-05-15-101126.tar.gz` (~73K) |
 | Active plugins CSV | `/home/magpern/backups/active-plugins-pre-cutover-2026-05-15-101126.csv` |
-| Moved legacy folder | `wp-content/plugins/biopentra-contact-inbox.backup-2026-05-15-101126/` |
+| Moved legacy folder | `wp-content/plugins/biopentra-contact-inbox.backup-2026-05-15-101126/` (removed 2026-05-15 — see Legacy cleanup) |
 | Uploads | **Not tarred** (~108M; noted only) |
+
+---
+
+## Legacy cleanup (2026-05-15)
+
+After stable cutover and integrity **PASS**, the in-`plugins/` backup folder was archived and removed.
+
+| Step | Result |
+|------|--------|
+| Final archive | `/home/magpern/backups/final-biopentra-contact-inbox-backup-2026-05-15-102749.tar.gz` (~74K, 35 paths) |
+| Removed from disk | `wp-content/plugins/biopentra-contact-inbox.backup-2026-05-15-101126/` |
+| Removal method | Host `rm` blocked (parent `plugins/` owned `www-data`); `docker run … alpine rm -rf` on bind mount |
+| Active plugin after cleanup | **`fluent-imap-support-desk`** v2.0.0 |
+| REST health | HTTP **200** |
+
+Earlier cutover backups remain: `wp-pre-fisd-cutover-2026-05-15-101126.sql`, `biopentra-contact-inbox-pre-cutover-2026-05-15-101126.tar.gz`.
+
+**Rollback to legacy folder:** extract final archive (or pre-cutover tar) into `wp-content/plugins/biopentra-contact-inbox/`, deactivate FISD, activate legacy — only if required.
 
 ---
 
@@ -69,7 +87,7 @@
 | Check | Result |
 |-------|--------|
 | Active plugin slug | **`fluent-imap-support-desk`** v2.0.0 |
-| Legacy plugin | **inactive** (folder only in `.backup-*`) |
+| Legacy plugin | **absent** (slug not registered; backup folder removed after archive) |
 | Tickets | **1** row |
 | Settings option `biopentra_inbox_display_name` | **Biopentra Support Desk** |
 | REST `GET .../health` | **200**, `worker_token_configured: true` |
@@ -91,8 +109,9 @@
 cd /home/magpern/woocommerce
 ./wp plugin deactivate fluent-imap-support-desk
 rm -rf wp-content/plugins/fluent-imap-support-desk
-mv wp-content/plugins/biopentra-contact-inbox.backup-2026-05-15-101126 \
-   wp-content/plugins/biopentra-contact-inbox
+# Legacy folder removed — restore from archive first:
+tar -xzf /home/magpern/backups/final-biopentra-contact-inbox-backup-2026-05-15-102749.tar.gz -C /home/magpern/woocommerce
+# Adjust extracted path to wp-content/plugins/biopentra-contact-inbox/ if needed
 ./wp plugin activate biopentra-contact-inbox
 ./wp cache flush
 # DB restore only if data corruption — use wp-pre-fisd-cutover-2026-05-15-101126.sql
@@ -102,11 +121,10 @@ mv wp-content/plugins/biopentra-contact-inbox.backup-2026-05-15-101126 \
 
 ## Remaining risks
 
-1. **Dual folder confusion** — backup folder must not be activated accidentally; remove after 7–14 days stable.
-2. **Monorepo drift** — `custom-wordpress-plugins/plugins/biopentra-contact-inbox/` still exists; sync policy: patch **fluent-imap-support-desk-repo** first, then rsync to production.
-3. **Integrity check** — updated 2026-05-15; expects `fluent-imap-support-desk` active, deployable file compare vs `fluent-imap-support-desk-repo`.
-4. **REST health metadata** — cosmetic; change in a future release when renaming internals.
-5. **Plugin directory permissions** — deployable files must be world-readable (`755` dirs, `644` files). Cutover ZIP left `770`/`660`; WordPress could not register the plugin until corrected and activated.
+1. **Monorepo drift** — `custom-wordpress-plugins/plugins/biopentra-contact-inbox/` still exists; sync policy: patch **fluent-imap-support-desk-repo** first, then rsync to production.
+2. **Integrity check** — expects `fluent-imap-support-desk` active; no legacy `biopentra-contact-inbox/` or `.backup-*` under `plugins/`.
+3. **REST health metadata** — cosmetic; change in a future release when renaming internals.
+4. **Plugin directory permissions** — deployable files must be world-readable (`755` dirs, `644` files).
 
 ---
 

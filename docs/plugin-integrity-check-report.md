@@ -1,6 +1,6 @@
 # Plugin integrity check report
 
-**Last run:** 2026-05-15 (post Fluent IMAP Support Desk cutover)  
+**Last run:** 2026-05-15 (post legacy backup folder removal)  
 **Script:** `scripts/custom-plugin-integrity-check.sh`  
 **Result:** **PASS** (exit 0)
 
@@ -8,14 +8,12 @@
 
 | Plugin | Status | Notes |
 |--------|--------|-------|
-| biopentra-storefront | OK | v0.4.0 active, 25 files match source |
-| biopentra-loop-card | OK | v1.2.4 active, 9 files match source |
-| fluent-imap-support-desk | OK | v2.0.0 active, 29 deployable files match `fluent-imap-support-desk-repo` |
-| wc-inventory-overview | OK | v1.17.0 active, 34 files match source |
+| biopentra-storefront | OK | v0.4.0 active |
+| biopentra-loop-card | OK | v1.2.4 active |
+| fluent-imap-support-desk | OK | v2.0.0 active, 29 deployable files match source |
+| wc-inventory-overview | OK | v1.17.0 active |
 
-**Support desk compatibility:** legacy `biopentra-contact-inbox` inactive; backup folder `biopentra-contact-inbox.backup-2026-05-15-101126` aside. REST health HTTP 200; compatibility metadata `plugin: biopentra-contact-inbox`.
-
-**Post-cutover fix:** production folder had `770`/`660` permissions so WordPress could not register the plugin. Corrected to `755`/`644` (same pattern as loop-card), then activated `fluent-imap-support-desk`.
+**Support desk:** legacy slug inactive; **no** `biopentra-contact-inbox/` or `.backup-*` under `wp-content/plugins/`. Final legacy archive: `/home/magpern/backups/final-biopentra-contact-inbox-backup-2026-05-15-102749.tar.gz`. REST health HTTP 200.
 
 ## Full log
 
@@ -69,7 +67,7 @@ OK   wc-inventory-overview: active in WordPress (v1.17.0)
 
 --- support desk compatibility ---
 OK   legacy plugin biopentra-contact-inbox inactive
-OK   legacy folder moved aside (biopentra-contact-inbox.backup-2026-05-15-101126)
+OK   no live legacy biopentra-contact-inbox/ folder
 WARN manage_biopentra_inbox not true in WP-CLI context (verify logged-in admin in browser)
 --- runtime ---
 OK   Support Desk REST health HTTP 200
