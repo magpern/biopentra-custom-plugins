@@ -2,7 +2,7 @@
 
 **Status:** Phases **1–4 code** live in `biopentra-storefront` (mega-menu, footer contact, variation stock selector, **header auth**). **Phase 4 production cutover** (deactivate standalone `biopentra-header-auth`) is **not** implied until staging QA passes — see **`docs/staging-test-phase-4-header-auth.md`** and **`docs/header-auth-migration-notes.md`**. Pre-migration audit: **`docs/header-auth-phase-4-audit.md`**. Elementor megamenu legacy script cleanup remains part of Phase 1 production hygiene where applicable. Legacy plugin folders stay in the repo; **do not** delete until soak completes.
 
-**Phase 5 (`biopentra-loop-card`):** **Audit started / migration not started** — see **`docs/loop-card-phase-5-audit.md`**. Current recommendation: **keep standalone**; do not merge until audit follow-up approves.
+**Phase 5 (`biopentra-loop-card`):** **Keep standalone / not part of storefront 0.4.x** — hardened as separate plugin; see **`docs/loop-card-hardening-plan.md`** and audit **`docs/loop-card-phase-5-audit.md`**. Do not merge into `biopentra-storefront` for the 0.4.x release line.
 
 **Out of scope for Phases 1–4 cutover:** `biopentra-loop-card`, `biopentra-contact-inbox`, `wc-inventory-overview` — do not merge or deactivate as part of Phases 1–4.
 
@@ -287,11 +287,11 @@ All under `assets/` listed above, plus all `includes/*.php` for this feature set
 
 ## Phase 5 — `biopentra-loop-card`
 
-**Status:** **Audit started / migration not started** — pre-migration inventory and merge decision: **`docs/loop-card-phase-5-audit.md`**.
+**Status:** **Keep standalone / not part of storefront 0.4.x** — version aligned at **1.2.4**; hardening plan: **`docs/loop-card-hardening-plan.md`**. Audit: **`docs/loop-card-phase-5-audit.md`**.
 
-**Goal (if ever merged):** Elementor Loop Grid product cards, shop query fix, live search, price formatting, optional Age Gate + store notice helpers.
+**Policy:** Do **not** merge into `biopentra-storefront` for 0.4.x. Maintain as separate plugin with its own ZIP and release cadence.
 
-**Audit recommendation:** **Keep standalone** for now (high-risk `pre_get_posts`, Elementor Pro + DB template upgrades, CLI shop setup). Do not add to `biopentra-storefront` until staging matrix passes and site-specific `init` upgrades are gated or moved to CLI.
+**Goal (standalone):** Elementor Loop Grid product cards, shop query fix, live search, price formatting, Age Gate + store notice helpers.
 
 ### Source layout (legacy, unchanged)
 
