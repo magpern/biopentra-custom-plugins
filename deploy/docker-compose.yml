@@ -54,6 +54,19 @@ services:
     networks:
       - default
 
+  proton-bridge:
+    image: ghcr.io/magpern/proton-bridge:latest
+    container_name: proton-bridge
+    restart: unless-stopped
+    volumes:
+      - bridge_config:/root/.config/protonmail
+      - bridge_gnupg:/root/.gnupg
+      - bridge_pass:/root/.password-store
+    networks:
+      - bridge-net
+    stdin_open: true
+    tty: true
+
   biopentra-mail-worker:
     image: ghcr.io/magpern/proton-mail-worker:latest
     restart: unless-stopped
@@ -70,6 +83,7 @@ services:
       WORKER_VERSION: "1.0.0"
     depends_on:
       - wordpress
+      - proton-bridge
     networks:
       - default
       - bridge-net
@@ -88,4 +102,13 @@ volumes:
     external: true
   db_data:
     name: woocommerce_db_data
+    external: true
+  bridge_config:
+    name: woocommerce_bridge_config
+    external: true
+  bridge_gnupg:
+    name: woocommerce_bridge_gnupg
+    external: true
+  bridge_pass:
+    name: woocommerce_bridge_pass
     external: true
