@@ -61,5 +61,13 @@ class Biopentra_Storefront {
 				Biopentra_Storefront_Header_Auth_Module::init();
 			}
 		}
+
+		$seo_module = BIOPENTRA_STOREFRONT_PATH . 'modules/technical-seo/class-technical-seo-module.php';
+		if ( is_readable( $seo_module ) ) {
+			require_once $seo_module;
+			if ( class_exists( 'Biopentra_Storefront_Technical_Seo_Module' ) ) {
+				Biopentra_Storefront_Technical_Seo_Module::init();
+			}
+		}
 	}
 }
