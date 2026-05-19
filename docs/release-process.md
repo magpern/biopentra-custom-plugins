@@ -10,8 +10,8 @@ Standardizes **versioning**, **production ZIPs**, **Git tags**, and **rollback**
 
 | Plugin | Git tag format | Example | GitHub workflow |
 |--------|----------------|---------|-----------------|
-| **wc-inventory-overview** | `wc-inventory-overview-v{version}` | `wc-inventory-overview-v1.17.1` | `release-wc-inventory-overview.yml` |
-| **biopentra-storefront** | `storefront-v{version}` | `storefront-v0.5.1` | `release-biopentra-storefront.yml` |
+| **wc-inventory-overview** | `wc-inventory-overview-v{version}` | `wc-inventory-overview-v1.17.2` | `release-wc-inventory-overview.yml` |
+| **biopentra-storefront** | `storefront-v{version}` | `storefront-v0.5.2` | `release-biopentra-storefront.yml` |
 
 Tag version must match the plugin header `Version:` and the package constant (`WC_INVENTORY_OVERVIEW_VERSION`, `BIOPENTRA_STOREFRONT_VERSION`, etc.).
 
@@ -68,6 +68,19 @@ Verify with `scripts/lib/verify-release-zip.py` (profiles for released plugins).
 
 ---
 
+## GitHub Release updaters (production)
+
+Released plugins include `includes/class-github-updater.php`. On `WP_ENVIRONMENT_TYPE=production`, WordPress checks [monorepo releases](https://api.github.com/repos/magpern/biopentra-custom-plugins/releases) for the latest tag matching the plugin prefix and offers the matching **`{slug}-X.Y.Z.zip`** asset.
+
+| Plugin | Tag prefix | Disable on dev |
+|--------|------------|----------------|
+| wc-inventory-overview | `wc-inventory-overview-v*` | `WC_INVENTORY_OVERVIEW_DISABLE_GITHUB_UPDATER` |
+| biopentra-storefront | `storefront-v*` | `BIOPENTRA_STOREFRONT_DISABLE_GITHUB_UPDATER` |
+
+Filters: `wc_inventory_overview_github_updater_enabled`, `biopentra_storefront_github_updater_enabled`.
+
+---
+
 ## Production deployment
 
 - Install **only** from GitHub Release ZIPs (or CI artifacts), not from a raw git clone on the server.
@@ -88,7 +101,7 @@ Verify with `scripts/lib/verify-release-zip.py` (profiles for released plugins).
 
 ## Storefront-specific notes
 
-See also `docs/storefront-0.4.0-production-cutover.md` and `CHANGELOG.md` (storefront sections). Current header **0.5.1** aligns with tag **`storefront-v0.5.1`** (supersedes `storefront-v0.4.0` for new ZIP deploys).
+See also `docs/storefront-0.4.0-production-cutover.md` and `CHANGELOG.md` (storefront sections). Current header **0.5.2** aligns with tag **`storefront-v0.5.2`**.
 
 ---
 
