@@ -313,56 +313,208 @@ body.woocommerce-cart .ct-woocommerce-cart-form .quantity .input-text.qty {
 	border-radius: var(--theme-form-field-border-radius, 8px);
 }
 
+/* -------------------------------------------------------------------------
+   Cart action buttons (scoped; no layout shift on hover)
+   ------------------------------------------------------------------------- */
+body.woocommerce-cart .ct-woocommerce-cart-form {
+	--bph-cart-btn-radius: var(--theme-button-border-radius, 8px);
+	--bph-cart-btn-shadow: 0 1px 2px rgba(15, 31, 51, 0.08);
+	--bph-cart-btn-shadow-hover: 0 6px 16px rgba(31, 95, 174, 0.22);
+	--bph-cart-btn-min-height: var(--theme-button-min-height, 44px);
+}
+
 body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button,
 body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button,
 body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-coupon-row > .button,
+body.woocommerce-cart .ct-woocommerce-cart-form .mp-cp-credit-cart-disclosure__wallet-apply.button,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-shipping-calculator .button,
 body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button,
-body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt {
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt,
+body.woocommerce-cart .woocommerce-notices-wrapper .button,
+body.woocommerce-cart .entry-content > .woocommerce > .woocommerce-notices-wrapper .button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	min-height: var(--bph-cart-btn-min-height);
+	padding: 0.65em 1.15em;
+	font-weight: 600;
+	line-height: 1.25;
+	border-radius: var(--bph-cart-btn-radius);
+	border: 1px solid transparent;
 	background-color: var(--bph-wc-accent) !important;
 	background-image: none !important;
 	color: #fff !important;
-	border-color: transparent !important;
-	font-weight: 600;
-	border-radius: var(--theme-button-border-radius, 8px);
-	transition: background-color 0.15s ease, box-shadow 0.15s ease;
+	box-shadow: var(--bph-cart-btn-shadow);
+	transform: translateY(0);
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease,
+		box-shadow 0.2s ease,
+		transform 0.2s ease,
+		color 0.2s ease;
 }
 
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button:hover:not(:disabled),
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button:hover:not(:disabled),
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button:hover:not(:disabled),
-body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button:hover,
-body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt:hover {
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-coupon-row > .button:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .mp-cp-credit-cart-disclosure__wallet-apply.button:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-shipping-calculator .button:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .woocommerce-notices-wrapper .button:hover:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .entry-content > .woocommerce > .woocommerce-notices-wrapper .button:hover:not(:disabled):not([aria-disabled="true"]) {
 	background-color: var(--bph-wc-accent-hover) !important;
 	color: #fff !important;
+	box-shadow: var(--bph-cart-btn-shadow-hover);
+	transform: translateY(-1px);
 }
 
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form button[name="update_cart"]:disabled {
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button:hover:not(:disabled),
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt:hover:not(:disabled) {
+	box-shadow: 0 8px 22px rgba(31, 95, 174, 0.34) !important;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-coupon-row > .button:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .mp-cp-credit-cart-disclosure__wallet-apply.button:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-shipping-calculator .button:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .woocommerce-notices-wrapper .button:active:not(:disabled):not([aria-disabled="true"]),
+body.woocommerce-cart .entry-content > .woocommerce > .woocommerce-notices-wrapper .button:active:not(:disabled):not([aria-disabled="true"]) {
+	transform: translateY(0);
+	box-shadow: var(--bph-cart-btn-shadow);
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button:active:not(:disabled),
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt:active:not(:disabled) {
+	box-shadow: 0 4px 16px rgba(31, 95, 174, 0.28) !important;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button:focus-visible,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button:focus-visible,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button:focus-visible,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-coupon-row > .button:focus-visible,
+body.woocommerce-cart .ct-woocommerce-cart-form .mp-cp-credit-cart-disclosure__wallet-apply.button:focus-visible,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-shipping-calculator .button:focus-visible,
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button:focus-visible,
+body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt:focus-visible,
+body.woocommerce-cart .woocommerce-notices-wrapper .button:focus-visible {
+	outline: 2px solid var(--bph-wc-accent, #1f5fae);
+	outline-offset: 2px;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form button[name="update_cart"]:disabled,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form button[name="update_cart"][disabled] {
 	background-color: rgba(31, 95, 174, 0.38) !important;
 	color: #fff !important;
 	border-color: transparent !important;
+	box-shadow: none !important;
 	opacity: 1;
 	cursor: not-allowed;
+	transform: none !important;
+}
+
+/* Store credit apply: match coupon row buttons (not link-only). */
+body.woocommerce-cart .ct-woocommerce-cart-form .mp-cp-credit-cart-disclosure__wallet-apply.button {
+	width: 100%;
+	text-decoration: none;
+	font-size: inherit;
+	white-space: normal;
+	text-align: center;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form .mp-cp-credit-cart-disclosure__wallet-apply.button:hover:not(:disabled) {
+	text-decoration: none;
 }
 
 body.woocommerce-cart .ct-woocommerce-cart-form a.shipping-calculator-button {
 	color: var(--bph-wc-accent) !important;
-}
-
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-shipping-calculator .button {
-	background-color: var(--bph-wc-accent) !important;
-	background-image: none !important;
-	color: #fff !important;
-	border-color: transparent !important;
-	border-radius: var(--theme-button-border-radius, 8px);
-}
-
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-shipping-calculator .button:hover {
-	background-color: var(--bph-wc-accent-hover) !important;
-	color: #fff !important;
+	font-weight: 600;
+	text-decoration: none;
 }
 
 body.woocommerce-cart .ct-woocommerce-cart-form a.shipping-calculator-button:hover {
 	color: var(--bph-wc-accent-hover) !important;
+}
+
+/* Promotion restore / notice undo controls on cart. */
+body.woocommerce-cart .mp-cp-cart-promotion-restore-link,
+body.woocommerce-cart .woocommerce-notices-wrapper .button.undo,
+body.woocommerce-cart .woocommerce-notices-wrapper a.restore-item {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.25rem;
+	padding: 0.45em 0.85em;
+	margin-inline-start: 0.35em;
+	border-radius: var(--bph-cart-btn-radius, 8px);
+	border: 1px solid rgba(31, 95, 174, 0.35);
+	background-color: #fff;
+	color: var(--bph-wc-accent, #1f5fae) !important;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: var(--bph-cart-btn-shadow, 0 1px 2px rgba(15, 31, 51, 0.08));
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease,
+		box-shadow 0.2s ease,
+		transform 0.2s ease,
+		color 0.2s ease;
+}
+
+body.woocommerce-cart .mp-cp-cart-promotion-restore-link:hover,
+body.woocommerce-cart .woocommerce-notices-wrapper .button.undo:hover,
+body.woocommerce-cart .woocommerce-notices-wrapper a.restore-item:hover {
+	background-color: rgba(31, 95, 174, 0.08);
+	border-color: var(--bph-wc-accent, #1f5fae);
+	color: var(--bph-wc-accent-hover, #174a87) !important;
+	box-shadow: var(--bph-cart-btn-shadow-hover, 0 6px 16px rgba(31, 95, 174, 0.14));
+	transform: translateY(-1px);
+}
+
+body.woocommerce-cart .mp-cp-cart-promotion-restore-link:focus-visible,
+body.woocommerce-cart .woocommerce-notices-wrapper .button.undo:focus-visible,
+body.woocommerce-cart .woocommerce-notices-wrapper a.restore-item:focus-visible {
+	outline: 2px solid var(--bph-wc-accent, #1f5fae);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button,
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button,
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button,
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-coupon-row > .button,
+	body.woocommerce-cart .ct-woocommerce-cart-form .mp-cp-credit-cart-disclosure__wallet-apply.button,
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-shipping-calculator .button,
+	body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button,
+	body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt,
+	body.woocommerce-cart .woocommerce-notices-wrapper .button,
+	body.woocommerce-cart .mp-cp-cart-promotion-restore-link,
+	body.woocommerce-cart .woocommerce-notices-wrapper .button.undo,
+	body.woocommerce-cart .woocommerce-notices-wrapper a.restore-item {
+		transition: none;
+		transform: none;
+	}
+
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button:hover:not(:disabled),
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button:hover:not(:disabled),
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button:hover:not(:disabled),
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-coupon-row > .button:hover:not(:disabled),
+	body.woocommerce-cart .ct-woocommerce-cart-form .mp-cp-credit-cart-disclosure__wallet-apply.button:hover:not(:disabled),
+	body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-shipping-calculator .button:hover:not(:disabled),
+	body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button:hover:not(:disabled),
+	body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt:hover:not(:disabled),
+	body.woocommerce-cart .woocommerce-notices-wrapper .button:hover:not(:disabled),
+	body.woocommerce-cart .mp-cp-cart-promotion-restore-link:hover,
+	body.woocommerce-cart .woocommerce-notices-wrapper .button.undo:hover,
+	body.woocommerce-cart .woocommerce-notices-wrapper a.restore-item:hover {
+		transform: none;
+	}
 }
 
 /* -------------------------------------------------------------------------
