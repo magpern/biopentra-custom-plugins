@@ -67,8 +67,9 @@ def segment_violations(path: str, forbidden_segments: frozenset[str]) -> list[st
         if part == "vendor" and i > 0:
             continue
         hits.append(part)
-    if parts and parts[-1] in FORBIDDEN_ROOT_FILES:
-        hits.append(parts[-1])
+    # Dev readmes at plugin root only — allow modules/*/README.md.
+    if len(parts) == 1 and parts[0] in FORBIDDEN_ROOT_FILES:
+        hits.append(parts[0])
     if parts:
         leaf = parts[-1]
         if leaf.startswith(".env"):
