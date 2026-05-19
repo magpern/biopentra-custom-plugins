@@ -314,6 +314,56 @@ body.woocommerce-cart .ct-woocommerce-cart-form .quantity .input-text.qty {
 }
 
 /* -------------------------------------------------------------------------
+   Remove icon — align with quantity / subtotal band (Blocksy desktop cart)
+   ------------------------------------------------------------------------- */
+body.woocommerce-cart .ct-woocommerce-cart-form {
+	--bph-cart-qty-height: 40px;
+}
+
+@media (min-width: 1000px) {
+	/* Title/price stack stays top-aligned; qty/subtotal/remove share the lower band. */
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-thumbnail,
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-name {
+		vertical-align: top;
+	}
+
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-quantity,
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-subtotal,
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-remove {
+		vertical-align: bottom;
+	}
+
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-subtotal {
+		line-height: var(--bph-cart-qty-height);
+	}
+
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-remove .remove {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--bph-cart-qty-height);
+		line-height: 1;
+		vertical-align: bottom;
+	}
+
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-remove .remove svg,
+	body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart tbody td.product-remove .remove .ct-icon {
+		display: block;
+		flex-shrink: 0;
+	}
+}
+
+@media (max-width: 999px) {
+	body.woocommerce-cart .ct-woocommerce-cart-form .product-mobile-actions .remove {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		align-self: center;
+		line-height: 1;
+	}
+}
+
+/* -------------------------------------------------------------------------
    Cart action buttons (scoped; no layout shift on hover)
    ------------------------------------------------------------------------- */
 body.woocommerce-cart .ct-woocommerce-cart-form {
