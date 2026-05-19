@@ -1,5 +1,36 @@
 /* Biopentra Loop Card — portrait card + two-step overlay */
 
+.biopentra-shop-load-more-error {
+	margin: 1rem 0 0;
+	padding: 0.75rem 1rem;
+	border-radius: 8px;
+	background: rgba(180, 40, 40, 0.08);
+	color: #8b1e1e;
+	font-size: 0.95rem;
+	text-align: center;
+}
+
+.elementor-element-ed52b7f.biopentra-shop-loading-more .e-load-more-spinner {
+	display: inline-flex;
+	opacity: 1;
+}
+
+.elementor-element-ed52b7f .e-loop__load-more {
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.elementor-element-ed52b7f.e-load-more-pagination-end .e-loop__load-more .elementor-button {
+	display: none;
+}
+
+.elementor-element-ed52b7f .e-load-more-message {
+	margin-top: 1rem;
+	text-align: center;
+	color: rgba(15, 31, 51, 0.65);
+	font-size: 0.95rem;
+}
+
 .biopentra-shop-loop-error {
 	margin: 0 0 1rem;
 	padding: 0.75rem 1rem;

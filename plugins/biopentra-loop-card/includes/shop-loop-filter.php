@@ -134,11 +134,108 @@ function biopentra_loop_card_enqueue_shop_loop_filter_script() {
 		'biopentra-shop-loop-filter',
 		'biopentraShopLoopFilter',
 		array(
-			'loopWidgetId' => biopentra_loop_card_shop_loop_widget_id(),
-			'i18n'         => array(
-				'loadError' => __( 'Could not update products. Please refresh the page.', 'biopentra-loop-card' ),
+			'loopWidgetId'      => biopentra_loop_card_shop_loop_widget_id(),
+			'scrollRootMargin'  => '0px 0px 240px 0px',
+			'infiniteScroll'    => true,
+			'i18n'              => array(
+				'loadError'      => __( 'Could not update products. Please refresh the page.', 'biopentra-loop-card' ),
+				'loadMoreError'  => __( 'Could not load more products. Try again.', 'biopentra-loop-card' ),
+				'noMoreProducts' => __( 'No more products', 'biopentra-loop-card' ),
+				'loading'        => __( 'Loading more products…', 'biopentra-loop-card' ),
 			),
 		)
 	);
 }
 add_action( 'wp_enqueue_scripts', 'biopentra_loop_card_enqueue_shop_loop_filter_script', 25 );
+
+/**
+ * Pagination settings applied to the shop loop-grid widget.
+ *
+ * @return array<string, mixed>
+ */
+function biopentra_loop_card_shop_pagination_settings(): array {
+	return array(
+		'pagination_type'                       => 'load_more_on_click',
+		'button_text'                           => __( 'Load more products', 'biopentra-loop-card' ),
+		'load_more_no_posts_message_switcher'   => 'yes',
+		'load_more_no_posts_custom_message'       => __( 'No more products', 'biopentra-loop-card' ),
+		'load_more_spinner'                     => array(
+			'value'   => 'fas fa-spinner',
+			'library' => 'fa-solid',
+		),
+	);
+}
+
+/**
+ * Merge pagination settings into the shop loop-grid node.
+ *
+ * @param array<int, array<string, mixed>> $nodes Elementor tree.
+ * @return bool
+ */
+function biopentra_loop_card_patch_shop_loop_pagination( array &$nodes ): bool {
+	$widget_id = biopentra_loop_card_shop_loop_widget_id();
+	$settings  = biopentra_loop_card_shop_pagination_settings();
+
+	foreach ( $nodes as &$node ) {
+		if ( ! is_array( $node ) ) {
+			continue;
+		}
+		if ( ( $node['id'] ?? '' ) === $widget_id && ( $node['widgetType'] ?? '' ) === 'loop-grid' ) {
+			$node['settings'] = array_merge( $node['settings'] ?? array(), $settings );
+			unset( $node );
+			return true;
+		}
+		if ( ! empty( $node['elements'] ) && is_array( $node['elements'] ) ) {
+			if ( biopentra_loop_card_patch_shop_loop_pagination( $node['elements'] ) ) {
+				unset( $node );
+				return true;
+			}
+		}
+	}
+	unset( $node );
+
+	return false;
+}
+
+/**
+ * Persist shop loop-grid pagination into Elementor page data.
+ *
+ * @return bool
+ */
+function biopentra_loop_card_sync_shop_loop_pagination(): bool {
+	if ( ! function_exists( 'wc_get_page_id' ) ) {
+		return false;
+	}
+	$shop_id = (int) wc_get_page_id( 'shop' );
+	if ( $shop_id <= 0 ) {
+		return false;
+	}
+	$raw = get_post_meta( $shop_id, '_elementor_data', true );
+	if ( ! is_string( $raw ) || $raw === '' ) {
+		return false;
+	}
+	$data = json_decode( $raw, true );
+	if ( ! is_array( $data ) ) {
+		return false;
+	}
+	if ( ! biopentra_loop_card_patch_shop_loop_pagination( $data ) ) {
+		return false;
+	}
+	update_post_meta( $shop_id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	delete_post_meta( $shop_id, '_elementor_css' );
+	delete_post_meta( $shop_id, '_elementor_element_cache' );
+	return true;
+}
+
+/**
+ * One-time upgrade: enable load-more / infinite-scroll on the shop loop grid.
+ */
+function biopentra_loop_card_maybe_enable_shop_pagination(): void {
+	if ( get_option( 'biopentra_loop_card_shop_pagination_v1' ) ) {
+		return;
+	}
+	if ( biopentra_loop_card_sync_shop_loop_pagination() ) {
+		update_option( 'biopentra_loop_card_shop_pagination_v1', 1 );
+	}
+}
+add_action( 'init', 'biopentra_loop_card_maybe_enable_shop_pagination', 35 );

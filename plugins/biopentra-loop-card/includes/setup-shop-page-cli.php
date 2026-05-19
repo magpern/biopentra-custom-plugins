@@ -122,6 +122,17 @@ $loop_settings['query_include']                  = array();
 $loop_settings['query_include_term_ids']         = array();
 $loop_settings['product_query_include']          = array();
 $loop_settings['product_query_include_term_ids'] = array();
+$loop_settings                                   = array_merge(
+	$loop_settings,
+	function_exists( 'biopentra_loop_card_shop_pagination_settings' )
+		? biopentra_loop_card_shop_pagination_settings()
+		: array(
+			'pagination_type'                     => 'load_more_on_click',
+			'button_text'                         => 'Load more products',
+			'load_more_no_posts_message_switcher' => 'yes',
+			'load_more_no_posts_custom_message'   => 'No more products',
+		)
+);
 
 $search_html = function_exists( 'biopentra_loop_card_get_shop_search_form_html' )
 	? biopentra_loop_card_get_shop_search_form_html()
