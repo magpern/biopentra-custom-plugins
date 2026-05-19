@@ -39,6 +39,8 @@ class Biopentra_Storefront_Technical_Seo_Module {
 		add_filter( 'robots_txt', array( __CLASS__, 'filter_robots_txt' ), 99, 2 );
 		add_filter( 'wp_get_attachment_image_attributes', array( __CLASS__, 'attachment_alt_fallback' ), 20, 3 );
 		add_filter( 'wp_sitemaps_posts_query_args', array( __CLASS__, 'filter_sitemap_posts' ), 20, 2 );
+		add_filter( 'wp_sitemaps_posts_query_args', array( __CLASS__, 'filter_sitemap_products' ), 25, 2 );
+		add_filter( 'woocommerce_product_is_visible', array( __CLASS__, 'hide_qa_products_from_catalog' ), 10, 2 );
 		add_filter( 'wp_sitemaps_taxonomies_query_args', array( __CLASS__, 'filter_sitemap_taxonomies' ), 20, 2 );
 		add_action( 'wp_head', array( __CLASS__, 'render_json_ld' ), 20 );
 		add_filter( 'get_canonical_url', array( __CLASS__, 'filter_canonical_url' ), 20, 2 );
@@ -154,6 +156,88 @@ class Biopentra_Storefront_Technical_Seo_Module {
 	}
 
 	/**
+	 * Exclude QA/smoke products from the product sitemap (belt-and-suspenders).
+	 *
+	 * @param array<string, mixed> $query_args Sitemap query args.
+	 * @param string               $post_type  Post type.
+	 * @return array<string, mixed>
+	 */
+	public static function filter_sitemap_products( $query_args, $post_type ) {
+		if ( 'product' !== $post_type ) {
+			return $query_args;
+		}
+
+		$exclude = self::get_qa_product_ids();
+		if ( empty( $exclude ) ) {
+			return $query_args;
+		}
+
+		$query_args['post__not_in'] = array_merge(
+			array_map( 'absint', (array) ( $query_args['post__not_in'] ?? array() ) ),
+			$exclude
+		);
+
+		return $query_args;
+	}
+
+	/**
+	 * Hide smoke/QA products from shop archives if still published.
+	 *
+	 * @param bool $visible   Visible flag.
+	 * @param int  $product_id Product ID.
+	 */
+	public static function hide_qa_products_from_catalog( $visible, $product_id ) {
+		if ( self::is_qa_storefront_product( $product_id ) ) {
+			return false;
+		}
+
+		return $visible;
+	}
+
+	/**
+	 * @return list<int>
+	 */
+	private static function get_qa_product_ids() {
+		$ids = array();
+		foreach ( get_posts(
+			array(
+				'post_type'      => 'product',
+				'post_status'    => 'publish',
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+			)
+		) as $product_id ) {
+			if ( self::is_qa_storefront_product( (int) $product_id ) ) {
+				$ids[] = (int) $product_id;
+			}
+		}
+
+		return $ids;
+	}
+
+	/**
+	 * @param int $product_id Product post ID.
+	 */
+	public static function is_qa_storefront_product( $product_id ) {
+		$post = get_post( $product_id );
+		if ( ! $post instanceof WP_Post || 'product' !== $post->post_type ) {
+			return false;
+		}
+
+		$sku = get_post_meta( $product_id, '_sku', true );
+		$hay = strtolower( $post->post_title . ' ' . $post->post_name . ' ' . (string) $sku );
+
+		$patterns = array( 'smoke', 'qa', 'test', 'demo', 'mp-cp', 'mp cp', 'scheduled delivery', 'delivery security', 'browser qa', 'commerce growth gift' );
+		foreach ( $patterns as $pattern ) {
+			if ( str_contains( $hay, $pattern ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * @param array<string, mixed> $query_args Taxonomy query args.
 	 * @param string               $taxonomy   Taxonomy name.
 	 * @return array<string, mixed>
@@ -163,10 +247,15 @@ class Biopentra_Storefront_Technical_Seo_Module {
 			return $query_args;
 		}
 
-		$query_args['exclude'] = array_merge(
-			array_map( 'absint', (array) ( $query_args['exclude'] ?? array() ) ),
-			array( absint( get_option( 'default_product_cat', 0 ) ) )
-		);
+		$exclude = array_map( 'absint', (array) ( $query_args['exclude'] ?? array() ) );
+		$exclude[] = absint( get_option( 'default_product_cat', 0 ) );
+
+		$smoke_bogo = get_term_by( 'slug', 'smoke-bogo', 'product_cat' );
+		if ( $smoke_bogo instanceof WP_Term ) {
+			$exclude[] = (int) $smoke_bogo->term_id;
+		}
+
+		$query_args['exclude'] = array_values( array_filter( array_unique( $exclude ) ) );
 
 		return $query_args;
 	}
