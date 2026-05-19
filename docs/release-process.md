@@ -1,139 +1,97 @@
-# Release process — `biopentra-storefront`
+# Monorepo plugin release process
 
-This document standardizes **versioning**, **artifacts**, **checklists**, and **rollback** for `biopentra-storefront` after consolidation. It complements `docs/storefront-0.4.0-production-cutover.md` and `docs/storefront-migration-checklist.md`.
+Standardizes **versioning**, **production ZIPs**, **Git tags**, and **rollback** for first-party plugins in `biopentra-custom-plugins`.
 
----
-
-## 1. Version bump process
-
-1. **Choose the release type** (SemVer for the plugin package):
-   - **PATCH** (0.4.x → 0.4.1): bugfix-only, no new modules, no intentional hook surface change.
-   - **MINOR** (0.4.0 → 0.5.0): new module, new public hook/filter, or new asset handle (coordinate cache busting).
-   - **MAJOR** (1.0.0): breaking change to shortcodes, Elementor widget types, or required deactivation order — avoid without a migration note.
-
-2. **Edit** `plugins/biopentra-storefront/biopentra-storefront.php`:
-   - `Version:` header line  
-   - `BIOPENTRA_STOREFRONT_VERSION` constant (must match header).
-
-3. **Update** `CHANGELOG.md` under `[Unreleased]` or the new version section (see that file’s format).
-
-4. **Run** `./scripts/build-zips.sh` and confirm `builds/zips/biopentra-storefront-{version}.zip`.
-
-5. **Tag in Git** (after merge to the release branch / `main`):
-
-   ```bash
-   git tag -a storefront-v0.4.0 -m "biopentra-storefront 0.4.0"
-   git push origin storefront-v0.4.0
-   ```
-
-   **Recommended historical tags** (if not already present; annotate once per shipped line):
-
-   | Tag | Meaning |
-   |-----|---------|
-   | `storefront-v0.1.0` | Information megamenu in storefront |
-   | `storefront-v0.2.0` | Footer contact module |
-   | `storefront-v0.3.0` | Variation stock selector (CVSS) |
-   | `storefront-v0.4.0` | Header auth module + guarded legacy coexistence |
-
-   Use the same prefix for future releases (`storefront-v0.5.0`, …) so release notes and deploy scripts can grep predictably.
-
-6. **Attach the ZIP** to GitHub Releases (or your artifact store) with checksums if policy requires.
+**Do not** edit `wp-content/plugins/` on servers as the source of truth. Commit here, build a production ZIP, deploy the ZIP (or GitHub Release asset).
 
 ---
 
-## 2. ZIP build process
+## Tag naming
 
-From repository root:
+| Plugin | Git tag format | Example | GitHub workflow |
+|--------|----------------|---------|-----------------|
+| **wc-inventory-overview** | `wc-inventory-overview-v{version}` | `wc-inventory-overview-v1.17.1` | `release-wc-inventory-overview.yml` |
+| **biopentra-storefront** | `storefront-v{version}` | `storefront-v0.5.1` | `release-biopentra-storefront.yml` |
+
+Tag version must match the plugin header `Version:` and the package constant (`WC_INVENTORY_OVERVIEW_VERSION`, `BIOPENTRA_STOREFRONT_VERSION`, etc.).
+
+**Deprecated:** `biopentra-contact-inbox` — see `plugins/biopentra-contact-inbox/DEPRECATED.md`. Releases come from [fluent-imap-support-desk](https://github.com/magpern/fluent-imap-support-desk) (`v2.0.2+`).
+
+---
+
+## Build commands
+
+**One plugin (release):**
+
+```bash
+./scripts/build-one-plugin-zip.sh wc-inventory-overview
+./scripts/release-audit-plugin.sh wc-inventory-overview 1.17.1
+```
+
+**All non-deprecated plugins (local batch):**
 
 ```bash
 ./scripts/build-zips.sh
 ```
 
-- **Output:** `builds/zips/biopentra-storefront-{version}.zip` (and other plugins under `plugins/`).  
-- **Contents:** Top-level folder `biopentra-storefront/` inside the archive (WordPress upload expectation).  
-- **Verify:** Unzip to a temp directory; confirm `biopentra-storefront.php` version string, `modules/*`, and `assets/*` paths.  
-- **Note:** `builds/zips/*.zip` may be gitignored; retain artifacts in CI or release storage, not only the working tree.
+Output: `builds/zips/{slug}-{version}.zip` with top-level folder `{slug}/`.
+
+`build-zips.sh` **skips** `biopentra-contact-inbox` and any plugin with `plugins/{slug}/DEPRECATED.md`.
 
 ---
 
-## 3. Pre-release checklist (maintainer)
+## Production ZIP rules
 
-- [ ] `CHANGELOG.md` updated; no stray `[Unreleased]` items left ambiguous.  
-- [ ] Version header + constant aligned.  
-- [ ] `php -l` (or CI) clean on changed PHP files.  
-- [ ] No accidental edits to unrelated plugins (`loop-card`, inbox, inventory) unless in scope.  
-- [ ] `./scripts/build-zips.sh` succeeds; smoke-open the storefront ZIP.  
-- [ ] Docs: cutover or migration notes updated if behaviour or deploy order changed.  
-- [ ] Legacy coexistence guards still correct (e.g. header-auth `function_exists` early return) if touching shared symbols.
+**Included (typical):** main plugin PHP, runtime PHP (`includes/`, `modules/`), `assets/`, `readme.txt`, `LICENSE`, plugin `CHANGELOG.md` when present.
+
+**Excluded:** `.git`, `.github`, `scripts/`, `tests/`, `docs/`, `cli/`, `builds/`, `node_modules/`, Composer `vendor/` at plugin root, env/log/cache files. **`assets/vendor/`** (e.g. Chart.js) is allowed.
+
+Verify with `scripts/lib/verify-release-zip.py` (profiles for released plugins).
 
 ---
 
-## 4. Staging checklist
+## Release checklist
 
-- [ ] Deploy same ZIP (or rsync same tree) as production will use.  
-- [ ] Plugin list: storefront **on**, all superseded legacy plugins **off** (per phase).  
-- [ ] **Header auth:** logged out / logged in, dropdown, My Account, checkout, cart with **non-empty** cart, Elementor editor.  
-- [ ] **CVSS:** variable products, URL params, OOS, add-to-cart (see Phase 3 staging docs).  
-- [ ] **Footer + megamenu:** shortcode, email JS, mega-menu after any Elementor cleanup.  
-- [ ] **Network:** storefront asset URLs only; no 404s; no duplicate legacy megamenu JS after cleanup.  
-- [ ] **Console:** no new errors on critical flows.  
-- [ ] **HPOS:** no compatibility warning for `biopentra-storefront`.  
-- [ ] **Rollback drill:** reactivate legacy set once; confirm guarded header-auth does not fatal; return to cutover posture.
+1. Bump `Version:` and version constant in the plugin main file.
+2. Update plugin or repo `CHANGELOG.md` and `docs/GITHUB_RELEASE_NOTES_{slug}_{version}.md` (underscores in version).
+3. Run `./scripts/build-one-plugin-zip.sh {slug}` and `./scripts/release-audit-plugin.sh {slug} {version}`.
+4. Commit on `main`.
+5. Annotated tag and push:
 
----
+   ```bash
+   git tag -a wc-inventory-overview-v1.17.1 -m "Release wc-inventory-overview 1.17.1"
+   git push origin main
+   git push origin wc-inventory-overview-v1.17.1
+   ```
 
-## 5. Production deployment checklist
-
-Align with `docs/storefront-0.4.0-production-cutover.md` for the full 0.4.0 line. In general:
-
-- [ ] DB backup + plugin folder backup.  
-- [ ] Saved active plugin list.  
-- [ ] Guarded `biopentra-header-auth.php` deployed if rollback safety depends on it.  
-- [ ] Storefront ZIP deployed and activated.  
-- [ ] Elementor megamenu legacy script removed from DB/widget if still present.  
-- [ ] Legacy plugins deactivated in the documented order.  
-- [ ] Caches/CDN purged (see §7).  
-- [ ] §4 staging checks repeated on production URLs (smoke subset acceptable if timeboxed).
+6. Confirm GitHub Actions release workflow succeeded and the Release ZIP is attached.
 
 ---
 
-## 6. Rollback process
+## Production deployment
 
-1. Reactivate the relevant **legacy** plugins from disk (folders never deleted pre-soak).  
-2. Deactivate **`biopentra-storefront`** only if the whole consolidated stack must revert; partial rollback may reactivate one legacy plugin while storefront still serves other phases — document the exact combination before doing it.  
-3. Restore **DB** only if Elementor meta or other data was changed and must be reverted.  
-4. Purge caches/CDN again.  
-5. Confirm **no fatal redeclare**: production must run the **guarded** `biopentra-header-auth.php` if both codepaths can load in edge requests.
-
----
-
-## 7. Cache / CDN purge checklist
-
-After **every** plugin file deploy or rollback:
-
-- [ ] Full page cache (host plugin, Varnish, etc.).  
-- [ ] Object cache flush (if safe; avoid thundering herd during peak).  
-- [ ] Opcode cache reset if PHP OPcache serves stale plugin files.  
-- [ ] **Elementor:** regenerate CSS/files cache if your runbook requires it.  
-- [ ] **CDN:** purge HTML for key templates and purge **path** or **tag** for:
-  - `biopentra-storefront/modules/**`
-  - `biopentra-storefront/assets/**`
-- [ ] Browser hard-refresh for spot checks; verify **new** `ver=` query strings on enqueued assets.
+- Install **only** from GitHub Release ZIPs (or CI artifacts), not from a raw git clone on the server.
+- Keep a copy of the previous Release ZIP for rollback.
+- Database backup before upgrades when migrations or data changes are involved.
+- Purge page/object/CDN caches after plugin file deploy (see storefront-specific notes in historical cutover docs).
 
 ---
 
-## 8. Post-release monitoring checklist (first days)
+## Rollback
 
-- [ ] **Day 0–1:** Error logs (`debug.log`, host APM), 404 logs for plugin paths, checkout completion rate.  
-- [ ] **Day 2–7:** User-reported header/auth, cart, variation selection, mega-menu regressions; Elementor editor complaints.  
-- [ ] **Orders / HPOS:** no new WooCommerce compatibility notices.  
-- [ ] **Performance:** TTFB and main-thread errors (RUM or Lighthouse sample).  
-- [ ] **Rollback readiness:** backups retained; legacy folders still present and activatable.
-
-When monitoring is clean for the agreed period, see **`docs/legacy-plugin-retirement-plan.md`** before removing legacy deploy artifacts.
+1. Deactivate plugin (optional).
+2. Replace `wp-content/plugins/{slug}/` with the previous Release ZIP contents (or restore folder backup).
+3. Reactivate; verify version in **Plugins** screen.
+4. For **biopentra-storefront**, follow legacy coexistence rules in `docs/storefront-migration-checklist.md` if reactivating old standalone plugins.
 
 ---
 
-## 9. Optional automation
+## Storefront-specific notes
 
-See **`docs/github-actions-release-proposal.md`** for a future GitHub Actions workflow (build ZIP on tag, upload release artifact).
+See also `docs/storefront-0.4.0-production-cutover.md` and `CHANGELOG.md` (storefront sections). Current header **0.5.1** aligns with tag **`storefront-v0.5.1`** (supersedes `storefront-v0.4.0` for new ZIP deploys).
+
+---
+
+## Automation reference
+
+Implemented workflows are documented in **`docs/github-actions-release.md`**.

@@ -12,6 +12,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.1] — 2026-05-19
+
+### Added
+
+- Monorepo release workflow `.github/workflows/release-biopentra-storefront.yml` (tag `storefront-v*`).
+- Distribution files under `plugins/biopentra-storefront/`: `readme.txt`, `LICENSE`.
+
+### Changed
+
+- Shop product infinite scroll; Elementor load-more button text control.
+- Production cleanup scripts and technical SEO module updates (see git history since 0.4.0).
+- Production ZIP excludes in-plugin `scripts/` and dev-only paths.
+
+**Git tag:** `storefront-v0.5.1`
+
+---
+
 ## [0.4.0] — 2026-05-15
 
 ### Added

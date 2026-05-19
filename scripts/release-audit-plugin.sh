@@ -46,18 +46,26 @@ HEADER_VERSION="$(
 		| sed -E 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*//'
 )"
 
-VERSION_CONST=""
+# shellcheck source=lib/release-common.sh
+source "${SCRIPT_DIR}/lib/release-common.sh"
+
+if release_is_skipped_plugin "${PLUGIN_SLUG}"; then
+	fail "${PLUGIN_SLUG} is deprecated or excluded from release builds"
+fi
+
+VERSION_CONST="$(release_read_version_constant "${PLUGIN_SLUG}" "${MAIN_FILE}")"
+
 case "${PLUGIN_SLUG}" in
 	wc-inventory-overview)
-		VERSION_CONST="$(
-			grep -E "define\s*\(\s*'WC_INVENTORY_OVERVIEW_VERSION'" "${MAIN_FILE}" \
-				| head -n 1 \
-				| sed -E "s/.*'([^']+)'.*/\1/"
-		)"
 		[[ -f "${PLUGIN_DIR}/CHANGELOG.md" ]] || fail "Missing plugins/${PLUGIN_SLUG}/CHANGELOG.md"
 		[[ -f "${PLUGIN_DIR}/readme.txt" ]] || fail "Missing plugins/${PLUGIN_SLUG}/readme.txt"
 		[[ -f "${PLUGIN_DIR}/LICENSE" ]] || fail "Missing plugins/${PLUGIN_SLUG}/LICENSE"
 		[[ -d "${PLUGIN_DIR}/cli" ]] && echo "    cli/: present in repo (excluded from production ZIP)"
+		;;
+	biopentra-storefront)
+		[[ -f "${PLUGIN_DIR}/readme.txt" ]] || fail "Missing plugins/${PLUGIN_SLUG}/readme.txt"
+		[[ -f "${PLUGIN_DIR}/LICENSE" ]] || fail "Missing plugins/${PLUGIN_SLUG}/LICENSE"
+		[[ -d "${PLUGIN_DIR}/scripts" ]] && echo "    scripts/: present in repo (excluded from production ZIP)"
 		;;
 esac
 
@@ -119,21 +127,20 @@ echo "    Zip: ${ZIP_PATH}"
 [[ -f "${VERIFY_ZIP}" ]] || fail "Missing ${VERIFY_ZIP}"
 python3 "${VERIFY_ZIP}" "${ZIP_PATH}" "${PLUGIN_SLUG}" "${HEADER_VERSION}"
 
-if [[ -d "${PLUGIN_DIR}/cli" ]]; then
-	python3 - "${ZIP_PATH}" "${PLUGIN_SLUG}" <<'PY'
+python3 - "${ZIP_PATH}" "${PLUGIN_SLUG}" <<'PY'
 import sys
 import zipfile
 
 zip_path, slug = sys.argv[1], sys.argv[2]
-prefix = f"{slug}/cli/"
+forbidden = [f"{slug}/cli/", f"{slug}/scripts/", f"{slug}/docs/", f"{slug}/.github/"]
 with zipfile.ZipFile(zip_path) as zf:
-    hits = [n for n in zf.namelist() if n.startswith(prefix)]
+    names = zf.namelist()
+    hits = [n for n in names if any(n.startswith(p) for p in forbidden)]
     if hits:
-        print("ERROR: zip must not contain cli/", hits[:5], file=sys.stderr)
+        print("ERROR: zip contains forbidden dev paths:", hits[:5], file=sys.stderr)
         sys.exit(1)
-print("    OK: cli/ absent from zip")
+print("    OK: cli/, scripts/, docs/, .github/ absent from zip")
 PY
-fi
 
 echo ""
 echo "==> Release audit passed (${PLUGIN_SLUG} ${HEADER_VERSION})"

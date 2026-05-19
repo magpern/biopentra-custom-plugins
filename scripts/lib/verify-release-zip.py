@@ -8,26 +8,36 @@ import zipfile
 from typing import Any
 
 # Profile per plugin slug under plugins/.
+DEFAULT_FORBIDDEN_SEGMENTS = frozenset(
+    {
+        ".git",
+        "node_modules",
+        "scripts",
+        "tests",
+        "docs",
+        ".github",
+        "build",
+        "builds",
+        "cli",
+        ".phpcs-cache",
+        ".phpunit.result.cache",
+    }
+)
+
 PLUGIN_PROFILES: dict[str, dict[str, Any]] = {
     "wc-inventory-overview": {
         "version_constant": "WC_INVENTORY_OVERVIEW_VERSION",
         "required_dirs": frozenset({"includes", "assets"}),
         "required_files": frozenset({"CHANGELOG.md", "readme.txt", "LICENSE"}),
-        "forbidden_segments": frozenset(
-            {
-                ".git",
-                "node_modules",
-                "scripts",
-                "tests",
-                "docs",
-                ".github",
-                "build",
-                "builds",
-                "cli",
-                ".phpcs-cache",
-                ".phpunit.result.cache",
-            }
-        ),
+        "code_prefixes": ("includes/", "assets/"),
+        "forbidden_segments": DEFAULT_FORBIDDEN_SEGMENTS,
+    },
+    "biopentra-storefront": {
+        "version_constant": "BIOPENTRA_STOREFRONT_VERSION",
+        "required_dirs": frozenset({"includes", "assets", "modules"}),
+        "required_files": frozenset({"LICENSE", "readme.txt"}),
+        "code_prefixes": ("includes/", "modules/", "assets/"),
+        "forbidden_segments": DEFAULT_FORBIDDEN_SEGMENTS,
     },
 }
 
@@ -195,11 +205,20 @@ def verify(
             )
             return 1
 
-        includes_entries = sum(
-            1 for n in names if n.startswith(f"{root_prefix}includes/")
+        code_prefixes: tuple[str, ...] = profile.get(
+            "code_prefixes", ("includes/",)
         )
-        if includes_entries < 1:
-            print("ERROR: zip has no files under includes/", file=sys.stderr)
+        code_entries = sum(
+            1
+            for n in names
+            if any(n.startswith(f"{root_prefix}{p}") for p in code_prefixes)
+        )
+        if code_entries < 1:
+            print(
+                "ERROR: zip has no files under expected code paths:",
+                ", ".join(code_prefixes),
+                file=sys.stderr,
+            )
             return 1
 
         if (
@@ -212,7 +231,7 @@ def verify(
 
         print(f"OK: {len(names)} entries under {root_prefix}")
         print(f"    main: {main_file}")
-        print(f"    includes/: {includes_entries} paths")
+        print(f"    runtime paths: {code_entries} file(s)")
         print(
             "    forbidden segments absent:",
             ", ".join(sorted(forbidden_segments)),

@@ -1,0 +1,99 @@
+name: Release biopentra-storefront
+
+on:
+  push:
+    tags:
+      - 'storefront-v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish biopentra-storefront ZIP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      - name: Parse tag and verify plugin version
+        id: meta
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          PREFIX="storefront-v"
+          if [[ "${TAG}" != ${PREFIX}* ]]; then
+            echo "ERROR: unexpected tag ${TAG}" >&2
+            exit 1
+          fi
+          VERSION="${TAG#${PREFIX}}"
+          MAIN="plugins/biopentra-storefront/biopentra-storefront.php"
+          HEADER="$(grep -E '^\s*\*\s*Version:\s*' "${MAIN}" | head -n1 | sed -E 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*//')"
+          CONST="$(grep -E "define\s*\(\s*'BIOPENTRA_STOREFRONT_VERSION'" "${MAIN}" | head -n1 | sed -E "s/.*'([^']+)'.*/\1/")"
+          if [[ "${HEADER}" != "${VERSION}" || "${CONST}" != "${VERSION}" ]]; then
+            echo "ERROR: tag version ${VERSION} != plugin header ${HEADER} / const ${CONST}" >&2
+            exit 1
+          fi
+          echo "tag=${TAG}" >> "${GITHUB_OUTPUT}"
+          echo "version=${VERSION}" >> "${GITHUB_OUTPUT}"
+          echo "OK: version ${VERSION}"
+
+      - name: PHP syntax lint
+        run: |
+          set -euo pipefail
+          find plugins/biopentra-storefront -name '*.php' -print0 | while IFS= read -r -d '' f; do
+            php -l "$f"
+          done
+
+      - name: Build production ZIP
+        run: bash scripts/build-one-plugin-zip.sh biopentra-storefront
+
+      - name: Release audit
+        run: bash scripts/release-audit-plugin.sh biopentra-storefront "${{ steps.meta.outputs.version }}"
+
+      - name: Set ZIP path
+        run: |
+          VERSION="${{ steps.meta.outputs.version }}"
+          ZIP_PATH="${GITHUB_WORKSPACE}/builds/zips/biopentra-storefront-${VERSION}.zip"
+          if [[ ! -f "${ZIP_PATH}" ]]; then
+            echo "ERROR: ZIP not found: ${ZIP_PATH}" >&2
+            exit 1
+          fi
+          echo "ZIP_PATH=${ZIP_PATH}" >> "${GITHUB_ENV}"
+
+      - name: Upload release ZIP artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: biopentra-storefront-${{ steps.meta.outputs.version }}
+          path: ${{ env.ZIP_PATH }}
+          if-no-files-found: error
+
+      - name: Resolve release notes
+        id: release_notes
+        run: |
+          VERSION="${{ steps.meta.outputs.version }}"
+          NOTES="docs/GITHUB_RELEASE_NOTES_biopentra-storefront_${VERSION//./_}.md"
+          if [[ ! -f "${NOTES}" ]]; then
+            echo "ERROR: Missing ${NOTES}" >&2
+            exit 1
+          fi
+          echo "path=${NOTES}" >> "${GITHUB_OUTPUT}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: biopentra-storefront ${{ steps.meta.outputs.version }}
+          prerelease: false
+          generate_release_notes: false
+          body_path: ${{ steps.release_notes.outputs.path }}
+          files: ${{ env.ZIP_PATH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
