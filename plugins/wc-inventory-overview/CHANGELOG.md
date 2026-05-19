@@ -1,5 +1,18 @@
 # Changelog — WC Inventory Overview
 
+## [1.17.2] - 2026-05-19
+
+**GitHub Release updater** — production sites can update from monorepo release ZIPs (tag `wc-inventory-overview-v*`).
+
+### Added
+
+- `includes/class-github-updater.php` — queries `magpern/biopentra-custom-plugins` releases; installs asset `wc-inventory-overview-X.Y.Z.zip` only.
+- Disable on dev: `WC_INVENTORY_OVERVIEW_DISABLE_GITHUB_UPDATER` or filter `wc_inventory_overview_github_updater_enabled`.
+
+### Notes
+
+- No intentional plugin behavior changes vs **1.17.1**.
+
 ## [1.17.1] - 2026-05-19
 
 **Packaging-only release** — production ZIP and GitHub Release automation for the `biopentra-custom-plugins` monorepo. **No intentional plugin behavior changes** vs 1.17.0.

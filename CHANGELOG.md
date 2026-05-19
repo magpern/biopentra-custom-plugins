@@ -12,6 +12,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.2] — 2026-05-19
+
+### Added
+
+- `includes/class-github-updater.php` — production updates from monorepo GitHub Releases (tag `storefront-v*`, asset `biopentra-storefront-X.Y.Z.zip`).
+- Disable on dev: `BIOPENTRA_STOREFRONT_DISABLE_GITHUB_UPDATER` or filter `biopentra_storefront_github_updater_enabled`.
+
+### Notes
+
+- No intentional behavior changes vs **0.5.1**.
+
+**Git tag:** `storefront-v0.5.2`
+
+---
+
 ## [0.5.1] — 2026-05-19
 
 ### Added

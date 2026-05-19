@@ -55,16 +55,18 @@ fi
 
 VERSION_CONST="$(release_read_version_constant "${PLUGIN_SLUG}" "${MAIN_FILE}")"
 
-case "${PLUGIN_SLUG}" in
+	case "${PLUGIN_SLUG}" in
 	wc-inventory-overview)
 		[[ -f "${PLUGIN_DIR}/CHANGELOG.md" ]] || fail "Missing plugins/${PLUGIN_SLUG}/CHANGELOG.md"
 		[[ -f "${PLUGIN_DIR}/readme.txt" ]] || fail "Missing plugins/${PLUGIN_SLUG}/readme.txt"
 		[[ -f "${PLUGIN_DIR}/LICENSE" ]] || fail "Missing plugins/${PLUGIN_SLUG}/LICENSE"
+		[[ -f "${PLUGIN_DIR}/includes/class-github-updater.php" ]] || fail "Missing includes/class-github-updater.php"
 		[[ -d "${PLUGIN_DIR}/cli" ]] && echo "    cli/: present in repo (excluded from production ZIP)"
 		;;
 	biopentra-storefront)
 		[[ -f "${PLUGIN_DIR}/readme.txt" ]] || fail "Missing plugins/${PLUGIN_SLUG}/readme.txt"
 		[[ -f "${PLUGIN_DIR}/LICENSE" ]] || fail "Missing plugins/${PLUGIN_SLUG}/LICENSE"
+		[[ -f "${PLUGIN_DIR}/includes/class-github-updater.php" ]] || fail "Missing includes/class-github-updater.php"
 		[[ -d "${PLUGIN_DIR}/scripts" ]] && echo "    scripts/: present in repo (excluded from production ZIP)"
 		;;
 esac
@@ -140,6 +142,11 @@ with zipfile.ZipFile(zip_path) as zf:
         print("ERROR: zip contains forbidden dev paths:", hits[:5], file=sys.stderr)
         sys.exit(1)
 print("    OK: cli/, scripts/, docs/, .github/ absent from zip")
+updater = f"{slug}/includes/class-github-updater.php"
+if updater not in names:
+    print(f"ERROR: zip missing {updater}", file=sys.stderr)
+    sys.exit(1)
+print("    OK: includes/class-github-updater.php present in zip")
 PY
 
 echo ""
