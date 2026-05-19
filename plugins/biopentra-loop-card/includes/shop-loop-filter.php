@@ -157,6 +157,7 @@ function biopentra_loop_card_shop_pagination_settings(): array {
 	return array(
 		'pagination_type'                       => 'load_more_on_click',
 		'button_text'                           => __( 'Load more products', 'biopentra-loop-card' ),
+		'text'                                  => __( 'Load more products', 'biopentra-loop-card' ),
 		'load_more_no_posts_message_switcher'   => 'yes',
 		'load_more_no_posts_custom_message'       => __( 'No more products', 'biopentra-loop-card' ),
 		'load_more_spinner'                     => array(
