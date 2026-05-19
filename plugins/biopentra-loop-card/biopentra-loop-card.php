@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Biopentra Loop Card
  * Description: Elementor Loop Grid: hover overlay (variation + AJAX add to cart), stock banners, card navigation.
- * Version: 1.2.4
+ * Version: 1.2.5
  *
  * Install: copy this folder to wp-content/plugins/biopentra-loop-card and activate.
  */
@@ -15,7 +15,9 @@ require_once __DIR__ . '/includes/age-gate-confirm-fix.php';
 require_once __DIR__ . '/includes/store-notice.php';
 
 define( 'BIOPENTRA_LOOP_CARD_URL', plugin_dir_url( __FILE__ ) );
-define( 'BIOPENTRA_LOOP_CARD_VER', '1.2.4' );
+define( 'BIOPENTRA_LOOP_CARD_VER', '1.2.5' );
+
+require_once __DIR__ . '/includes/shop-loop-filter.php';
 
 /**
  * Loop grid price: "from X" when multiple variation prices; single price when one variation or equal prices.

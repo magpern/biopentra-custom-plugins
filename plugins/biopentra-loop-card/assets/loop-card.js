@@ -240,8 +240,14 @@
 	}
 
 	function enhance(root) {
+		if (root.getAttribute('data-biopentra-enhanced') === '1') {
+			return;
+		}
 		var data = parsePayload(root);
-		if (!data || !data.product_id) return;
+		if (!data || !data.product_id) {
+			return;
+		}
+		root.setAttribute('data-biopentra-enhanced', '1');
 
 		var ui = buildOverlay(root, data);
 		ui._data = data;
@@ -339,14 +345,19 @@
 		a.classList.add('biopentra-loop-overlay__btn--primary');
 	}
 
-	function init() {
-		document
+	function init(scope) {
+		var root = scope && scope.nodeType === 1 ? scope : document;
+		root
 			.querySelectorAll('.biopentra-loop-card-root[data-biopentra-product]')
 			.forEach(enhance);
 	}
 
+	window.biopentraLoopCardInit = init;
+
 	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', init);
+		document.addEventListener('DOMContentLoaded', function () {
+			init();
+		});
 	} else {
 		init();
 	}

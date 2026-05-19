@@ -1,5 +1,16 @@
 /* Biopentra Loop Card — portrait card + two-step overlay */
 
+.biopentra-shop-loop-error {
+	margin: 0 0 1rem;
+	padding: 0.75rem 1rem;
+	border-radius: 6px;
+	background: #fef2f2;
+	border: 1px solid #fecaca;
+	color: #991b1b;
+	font-size: 0.9375rem;
+	text-align: center;
+}
+
 .biopentra-loop-card-root {
 	position: relative !important;
 	cursor: pointer;
