@@ -6,6 +6,7 @@
  * or filter `biopentra_header_auth_cart_free_shipping_threshold`.
  *
  * Progress subtotal: filter `biopentra_header_auth_cart_free_shipping_subtotal` (default: cart `get_subtotal()`).
+ * Progress visibility: filter `biopentra_header_auth_cart_show_free_shipping_progress` (default: true).
  *
  * Accent colours reuse filters `biopentra_header_auth_wc_account_accent` / `_hover` on cart CSS handle.
  *
@@ -102,8 +103,19 @@ function biopentra_header_auth_enqueue_cart_enhancements_assets() {
  *
  * @return void
  */
+function biopentra_header_auth_cart_show_free_shipping_progress(): bool {
+	return (bool) apply_filters( 'biopentra_header_auth_cart_show_free_shipping_progress', true );
+}
+
+/**
+ * @return void
+ */
 function biopentra_header_auth_cart_free_shipping_progress() {
 	if ( ! function_exists( 'WC' ) || ! WC()->cart || WC()->cart->is_empty() ) {
+		return;
+	}
+
+	if ( ! biopentra_header_auth_cart_show_free_shipping_progress() ) {
 		return;
 	}
 
