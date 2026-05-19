@@ -237,6 +237,66 @@ body.woocommerce-cart .ct-woocommerce-cart-form table.cart td.actions > .button[
 }
 
 /* Quantity + buttons (Biopentra accent; Blocksy vars) */
+body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart .product-quantity .quantity {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center;
+	flex-wrap: nowrap;
+	position: relative !important;
+	--quantity-height: 40px;
+	--quantity-width: 100px;
+	width: var(--quantity-width);
+	height: var(--quantity-height) !important;
+	min-height: var(--quantity-height) !important;
+	vertical-align: middle;
+}
+
+/* Stray line break after the screen-reader label must not grow the control. */
+body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart .product-quantity .quantity br {
+	display: none !important;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart .product-quantity .quantity .screen-reader-text {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart .product-quantity .quantity input.input-text.qty {
+	order: 1;
+	flex: 1 1 auto;
+	align-self: center !important;
+	width: auto;
+	min-width: 0;
+	height: var(--quantity-height) !important;
+	min-height: 0;
+	margin: 0;
+	padding-block: 0 !important;
+	text-align: center;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart .product-quantity .quantity[data-type="type-2"] .ct-increase,
+body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart .product-quantity .quantity[data-type="type-2"] .ct-decrease {
+	position: static !important;
+	top: auto !important;
+	inset-inline: auto !important;
+	align-self: center !important;
+	flex: 0 0 calc(var(--quantity-height) / 1.8);
+	width: calc(var(--quantity-height) / 1.8);
+	height: calc(var(--quantity-height) / 1.8);
+	margin: 0 !important;
+	transform: none !important;
+	--quantity-initial-color: var(--bph-wc-accent) !important;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart .product-quantity .quantity[data-type="type-2"] .ct-decrease {
+	order: 0;
+}
+
+body.woocommerce-cart .ct-woocommerce-cart-form table.shop_table.cart .product-quantity .quantity[data-type="type-2"] .ct-increase {
+	order: 2;
+}
+
 body.woocommerce-cart .ct-woocommerce-cart-form .quantity {
 	--quantity-initial-color: var(--bph-wc-accent) !important;
 	--quantity-hover-color: var(--bph-wc-accent-hover) !important;
@@ -253,8 +313,9 @@ body.woocommerce-cart .ct-woocommerce-cart-form .quantity .input-text.qty {
 	border-radius: var(--theme-form-field-border-radius, 8px);
 }
 
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .button,
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form button.button,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button,
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button,
 body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button,
 body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt {
 	background-color: var(--bph-wc-accent) !important;
@@ -266,8 +327,9 @@ body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.b
 	transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .button:hover:not(:disabled),
-body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form button.button:hover:not(:disabled),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions .button:hover:not(:disabled),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form td.actions button.button:hover:not(:disabled),
+body.woocommerce-cart .ct-woocommerce-cart-form .woocommerce-cart-form .mp-cp-credit-cart-disclosure .button:hover:not(:disabled),
 body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals .checkout-button:hover,
 body.woocommerce-cart .ct-woocommerce-cart-form .cart_totals a.checkout-button.button.alt:hover {
 	background-color: var(--bph-wc-accent-hover) !important;
