@@ -6,7 +6,7 @@
 
 ### Added
 
-- `includes/class-github-updater.php` — queries `magpern/biopentra-custom-plugins` releases; installs asset `wc-inventory-overview-X.Y.Z.zip` only.
+- `includes/class-github-updater.php` — queries [magpern/wc-inventory-overview](https://github.com/magpern/wc-inventory-overview) releases (`v*` tags).
 - Disable on dev: `WC_INVENTORY_OVERVIEW_DISABLE_GITHUB_UPDATER` or filter `wc_inventory_overview_github_updater_enabled`.
 
 ### Notes

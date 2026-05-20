@@ -98,19 +98,28 @@ else
 	warn "php not in PATH; skipping local syntax lint"
 fi
 
-NOTES="${ROOT}/docs/GITHUB_RELEASE_NOTES_${PLUGIN_SLUG}_${HEADER_VERSION//./_}.md"
-if [[ ! -f "${NOTES}" ]]; then
-	ALT="${ROOT}/docs/GITHUB_RELEASE_NOTES_${PLUGIN_SLUG}.md"
-	if [[ -f "${ALT}" ]]; then
-		NOTES="${ALT}"
-	else
-		fail "Missing release notes: docs/GITHUB_RELEASE_NOTES_${PLUGIN_SLUG}_${HEADER_VERSION//./_}.md"
+if [[ "${PLUGIN_SLUG}" == "wc-inventory-overview" ]]; then
+	echo "    Release notes: (standalone) docs/GITHUB_RELEASE_NOTES_${HEADER_VERSION//./_}.md in wc-inventory-overview repo"
+else
+	NOTES="${ROOT}/docs/GITHUB_RELEASE_NOTES_${PLUGIN_SLUG}_${HEADER_VERSION//./_}.md"
+	if [[ ! -f "${NOTES}" ]]; then
+		ALT="${ROOT}/docs/GITHUB_RELEASE_NOTES_${PLUGIN_SLUG}.md"
+		if [[ -f "${ALT}" ]]; then
+			NOTES="${ALT}"
+		else
+			fail "Missing release notes: docs/GITHUB_RELEASE_NOTES_${PLUGIN_SLUG}_${HEADER_VERSION//./_}.md"
+		fi
 	fi
+	echo "    Release notes: ${NOTES}"
 fi
-echo "    Release notes: ${NOTES}"
 
-[[ -f "${ROOT}/.github/workflows/release-${PLUGIN_SLUG}.yml" ]] \
-	|| fail "Missing .github/workflows/release-${PLUGIN_SLUG}.yml"
+if [[ "${PLUGIN_SLUG}" == "wc-inventory-overview" ]]; then
+	[[ -f "${PLUGIN_DIR}/RELEASES.md" ]] || fail "Missing plugins/wc-inventory-overview/RELEASES.md"
+	echo "    Releases: standalone repo magpern/wc-inventory-overview (not this monorepo)"
+else
+	[[ -f "${ROOT}/.github/workflows/release-${PLUGIN_SLUG}.yml" ]] \
+		|| fail "Missing .github/workflows/release-${PLUGIN_SLUG}.yml"
+fi
 
 echo "    Repository checks passed"
 

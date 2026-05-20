@@ -1,6 +1,6 @@
 <?php
 /**
- * GitHub Releases updater — monorepo production ZIP assets only.
+ * GitHub Releases updater — production ZIP from magpern/wc-inventory-overview (standalone repo).
  *
  * @package WC_Inventory_Overview
  */
@@ -8,13 +8,11 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Offers updates from biopentra-custom-plugins releases tagged wc-inventory-overview-v*.
+ * Offers WordPress plugin updates from the standalone wc-inventory-overview repository.
  */
 final class WC_Inventory_Overview_Github_Updater {
 
-	private const API_RELEASES = 'https://api.github.com/repos/magpern/biopentra-custom-plugins/releases?per_page=30';
-
-	private const TAG_PREFIX = 'wc-inventory-overview-v';
+	private const API_LATEST = 'https://api.github.com/repos/magpern/wc-inventory-overview/releases/latest';
 
 	private const PLUGIN_SLUG = 'wc-inventory-overview';
 
@@ -122,10 +120,6 @@ final class WC_Inventory_Overview_Github_Updater {
 		$response->new_version  = $release['version'];
 		$response->url          = $release['url'];
 		$response->package      = $release['package'];
-		$response->icons        = array();
-		$response->banners      = array();
-		$response->banners_rtl  = array();
-		$response->tested       = '';
 		$response->requires_php = '7.4';
 		$response->requires     = '6.0';
 
@@ -141,11 +135,7 @@ final class WC_Inventory_Overview_Github_Updater {
 	 * @return false|object|array
 	 */
 	public function filter_plugins_api( $result, $action, $args ) {
-		if ( 'plugin_information' !== $action ) {
-			return $result;
-		}
-
-		if ( ! isset( $args->slug ) || $args->slug !== self::PLUGIN_SLUG ) {
+		if ( 'plugin_information' !== $action || ! isset( $args->slug ) || $args->slug !== self::PLUGIN_SLUG ) {
 			return $result;
 		}
 
@@ -158,15 +148,8 @@ final class WC_Inventory_Overview_Github_Updater {
 		$info->name          = 'WC Inventory Overview';
 		$info->slug          = self::PLUGIN_SLUG;
 		$info->version       = $release['version'];
-		$info->author        = '<a href="https://github.com/magpern">magpern</a>';
-		$info->homepage      = $release['url'];
 		$info->download_link = $release['package'];
-		$info->requires      = '6.0';
-		$info->requires_php  = '7.4';
-		$info->sections      = array(
-			'description' => __( 'Operational inventory dashboard for WooCommerce.', 'wc-inventory-overview' ),
-			'changelog'   => '' !== $release['notes'] ? wp_kses_post( $release['notes'] ) : '',
-		);
+		$info->homepage      = $release['url'];
 
 		return $info;
 	}
@@ -198,7 +181,7 @@ final class WC_Inventory_Overview_Github_Updater {
 		);
 
 		$response = wp_remote_get(
-			self::API_RELEASES,
+			self::API_LATEST,
 			array(
 				'timeout' => 15,
 				'headers' => array(
@@ -208,56 +191,43 @@ final class WC_Inventory_Overview_Github_Updater {
 			)
 		);
 
-		if ( is_wp_error( $response ) ) {
-			return $empty;
-		}
-
-		if ( 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
+		if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
 			return $empty;
 		}
 
 		$data = json_decode( (string) wp_remote_retrieve_body( $response ), true );
-		if ( ! is_array( $data ) ) {
+		if ( ! is_array( $data ) || ! empty( $data['draft'] ) || ! empty( $data['prerelease'] ) ) {
 			return $empty;
 		}
 
-		foreach ( $data as $release ) {
-			if ( ! is_array( $release ) ) {
-				continue;
-			}
-			if ( ! empty( $release['draft'] ) || ! empty( $release['prerelease'] ) ) {
-				continue;
-			}
-
-			$tag = isset( $release['tag_name'] ) ? (string) $release['tag_name'] : '';
-			if ( 0 !== strpos( $tag, self::TAG_PREFIX ) ) {
-				continue;
-			}
-
-			$version = substr( $tag, strlen( self::TAG_PREFIX ) );
-			if ( '' === $version || ! preg_match( '/^\d+\.\d+\.\d+/', $version ) ) {
-				continue;
-			}
-
-			$package = $this->find_release_zip_url( $release, $version );
-			if ( '' === $package ) {
-				continue;
-			}
-
-			return array(
-				'version' => $version,
-				'package' => $package,
-				'url'     => isset( $release['html_url'] ) ? (string) $release['html_url'] : '',
-				'notes'   => isset( $release['body'] ) ? (string) $release['body'] : '',
-			);
+		$version = $this->version_from_tag( isset( $data['tag_name'] ) ? (string) $data['tag_name'] : '' );
+		if ( '' === $version ) {
+			return $empty;
 		}
 
-		return $empty;
+		$package = $this->find_release_zip_url( $data, $version );
+		if ( '' === $package ) {
+			return $empty;
+		}
+
+		return array(
+			'version' => $version,
+			'package' => $package,
+			'url'     => isset( $data['html_url'] ) ? (string) $data['html_url'] : '',
+			'notes'   => isset( $data['body'] ) ? (string) $data['body'] : '',
+		);
+	}
+
+	private function version_from_tag( string $tag_name ): string {
+		$tag_name = ltrim( $tag_name, 'vV' );
+		if ( preg_match( '/^(\d+\.\d+\.\d+)/', $tag_name, $matches ) ) {
+			return $matches[1];
+		}
+		return '';
 	}
 
 	/**
-	 * @param array<string,mixed> $data    GitHub release JSON.
-	 * @param string              $version Parsed version.
+	 * @param array<string,mixed> $data GitHub release JSON.
 	 */
 	private function find_release_zip_url( array $data, string $version ): string {
 		if ( empty( $data['assets'] ) || ! is_array( $data['assets'] ) ) {
@@ -270,8 +240,7 @@ final class WC_Inventory_Overview_Github_Updater {
 			if ( ! is_array( $asset ) ) {
 				continue;
 			}
-			$name = isset( $asset['name'] ) ? (string) $asset['name'] : '';
-			if ( $name !== $expected ) {
+			if ( ( isset( $asset['name'] ) ? (string) $asset['name'] : '' ) !== $expected ) {
 				continue;
 			}
 			$url = isset( $asset['browser_download_url'] ) ? (string) $asset['browser_download_url'] : '';

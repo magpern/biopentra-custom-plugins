@@ -10,8 +10,8 @@ Standardizes **versioning**, **production ZIPs**, **Git tags**, and **rollback**
 
 | Plugin | Git tag format | Example | GitHub workflow |
 |--------|----------------|---------|-----------------|
-| **wc-inventory-overview** | `wc-inventory-overview-v{version}` | `wc-inventory-overview-v1.17.2` | `release-wc-inventory-overview.yml` |
-| **biopentra-storefront** | `storefront-v{version}` | `storefront-v0.5.2` | `release-biopentra-storefront.yml` |
+| **wc-inventory-overview** | `v{version}` on **[magpern/wc-inventory-overview](https://github.com/magpern/wc-inventory-overview)** | `v1.17.2` | `release.yml` (standalone repo) |
+| **biopentra-storefront** | `storefront-v{version}` on **biopentra-custom-plugins** | `storefront-v0.5.2` | `release-biopentra-storefront.yml` |
 
 Tag version must match the plugin header `Version:` and the package constant (`WC_INVENTORY_OVERVIEW_VERSION`, `BIOPENTRA_STOREFRONT_VERSION`, etc.).
 
@@ -74,8 +74,8 @@ Released plugins include `includes/class-github-updater.php`. On `WP_ENVIRONMENT
 
 | Plugin | Tag prefix | Disable on dev |
 |--------|------------|----------------|
-| wc-inventory-overview | `wc-inventory-overview-v*` | `WC_INVENTORY_OVERVIEW_DISABLE_GITHUB_UPDATER` |
-| biopentra-storefront | `storefront-v*` | `BIOPENTRA_STOREFRONT_DISABLE_GITHUB_UPDATER` |
+| wc-inventory-overview | `v*` (standalone repo only) | `WC_INVENTORY_OVERVIEW_DISABLE_GITHUB_UPDATER` |
+| biopentra-storefront | `storefront-v*` (this monorepo) | `BIOPENTRA_STOREFRONT_DISABLE_GITHUB_UPDATER` |
 
 Filters: `wc_inventory_overview_github_updater_enabled`, `biopentra_storefront_github_updater_enabled`.
 
