@@ -1,6 +1,8 @@
 # biopentra-storefront 0.5.2
 
-**GitHub Release updater** — production installs and updates from monorepo ZIP assets.
+**Fresh monorepo release** — prior `wc-inventory-overview-v*` and older `storefront-v*` releases on this repository were removed. **WC Inventory Overview** releases live on [magpern/wc-inventory-overview](https://github.com/magpern/wc-inventory-overview) only.
+
+**GitHub Release updater** — production installs and updates from monorepo ZIP assets (`storefront-v*` tags).
 
 ## What changed
 
