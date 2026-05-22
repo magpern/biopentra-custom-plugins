@@ -1,0 +1,32 @@
+/**
+ * Product stock status labels (Biopentra Storefront).
+ * Colors are set via :root CSS variables from plugin settings.
+ */
+
+.bp-stock-status {
+	display: inline;
+	font-size: inherit;
+	font-weight: 500;
+	line-height: inherit;
+}
+
+.bp-stock-status--in-stock {
+	color: var(--bp-stock-in-stock, #15803d);
+}
+
+.bp-stock-status--low-stock {
+	color: var(--bp-stock-low-stock, #b45309);
+}
+
+.bp-stock-status--only-left {
+	color: var(--bp-stock-only-left, #b91c1c);
+}
+
+.bp-stock-status--out-of-stock {
+	color: var(--bp-stock-out-of-stock, #b91c1c);
+}
+
+.p.stock .bp-stock-status,
+.stock .bp-stock-status {
+	margin: 0;
+}

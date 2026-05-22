@@ -69,5 +69,13 @@ class Biopentra_Storefront {
 				Biopentra_Storefront_Technical_Seo_Module::init();
 			}
 		}
+
+		$stock_display_module = BIOPENTRA_STOREFRONT_PATH . 'modules/product-stock-display/class-product-stock-display-module.php';
+		if ( is_readable( $stock_display_module ) ) {
+			require_once $stock_display_module;
+			if ( class_exists( 'Biopentra_Storefront_Product_Stock_Display_Module' ) ) {
+				Biopentra_Storefront_Product_Stock_Display_Module::init();
+			}
+		}
 	}
 }

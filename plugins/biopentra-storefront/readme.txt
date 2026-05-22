@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.2
+Stable tag: 0.5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,9 @@ Biopentra Storefront bundles mega-menu, footer contact, variation stock selector
 3. Deactivate duplicate legacy plugins per project runbooks.
 
 == Changelog ==
+
+= 0.5.3 =
+* Product stock display module: configurable stock labels and colors (WooCommerce → Stock display). Replaces exact quantity on the storefront.
 
 = 0.5.2 =
 * GitHub Release updater for production ZIP installs (tag storefront-v*).
