@@ -71,6 +71,9 @@ final class Biopentra_Storefront_Github_Updater {
 	}
 
 	public static function should_offer_update( string $installed, string $remote ): bool {
+		$installed = self::normalize_version( $installed );
+		$remote    = self::normalize_version( $remote );
+
 		if ( '' === $remote || ! preg_match( '/^\d+\.\d+\.\d+/', $remote ) ) {
 			return false;
 		}
@@ -92,8 +95,27 @@ final class Biopentra_Storefront_Github_Updater {
 	}
 
 	private function register_hooks(): void {
+		add_action( 'wp_update_plugins', array( __CLASS__, 'clear_release_cache' ), 1 );
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'filter_update_plugins' ) );
 		add_filter( 'plugins_api', array( $this, 'filter_plugins_api' ), 20, 3 );
+	}
+
+	/**
+	 * Drop cached GitHub release when WordPress refreshes plugin updates.
+	 */
+	public static function clear_release_cache(): void {
+		delete_site_transient( self::TRANSIENT_RELEASE );
+	}
+
+	/**
+	 * Normalize semver for comparison (supports 0.5.3 and v0.5.3).
+	 */
+	public static function normalize_version( string $version ): string {
+		$version = ltrim( trim( $version ), 'vV' );
+		if ( preg_match( '/^(\d+\.\d+\.\d+)/', $version, $matches ) ) {
+			return $matches[1];
+		}
+		return $version;
 	}
 
 	/**
@@ -109,12 +131,14 @@ final class Biopentra_Storefront_Github_Updater {
 			return $transient;
 		}
 
+		$installed = self::normalize_version( (string) $transient->checked[ $this->plugin_basename ] );
+
 		$release = $this->get_latest_release();
 		if ( '' === $release['version'] || '' === $release['package'] ) {
 			return $transient;
 		}
 
-		if ( ! self::should_offer_update( $this->installed_version, $release['version'] ) ) {
+		if ( ! self::should_offer_update( $installed, $release['version'] ) ) {
 			return $transient;
 		}
 
@@ -223,6 +247,8 @@ final class Biopentra_Storefront_Github_Updater {
 			return $empty;
 		}
 
+		$best = $empty;
+
 		foreach ( $data as $release ) {
 			if ( ! is_array( $release ) ) {
 				continue;
@@ -232,12 +258,8 @@ final class Biopentra_Storefront_Github_Updater {
 			}
 
 			$tag = isset( $release['tag_name'] ) ? (string) $release['tag_name'] : '';
-			if ( 0 !== strpos( $tag, self::TAG_PREFIX ) ) {
-				continue;
-			}
-
-			$version = substr( $tag, strlen( self::TAG_PREFIX ) );
-			if ( '' === $version || ! preg_match( '/^\d+\.\d+\.\d+/', $version ) ) {
+			$version = self::version_from_tag( $tag );
+			if ( '' === $version ) {
 				continue;
 			}
 
@@ -246,15 +268,31 @@ final class Biopentra_Storefront_Github_Updater {
 				continue;
 			}
 
-			return array(
-				'version' => $version,
-				'package' => $package,
-				'url'     => isset( $release['html_url'] ) ? (string) $release['html_url'] : '',
-				'notes'   => isset( $release['body'] ) ? (string) $release['body'] : '',
-			);
+			if ( '' === $best['version'] || version_compare( $version, $best['version'], '>' ) ) {
+				$best = array(
+					'version' => $version,
+					'package' => $package,
+					'url'     => isset( $release['html_url'] ) ? (string) $release['html_url'] : '',
+					'notes'   => isset( $release['body'] ) ? (string) $release['body'] : '',
+				);
+			}
 		}
 
-		return $empty;
+		return $best;
+	}
+
+	/**
+	 * Parse storefront-v* tag to semver (0.5.3 from storefront-v0.5.3 or storefront-vv0.5.3).
+	 *
+	 * @param string $tag_name Git tag name.
+	 */
+	private static function version_from_tag( string $tag_name ): string {
+		if ( 0 !== strpos( $tag_name, self::TAG_PREFIX ) ) {
+			return '';
+		}
+
+		$version = substr( $tag_name, strlen( self::TAG_PREFIX ) );
+		return self::normalize_version( $version );
 	}
 
 	/**

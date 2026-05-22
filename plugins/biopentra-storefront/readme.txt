@@ -1,10 +1,10 @@
 === Biopentra Storefront ===
 Contributors: magpern
-Tags: woocommerce, storefront, elementor, header, mega menu
+Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.3
+Stable tag: 0.5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,15 +12,39 @@ Consolidated storefront modules for Biopentra WooCommerce sites.
 
 == Description ==
 
-Biopentra Storefront bundles mega-menu, footer contact, variation stock selector, header auth, and related storefront modules. Legacy standalone plugins should remain deactivated when the consolidated plugin is active.
+Biopentra Storefront bundles first-party storefront features into one plugin:
+
+* Information mega-menu
+* Footer contact (email shortcode, placeholder noindex)
+* Variation stock selector (auto-select in-stock variation)
+* Header auth (shortcode, Elementor widget, cart enhancements)
+* Technical SEO (meta, robots, schema, sitemap hygiene)
+* Product stock display (configurable labels instead of exact stock counts)
+
+Legacy standalone plugins with the same behavior should stay **deactivated** when this plugin is active (see README.md in the plugin folder).
+
+Production installs use GitHub Releases from `magpern/biopentra-custom-plugins` (tags `storefront-v*`). Development sites typically sync from the monorepo and may disable the built-in GitHub updater.
 
 == Installation ==
 
 1. Upload `biopentra-storefront-{version}.zip` from a GitHub Release (tag `storefront-v*`).
 2. Activate the plugin.
-3. Deactivate duplicate legacy plugins per project runbooks.
+3. Deactivate duplicate legacy plugins: biopentra-header-auth, biopentra-footer-contact, biopentra-information-megamenu, custom-variation-stock-selector (when the matching storefront module is in use).
+
+== Frequently Asked Questions ==
+
+= Where do I configure stock labels? =
+
+WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, and colors; use `{stock}` in the “only left” message for the quantity.
+
+= Does this change inventory or cart behavior? =
+
+No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.5.4 =
+* GitHub updater: refresh release cache on WordPress update checks; pick highest storefront-v* semver; normalize v-prefixed versions.
 
 = 0.5.3 =
 * Product stock display module: configurable stock labels and colors (WooCommerce → Stock display). Replaces exact quantity on the storefront.
@@ -29,7 +53,15 @@ Biopentra Storefront bundles mega-menu, footer contact, variation stock selector
 * GitHub Release updater for production ZIP installs (tag storefront-v*).
 
 = 0.5.1 =
-* Production release ZIP automation; excludes in-plugin scripts/ and dev paths. Shop load-more / Elementor label fixes and production cleanup since 0.4.0. See repository CHANGELOG.md.
+* Production release ZIP automation; excludes in-plugin scripts/ and dev paths. Shop load-more / Elementor label fixes and production cleanup since 0.4.0.
 
 = 0.4.0 =
 * Header auth module (Phase 4). Tag storefront-v0.4.0.
+
+== Upgrade Notice ==
+
+= 0.5.4 =
+Fixes GitHub-based plugin update detection. Sites on 0.5.3 should see this release under Dashboard → Updates after WordPress checks for plugin updates.
+
+= 0.5.3 =
+Adds WooCommerce → Stock display settings. Review labels after upgrade if you previously relied on WooCommerce exact stock counts on product pages.
