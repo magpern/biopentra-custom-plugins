@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.5
+Stable tag: 0.5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ No. Stock display only changes frontend availability text via `woocommerce_get_a
 
 == Changelog ==
 
+= 0.5.6 =
+* Header auth: premium mini-cart drawer (Elementor side-cart + Blocksy offcanvas). Sticky checkout zone, compact rows, quantity controls, empty/loading states. Module 1.5.6.
+
 = 0.5.5 =
 * Technical SEO: defer meta, Open Graph, Twitter, Organization/WebSite, and BreadcrumbList output to Rank Math when active. Robots, sitemaps, and utility filters unchanged.
 
@@ -62,6 +65,9 @@ No. Stock display only changes frontend availability text via `woocommerce_get_a
 * Header auth module (Phase 4). Tag storefront-v0.4.0.
 
 == Upgrade Notice ==
+
+= 0.5.6 =
+Adds styled WooCommerce mini-cart drawer assets. Clear site cache after upgrade. Compatible with Elementor menu cart fragments and Blocksy qty AJAX.
 
 = 0.5.5 =
 Defers duplicate meta, Open Graph, Twitter, and core JSON-LD to Rank Math when that plugin is active. Safe to install alongside Rank Math on production.

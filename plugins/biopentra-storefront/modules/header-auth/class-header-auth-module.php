@@ -31,7 +31,7 @@ class Biopentra_Storefront_Header_Auth_Module {
 	 */
 	private static function define_constants() {
 		if ( ! defined( 'BIOPENTRA_HEADER_AUTH_VERSION' ) ) {
-			define( 'BIOPENTRA_HEADER_AUTH_VERSION', '1.5.5' );
+			define( 'BIOPENTRA_HEADER_AUTH_VERSION', '1.5.6' );
 		}
 		if ( ! defined( 'BIOPENTRA_HEADER_AUTH_PATH' ) ) {
 			define( 'BIOPENTRA_HEADER_AUTH_PATH', trailingslashit( BIOPENTRA_STOREFRONT_PATH . 'modules/header-auth' ) );
@@ -48,6 +48,7 @@ class Biopentra_Storefront_Header_Auth_Module {
 		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/markup.php';
 		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/cart-enhancements.php';
 		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/blocksy-global-palette.php';
+		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/mini-cart-drawer.php';
 		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/header-auth-hooks.php';
 	}
 
@@ -61,6 +62,7 @@ class Biopentra_Storefront_Header_Auth_Module {
 
 		self::define_constants();
 		self::load_includes();
+		biopentra_mini_cart_drawer_boot();
 
 		add_action( 'wp_enqueue_scripts', 'biopentra_header_auth_register_assets', 5 );
 		add_action( 'wp_enqueue_scripts', 'biopentra_header_auth_enqueue_wc_account_form_styles', 100 );

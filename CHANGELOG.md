@@ -12,6 +12,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.6] — 2026-05-25
+
+### Added
+
+- **Header auth / mini-cart drawer:** Premium Scandinavian-style WooCommerce mini-cart for Elementor side-cart and Blocksy offcanvas (`modules/header-auth/`).
+  - Custom `woocommerce/cart/mini-cart.php` template override (Elementor-compatible markup).
+  - Sticky subtotal + trust row + checkout-first CTAs, compact product rows, quantity inputs.
+  - `mini-cart-drawer.css` / `mini-cart-drawer.js` with loading states and fragment-friendly qty updates (Blocksy AJAX + fallback).
+  - Header-auth module version **1.5.6**.
+
+### Notes
+
+- Does not modify theme builder templates, global Elementor JSON, or WooCommerce core.
+- Deploy via GitHub Release tag `storefront-v0.5.6`.
+
+**Git tag:** `storefront-v0.5.6`
+
+---
+
 ## [0.5.2] — 2026-05-19
 
 ### Added
