@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.12] — 2026-05-25
+
+### Added
+
+- **Mini-cart payment/trust logos (header-auth 1.5.12):** Added a centered logo row below the secure checkout trust text using bundled Bitcoin, USDC, Visa, and Mastercard SVG assets. Scoped to `.bp-mini-cart--drawer` and preserves WooCommerce fragments/AJAX behavior.
+
+**Git tag:** `v0.5.12`, `storefront-v0.5.12`
+
+---
+
 ## [0.5.11] — 2026-05-25
 
 ### Changed

@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.11
+Stable tag: 0.5.12
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,9 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.5.12 =
+* Mini-cart: added payment/trust logo row below the secure checkout trust text using bundled Bitcoin, USDC, Visa, and Mastercard SVG assets (header-auth module 1.5.12).
 
 = 0.5.11 =
 * Checkout v2: restored visible but soft order summary separators between heading, product rows, totals, discounts/shipping, and payment methods (header-auth module 1.5.11).

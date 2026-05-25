@@ -138,6 +138,13 @@ else :
 				<span class="bp-mini-cart-trust__item"><?php esc_html_e( 'EU fulfillment', 'biopentra-storefront' ); ?></span>
 			</p>
 
+			<div class="bp-mini-cart-payment-logos" aria-label="<?php esc_attr_e( 'Accepted payment methods', 'biopentra-storefront' ); ?>">
+				<img class="bp-mini-cart-payment-logo bp-mini-cart-payment-logo--crypto" src="<?php echo esc_url( BIOPENTRA_HEADER_AUTH_URL . 'assets/images/Bitcoin-Cryptocurrency.svg' ); ?>" alt="<?php esc_attr_e( 'Bitcoin', 'biopentra-storefront' ); ?>" loading="lazy" decoding="async" />
+				<img class="bp-mini-cart-payment-logo" src="<?php echo esc_url( BIOPENTRA_HEADER_AUTH_URL . 'assets/images/Usdc-Cryptocurrency.svg' ); ?>" alt="<?php esc_attr_e( 'USDC', 'biopentra-storefront' ); ?>" loading="lazy" decoding="async" />
+				<img class="bp-mini-cart-payment-logo bp-mini-cart-payment-logo--wide" src="<?php echo esc_url( BIOPENTRA_HEADER_AUTH_URL . 'assets/images/Visa-logo.svg' ); ?>" alt="<?php esc_attr_e( 'Visa', 'biopentra-storefront' ); ?>" loading="lazy" decoding="async" />
+				<img class="bp-mini-cart-payment-logo" src="<?php echo esc_url( BIOPENTRA_HEADER_AUTH_URL . 'assets/images/Mastercard-logo.svg' ); ?>" alt="<?php esc_attr_e( 'Mastercard', 'biopentra-storefront' ); ?>" loading="lazy" decoding="async" />
+			</div>
+
 			<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
 			<div class="elementor-menu-cart__footer-buttons woocommerce-mini-cart__buttons buttons">
