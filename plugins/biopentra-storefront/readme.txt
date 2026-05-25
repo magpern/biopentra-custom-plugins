@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.9
+Stable tag: 0.5.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,9 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.5.10 =
+* Checkout v2: softened the order summary container with off-white background, lighter border, stronger internal padding, and better row spacing (header-auth module 1.5.10).
 
 = 0.5.9 =
 * Mini-cart: removed harsh inherited product-row frame; rows now use a soft bottom-only separator with improved media/content/quantity alignment (header-auth module 1.5.9).

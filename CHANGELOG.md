@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.10] — 2026-05-25
+
+### Changed
+
+- **Checkout v2 order summary (header-auth 1.5.10):** Applied the premium off-white container treatment to both `.bp-checkout-v2__summary-card` and Blocksy’s `.ct-order-review` wrapper. Added stronger internal padding, softer border color, subtle radius/shadow, and improved product/totals row spacing while preserving right-aligned prices and full-width payment cards.
+
+**Git tag:** `v0.5.10`, `storefront-v0.5.10`
+
+---
+
 ## [0.5.9] — 2026-05-25
 
 ### Fixed

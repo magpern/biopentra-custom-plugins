@@ -4,14 +4,14 @@
  */
 
 body.bp-checkout-v2 {
-	--bp-co-summary-bg: #f7f7f8;
+	--bp-co-summary-bg: #f8f8f9;
 	--bp-co-summary-surface: #fafafa;
 	--bp-co-payment-bg: #f5f5f6;
 	--bp-co-border-soft: #ececef;
 	--bp-co-border-lighter: #e8e9ec;
-	--bp-co-radius-card: 10px;
+	--bp-co-radius-card: 12px;
 	--bp-co-radius-inner: 8px;
-	--bp-co-pad-card: 1.125rem 1.25rem;
+	--bp-co-pad-card: 1.25rem 1.3rem;
 	--bp-co-pad-row-y: 0.625rem;
 	--bp-co-pad-payment-label: 0.875rem 1rem;
 	--bp-co-gap-payment: 0.5rem;
@@ -21,23 +21,27 @@ body.bp-checkout-v2 {
    Order summary card — softer shell, more internal air
    ------------------------------------------------------------------------- */
 body.bp-checkout-v2 .bp-checkout-v2__summary-card,
-body.bp-checkout-v2 .ct-order-review .bp-checkout-v2__summary-card {
-	background: var(--bp-co-summary-bg);
-	border: 1px solid var(--bp-co-border-lighter);
+body.bp-checkout-v2 .ct-order-review {
+	background: var(--bp-co-summary-bg) !important;
+	border: 1px solid var(--bp-co-border-soft) !important;
 	border-radius: var(--bp-co-radius-card);
-	box-shadow: none;
-	padding: var(--bp-co-pad-card);
+	box-shadow: 0 1px 2px rgba(28, 35, 41, 0.025);
+	padding: var(--bp-co-pad-card) !important;
+	overflow: hidden;
 }
 
-body.bp-checkout-v2 .bp-checkout-v2__summary-title {
-	margin: 0 0 1rem;
-	padding: 0 0 0.75rem;
+body.bp-checkout-v2 .bp-checkout-v2__summary-title,
+body.bp-checkout-v2 .ct-order-review #order_review_heading {
+	margin: 0 0 0.875rem;
+	padding: 0 0 0.8rem;
 	border-bottom: 1px solid var(--bp-co-border-soft);
 	line-height: 1.35;
 }
 
 body.bp-checkout-v2 .bp-checkout-v2__order-review,
 body.bp-checkout-v2 .ct-order-review #order_review {
+	background: transparent;
+	margin: 0;
 	padding: 0;
 }
 
@@ -45,7 +49,11 @@ body.bp-checkout-v2 .ct-order-review #order_review {
    Line items & totals — vertical rhythm, no border/text collision
    ------------------------------------------------------------------------- */
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table {
+	width: 100%;
 	margin: 0 0 1rem;
+	background: transparent;
+	border-collapse: separate;
+	border-spacing: 0;
 }
 
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table tbody tr {
@@ -58,23 +66,25 @@ body.bp-checkout-v2 .woocommerce-checkout-review-order-table tbody tr:last-child
 
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table td,
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table th {
-	padding: var(--bp-co-pad-row-y) 0.125rem;
+	padding: var(--bp-co-pad-row-y) 0.2rem;
 	line-height: 1.45;
 }
 
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table .product-name {
-	padding-right: 0.75rem;
+	padding-left: 0;
+	padding-right: 0.85rem;
 	line-height: 1.4;
 }
 
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table .product-total {
+	padding-right: 0;
 	padding-left: 0.5rem;
 	white-space: nowrap;
 }
 
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table tfoot tr th,
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table tfoot tr td {
-	padding: 0.5rem 0.125rem;
+	padding: 0.55rem 0.2rem;
 }
 
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table tfoot tr:first-child th,
@@ -84,7 +94,7 @@ body.bp-checkout-v2 .woocommerce-checkout-review-order-table tfoot tr:first-chil
 
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table .order-total th,
 body.bp-checkout-v2 .woocommerce-checkout-review-order-table .order-total td {
-	padding: 0.875rem 0.125rem 0.125rem;
+	padding: 0.95rem 0.2rem 0.15rem;
 	margin-top: 0.25rem;
 	border-top: 1px solid var(--bp-co-border-soft);
 	font-size: 1.0625rem;
@@ -99,7 +109,10 @@ body.bp-checkout-v2 .woocommerce-checkout-review-order-table .order-total td {
 /* Promotions / gift cards inside summary */
 body.bp-checkout-v2 .bp-checkout-v2__order-review .mp-cp-checkout-panel,
 body.bp-checkout-v2 .bp-checkout-v2__order-review [class*="gift-card"],
-body.bp-checkout-v2 .bp-checkout-v2__order-review [class*="store-credit"] {
+body.bp-checkout-v2 .bp-checkout-v2__order-review [class*="store-credit"],
+body.bp-checkout-v2 .ct-order-review .mp-cp-checkout-panel,
+body.bp-checkout-v2 .ct-order-review [class*="gift-card"],
+body.bp-checkout-v2 .ct-order-review [class*="store-credit"] {
 	margin: 0.75rem 0;
 	padding: 0.75rem 0.875rem;
 	background: var(--bp-co-summary-surface);
