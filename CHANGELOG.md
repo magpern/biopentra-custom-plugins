@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.11] — 2026-05-25
+
+### Changed
+
+- **Checkout v2 order summary (header-auth 1.5.11):** Restored clearer but still soft 1px separators between the heading, products, subtotal/discount/shipping sections, total, and payment methods. Keeps the off-white card background and current padding while improving section readability.
+
+**Git tag:** `v0.5.11`, `storefront-v0.5.11`
+
+---
+
 ## [0.5.10] — 2026-05-25
 
 ### Changed
