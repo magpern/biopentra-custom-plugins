@@ -60,7 +60,7 @@
 			return;
 		}
 
-		var row = input.closest('.elementor-menu-cart__product, .woocommerce-mini-cart-item');
+		var row = input.closest('.bp-mini-cart-row, .elementor-menu-cart__product, .woocommerce-mini-cart-item');
 		if (row) {
 			row.classList.add('processing');
 		}

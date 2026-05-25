@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.7] — 2026-05-25
+
+### Changed
+
+- **Mini-cart product rows:** Larger thumbnail (72–76px), accent title color, variation/short-description subtitle, bold line price, circular remove on image, pill-style quantity controls, tighter spacing. UI-only; fragments and AJAX unchanged.
+
+**Git tag:** `storefront-v0.5.7`
+
+---
+
 ## [0.5.6] — 2026-05-25
 
 ### Added

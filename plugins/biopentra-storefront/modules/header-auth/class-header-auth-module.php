@@ -31,7 +31,7 @@ class Biopentra_Storefront_Header_Auth_Module {
 	 */
 	private static function define_constants() {
 		if ( ! defined( 'BIOPENTRA_HEADER_AUTH_VERSION' ) ) {
-			define( 'BIOPENTRA_HEADER_AUTH_VERSION', '1.5.6' );
+			define( 'BIOPENTRA_HEADER_AUTH_VERSION', '1.5.7' );
 		}
 		if ( ! defined( 'BIOPENTRA_HEADER_AUTH_PATH' ) ) {
 			define( 'BIOPENTRA_HEADER_AUTH_PATH', trailingslashit( BIOPENTRA_STOREFRONT_PATH . 'modules/header-auth' ) );

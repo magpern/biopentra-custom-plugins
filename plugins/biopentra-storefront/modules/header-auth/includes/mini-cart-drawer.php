@@ -36,7 +36,28 @@ function biopentra_mini_cart_drawer_locate_template( $template, $template_name, 
 }
 
 /**
- * Quantity row with optional quantity input (Blocksy qty AJAX when theme scripts load).
+ * Compact subtitle: variation attributes or trimmed short description.
+ *
+ * @param array       $cart_item Cart item.
+ * @param \WC_Product $_product  Product.
+ * @return string
+ */
+function biopentra_mini_cart_drawer_row_subtitle( $cart_item, $_product ) {
+	$variation_html = wc_get_formatted_cart_item_data( $cart_item );
+	if ( $variation_html ) {
+		return '<div class="bp-mini-cart-row__meta">' . $variation_html . '</div>';
+	}
+
+	$short = $_product->get_short_description();
+	if ( ! $short ) {
+		return '';
+	}
+
+	return '<p class="bp-mini-cart-row__meta">' . esc_html( wp_trim_words( wp_strip_all_tags( $short ), 14, '…' ) ) . '</p>';
+}
+
+/**
+ * Quantity pill (Blocksy qty AJAX when theme scripts load).
  *
  * @param string $html          Default markup.
  * @param array  $cart_item     Item.
@@ -65,18 +86,16 @@ function biopentra_mini_cart_drawer_item_quantity( $html, $cart_item, $cart_item
 	);
 
 	if ( $_product->is_sold_individually() ) {
-		return '<div class="bp-mini-cart-qty-row"><span class="quantity bp-mini-cart-qty-row__static">' .
-			esc_html( (string) $cart_item['quantity'] ) .
-			' &times; ' . wp_kses_post( $product_price ) .
-			'</span></div>';
+		return '<div class="bp-mini-cart-qty-pill bp-mini-cart-qty-pill--static" aria-label="' . esc_attr__( 'Quantity', 'biopentra-storefront' ) . '">' .
+			'<span class="bp-mini-cart-qty-pill__value">' . esc_html( (string) $cart_item['quantity'] ) . '</span>' .
+			'</div>';
 	}
 
 	$max_value = $_product->get_max_purchase_quantity();
 	$min_value = 0;
 
 	ob_start();
-	echo '<div class="bp-mini-cart-qty-row">';
-	echo '<div class="bp-mini-cart-qty-row__control">';
+	echo '<div class="bp-mini-cart-qty-pill">';
 	woocommerce_quantity_input(
 		array(
 			'input_name'   => "cart[{$cart_item_key}][qty]",
@@ -88,8 +107,6 @@ function biopentra_mini_cart_drawer_item_quantity( $html, $cart_item, $cart_item
 		$_product,
 		true
 	);
-	echo '</div>';
-	echo '<span class="bp-mini-cart-line-total" aria-live="polite">' . wp_kses_post( $product_price ) . '</span>';
 	echo '</div>';
 
 	return (string) ob_get_clean();
@@ -128,10 +145,11 @@ function biopentra_mini_cart_drawer_enqueue_assets() {
 	wp_enqueue_script( 'biopentra-mini-cart-drawer' );
 
 	$accent = sanitize_hex_color( (string) apply_filters( 'biopentra_header_auth_wc_account_accent', '#1f5fae' ) ) ?: '#1f5fae';
+	$title_accent = sanitize_hex_color( (string) apply_filters( 'biopentra_mini_cart_drawer_title_accent', '#c73659' ) ) ?: '#c73659';
 
 	wp_add_inline_style(
 		'biopentra-mini-cart-drawer',
-		':root{--bp-mc-accent:' . esc_attr( $accent ) . ';}'
+		':root{--bp-mc-accent:' . esc_attr( $accent ) . ';--bp-mc-title-accent:' . esc_attr( $title_accent ) . ';}'
 	);
 
 	wp_localize_script(
