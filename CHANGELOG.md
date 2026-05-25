@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.9] — 2026-05-25
+
+### Fixed
+
+- **Mini-cart product rows (header-auth 1.5.9):** Removed the harsh inherited frame around the product row area by resetting row borders/outlines/shadows and replacing them with a soft bottom-only separator. Improved image/content/quantity vertical alignment while preserving WooCommerce fragments and AJAX behavior.
+
+**Git tag:** `v0.5.9`, `storefront-v0.5.9`
+
+---
+
 ## [0.5.8] — 2026-05-25
 
 ### Changed
