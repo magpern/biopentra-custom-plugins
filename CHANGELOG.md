@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.13] — 2026-05-25
+
+### Changed
+
+- **Mini-cart cart trigger (header-auth 1.5.13):** Implemented a soft elevated pill treatment for the Elementor/Blocksy cart trigger with off-white background, subtle border, hover/focus elevation, refined amount typography, compact icon spacing, and a smaller red badge. CSS-only and scoped to the mini-cart/header cart selectors.
+
+**Git tag:** `v0.5.13`, `storefront-v0.5.13`
+
+---
+
 ## [0.5.12] — 2026-05-25
 
 ### Added
