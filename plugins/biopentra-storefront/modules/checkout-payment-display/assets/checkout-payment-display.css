@@ -1,0 +1,69 @@
+/**
+ * Checkout payment method display refinements.
+ */
+
+#payment .bp-checkout-payment-icons {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	margin-left: 0.5rem;
+	vertical-align: middle;
+	line-height: 1;
+}
+
+#payment .bp-checkout-payment-icons img.bp-checkout-payment-icon {
+	display: block;
+	width: auto;
+	height: 1.15rem;
+	max-width: none;
+	max-height: none;
+	margin: 0 !important;
+	padding: 0 !important;
+	object-fit: contain;
+	opacity: 0.9;
+	filter: saturate(0.95) contrast(0.98);
+}
+
+#payment .bp-checkout-payment-icon--bitcoin {
+	width: 1.15rem !important;
+}
+
+#payment .bp-checkout-payment-icon--visa {
+	width: 2.45rem !important;
+}
+
+#payment .bp-checkout-payment-icon--mastercard {
+	width: 1.45rem !important;
+}
+
+body.bp-checkout-v2 #payment .wc_payment_method > label .bp-checkout-payment-icons {
+	margin-left: auto;
+	flex-shrink: 0;
+}
+
+body.bp-checkout-v2 #payment .wc_payment_method > label .bp-checkout-payment-icons img.bp-checkout-payment-icon {
+	max-height: none;
+}
+
+@media (max-width: 520px) {
+	#payment .bp-checkout-payment-icons {
+		gap: 0.3rem;
+		margin-left: 0.35rem;
+	}
+
+	#payment .bp-checkout-payment-icons img.bp-checkout-payment-icon {
+		height: 1rem;
+	}
+
+	#payment .bp-checkout-payment-icon--bitcoin {
+		width: 1rem !important;
+	}
+
+	#payment .bp-checkout-payment-icon--visa {
+		width: 2.2rem !important;
+	}
+
+	#payment .bp-checkout-payment-icon--mastercard {
+		width: 1.3rem !important;
+	}
+}

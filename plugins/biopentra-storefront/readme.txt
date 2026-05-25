@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.13
+Stable tag: 0.5.14
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,7 @@ Biopentra Storefront bundles first-party storefront features into one plugin:
 * Footer contact (email shortcode, placeholder noindex)
 * Variation stock selector (auto-select in-stock variation)
 * Header auth (shortcode, Elementor widget, cart enhancements)
+* Checkout payment display (gateway icon presentation)
 * Technical SEO (meta, robots, schema, sitemap hygiene)
 * Product stock display (configurable labels instead of exact stock counts)
 
@@ -42,6 +43,9 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.5.14 =
+* Checkout payment display: added display-only icons for BTCPay and VCCP card gateways using bundled Bitcoin, Visa, and Mastercard SVG assets.
 
 = 0.5.13 =
 * Mini-cart: implemented a soft elevated pill cart trigger with refined spacing, typography, hover/focus elevation, and compact red badge (header-auth module 1.5.13).

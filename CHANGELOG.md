@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.14] — 2026-05-25
+
+### Added
+
+- **Checkout payment display:** Added a display-only checkout payment module that replaces supported gateway icons through `woocommerce_gateway_icon` for BTCPay and the enabled VCCP card gateways. Uses bundled Bitcoin, Visa, and Mastercard SVG assets and a checkout-only stylesheet; gateway IDs and payment processing logic are unchanged.
+
+**Git tag:** `v0.5.14`, `storefront-v0.5.14`
+
+---
+
 ## [0.5.13] — 2026-05-25
 
 ### Changed

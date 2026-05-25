@@ -62,6 +62,14 @@ class Biopentra_Storefront {
 			}
 		}
 
+		$checkout_payment_display_module = BIOPENTRA_STOREFRONT_PATH . 'modules/checkout-payment-display/class-checkout-payment-display-module.php';
+		if ( is_readable( $checkout_payment_display_module ) ) {
+			require_once $checkout_payment_display_module;
+			if ( class_exists( 'Biopentra_Storefront_Checkout_Payment_Display_Module' ) ) {
+				Biopentra_Storefront_Checkout_Payment_Display_Module::init();
+			}
+		}
+
 		$seo_module = BIOPENTRA_STOREFRONT_PATH . 'modules/technical-seo/class-technical-seo-module.php';
 		if ( is_readable( $seo_module ) ) {
 			require_once $seo_module;
