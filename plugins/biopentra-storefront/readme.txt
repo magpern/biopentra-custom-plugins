@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.4
+Stable tag: 0.5.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ No. Stock display only changes frontend availability text via `woocommerce_get_a
 
 == Changelog ==
 
+= 0.5.5 =
+* Technical SEO: defer meta, Open Graph, Twitter, Organization/WebSite, and BreadcrumbList output to Rank Math when active. Robots, sitemaps, and utility filters unchanged.
+
 = 0.5.4 =
 * GitHub updater: refresh release cache on WordPress update checks; pick highest storefront-v* semver; normalize v-prefixed versions.
 
@@ -59,6 +62,9 @@ No. Stock display only changes frontend availability text via `woocommerce_get_a
 * Header auth module (Phase 4). Tag storefront-v0.4.0.
 
 == Upgrade Notice ==
+
+= 0.5.5 =
+Defers duplicate meta, Open Graph, Twitter, and core JSON-LD to Rank Math when that plugin is active. Safe to install alongside Rank Math on production.
 
 = 0.5.4 =
 Fixes GitHub-based plugin update detection. Sites on 0.5.3 should see this release under Dashboard → Updates after WordPress checks for plugin updates.

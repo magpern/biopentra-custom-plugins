@@ -58,6 +58,13 @@ class Biopentra_Storefront_Technical_Seo_Module {
 	}
 
 	/**
+	 * Rank Math is the SEO authority for meta, social tags, and core JSON-LD.
+	 */
+	private static function rank_math_handles_head_seo() {
+		return defined( 'RANK_MATH_FILE' );
+	}
+
+	/**
 	 * Whether the current request should be noindexed.
 	 */
 	public static function should_noindex_request() {
@@ -401,6 +408,10 @@ class Biopentra_Storefront_Technical_Seo_Module {
 	 * Output meta description + Open Graph tags.
 	 */
 	public static function render_meta_tags() {
+		if ( self::rank_math_handles_head_seo() ) {
+			return;
+		}
+
 		if ( is_admin() || is_feed() || is_robots() ) {
 			return;
 		}
@@ -463,8 +474,9 @@ class Biopentra_Storefront_Technical_Seo_Module {
 		}
 
 		$graphs = array();
+		$defer_schema_to_rank_math = self::rank_math_handles_head_seo();
 
-		if ( is_front_page() ) {
+		if ( is_front_page() && ! $defer_schema_to_rank_math ) {
 			$graphs[] = array(
 				'@context' => 'https://schema.org',
 				'@type'    => 'Organization',
@@ -485,9 +497,11 @@ class Biopentra_Storefront_Technical_Seo_Module {
 			);
 		}
 
-		$breadcrumb = self::get_breadcrumb_schema();
-		if ( $breadcrumb ) {
-			$graphs[] = $breadcrumb;
+		if ( ! $defer_schema_to_rank_math ) {
+			$breadcrumb = self::get_breadcrumb_schema();
+			if ( $breadcrumb ) {
+				$graphs[] = $breadcrumb;
+			}
 		}
 
 		if ( is_page( 'faq' ) ) {
