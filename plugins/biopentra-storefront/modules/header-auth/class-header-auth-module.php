@@ -31,7 +31,7 @@ class Biopentra_Storefront_Header_Auth_Module {
 	 */
 	private static function define_constants() {
 		if ( ! defined( 'BIOPENTRA_HEADER_AUTH_VERSION' ) ) {
-			define( 'BIOPENTRA_HEADER_AUTH_VERSION', '1.5.7' );
+			define( 'BIOPENTRA_HEADER_AUTH_VERSION', '1.5.8' );
 		}
 		if ( ! defined( 'BIOPENTRA_HEADER_AUTH_PATH' ) ) {
 			define( 'BIOPENTRA_HEADER_AUTH_PATH', trailingslashit( BIOPENTRA_STOREFRONT_PATH . 'modules/header-auth' ) );
@@ -50,6 +50,7 @@ class Biopentra_Storefront_Header_Auth_Module {
 		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/blocksy-global-palette.php';
 		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/mini-cart-drawer.php';
 		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/header-auth-hooks.php';
+		require_once BIOPENTRA_HEADER_AUTH_PATH . 'includes/checkout-v2-styles.php';
 	}
 
 	/**
@@ -65,7 +66,9 @@ class Biopentra_Storefront_Header_Auth_Module {
 		biopentra_mini_cart_drawer_boot();
 
 		add_action( 'wp_enqueue_scripts', 'biopentra_header_auth_register_assets', 5 );
+		add_action( 'wp_enqueue_scripts', 'biopentra_storefront_register_checkout_v2_styles', 5 );
 		add_action( 'wp_enqueue_scripts', 'biopentra_header_auth_enqueue_wc_account_form_styles', 100 );
+		add_action( 'wp_enqueue_scripts', 'biopentra_storefront_enqueue_checkout_v2_styles', 130 );
 		add_filter( 'woocommerce_account_menu_items', 'biopentra_header_auth_hide_account_downloads_menu_item', 99 );
 		add_filter( 'blocksy:woocommerce:single-product:post-class', 'biopentra_header_auth_blocksy_ensure_ct_ajax_add_to_cart_class', 20 );
 		add_action( 'elementor/elements/categories_registered', 'biopentra_header_auth_register_elementor_category' );

@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.8] — 2026-05-25
+
+### Changed
+
+- **Checkout v2 (header-auth 1.5.8):** Refined order summary and payment method presentation — more internal padding, off-white surfaces (`#f7f7f8` / `#f5f5f6`), lighter borders, premium card-style gateways, improved totals hierarchy. Scoped to `body.bp-checkout-v2` only.
+
+**Git tag:** `v1.5.8`, `storefront-v0.5.8`
+
+---
+
 ## [0.5.7] — 2026-05-25
 
 ### Changed

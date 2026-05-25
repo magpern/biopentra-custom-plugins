@@ -1,0 +1,238 @@
+/**
+ * Checkout v2 — order summary & payment refinement (Biopentra Storefront).
+ * Scoped to body.bp-checkout-v2 only. Loads after theme checkout-v2 base CSS.
+ */
+
+body.bp-checkout-v2 {
+	--bp-co-summary-bg: #f7f7f8;
+	--bp-co-summary-surface: #fafafa;
+	--bp-co-payment-bg: #f5f5f6;
+	--bp-co-border-soft: #ececef;
+	--bp-co-border-lighter: #e8e9ec;
+	--bp-co-radius-card: 10px;
+	--bp-co-radius-inner: 8px;
+	--bp-co-pad-card: 1.125rem 1.25rem;
+	--bp-co-pad-row-y: 0.625rem;
+	--bp-co-pad-payment-label: 0.875rem 1rem;
+	--bp-co-gap-payment: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------
+   Order summary card — softer shell, more internal air
+   ------------------------------------------------------------------------- */
+body.bp-checkout-v2 .bp-checkout-v2__summary-card,
+body.bp-checkout-v2 .ct-order-review .bp-checkout-v2__summary-card {
+	background: var(--bp-co-summary-bg);
+	border: 1px solid var(--bp-co-border-lighter);
+	border-radius: var(--bp-co-radius-card);
+	box-shadow: none;
+	padding: var(--bp-co-pad-card);
+}
+
+body.bp-checkout-v2 .bp-checkout-v2__summary-title {
+	margin: 0 0 1rem;
+	padding: 0 0 0.75rem;
+	border-bottom: 1px solid var(--bp-co-border-soft);
+	line-height: 1.35;
+}
+
+body.bp-checkout-v2 .bp-checkout-v2__order-review,
+body.bp-checkout-v2 .ct-order-review #order_review {
+	padding: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Line items & totals — vertical rhythm, no border/text collision
+   ------------------------------------------------------------------------- */
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table {
+	margin: 0 0 1rem;
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table tbody tr {
+	border-bottom: 1px solid var(--bp-co-border-soft);
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table tbody tr:last-child {
+	border-bottom-color: var(--bp-co-border-lighter);
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table td,
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table th {
+	padding: var(--bp-co-pad-row-y) 0.125rem;
+	line-height: 1.45;
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table .product-name {
+	padding-right: 0.75rem;
+	line-height: 1.4;
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table .product-total {
+	padding-left: 0.5rem;
+	white-space: nowrap;
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table tfoot tr th,
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table tfoot tr td {
+	padding: 0.5rem 0.125rem;
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table tfoot tr:first-child th,
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table tfoot tr:first-child td {
+	padding-top: 0.75rem;
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table .order-total th,
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table .order-total td {
+	padding: 0.875rem 0.125rem 0.125rem;
+	margin-top: 0.25rem;
+	border-top: 1px solid var(--bp-co-border-soft);
+	font-size: 1.0625rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+body.bp-checkout-v2 .woocommerce-checkout-review-order-table .order-total td {
+	color: var(--bp-co-text, #1c2329);
+}
+
+/* Promotions / gift cards inside summary */
+body.bp-checkout-v2 .bp-checkout-v2__order-review .mp-cp-checkout-panel,
+body.bp-checkout-v2 .bp-checkout-v2__order-review [class*="gift-card"],
+body.bp-checkout-v2 .bp-checkout-v2__order-review [class*="store-credit"] {
+	margin: 0.75rem 0;
+	padding: 0.75rem 0.875rem;
+	background: var(--bp-co-summary-surface);
+	border: 1px solid var(--bp-co-border-lighter);
+	border-radius: var(--bp-co-radius-inner);
+	line-height: 1.45;
+}
+
+/* -------------------------------------------------------------------------
+   Payment block — separated softly from totals
+   ------------------------------------------------------------------------- */
+body.bp-checkout-v2 .bp-checkout-v2__order-review #payment,
+body.bp-checkout-v2 .ct-order-review #payment {
+	margin-top: 0.25rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--bp-co-border-soft);
+	background: transparent;
+}
+
+body.bp-checkout-v2 #payment .wc_payment_methods {
+	gap: var(--bp-co-gap-payment);
+	margin: 0 0 0.875rem;
+	padding: 0;
+}
+
+body.bp-checkout-v2 #payment .wc_payment_method {
+	margin: 0;
+	padding: 0;
+}
+
+/* Premium selectable cards */
+body.bp-checkout-v2 #payment .wc_payment_method > label {
+	gap: 0.75rem;
+	margin: 0;
+	padding: var(--bp-co-pad-payment-label);
+	min-height: 3rem;
+	line-height: 1.4;
+	background: var(--bp-co-summary-surface);
+	border: 1px solid var(--bp-co-border-lighter);
+	border-radius: var(--bp-co-radius-inner);
+	box-shadow: none;
+}
+
+body.bp-checkout-v2 #payment .wc_payment_method > input[type="radio"] {
+	width: 1.0625rem;
+	height: 1.0625rem;
+	margin: 0;
+	flex-shrink: 0;
+	align-self: center;
+}
+
+body.bp-checkout-v2 #payment .wc_payment_method > label img,
+body.bp-checkout-v2 #payment .wc_payment_method > label .about {
+	margin: 0;
+	padding: 0;
+	max-height: 1.5rem;
+}
+
+body.bp-checkout-v2 #payment .wc_payment_method > label:hover {
+	background: #fff;
+	border-color: var(--bp-co-border-soft);
+}
+
+body.bp-checkout-v2 #payment .wc_payment_method.payment_method_selected > label,
+body.bp-checkout-v2 #payment .wc_payment_method > input[type="radio"]:checked + label {
+	background: #fff;
+	border-color: #d5d7db;
+	box-shadow: 0 0 0 1px rgba(28, 35, 41, 0.08);
+}
+
+/* Descriptions / gateway fields — room to breathe */
+body.bp-checkout-v2 #payment .payment_box {
+	margin: 0.5rem 0 0;
+	padding: 0.875rem 1rem;
+	font-size: 0.8125rem;
+	line-height: 1.5;
+	color: var(--bp-co-text-muted, #5c6770);
+	background: var(--bp-co-payment-bg);
+	border: 1px solid var(--bp-co-border-lighter);
+	border-radius: var(--bp-co-radius-inner);
+}
+
+body.bp-checkout-v2 #payment .payment_box p {
+	margin: 0 0 0.5rem;
+}
+
+body.bp-checkout-v2 #payment .payment_box p:last-child {
+	margin-bottom: 0;
+}
+
+body.bp-checkout-v2 #payment .payment_box::before {
+	display: none;
+}
+
+body.bp-checkout-v2 #payment .payment_box fieldset,
+body.bp-checkout-v2 #payment .payment_box .wc-btcpay,
+body.bp-checkout-v2 #payment .payment_box .vccp-payment-fields {
+	margin: 0;
+	padding: 0.25rem 0 0;
+	border: none;
+}
+
+/* Terms + place order spacing */
+body.bp-checkout-v2 #payment .woocommerce-terms-and-conditions-wrapper {
+	margin: 0 0 0.75rem;
+	padding: 0;
+	line-height: 1.45;
+}
+
+body.bp-checkout-v2 #payment .form-row.place-order {
+	margin: 0.875rem 0 0;
+	padding: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Mobile — preserve compact elegance
+   ------------------------------------------------------------------------- */
+@media (max-width: 991px) {
+	body.bp-checkout-v2 .bp-checkout-v2__summary-card {
+		padding: 1rem 1.125rem;
+	}
+
+	body.bp-checkout-v2 #payment .wc_payment_method > label {
+		padding: 0.8125rem 0.9375rem;
+	}
+}
+
+@media (max-width: 480px) {
+	body.bp-checkout-v2 .woocommerce-checkout-review-order-table .product-name {
+		padding-right: 0.5rem;
+	}
+
+	body.bp-checkout-v2 #payment .payment_box {
+		padding: 0.75rem 0.875rem;
+	}
+}

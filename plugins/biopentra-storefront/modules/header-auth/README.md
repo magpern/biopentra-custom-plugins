@@ -2,7 +2,7 @@
 
 **Source (legacy):** `plugins/biopentra-header-auth/`
 
-**Implemented in storefront:** Shortcode `[biopentra_header_auth]`, Elementor widget type `biopentra_header_auth`, WC account/checkout styles, cart free-shipping progress, Blocksy `ct-ajax-add-to-cart` filter, optional Blocksy global palette admin migration.
+**Implemented in storefront:** Shortcode `[biopentra_header_auth]`, Elementor widget type `biopentra_header_auth`, WC account/checkout styles, **checkout v2 order/payment refinements** (`checkout-v2-order-payment.css`, scoped to `body.bp-checkout-v2`), cart free-shipping progress, Blocksy `ct-ajax-add-to-cart` filter, optional Blocksy global palette admin migration.
 
 **Guard:** If `biopentra-header-auth/biopentra-header-auth.php` is **active**, this module **does nothing** (no shortcode, Elementor, cart, Blocksy, or other hooks from storefront). **Do not** run legacy and storefront header-auth together.
 
