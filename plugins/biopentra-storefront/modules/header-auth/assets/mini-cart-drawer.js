@@ -14,6 +14,7 @@
 	var preserveDrawerAfterRemove = false;
 	var preserveDrawerTimers = [];
 	var preserveDrawerKind = null;
+	var preserveDrawerRestored = false;
 
 	function getDrawerRoots() {
 		var roots = [];
@@ -52,6 +53,14 @@
 			window.clearTimeout(timer);
 		});
 		preserveDrawerTimers = [];
+	}
+
+	function clearPreservedDrawerState() {
+		preserveDrawerAfterRemove = false;
+		preserveDrawerKind = null;
+		preserveDrawerRestored = false;
+		clearPreserveDrawerTimers();
+		setLoading(false);
 	}
 
 	function isElementorCartOpen() {
@@ -163,30 +172,33 @@
 		setLoading(false);
 
 		if (preserveDrawerKind === 'elementor') {
-			openElementorCart();
+			preserveDrawerRestored = openElementorCart() || preserveDrawerRestored;
 			return;
 		}
 
 		if (preserveDrawerKind === 'blocksy') {
-			openBlocksyCart();
+			preserveDrawerRestored = openBlocksyCart() || preserveDrawerRestored;
 			return;
 		}
 
-		openElementorCart() || openBlocksyCart();
+		preserveDrawerRestored = (openElementorCart() || openBlocksyCart()) || preserveDrawerRestored;
 	}
 
 	function queuePreservedDrawerRestore() {
 		clearPreserveDrawerTimers();
 
-		[120, 600, 1400, 2600, 4200].forEach(function (delay) {
-			preserveDrawerTimers.push(window.setTimeout(restorePreservedDrawer, delay));
+		[120, 450, 900].forEach(function (delay) {
+			preserveDrawerTimers.push(window.setTimeout(function () {
+				if (preserveDrawerRestored && delay > 120) {
+					return;
+				}
+				restorePreservedDrawer();
+			}, delay));
 		});
 
 		preserveDrawerTimers.push(window.setTimeout(function () {
-			preserveDrawerAfterRemove = false;
-			preserveDrawerKind = null;
-			clearPreserveDrawerTimers();
-		}, 5500));
+			clearPreservedDrawerState();
+		}, 1400));
 	}
 
 	function rememberDrawerRemove(button) {
@@ -198,6 +210,7 @@
 		preserveDrawerKind = button.closest('.elementor-menu-cart__main, .elementor-menu-cart__container')
 			? 'elementor'
 			: 'blocksy';
+		preserveDrawerRestored = false;
 		setLoading(true);
 		queuePreservedDrawerRestore();
 	}
@@ -269,28 +282,17 @@
 		}
 		setLoading(true);
 
-		var done = function () {
+		var done = function (refresh) {
 			setLoading(false);
 			if (row) {
 				row.classList.remove('processing');
 			}
-			$(document.body).trigger('wc_fragment_refresh');
-			$(document.body).trigger('wc_fragments_refreshed');
-			$(document.body).trigger('updated_wc_div');
-		};
 
-		if (config.hasBlocksyQty && typeof window.ctEvents !== 'undefined') {
-			$.ajax({
-				type: 'POST',
-				url: config.ajaxUrl,
-				data: {
-					action: 'blocksy_update_qty_cart',
-					hash: hash,
-					quantity: qty
-				}
-			}).always(done);
-			return;
-		}
+			if (refresh) {
+				$(document.body).trigger('wc_fragment_refresh');
+				$(document.body).trigger('updated_wc_div');
+			}
+		};
 
 		$.ajax({
 			type: 'POST',
@@ -298,11 +300,13 @@
 			data: {
 				action: 'biopentra_update_mini_cart_qty',
 				hash: hash, quantity: qty
-			}
+			},
+			dataType: 'json'
+		}).done(function (response) {
+			done(!!(response && response.success));
+		}).fail(function () {
+			done(false);
 		});
-
-		// Fallback: refresh fragments (WC + Elementor listen).
-		setTimeout(done, 400);
 	}
 
 	function bindQty() {
@@ -340,6 +344,27 @@
 		);
 	}
 
+	function bindPreserveCancel() {
+		document.addEventListener(
+			'click',
+			function (event) {
+				var target = event.target;
+				var isRemove = target.closest && target.closest(
+					'.bp-mini-cart--drawer .remove_from_cart_button, .bp-mini-cart--drawer .elementor_remove_from_cart_button'
+				);
+				var isDrawerClick = target.closest && target.closest('.bp-mini-cart--drawer');
+				var isCartToggle = target.closest && target.closest('.elementor-menu-cart__toggle_button, .ct-header-cart .ct-cart-item, .ct-header-cart > a');
+
+				if (!preserveDrawerAfterRemove || isRemove || isDrawerClick || isCartToggle) {
+					return;
+				}
+
+				clearPreservedDrawerState();
+			},
+			true
+		);
+	}
+
 	function bindRemoveAjaxRestore() {
 		$(document).ajaxComplete(function () {
 			if (!preserveDrawerAfterRemove) {
@@ -366,6 +391,7 @@
 		markDrawers();
 		bindQty();
 		bindRemovePreserve();
+		bindPreserveCancel();
 		bindRemoveAjaxRestore();
 		bindLoading();
 	}

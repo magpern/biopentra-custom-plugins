@@ -164,7 +164,7 @@ function biopentra_mini_cart_drawer_enqueue_assets() {
 }
 
 /**
- * AJAX: update cart line quantity (fallback when Blocksy handler unavailable).
+ * AJAX: update cart line quantity from the custom mini-cart drawer.
  *
  * @return void
  */
@@ -180,10 +180,22 @@ function biopentra_mini_cart_drawer_ajax_update_qty() {
 		wp_send_json_error( null, 400 );
 	}
 
-	WC()->cart->set_quantity( $hash, $qty, true );
-	WC()->cart->calculate_totals();
+	$updated = WC()->cart->set_quantity( $hash, $qty, true );
+	if ( false === $updated ) {
+		wp_send_json_error( null, 400 );
+	}
 
-	wp_send_json_success();
+	WC()->cart->calculate_totals();
+	if ( method_exists( WC()->cart, 'set_session' ) ) {
+		WC()->cart->set_session();
+	}
+
+	wp_send_json_success(
+		array(
+			'quantity'  => $qty,
+			'cart_hash' => WC()->cart->get_cart_hash(),
+		)
+	);
 }
 
 /**

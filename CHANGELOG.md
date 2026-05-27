@@ -12,6 +12,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.16] — 2026-05-28
+
+### Fixed
+
+- **Mini-cart close after remove (header-auth 1.5.17):** Cancel pending drawer-restore timers when the user intentionally closes the cart drawer after a remove action. This keeps the empty cart visible after removal, but prevents the drawer from reopening repeatedly after an outside-page click.
+- **Mini-cart quantity updates:** Route drawer quantity changes through the BioPentra cart quantity endpoint consistently and save the cart session before refreshing fragments, so plus/minus changes persist instead of reverting.
+
+**Git tag:** `storefront-v0.5.16`
+
+---
+
 ## [0.5.15] — 2026-05-28
 
 ### Fixed
