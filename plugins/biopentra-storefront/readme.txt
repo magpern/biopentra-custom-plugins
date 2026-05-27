@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.14
+Stable tag: 0.5.15
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.5.15 =
+* Mini-cart: keep the Elementor/Blocksy cart drawer open after removing an item through WooCommerce AJAX fragments (header-auth module 1.5.15).
 
 = 0.5.14 =
 * Checkout payment display: added display-only icons for BTCPay and VCCP card gateways using bundled Bitcoin, Visa, and Mastercard SVG assets.

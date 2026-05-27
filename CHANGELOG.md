@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.15] — 2026-05-28
+
+### Fixed
+
+- **Mini-cart remove flow (header-auth 1.5.15):** Preserve the active Elementor side-cart or Blocksy cart drawer after clicking a row remove button. Drawer remove clicks now use WooCommerce’s standard `remove_from_cart` AJAX endpoint directly, apply returned fragments, and keep/reopen the drawer after refresh.
+
+**Git tag:** `storefront-v0.5.15`
+
+---
+
 ## [0.5.14] — 2026-05-25
 
 ### Added
