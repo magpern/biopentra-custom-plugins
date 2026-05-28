@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.17] — 2026-05-28
+
+### Fixed
+
+- **Mini-cart template compatibility (header-auth 1.5.18):** Restored WooCommerce’s standard mini-cart total and button hooks inside the custom drawer footer, and aligned remove-link attributes with the current WooCommerce mini-cart template while preserving the BioPentra drawer layout, quantity controls, trust logos, and fragment behavior.
+
+**Git tag:** `storefront-v0.5.17`
+
+---
+
 ## [0.5.16] — 2026-05-28
 
 ### Fixed

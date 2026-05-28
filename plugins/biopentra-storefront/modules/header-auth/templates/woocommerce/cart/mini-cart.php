@@ -53,13 +53,16 @@ if ( ! function_exists( 'biopentra_mini_cart_drawer_render_item' ) ) {
 							echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								'woocommerce_cart_item_remove_link',
 								sprintf(
-									'<a href="%s" class="%s" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s"></a>',
+									'<a role="button" href="%s" class="%s" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s" data-success_message="%s"></a>',
 									esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 									esc_attr( $remove_class ),
-									esc_attr__( 'Remove this item', 'woocommerce' ),
+									/* translators: %s is the product name */
+									esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
 									esc_attr( (string) $product_id ),
 									esc_attr( $cart_item_key ),
-									esc_attr( $_product->get_sku() )
+									esc_attr( $_product->get_sku() ),
+									/* translators: %s is the product name */
+									esc_attr( sprintf( __( '&ldquo;%s&rdquo; has been removed from your cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) )
 								),
 								$cart_item_key
 							);
@@ -128,8 +131,14 @@ else :
 
 		<div class="bp-mini-cart-sticky" aria-label="<?php esc_attr_e( 'Cart summary', 'biopentra-storefront' ); ?>">
 			<div class="elementor-menu-cart__subtotal woocommerce-mini-cart__total total">
-				<span class="bp-mini-cart-subtotal__label"><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></span>
-				<span class="bp-mini-cart-subtotal__amount"><?php echo WC()->cart->get_cart_subtotal(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+				<?php
+				/**
+				 * Hook: woocommerce_widget_shopping_cart_total.
+				 *
+				 * @hooked woocommerce_widget_shopping_cart_subtotal - 10
+				 */
+				do_action( 'woocommerce_widget_shopping_cart_total' );
+				?>
 			</div>
 
 			<p class="bp-mini-cart-trust">
@@ -148,12 +157,7 @@ else :
 			<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
 			<div class="elementor-menu-cart__footer-buttons woocommerce-mini-cart__buttons buttons">
-				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="elementor-button elementor-button--view-cart elementor-size-md wc-forward">
-					<span class="elementor-button-text"><?php esc_html_e( 'View cart', 'woocommerce' ); ?></span>
-				</a>
-				<a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="elementor-button elementor-button--checkout elementor-size-md checkout wc-forward">
-					<span class="elementor-button-text"><?php esc_html_e( 'Checkout', 'woocommerce' ); ?></span>
-				</a>
+				<?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?>
 			</div>
 
 			<?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>

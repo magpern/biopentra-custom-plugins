@@ -538,7 +538,19 @@
 	color: var(--bp-mc-muted);
 }
 
+.bp-mini-cart--drawer .woocommerce-mini-cart__total strong {
+	color: var(--bp-mc-muted);
+	font-weight: 500;
+}
+
 .bp-mini-cart--drawer .bp-mini-cart-subtotal__amount {
+	font-size: 1.0625rem;
+	font-weight: 700;
+	color: var(--bp-mc-text);
+	letter-spacing: -0.02em;
+}
+
+.bp-mini-cart--drawer .woocommerce-mini-cart__total .amount {
 	font-size: 1.0625rem;
 	font-weight: 700;
 	color: var(--bp-mc-text);

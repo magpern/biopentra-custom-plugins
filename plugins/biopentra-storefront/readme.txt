@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.16
+Stable tag: 0.5.17
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.5.17 =
+* Mini-cart: restore WooCommerce widget cart total/buttons hooks and current remove-link attributes while preserving the custom drawer layout (header-auth module 1.5.18).
 
 = 0.5.16 =
 * Mini-cart: cancel delayed drawer restore timers when the user intentionally closes the empty drawer after removing an item (header-auth module 1.5.17).
