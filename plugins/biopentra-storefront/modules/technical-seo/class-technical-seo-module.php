@@ -43,6 +43,7 @@ class Biopentra_Storefront_Technical_Seo_Module {
 		add_filter( 'woocommerce_product_is_visible', array( __CLASS__, 'hide_qa_products_from_catalog' ), 10, 2 );
 		add_filter( 'wp_sitemaps_taxonomies_query_args', array( __CLASS__, 'filter_sitemap_taxonomies' ), 20, 2 );
 		add_action( 'wp_head', array( __CLASS__, 'render_json_ld' ), 20 );
+		add_filter( 'elementor/widget/render_content', array( __CLASS__, 'strip_elementor_faq_schema_on_faq_page' ), 10, 2 );
 		add_filter( 'get_canonical_url', array( __CLASS__, 'filter_canonical_url' ), 20, 2 );
 		add_filter(
 			'wp_sitemaps_add_provider',
@@ -606,7 +607,33 @@ class Biopentra_Storefront_Technical_Seo_Module {
 	}
 
 	/**
-	 * Parse FAQ page headings + following paragraphs into FAQPage schema.
+	 * Remove per-widget Elementor FAQPage JSON-LD on the FAQ page (consolidated in render_json_ld).
+	 *
+	 * @param string                  $content Widget HTML.
+	 * @param \Elementor\Widget_Base $widget  Elementor widget instance.
+	 */
+	public static function strip_elementor_faq_schema_on_faq_page( $content, $widget ) {
+		if ( ! is_page( 'faq' ) || ! is_string( $content ) || '' === $content ) {
+			return $content;
+		}
+
+		if ( ! is_object( $widget ) || ! method_exists( $widget, 'get_name' ) ) {
+			return $content;
+		}
+
+		if ( ! in_array( $widget->get_name(), array( 'accordion', 'toggle', 'nested-accordion' ), true ) ) {
+			return $content;
+		}
+
+		return (string) preg_replace(
+			'#<script\s+type=["\']application/ld\+json["\'][^>]*>.*?"@type"\s*:\s*"FAQPage".*?</script>#is',
+			'',
+			$content
+		);
+	}
+
+	/**
+	 * Parse FAQ page Elementor accordions (or headings) into one FAQPage schema.
 	 *
 	 * @return array<string, mixed>|null
 	 */
@@ -616,33 +643,9 @@ class Biopentra_Storefront_Technical_Seo_Module {
 			return null;
 		}
 
-		$content = (string) $post->post_content;
-		if ( '' === $content ) {
-			return null;
-		}
-
-		$main = $content;
-		if ( preg_match( '/<main[^>]*>(.*)<\/main>/is', $content, $m ) ) {
-			$main = $m[1];
-		}
-
-		$entities = array();
-		if ( preg_match_all( '/<h[2-4][^>]*>(.*?)<\/h[2-4]>\s*(.*?)(?=<h[2-4]|$)/is', $main, $matches, PREG_SET_ORDER ) ) {
-			foreach ( $matches as $match ) {
-				$question = wp_strip_all_tags( $match[1] );
-				$answer   = wp_strip_all_tags( $match[2] );
-				if ( strlen( $question ) < 8 || strlen( $answer ) < 16 ) {
-					continue;
-				}
-				$entities[] = array(
-					'@type'          => 'Question',
-					'name'           => $question,
-					'acceptedAnswer' => array(
-						'@type' => 'Answer',
-						'text'  => self::trim_description( $answer ),
-					),
-				);
-			}
+		$entities = self::collect_faq_entities_from_elementor_data( (int) $post->ID );
+		if ( count( $entities ) < 2 ) {
+			$entities = self::collect_faq_entities_from_post_content( (string) $post->post_content );
 		}
 
 		if ( count( $entities ) < 2 ) {
@@ -654,6 +657,186 @@ class Biopentra_Storefront_Technical_Seo_Module {
 			'@type'      => 'FAQPage',
 			'mainEntity' => $entities,
 		);
+	}
+
+	/**
+	 * @param int $post_id Page post ID.
+	 * @return array<int, array<string, mixed>>
+	 */
+	private static function collect_faq_entities_from_elementor_data( $post_id ) {
+		$raw = get_post_meta( $post_id, '_elementor_data', true );
+		if ( ! is_string( $raw ) || '' === $raw ) {
+			return array();
+		}
+
+		$data = json_decode( $raw, true );
+		if ( ! is_array( $data ) ) {
+			return array();
+		}
+
+		$entities = array();
+		self::walk_elementor_faq_nodes( $data, $entities );
+
+		return $entities;
+	}
+
+	/**
+	 * @param array<int|string, mixed>        $nodes    Elementor document nodes.
+	 * @param array<int, array<string, mixed>> $entities FAQ Question nodes (by reference).
+	 */
+	private static function walk_elementor_faq_nodes( $nodes, array &$entities ) {
+		if ( ! is_array( $nodes ) ) {
+			return;
+		}
+
+		foreach ( $nodes as $node ) {
+			if ( ! is_array( $node ) ) {
+				continue;
+			}
+
+			$widget_type = isset( $node['widgetType'] ) ? (string) $node['widgetType'] : '';
+			$settings    = isset( $node['settings'] ) && is_array( $node['settings'] ) ? $node['settings'] : array();
+
+			if ( in_array( $widget_type, array( 'accordion', 'toggle' ), true ) ) {
+				$tabs = isset( $settings['tabs'] ) && is_array( $settings['tabs'] ) ? $settings['tabs'] : array();
+				foreach ( $tabs as $tab ) {
+					if ( ! is_array( $tab ) ) {
+						continue;
+					}
+					$entity = self::build_faq_entity(
+						isset( $tab['tab_title'] ) ? (string) $tab['tab_title'] : '',
+						isset( $tab['tab_content'] ) ? (string) $tab['tab_content'] : ''
+					);
+					if ( $entity ) {
+						$entities[] = $entity;
+					}
+				}
+			} elseif ( 'nested-accordion' === $widget_type ) {
+				$items = isset( $settings['items'] ) && is_array( $settings['items'] ) ? $settings['items'] : array();
+				foreach ( $items as $index => $item ) {
+					if ( ! is_array( $item ) ) {
+						continue;
+					}
+					$answer = self::collect_nested_accordion_item_content( $node, $index );
+					$entity = self::build_faq_entity(
+						isset( $item['item_title'] ) ? (string) $item['item_title'] : '',
+						$answer
+					);
+					if ( $entity ) {
+						$entities[] = $entity;
+					}
+				}
+			}
+
+			if ( ! empty( $node['elements'] ) && is_array( $node['elements'] ) ) {
+				self::walk_elementor_faq_nodes( $node['elements'], $entities );
+			}
+		}
+	}
+
+	/**
+	 * @param array<string, mixed> $node  Nested accordion widget node.
+	 * @param int                  $index Item index.
+	 */
+	private static function collect_nested_accordion_item_content( array $node, $index ) {
+		$elements = isset( $node['elements'] ) && is_array( $node['elements'] ) ? $node['elements'] : array();
+		if ( ! isset( $elements[ $index ] ) || ! is_array( $elements[ $index ] ) ) {
+			return '';
+		}
+
+		$parts = array();
+		self::collect_elementor_text_content( $elements[ $index ], $parts );
+
+		return implode( ' ', $parts );
+	}
+
+	/**
+	 * @param array<string, mixed> $node Elementor node.
+	 * @param string[]             $parts Text fragments (by reference).
+	 */
+	private static function collect_elementor_text_content( array $node, array &$parts ) {
+		$settings = isset( $node['settings'] ) && is_array( $node['settings'] ) ? $node['settings'] : array();
+
+		foreach ( array( 'editor', 'text', 'description', 'tab_content', 'html' ) as $key ) {
+			if ( ! empty( $settings[ $key ] ) && is_string( $settings[ $key ] ) ) {
+				$parts[] = $settings[ $key ];
+			}
+		}
+
+		if ( ! empty( $node['elements'] ) && is_array( $node['elements'] ) ) {
+			foreach ( $node['elements'] as $child ) {
+				if ( is_array( $child ) ) {
+					self::collect_elementor_text_content( $child, $parts );
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param string $content Post content HTML fallback.
+	 * @return array<int, array<string, mixed>>
+	 */
+	private static function collect_faq_entities_from_post_content( $content ) {
+		if ( '' === $content ) {
+			return array();
+		}
+
+		$main = $content;
+		if ( preg_match( '/<main[^>]*>(.*)<\/main>/is', $content, $m ) ) {
+			$main = $m[1];
+		}
+
+		$entities = array();
+		if ( preg_match_all( '/<h[2-4][^>]*>(.*?)<\/h[2-4]>\s*(.*?)(?=<h[2-4]|$)/is', $main, $matches, PREG_SET_ORDER ) ) {
+			foreach ( $matches as $match ) {
+				$entity = self::build_faq_entity( $match[1], $match[2], true );
+				if ( $entity ) {
+					$entities[] = $entity;
+				}
+			}
+		}
+
+		return $entities;
+	}
+
+	/**
+	 * @param string $question Question text (may contain HTML).
+	 * @param string $answer   Answer text (may contain HTML).
+	 * @param bool   $plain_answer When true, strip tags from the answer body.
+	 * @return array<string, mixed>|null
+	 */
+	private static function build_faq_entity( $question, $answer, $plain_answer = false ) {
+		$question = trim( wp_strip_all_tags( html_entity_decode( (string) $question, ENT_QUOTES, 'UTF-8' ) ) );
+		$answer   = (string) $answer;
+
+		if ( $plain_answer ) {
+			$answer = self::trim_description( wp_strip_all_tags( html_entity_decode( $answer, ENT_QUOTES, 'UTF-8' ) ) );
+		} else {
+			$answer = self::format_faq_answer_text( $answer );
+		}
+
+		if ( strlen( $question ) < 8 || strlen( wp_strip_all_tags( $answer ) ) < 16 ) {
+			return null;
+		}
+
+		return array(
+			'@type'          => 'Question',
+			'name'           => $question,
+			'acceptedAnswer' => array(
+				'@type' => 'Answer',
+				'text'  => $answer,
+			),
+		);
+	}
+
+	/**
+	 * @param string $html FAQ answer HTML from Elementor.
+	 */
+	private static function format_faq_answer_text( $html ) {
+		$html = do_shortcode( (string) $html );
+		$html = wptexturize( $html );
+
+		return wp_kses_post( $html );
 	}
 
 	/**
