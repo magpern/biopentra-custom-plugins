@@ -85,5 +85,13 @@ class Biopentra_Storefront {
 				Biopentra_Storefront_Product_Stock_Display_Module::init();
 			}
 		}
+
+		$checkout_pause_module = BIOPENTRA_STOREFRONT_PATH . 'modules/checkout-pause/class-checkout-pause-module.php';
+		if ( is_readable( $checkout_pause_module ) ) {
+			require_once $checkout_pause_module;
+			if ( class_exists( 'Biopentra_Storefront_Checkout_Pause_Module' ) ) {
+				Biopentra_Storefront_Checkout_Pause_Module::init();
+			}
+		}
 	}
 }

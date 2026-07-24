@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.19] — 2026-07-24
+
+### Added
+
+- **Checkout pause module (recovered into git):** Outage mode that disables payment gateways and shows a storefront banner; previously lived only on the production filesystem.
+- **Info banner mode:** `biopentra_checkout_banner` / `biopentra_checkout_banner_message` show a site/cart/checkout notice without disabling gateways (default copy: payments back online; prefer BTCPay, then Banxa, then Blockchain.com).
+- **Card gateway title rewrite:** `Card to USDC via {Provider}` → `Card to crypto via {Provider} (4% fee)` (settings helper + `woocommerce_gateway_title` filter); BTCPay unchanged.
+
+**Git tag:** `storefront-v0.5.19`
+
+---
+
 ## [0.5.17] — 2026-05-28
 
 ### Fixed
