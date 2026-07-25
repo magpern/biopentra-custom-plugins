@@ -608,6 +608,39 @@ function biopentra_crypto_guide_build_elementor_data(): array {
 }
 
 /**
+ * Rank Math SEO meta for the guide page (matches other Biopentra info pages).
+ *
+ * @return array{focus_keyword:string,title:string,description:string}
+ */
+function biopentra_crypto_guide_seo_meta(): array {
+	return array(
+		'focus_keyword' => 'pay with crypto',
+		'title'         => 'How to Pay with Crypto | Bitcoin & Card Checkout | Biopentra',
+		'description'   => 'How to pay with crypto at Biopentra: Bitcoin (BTCPay) and card-to-crypto checkout, what to expect from third-party providers, and order confirmation.',
+	);
+}
+
+/**
+ * Apply Rank Math SEO fields and touch the post so Instant Indexing can resubmit.
+ *
+ * @param int $post_id Page ID.
+ */
+function biopentra_crypto_guide_apply_seo( int $post_id ): void {
+	$seo = biopentra_crypto_guide_seo_meta();
+
+	update_post_meta( $post_id, 'rank_math_focus_keyword', $seo['focus_keyword'] );
+	update_post_meta( $post_id, 'rank_math_title', $seo['title'] );
+	update_post_meta( $post_id, 'rank_math_description', $seo['description'] );
+
+	wp_update_post(
+		array(
+			'ID'           => $post_id,
+			'post_excerpt' => $seo['description'],
+		)
+	);
+}
+
+/**
  * Create or update guide page.
  *
  * @param string $bundle_dir Bundle directory.
@@ -653,6 +686,8 @@ function biopentra_crypto_guide_import_page( string $bundle_dir ): array {
 
 	delete_post_meta( $id, '_elementor_css' );
 	delete_post_meta( $id, '_elementor_element_cache' );
+
+	biopentra_crypto_guide_apply_seo( $id );
 
 	update_option( 'biopentra_crypto_guide_page_id', (int) $id, false );
 	if ( get_option( 'biopentra_crypto_guide_enabled', '' ) === '' ) {

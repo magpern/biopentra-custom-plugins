@@ -6,6 +6,8 @@ Extracted screenshots: `media/*.png`
 
 Editorial copy reference: `content.md`
 
+Rank Math SEO (title, meta description, focus keyword) is set by the import script and triggers a post update so Rank Math Instant Indexing can submit the URL to IndexNow when the page is created or re-imported.
+
 ## Import guide page (dev)
 
 ```bash
