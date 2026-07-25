@@ -93,5 +93,13 @@ class Biopentra_Storefront {
 				Biopentra_Storefront_Checkout_Pause_Module::init();
 			}
 		}
+
+		$crypto_guide_module = BIOPENTRA_STOREFRONT_PATH . 'modules/crypto-payment-guide/class-crypto-payment-guide-module.php';
+		if ( is_readable( $crypto_guide_module ) ) {
+			require_once $crypto_guide_module;
+			if ( class_exists( 'Biopentra_Storefront_Crypto_Payment_Guide_Module' ) ) {
+				Biopentra_Storefront_Crypto_Payment_Guide_Module::init();
+			}
+		}
 	}
 }

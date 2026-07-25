@@ -536,6 +536,99 @@ if ( getenv( 'BIOPENTRA_MEGA_COPY_PATCH' ) === '1' ) {
 }
 
 /**
+ * Append "How to Pay with Crypto" link to Learn column (idempotent).
+ * Run: BIOPENTRA_MEGA_CRYPTO_GUIDE_LINK=1 ./wp eval-file .../cli-update-megamenu.php
+ * Optional: BIOPENTRA_MEGA_HEADER_POST_ID=3782
+ */
+if ( getenv( 'BIOPENTRA_MEGA_CRYPTO_GUIDE_LINK' ) === '1' ) {
+	$post_id = (int) ( getenv( 'BIOPENTRA_MEGA_HEADER_POST_ID' ) ?: 3782 );
+	$raw     = get_post_meta( $post_id, '_elementor_data', true );
+	if ( ! is_string( $raw ) || $raw === '' ) {
+		fwrite( STDERR, "Missing _elementor_data for post {$post_id}\n" );
+		exit( 1 );
+	}
+	$data = json_decode( $raw, true );
+	if ( ! is_array( $data ) ) {
+		fwrite( STDERR, "Invalid Elementor JSON\n" );
+		exit( 1 );
+	}
+
+	$guide_page = get_page_by_path( 'how-to-pay-with-crypto', OBJECT, 'page' );
+	$guide_url  = ( $guide_page && 'publish' === $guide_page->post_status ) ? get_permalink( $guide_page ) : '';
+	if ( ! is_string( $guide_url ) || $guide_url === '' ) {
+		fwrite( STDERR, "Guide page how-to-pay-with-crypto not found or not published. Run import script first.\n" );
+		exit( 1 );
+	}
+
+	$link_label = 'How to Pay with Crypto';
+	$link_li    = '<li><a href="' . esc_url( $guide_url ) . '">' . esc_html( $link_label ) . '</a></li>';
+	$changed    = false;
+
+	$patch_learn = function ( array &$elements ) use ( &$patch_learn, $guide_url, $link_label, $link_li, &$changed ) {
+		foreach ( $elements as &$el ) {
+			if ( ! is_array( $el ) ) {
+				continue;
+			}
+			$settings = isset( $el['settings'] ) && is_array( $el['settings'] ) ? $el['settings'] : array();
+			$title    = isset( $settings['_title'] ) ? (string) $settings['_title'] : '';
+
+			if ( isset( $el['elType'] ) && 'container' === $el['elType'] && 'Learn' === $title && ! empty( $el['elements'] ) ) {
+				$patch_editor = function ( array &$children ) use ( $guide_url, $link_label, $link_li, &$changed ) {
+					foreach ( $children as &$child ) {
+						if ( ! is_array( $child ) ) {
+							continue;
+						}
+						if ( isset( $child['widgetType'] ) && 'text-editor' === $child['widgetType'] ) {
+							$editor = isset( $child['settings']['editor'] ) ? (string) $child['settings']['editor'] : '';
+							if ( str_contains( $editor, 'how-to-pay-with-crypto' ) || str_contains( $editor, $link_label ) ) {
+								echo "Skip: Learn column link already present.\n";
+								return;
+							}
+							if ( str_contains( $editor, 'biopentra-info-mega-links' ) && str_contains( $editor, '</ul>' ) ) {
+								$child['settings']['editor'] = preg_replace( '/<\/ul>/', $link_li . '</ul>', $editor, 1 );
+								$changed                   = true;
+								return;
+							}
+						}
+					}
+					unset( $child );
+				};
+				$patch_editor( $el['elements'] );
+			}
+
+			if ( ! empty( $el['elements'] ) && is_array( $el['elements'] ) ) {
+				$patch_learn( $el['elements'] );
+			}
+		}
+		unset( $el );
+	};
+
+	$patch_learn( $data );
+
+	if ( ! $changed ) {
+		echo "No changes applied (link may already exist or Learn column structure changed).\n";
+		exit( 0 );
+	}
+
+	$json = wp_json_encode( $data );
+	if ( ! is_string( $json ) ) {
+		fwrite( STDERR, "Failed to encode JSON\n" );
+		exit( 1 );
+	}
+
+	update_post_meta( $post_id, '_elementor_data', wp_slash( $json ) );
+	delete_post_meta( $post_id, '_elementor_element_cache' );
+	delete_post_meta( $post_id, '_elementor_css' );
+
+	if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->files_manager ) && method_exists( \Elementor\Plugin::$instance->files_manager, 'clear_cache' ) ) {
+		\Elementor\Plugin::$instance->files_manager->clear_cache();
+	}
+
+	echo "OK: Appended Learn column crypto guide link on header post {$post_id} -> {$guide_url}\n";
+	exit( 0 );
+}
+
+/**
  * @return string
  */
 function biopentra_megamenu_el_id() {

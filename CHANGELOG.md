@@ -12,6 +12,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.20] — 2026-07-25
+
+### Added
+
+- **Crypto payment guide module:** Cart informational banner and compact checkout link to `/how-to-pay-with-crypto/` (`biopentra_crypto_guide_enabled`, optional `biopentra_crypto_guide_page_id`). Does not duplicate VCCP checkout notice.
+- **Content bundle:** `content/crypto-payment-guide/` with import script, extracted Blockchain.com walkthrough media, and reproducible Elementor page import.
+- **Mega-menu CLI:** `BIOPENTRA_MEGA_CRYPTO_GUIDE_LINK=1` patch appends Learn-column link idempotently.
+- **Checkout pause banner copy:** Extended default info-banner text with card-to-crypto settlement guidance.
+
+**Git tag:** `storefront-v0.5.20`
+
+---
+
 ## [0.5.19] — 2026-07-24
 
 ### Added

@@ -21,7 +21,7 @@ class Biopentra_Storefront_Checkout_Pause_Module {
 
 	public const NOTICE_PAUSED = 'Checkout is temporarily unavailable due to a payment provider issue. We are working on it and expect to be back soon.';
 
-	public const NOTICE_BANNER_DEFAULT = 'Payments are back online. Preferred method: BTCPay (Bitcoin). Next best: Banxa. Third option: Blockchain.com.';
+	public const NOTICE_BANNER_DEFAULT = 'Payments are back online. Preferred method: BTCPay (Bitcoin). Next best: Banxa. Third option: Blockchain.com. Complete KYC and payment with the provider — you will not be returned to the shop, but your order will still be processed. Please wait for the confirmation email.';
 
 	public const GATEWAY_BTCPAY = 'btcpaygf_default';
 
