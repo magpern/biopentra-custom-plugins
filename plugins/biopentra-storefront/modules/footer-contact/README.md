@@ -1,6 +1,6 @@
 # Module: footer-contact
 
-**Migrated from:** `plugins/biopentra-footer-contact/` (legacy folder retained; **deactivate** legacy when storefront owns this behavior).
+**Migrated from:** `plugins/biopentra-footer-contact/` (retired monorepo stub; runtime lives here).
 
 ## Implementation
 
@@ -11,7 +11,7 @@
 
 ## Duplicate plugin guard
 
-If `biopentra-footer-contact` is **active**, it registers the shortcode first and this module **does nothing** (avoids double shortcode registration). For cutover, **deactivate** the legacy plugin after QA.
+If a standalone `biopentra-footer-contact` plugin were active, it would register the shortcode first and this module would skip registration. Legacy slug is retired — not deployed.
 
 ## Assets
 

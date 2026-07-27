@@ -6,6 +6,10 @@ RELEASE_SKIP_PLUGINS=(
 	biopentra-contact-inbox
 	biopentra-loop-card
 	wc-inventory-overview
+	biopentra-header-auth
+	biopentra-footer-contact
+	biopentra-information-megamenu
+	custom-variation-stock-selector
 )
 
 release_is_skipped_plugin() {

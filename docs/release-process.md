@@ -39,7 +39,7 @@ Tag version must match the plugin header `Version:` and the package constant (`W
 
 Output: `builds/zips/{slug}-{version}.zip` with top-level folder `{slug}/`.
 
-`build-zips.sh` **skips** `biopentra-contact-inbox`, standalone-only slugs in `RELEASE_SKIP_PLUGINS` (`biopentra-loop-card`, `wc-inventory-overview`), and any plugin with `plugins/{slug}/DEPRECATED.md`.
+`build-zips.sh` **skips** `biopentra-contact-inbox`, standalone-only slugs in `RELEASE_SKIP_PLUGINS` (`biopentra-loop-card`, `wc-inventory-overview`), retired storefront-module slugs (`biopentra-header-auth`, `biopentra-footer-contact`, `biopentra-information-megamenu`, `custom-variation-stock-selector`), and any plugin with `plugins/{slug}/DEPRECATED.md`.
 
 ---
 

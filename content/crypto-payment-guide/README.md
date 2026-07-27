@@ -19,10 +19,10 @@ docker compose --profile tools run --rm \
 
 ## Mega-menu link (after page import)
 
+Requires `biopentra-storefront` active (CLI lives under the storefront plugin tree):
+
 ```bash
-docker compose --profile tools run --rm \
-  -v /opt/biopentra/dev/biopentra-custom-plugins/plugins/biopentra-information-megamenu:/var/www/html/wp-content/plugins/biopentra-information-megamenu:ro \
-  wpcli sh -c 'BIOPENTRA_MEGA_CRYPTO_GUIDE_LINK=1 BIOPENTRA_MEGA_HEADER_POST_ID=3782 wp eval-file wp-content/plugins/biopentra-information-megamenu/cli-update-megamenu.php'
+docker compose --profile tools run --rm wpcli sh -c 'BIOPENTRA_MEGA_CRYPTO_GUIDE_LINK=1 BIOPENTRA_MEGA_HEADER_POST_ID=3782 wp eval-file wp-content/plugins/biopentra-storefront/scripts/cli-update-megamenu.php'
 ```
 
 ## Elementor CSS

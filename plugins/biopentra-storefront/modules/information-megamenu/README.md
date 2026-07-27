@@ -1,6 +1,6 @@
 # Module: information-megamenu
 
-**Migrated from:** `plugins/biopentra-information-megamenu/` (legacy folder retained in repo; do not delete until Elementor cutover is done).
+**Migrated from:** `plugins/biopentra-information-megamenu/` (retired monorepo stub; runtime lives here).
 
 ## Implementation
 
@@ -14,4 +14,4 @@ The mega-menu template may still include an **HTML widget** with a hardcoded `<s
 
 ## `cli-update-megamenu.php`
 
-Still only under the legacy plugin; not loaded by storefront. Future: point CLI output at storefront URLs or stop emitting inline script HTML once enqueue-only path is verified.
+Located at `plugins/biopentra-storefront/scripts/cli-update-megamenu.php` (dev-only Elementor layout updater; not loaded at runtime). Run via `wp eval-file` when storefront is active.

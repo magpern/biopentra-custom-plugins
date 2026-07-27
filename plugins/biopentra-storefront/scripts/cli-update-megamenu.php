@@ -1,7 +1,7 @@
 <?php
 /**
  * One-shot updater: inject Information mega-menu layout into Elementor header template.
- * Run from site root (Docker WP mount): ./wp eval-file wp-content/plugins/biopentra-information-megamenu/cli-update-megamenu.php
+ * Run from site root (Docker WP mount): ./wp eval-file wp-content/plugins/biopentra-storefront/scripts/cli-update-megamenu.php
  *
  * @package Biopentra
  */
@@ -430,7 +430,7 @@ function biopentra_megamenu_col3_html( $u_terms, $u_privacy, $u_refund, $u_ship,
 
 /**
  * Copy-only patch (editors + trust strip). Stage/templates require full CLI run once.
- * Run: BIOPENTRA_MEGA_COPY_PATCH=1 ./wp eval-file wp-content/plugins/biopentra-information-megamenu/cli-update-megamenu.php
+ * Run: BIOPENTRA_MEGA_COPY_PATCH=1 ./wp eval-file wp-content/plugins/biopentra-storefront/scripts/cli-update-megamenu.php
  */
 if ( getenv( 'BIOPENTRA_MEGA_COPY_PATCH' ) === '1' ) {
 	$post_id = 3782;
@@ -709,13 +709,14 @@ $col1_editor = biopentra_megamenu_ul(
 $col2_editor = biopentra_megamenu_col2_html( $u_ship );
 $col3_editor = biopentra_megamenu_col3_html( $u_terms, $u_privacy, $u_refund, $u_ship, $u_disclaim );
 
-$js_asset_path = __DIR__ . '/assets/information-mega.js';
+$storefront_main = dirname( __DIR__ ) . '/biopentra-storefront.php';
+$js_asset_path   = dirname( __DIR__ ) . '/assets/information-megamenu/information-mega.js';
 // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents -- CLI publishes editable JS asset.
 @file_put_contents( $js_asset_path, biopentra_megamenu_runtime_js() );
 
 $script_ver = '1.3.2';
 if ( is_readable( $js_asset_path ) ) {
-	$script_loader_html = '<script defer src="' . esc_url( plugins_url( 'assets/information-mega.js', __FILE__ ) ) . '?ver=' . rawurlencode( $script_ver ) . '"></script>';
+	$script_loader_html = '<script defer src="' . esc_url( plugins_url( 'assets/information-megamenu/information-mega.js', $storefront_main ) ) . '?ver=' . rawurlencode( $script_ver ) . '"></script>';
 } else {
 	$script_loader_html = '<div class="biopentra-info-mega-script-host"><script>' . biopentra_megamenu_runtime_js() . '</script></div>';
 }

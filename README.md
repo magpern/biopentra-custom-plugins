@@ -27,30 +27,32 @@ Releases for loop-card and wc-inventory are built only from their standalone Git
 
 - `biopentra-contact-inbox` — see `plugins/biopentra-contact-inbox/DEPRECATED.md`. Use [fluent-imap-support-desk](https://github.com/magpern/fluent-imap-support-desk).
 
-**Legacy copies (candidates for future merge into `biopentra-storefront`):**
+**Active deployable plugin (monorepo):**
 
-- `biopentra-header-auth`
-- `biopentra-footer-contact`
-- `biopentra-information-megamenu`
-- `custom-variation-stock-selector`
+- `biopentra-storefront` — consolidated storefront plugin (header-auth, footer-contact, information-megamenu, variation-stock-selector, and other modules).
 
-**Draft consolidated plugin (no migrated logic yet):**
+**Retired storefront-module stubs (absorbed into `biopentra-storefront`; not deployable):**
 
-- `biopentra-storefront` — Scaffold only; **do not** use in production until modules are migrated and tested.
+| Slug | Monorepo path |
+|------|---------------|
+| `biopentra-header-auth` | `plugins/biopentra-header-auth/` |
+| `biopentra-footer-contact` | `plugins/biopentra-footer-contact/` |
+| `biopentra-information-megamenu` | `plugins/biopentra-information-megamenu/` |
+| `custom-variation-stock-selector` | `plugins/custom-variation-stock-selector/` |
+
+Monorepo ZIP tooling skips all retired slugs. Edit the corresponding `plugins/biopentra-storefront/modules/*` paths instead.
 
 ## Syncing from the live site
 
-After changing code under `woocommerce/wp-content/plugins/`, refresh copies:
+After changing code under `woocommerce/wp-content/plugins/`, refresh the deprecated contact-inbox copy only:
 
 ```bash
 SRC=/path/to/woocommerce/wp-content/plugins
 DEST=/path/to/woocommerce/custom-wordpress-plugins/plugins
-for d in biopentra-contact-inbox biopentra-header-auth biopentra-footer-contact biopentra-information-megamenu custom-variation-stock-selector; do
-  rsync -a --delete "$SRC/$d/" "$DEST/$d/"
-done
+rsync -a --delete "$SRC/biopentra-contact-inbox/" "$DEST/biopentra-contact-inbox/"
 ```
 
-Do **not** rsync `biopentra-loop-card` or `wc-inventory-overview` into this monorepo — those slugs are pointer stubs; edit the standalone repositories instead.
+Do **not** rsync standalone plugin slugs or retired storefront-module stubs into this monorepo.
 
 ## Build ZIPs
 

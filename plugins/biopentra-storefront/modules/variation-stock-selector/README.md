@@ -1,6 +1,6 @@
 # Module: variation-stock-selector (CVSS)
 
-**Migrated from:** `plugins/custom-variation-stock-selector/` (legacy retained; **deactivate** legacy when storefront owns this behavior).
+**Migrated from:** `plugins/custom-variation-stock-selector/` (retired monorepo stub; runtime lives here).
 
 ## Behavior
 
@@ -9,7 +9,7 @@
 
 ## Duplicate plugin guard
 
-If **`custom-variation-stock-selector`** is still **active**, this module **does not register** any hooks (avoids double HPOS declare and double auto-selection).
+If **`custom-variation-stock-selector`** were still **active**, the module would skip hook registration. Legacy slug is retired — not deployed.
 
 ## WooCommerce threshold
 
