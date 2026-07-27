@@ -4,7 +4,7 @@
 **Custom plugins repo:** `github.com:magpern/biopentra-custom-plugins`  
 **Production URL:** `https://www.biopentra.eu`
 
-Routine operations for a **stable storefront 0.4.0** deployment. Do **not** consolidate additional plugins without a new change plan.
+Routine operations for the consolidated plugin layout (storefront **0.5.20**, standalone plugins, pointer/retired stubs). Do **not** consolidate additional plugins without a new change plan.
 
 ---
 
@@ -12,12 +12,13 @@ Routine operations for a **stable storefront 0.4.0** deployment. Do **not** cons
 
 | Component | Notes |
 |-----------|--------|
-| `biopentra-storefront` 0.4.0 | Megamenu, footer, header auth, CVSS |
-| `biopentra-loop-card` | Standalone shop loop |
-| `wc-inventory-overview` | Standalone |
-| `fluent-imap-support-desk` 2.0.0 | **Active** Support Desk (cutover 2026-05-15); source: `fluent-imap-support-desk-repo` |
-| `biopentra-contact-inbox` | **Legacy** — backup folder only; not active |
-| Legacy 4 storefront plugins | **Removed** from production; sources + ZIPs in git for rollback |
+| `biopentra-storefront` 0.5.20 | Active monorepo plugin (megamenu, footer, header auth, CVSS, and other modules) |
+| `biopentra-loop-card` | Standalone — canonical source `/opt/biopentra/dev/biopentra-loop-card` |
+| `wc-inventory-overview` | Standalone — canonical source `/opt/biopentra/dev/wc-inventory-overview` |
+| `fluent-imap-support-desk` 2.0.4 | Standalone Support Desk — canonical source `fluent-imap-support-desk` repo |
+| `biopentra-contact-inbox` | **Deprecated** monorepo archive (`DEPRECATED.md`); replaced by FISD |
+| Legacy 4 storefront plugins | **Retired** — monorepo pointer stubs only; runtime in storefront modules |
+| Standalone pointer stubs | `plugins/biopentra-loop-card`, `plugins/wc-inventory-overview` — docs only |
 | Docker | `wordpress`, `db`, `wpcli`, `biopentra-mail-worker` |
 | WP-CLI | `./wp` → `docker compose run wpcli` (**user 33:33**) |
 
@@ -25,7 +26,7 @@ Routine operations for a **stable storefront 0.4.0** deployment. Do **not** cons
 
 ## Normal deploy flow (custom plugin)
 
-1. **Develop** in `custom-wordpress-plugins/plugins/<slug>/`
+1. **Develop** in the canonical repository for the plugin (monorepo `plugins/biopentra-storefront/` or standalone repo under `/opt/biopentra/dev/`)
 2. Bump version in plugin header + constant (storefront: also `CHANGELOG.md`)
 3. **Commit / push** to `main`; tag if release (`storefront-v0.x.x`)
 4. **Build ZIPs:**
@@ -254,26 +255,25 @@ Alert on: repeated PHP Fatal, disk >85%, health-check FAIL, checkout error rate 
 
 ---
 
-## GitHub backup coverage (verified 2026-05-15)
+## GitHub backup coverage (verified 2026-07-27)
 
 | Item | In git? |
 |------|---------|
-| All `plugins/*` custom sources | Yes (8 plugin dirs) |
-| `deploy/docker-compose.yml` | Yes |
+| `plugins/biopentra-storefront` (active) + pointer/retired stubs | Yes |
 | `docs/**` operational + consolidation | Yes |
 | `scripts/build-zips.sh`, `scripts/health-check.sh`, `scripts/custom-plugin-integrity-check.sh` | Yes |
 | `builds/zips/*.zip` | No (gitignored; rebuild via script) |
 | `.env` / secrets | **No** (correct) |
 | Live `wp-content` (uploads, third-party plugins) | **No** — backup separately |
 
-Clean clone build test: `git clone` + `./scripts/build-zips.sh` → **8 ZIPs** built successfully.
+Clean clone build test: `git clone` + `./scripts/build-zips.sh` → **1 ZIP** (`biopentra-storefront-{version}.zip`; skipped slugs excluded).
 
 ---
 
 ## Do-not-touch (monitoring window)
 
 - No new storefront consolidation
-- Do not delete legacy plugin sources from git without retirement plan update
+- Do not recreate deployable source under retired stub directories
 - Do not change `wpcli` user away from **33:33**
 - Do not set `woocommerce_coming_soon` to `yes` on production
 
