@@ -4,6 +4,8 @@
 # Plugins never included in ./scripts/build-zips.sh default loop.
 RELEASE_SKIP_PLUGINS=(
 	biopentra-contact-inbox
+	biopentra-loop-card
+	wc-inventory-overview
 )
 
 release_is_skipped_plugin() {

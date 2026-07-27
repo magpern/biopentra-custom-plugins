@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
 # Verify custom Biopentra plugin folders on disk match expectations and WP/runtime checks pass.
 # Read-only — does not modify production plugins.
-# Run from custom-wordpress-plugins or set WOOCOMMERCE_ROOT / CUSTOM_PLUGINS_ROOT.
+# Run from biopentra-custom-plugins or set WOOCOMMERCE_ROOT / CUSTOM_PLUGINS_ROOT.
+#
+# Canonical source paths on production (override when clones live elsewhere):
+#   biopentra-storefront     → CUSTOM_PLUGINS_ROOT/plugins/biopentra-storefront (monorepo)
+#   biopentra-loop-card      → LOOP_CARD_SOURCE_ROOT (standalone repo under woocommerce/)
+#   wc-inventory-overview    → WC_INVENTORY_SOURCE_ROOT (standalone repo under woocommerce/)
+#   fluent-imap-support-desk → FISD_SOURCE_ROOT (standalone repo under woocommerce/)
 set -euo pipefail
 
 WOOCOMMERCE_ROOT="${WOOCOMMERCE_ROOT:-/home/magpern/woocommerce}"
-CUSTOM_PLUGINS_ROOT="${CUSTOM_PLUGINS_ROOT:-${WOOCOMMERCE_ROOT}/custom-wordpress-plugins}"
-FISD_SOURCE_ROOT="${FISD_SOURCE_ROOT:-/home/magpern/fluent-imap-support-desk-repo}"
+CUSTOM_PLUGINS_ROOT="${CUSTOM_PLUGINS_ROOT:-${WOOCOMMERCE_ROOT}/biopentra-custom-plugins}"
+FISD_SOURCE_ROOT="${FISD_SOURCE_ROOT:-${WOOCOMMERCE_ROOT}/fluent-imap-support-desk}"
+LOOP_CARD_SOURCE_ROOT="${LOOP_CARD_SOURCE_ROOT:-${WOOCOMMERCE_ROOT}/biopentra-loop-card}"
+WC_INVENTORY_SOURCE_ROOT="${WC_INVENTORY_SOURCE_ROOT:-${WOOCOMMERCE_ROOT}/wc-inventory-overview}"
 PLUGINS_DIR="${WOOCOMMERCE_ROOT}/wp-content/plugins"
 SOURCE_DIR="${CUSTOM_PLUGINS_ROOT}/plugins"
 SITE_URL="${SITE_URL:-https://www.biopentra.eu}"
@@ -15,9 +23,13 @@ SUPPORT_HEALTH_URL="${SITE_URL}/wp-json/biopentra-support/v1/health"
 SUPPORT_DESK_SLUG="fluent-imap-support-desk"
 LEGACY_INBOX_SLUG="biopentra-contact-inbox"
 
-WP="${WOOCOMMERCE_ROOT}/wp"
-if [[ ! -x "$WP" ]]; then
+WP="${WP:-${WOOCOMMERCE_ROOT}/wp}"
+if [[ "$WP" == */wp && ! -x "$WP" ]]; then
 	echo "FAIL: missing ./wp at $WP" >&2
+	exit 1
+fi
+if ! command -v "$WP" >/dev/null 2>&1 && [[ ! -x "$WP" ]]; then
+	echo "FAIL: WP command not found: $WP" >&2
 	exit 1
 fi
 
@@ -27,7 +39,7 @@ warn() { echo "WARN $*"; }
 bad() { echo "FAIL $*"; fail=1; }
 
 # Deployable plugin files only (exclude repo docs/scripts/builds/git metadata).
-fisd_deployable_file_count() {
+deployable_file_count() {
 	local root="$1"
 	find "$root" -type f \
 		! -path '*/.git/*' \
@@ -48,10 +60,24 @@ fisd_prod_matches_source() {
 		&& diff -rq "${src}/assets" "${prod}/assets" >/dev/null 2>&1
 }
 
+standalone_runtime_matches_source() {
+	local src="$1" prod="$2" main="$3"
+	diff -q "${src}/${main}" "${prod}/${main}" >/dev/null 2>&1 \
+		&& diff -rq "${src}/includes" "${prod}/includes" >/dev/null 2>&1 \
+		&& diff -rq "${src}/assets" "${prod}/assets" >/dev/null 2>&1
+}
+
+uses_standalone_source() {
+	local slug="$1"
+	[[ "$slug" == "$SUPPORT_DESK_SLUG" || "$slug" == "biopentra-loop-card" || "$slug" == "wc-inventory-overview" ]]
+}
+
 echo "=== Custom plugin integrity check ==="
 echo "woocommerce: $WOOCOMMERCE_ROOT"
 echo "source repo: $SOURCE_DIR"
 echo "fisd source: $FISD_SOURCE_ROOT"
+echo "loop-card source: $LOOP_CARD_SOURCE_ROOT"
+echo "wc-inventory source: $WC_INVENTORY_SOURCE_ROOT"
 echo "site:      $SITE_URL"
 echo
 
@@ -73,6 +99,10 @@ check_plugin_tree() {
 
 	if [[ "$slug" == "$SUPPORT_DESK_SLUG" ]]; then
 		src="${FISD_SOURCE_ROOT}"
+	elif [[ "$slug" == "biopentra-loop-card" ]]; then
+		src="${LOOP_CARD_SOURCE_ROOT}"
+	elif [[ "$slug" == "wc-inventory-overview" ]]; then
+		src="${WC_INVENTORY_SOURCE_ROOT}"
 	fi
 
 	echo "--- ${slug} ---"
@@ -113,8 +143,8 @@ check_plugin_tree() {
 	local prod_count src_count
 	prod_count="$(find "$prod" -type f 2>/dev/null | wc -l | tr -d ' ')"
 	if [[ -d "$src" ]]; then
-		if [[ "$slug" == "$SUPPORT_DESK_SLUG" ]]; then
-			src_count="$(fisd_deployable_file_count "$src")"
+		if uses_standalone_source "$slug"; then
+			src_count="$(deployable_file_count "$src")"
 		else
 			src_count="$(find "$src" -type f 2>/dev/null | wc -l | tr -d ' ')"
 		fi
@@ -133,6 +163,15 @@ check_plugin_tree() {
 					ok "${slug}: matches deployable source ($prod_count files)"
 				else
 					warn "${slug}: deployable tree differs from source"
+					{ diff -rq "${src}/includes" "${prod}/includes" 2>/dev/null || true
+					  diff -rq "${src}/assets" "${prod}/assets" 2>/dev/null || true
+					} | head -5 | while read -r line; do warn "  $line"; done || true
+				fi
+			elif [[ "$slug" == "biopentra-loop-card" || "$slug" == "wc-inventory-overview" ]]; then
+				if standalone_runtime_matches_source "$src" "$prod" "$main"; then
+					ok "${slug}: matches deployable source ($prod_count files)"
+				else
+					warn "${slug}: runtime tree differs from standalone source"
 					{ diff -rq "${src}/includes" "${prod}/includes" 2>/dev/null || true
 					  diff -rq "${src}/assets" "${prod}/assets" 2>/dev/null || true
 					} | head -5 | while read -r line; do warn "  $line"; done || true
