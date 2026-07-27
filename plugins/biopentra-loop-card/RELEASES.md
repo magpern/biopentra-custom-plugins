@@ -2,8 +2,12 @@
 
 **Canonical GitHub repository:** [magpern/biopentra-loop-card](https://github.com/magpern/biopentra-loop-card)
 
-- Tags: `v*` (e.g. `v1.2.6`)
-- Production ZIP: `biopentra-loop-card-{version}.zip`
-- GitHub Actions: `.github/workflows/release.yml` on the standalone repo
+| Item | Location |
+|------|----------|
+| Release tags | `v*` (e.g. `v1.3.3`) |
+| Production ZIP | `biopentra-loop-card-{version}.zip` |
+| CI | `.github/workflows/release.yml` on the standalone repo |
 
-This directory under `biopentra-custom-plugins` is a **dev mirror** for rsync to local WordPress. Do not create monorepo GitHub releases for this plugin.
+This monorepo directory is a **documentation-only pointer stub**. Do not create GitHub Releases from `magpern/biopentra-custom-plugins` for this plugin.
+
+Historical monorepo copies may appear in git history; they are not deployable source.

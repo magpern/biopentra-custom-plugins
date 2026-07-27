@@ -22,4 +22,4 @@ Replace the plugin folder with this ZIP. No database migration expected for this
 
 Restore the previous plugin folder from backup.
 
-Plugin changelog: [plugins/wc-inventory-overview/CHANGELOG.md](../plugins/wc-inventory-overview/CHANGELOG.md)
+Plugin changelog: [CHANGELOG.md](https://github.com/magpern/wc-inventory-overview/blob/main/CHANGELOG.md) (standalone repository)

@@ -6,18 +6,26 @@ This directory is a **GitHub-ready snapshot** of first-party plugins used with t
 
 | Path | Purpose |
 |------|---------|
-| `plugins/` | Copies of custom plugins + draft `biopentra-storefront` scaffold |
+| `plugins/` | Active monorepo plugins + pointer stubs for standalone repos |
 | `docs/` | Audit, consolidation, GitHub backup, and migration plans |
 | `builds/zips/` | Output from `scripts/build-zips.sh` (ZIPs are gitignored) |
 | `scripts/build-zips.sh` | Builds `{slug}-{version}.zip` per plugin |
 
 ## Plugins in this repo
 
-**Standalone (stay separate for now):**
+**Standalone (canonical source outside this monorepo):**
 
-- `biopentra-contact-inbox` — Support desk (Fluent, IMAP, DB tables, REST worker).
-- `wc-inventory-overview` — Inventory / costing admin.
-- `biopentra-loop-card` — Elementor loop grid / shop UX.
+| Slug | Monorepo path | Canonical development |
+|------|---------------|------------------------|
+| `biopentra-loop-card` | `plugins/biopentra-loop-card/` — **pointer stub only** | `/opt/biopentra/dev/biopentra-loop-card` |
+| `wc-inventory-overview` | `plugins/wc-inventory-overview/` — **pointer stub only** | `/opt/biopentra/dev/wc-inventory-overview` |
+| `fluent-imap-support-desk` | (not in monorepo) | `/opt/biopentra/dev/fluent-imap-support-desk` |
+
+Releases for loop-card and wc-inventory are built only from their standalone GitHub repositories. Monorepo ZIP tooling skips those slugs.
+
+**Deprecated monorepo copy:**
+
+- `biopentra-contact-inbox` — see `plugins/biopentra-contact-inbox/DEPRECATED.md`. Use [fluent-imap-support-desk](https://github.com/magpern/fluent-imap-support-desk).
 
 **Legacy copies (candidates for future merge into `biopentra-storefront`):**
 
@@ -37,14 +45,12 @@ After changing code under `woocommerce/wp-content/plugins/`, refresh copies:
 ```bash
 SRC=/path/to/woocommerce/wp-content/plugins
 DEST=/path/to/woocommerce/custom-wordpress-plugins/plugins
-for d in biopentra-contact-inbox biopentra-header-auth biopentra-loop-card biopentra-footer-contact biopentra-information-megamenu wc-inventory-overview custom-variation-stock-selector; do
+for d in biopentra-contact-inbox biopentra-header-auth biopentra-footer-contact biopentra-information-megamenu custom-variation-stock-selector; do
   rsync -a --delete "$SRC/$d/" "$DEST/$d/"
 done
 ```
 
-## Loop Card version header
-
-The repo copy of `biopentra-loop-card` uses **`Version: 1.2.4`** in the plugin header to match `BIOPENTRA_LOOP_CARD_VER`. If your bind-mounted `wp-content/plugins` is not writable from this environment, **manually align** the same line in the live plugin file when you deploy.
+Do **not** rsync `biopentra-loop-card` or `wc-inventory-overview` into this monorepo — those slugs are pointer stubs; edit the standalone repositories instead.
 
 ## Build ZIPs
 

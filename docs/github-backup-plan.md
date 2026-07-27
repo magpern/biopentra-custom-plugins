@@ -7,7 +7,7 @@ Use this folder (`custom-wordpress-plugins/`) as its own Git repository **or** a
 ### Recommended: dedicated repo
 
 - **Repo name:** `biopentra-custom-wordpress-plugins` (or similar).
-- **Default branch:** `main`, protected with required PR review for `plugins/biopentra-contact-inbox/**` and `plugins/wc-inventory-overview/**`.
+- **Default branch:** `main`, protected with required PR review for `plugins/biopentra-contact-inbox/**` (when present). Standalone plugins `biopentra-loop-card` and `wc-inventory-overview` are pointer stubs here — source lives in their own repositories.
 
 ### What to commit
 

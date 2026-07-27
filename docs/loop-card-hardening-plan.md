@@ -98,7 +98,7 @@ After Phase 5 audit (`docs/loop-card-phase-5-audit.md`), **`biopentra-loop-card`
 ## 7. Version alignment (hardening)
 
 - Plugin header **`Version:`** and **`BIOPENTRA_LOOP_CARD_VER`** must match (currently **1.2.4**).
-- Rebuild ZIP after version bumps: `./scripts/build-zips.sh` → `builds/zips/biopentra-loop-card-1.2.4.zip`.
+- Rebuild ZIP after version bumps in the **standalone** repository (`magpern/biopentra-loop-card`); monorepo `build-zips.sh` skips this slug.
 
 ---
 

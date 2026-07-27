@@ -18,4 +18,4 @@ No intentional inventory dashboard behavior changes vs **1.17.1**.
 
 Restore **1.17.1** plugin folder from backup.
 
-Changelog: [plugins/wc-inventory-overview/CHANGELOG.md](../plugins/wc-inventory-overview/CHANGELOG.md)
+Changelog: [CHANGELOG.md](https://github.com/magpern/wc-inventory-overview/blob/main/CHANGELOG.md) (standalone repository)
