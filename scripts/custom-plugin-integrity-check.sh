@@ -38,8 +38,8 @@ ok() { echo "OK   $*"; }
 warn() { echo "WARN $*"; }
 bad() { echo "FAIL $*"; fail=1; }
 
-# Deployable plugin files only (exclude repo docs/scripts/builds/git metadata).
-# Aligns with standalone release ZIP excludes (cli/, bin/, dev-only includes).
+# Deployable plugin files only — aligns with release_copy_plugin_production() in
+# scripts/lib/release-common.sh and verify-release-zip.py forbidden segments.
 deployable_file_count() {
 	local root="$1"
 	find "$root" -type f \
@@ -47,13 +47,25 @@ deployable_file_count() {
 		! -path '*/.github/*' \
 		! -path '*/docs/*' \
 		! -path '*/scripts/*' \
+		! -path '*/tests/*' \
 		! -path '*/builds/*' \
+		! -path '*/build/*' \
 		! -path '*/cli/*' \
 		! -path '*/bin/*' \
 		! -path '*/includes/setup-shop-page-cli.php' \
 		! -name 'README.md' \
 		! -name 'CHANGELOG.md' \
 		! -name '.gitignore' \
+		! -name '.write-test' \
+		! -name '.DS_Store' \
+		! -name 'Thumbs.db' \
+		! -name '.env' \
+		! -name '.env.*' \
+		! -name '*.log' \
+		! -name '*.sql' \
+		! -name '*.sql.gz' \
+		! -name '*.dump' \
+		! -name '*.sqlite' \
 		2>/dev/null | wc -l | tr -d ' '
 }
 
@@ -66,7 +78,7 @@ prod_tree_matches_deployable_source() {
 	fi
 	diff -q "${src}/${main}" "${prod}/${main}" >/dev/null 2>&1 || return 1
 
-	for subdir in includes assets; do
+	for subdir in includes assets modules; do
 		[[ -d "${prod}/${subdir}" ]] || continue
 		while IFS= read -r -d '' f; do
 			rel="${f#${prod}/${subdir}/}"
@@ -75,17 +87,18 @@ prod_tree_matches_deployable_source() {
 		done < <(find "${prod}/${subdir}" -type f -print0 2>/dev/null)
 	done
 
-	if [[ -f "${prod}/uninstall.php" ]]; then
-		[[ -f "${src}/uninstall.php" ]] || return 1
-		diff -q "${src}/uninstall.php" "${prod}/uninstall.php" >/dev/null 2>&1 || return 1
-	fi
+	for extra in LICENSE readme.txt uninstall.php; do
+		[[ -f "${prod}/${extra}" ]] || continue
+		[[ -f "${src}/${extra}" ]] || return 1
+		diff -q "${src}/${extra}" "${prod}/${extra}" >/dev/null 2>&1 || return 1
+	done
 
 	return 0
 }
 
-uses_standalone_source() {
+uses_deployable_comparison() {
 	local slug="$1"
-	[[ "$slug" == "$SUPPORT_DESK_SLUG" || "$slug" == "biopentra-loop-card" || "$slug" == "wc-inventory-overview" ]]
+	[[ "$slug" == "biopentra-storefront" || "$slug" == "$SUPPORT_DESK_SLUG" || "$slug" == "biopentra-loop-card" || "$slug" == "wc-inventory-overview" ]]
 }
 
 echo "=== Custom plugin integrity check ==="
@@ -159,7 +172,7 @@ check_plugin_tree() {
 	local prod_count src_count
 	prod_count="$(find "$prod" -type f 2>/dev/null | wc -l | tr -d ' ')"
 	if [[ -d "$src" ]]; then
-		if uses_standalone_source "$slug"; then
+		if uses_deployable_comparison "$slug"; then
 			src_count="$(deployable_file_count "$src")"
 		else
 			src_count="$(find "$src" -type f 2>/dev/null | wc -l | tr -d ' ')"
@@ -167,7 +180,7 @@ check_plugin_tree() {
 		if [[ "$prod_count" -lt "$(( src_count - 3 ))" ]]; then
 			bad "${slug}: file count prod=$prod_count src=$src_count (possible partial loss)"
 		elif [[ "$prod_count" -ne "$src_count" ]]; then
-			if uses_standalone_source "$slug" && prod_tree_matches_deployable_source "$src" "$prod" "$main"; then
+			if uses_deployable_comparison "$slug" && prod_tree_matches_deployable_source "$src" "$prod" "$main"; then
 				ok "${slug}: matches deployable source ($prod_count files; src deployable=$src_count)"
 			else
 				extra="$( { diff -rq "$src" "$prod" 2>/dev/null || true; } | head -5 )"
@@ -178,13 +191,14 @@ check_plugin_tree() {
 				fi
 			fi
 		else
-			if uses_standalone_source "$slug"; then
+			if uses_deployable_comparison "$slug"; then
 				if prod_tree_matches_deployable_source "$src" "$prod" "$main"; then
 					ok "${slug}: matches deployable source ($prod_count files)"
 				else
-					warn "${slug}: deployable tree differs from standalone source"
+					warn "${slug}: deployable tree differs from source"
 					{ diff -rq "${src}/includes" "${prod}/includes" 2>/dev/null || true
 					  diff -rq "${src}/assets" "${prod}/assets" 2>/dev/null || true
+					  diff -rq "${src}/modules" "${prod}/modules" 2>/dev/null || true
 					} | head -5 | while read -r line; do warn "  $line"; done || true
 				fi
 			elif diff -rq "$src" "$prod" >/dev/null 2>&1; then
