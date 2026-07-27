@@ -39,32 +39,48 @@ warn() { echo "WARN $*"; }
 bad() { echo "FAIL $*"; fail=1; }
 
 # Deployable plugin files only (exclude repo docs/scripts/builds/git metadata).
+# Aligns with standalone release ZIP excludes (cli/, bin/, dev-only includes).
 deployable_file_count() {
 	local root="$1"
 	find "$root" -type f \
 		! -path '*/.git/*' \
+		! -path '*/.github/*' \
 		! -path '*/docs/*' \
 		! -path '*/scripts/*' \
 		! -path '*/builds/*' \
+		! -path '*/cli/*' \
+		! -path '*/bin/*' \
+		! -path '*/includes/setup-shop-page-cli.php' \
 		! -name 'README.md' \
 		! -name 'CHANGELOG.md' \
 		! -name '.gitignore' \
 		2>/dev/null | wc -l | tr -d ' '
 }
 
-fisd_prod_matches_source() {
-	local src="$1" prod="$2"
-	diff -q "${src}/fluent-imap-support-desk.php" "${prod}/fluent-imap-support-desk.php" >/dev/null 2>&1 \
-		&& diff -q "${src}/uninstall.php" "${prod}/uninstall.php" >/dev/null 2>&1 \
-		&& diff -rq "${src}/includes" "${prod}/includes" >/dev/null 2>&1 \
-		&& diff -rq "${src}/assets" "${prod}/assets" >/dev/null 2>&1
-}
-
-standalone_runtime_matches_source() {
+prod_tree_matches_deployable_source() {
 	local src="$1" prod="$2" main="$3"
-	diff -q "${src}/${main}" "${prod}/${main}" >/dev/null 2>&1 \
-		&& diff -rq "${src}/includes" "${prod}/includes" >/dev/null 2>&1 \
-		&& diff -rq "${src}/assets" "${prod}/assets" >/dev/null 2>&1
+	local subdir f rel
+
+	if [[ ! -f "${src}/${main}" || ! -f "${prod}/${main}" ]]; then
+		return 1
+	fi
+	diff -q "${src}/${main}" "${prod}/${main}" >/dev/null 2>&1 || return 1
+
+	for subdir in includes assets; do
+		[[ -d "${prod}/${subdir}" ]] || continue
+		while IFS= read -r -d '' f; do
+			rel="${f#${prod}/${subdir}/}"
+			[[ -f "${src}/${subdir}/${rel}" ]] || return 1
+			diff -q "${src}/${subdir}/${rel}" "${f}" >/dev/null 2>&1 || return 1
+		done < <(find "${prod}/${subdir}" -type f -print0 2>/dev/null)
+	done
+
+	if [[ -f "${prod}/uninstall.php" ]]; then
+		[[ -f "${src}/uninstall.php" ]] || return 1
+		diff -q "${src}/uninstall.php" "${prod}/uninstall.php" >/dev/null 2>&1 || return 1
+	fi
+
+	return 0
 }
 
 uses_standalone_source() {
@@ -86,7 +102,7 @@ PLUGIN_MANIFEST=(
 	"biopentra-storefront|biopentra-storefront.php|includes|modules/header-auth|modules/footer-contact|modules/information-megamenu|modules/variation-stock-selector|assets"
 	"biopentra-loop-card|biopentra-loop-card.php|includes|assets"
 	"fluent-imap-support-desk|fluent-imap-support-desk.php|includes|assets"
-	"wc-inventory-overview|wc-inventory-overview.php|includes|assets|cli"
+	"wc-inventory-overview|wc-inventory-overview.php|includes|assets"
 )
 
 check_plugin_tree() {
@@ -151,27 +167,22 @@ check_plugin_tree() {
 		if [[ "$prod_count" -lt "$(( src_count - 3 ))" ]]; then
 			bad "${slug}: file count prod=$prod_count src=$src_count (possible partial loss)"
 		elif [[ "$prod_count" -ne "$src_count" ]]; then
-			extra="$( { diff -rq "$src" "$prod" 2>/dev/null || true; } | head -5 )"
-			if [[ -n "$extra" ]]; then
-				warn "${slug}: prod=$prod_count src=$src_count — diff: $(echo "$extra" | tr '\n' '; ' | sed 's/; $//')"
+			if uses_standalone_source "$slug" && prod_tree_matches_deployable_source "$src" "$prod" "$main"; then
+				ok "${slug}: matches deployable source ($prod_count files; src deployable=$src_count)"
 			else
-				ok "${slug}: file count prod=$prod_count src=$src_count (minor diff acceptable)"
+				extra="$( { diff -rq "$src" "$prod" 2>/dev/null || true; } | head -5 )"
+				if [[ -n "$extra" ]]; then
+					warn "${slug}: prod=$prod_count src=$src_count — diff: $(echo "$extra" | tr '\n' '; ' | sed 's/; $//')"
+				else
+					ok "${slug}: file count prod=$prod_count src=$src_count (minor diff acceptable)"
+				fi
 			fi
 		else
-			if [[ "$slug" == "$SUPPORT_DESK_SLUG" ]]; then
-				if fisd_prod_matches_source "$src" "$prod"; then
+			if uses_standalone_source "$slug"; then
+				if prod_tree_matches_deployable_source "$src" "$prod" "$main"; then
 					ok "${slug}: matches deployable source ($prod_count files)"
 				else
-					warn "${slug}: deployable tree differs from source"
-					{ diff -rq "${src}/includes" "${prod}/includes" 2>/dev/null || true
-					  diff -rq "${src}/assets" "${prod}/assets" 2>/dev/null || true
-					} | head -5 | while read -r line; do warn "  $line"; done || true
-				fi
-			elif [[ "$slug" == "biopentra-loop-card" || "$slug" == "wc-inventory-overview" ]]; then
-				if standalone_runtime_matches_source "$src" "$prod" "$main"; then
-					ok "${slug}: matches deployable source ($prod_count files)"
-				else
-					warn "${slug}: runtime tree differs from standalone source"
+					warn "${slug}: deployable tree differs from standalone source"
 					{ diff -rq "${src}/includes" "${prod}/includes" 2>/dev/null || true
 					  diff -rq "${src}/assets" "${prod}/assets" 2>/dev/null || true
 					} | head -5 | while read -r line; do warn "  $line"; done || true
