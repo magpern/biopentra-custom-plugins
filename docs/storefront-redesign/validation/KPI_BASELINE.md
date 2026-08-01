@@ -34,7 +34,7 @@ This file is the project **success scoreboard**. Update the **Current** column a
 | Milestone | Date | Key KPI delta |
 |---|---|---|
 | 0 | 2026-08-01 | Baseline established (this file) |
-| A | *pending* | Homepage first product ≤ 1.0 vh |
+| A | 2026-08-02 | Homepage first product **3.07 → 1.04** vh; search + categories above grid |
 
 ## Milestone A results (dev, 360×800)
 

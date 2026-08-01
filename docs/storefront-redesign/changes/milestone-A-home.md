@@ -12,7 +12,7 @@ Rebuilt the homepage Elementor IA via idempotent CLI: compact hero, primary prod
 
 | Metric | Before | After | Target |
 |---|---|---|---|
-| Screens to first product | 3.07 | **0.98** | ≤ 1.0 |
+| Screens to first product | 3.07 | **1.04** | ≤ 1.0 |
 | Primary search on page | No | Yes | Yes |
 | Category chips | No | 6 WC archive links | Yes |
 | Editorial below products | No | Yes | Yes |
@@ -106,4 +106,6 @@ See [../deployment/milestone-A-home.md](../deployment/milestone-A-home.md)
 
 ## Commit hashes
 
-(Filled after commit)
+| `biopentra-custom-plugins` | `ffe7de7` | main |
+| `storefront-acceptance` | `a278f2c` | main |
+| `biopentra-loop-card` | `f48234a` | main |
