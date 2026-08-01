@@ -11,4 +11,4 @@ Housekeeping release: fixes `readme.txt` Stable tag drift discovered during the 
 
 ## Notes
 
-No functional or behavioral change. Part of `/opt/biopentra/docs/storefront-redesign/` Phase 0 (Foundations). **Not tagged/deployed** — tagging `storefront-v0.5.21` and pushing require explicit product-owner approval per project convention.
+No functional or behavioral change. Part of `/opt/biopentra/docs/storefront-redesign/` Phase 0 (Foundations), tagged and released with product-owner approval.
