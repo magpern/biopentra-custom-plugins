@@ -12,6 +12,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.6.0] — 2026-08-02
+
+### Added
+
+- **Milestone A — commercial homepage:** `setup-home-page-v2-cli.php` rebuilds front-page Elementor IA (compact hero, product search shortcode, category chips, featured/newest/popular grids before editorial content).
+- Home v2 assets: `assets/css/home-v2.css`, `includes/home-v2-helpers.php`, `includes/home-v2-assets.php`, shortcodes `[biopentra_home_search]` and `[biopentra_home_categories]`.
+
+### Changed
+
+- Requires `biopentra-loop-card` update that enqueues live search on `is_front_page()`.
+
+---
+
 ## [0.5.21] — 2026-08-01
 
 ### Fixed

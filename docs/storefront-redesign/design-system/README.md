@@ -17,6 +17,7 @@ Lightweight working standards for the Biopentra mobile-first storefront redesign
 | File | Purpose |
 |---|---|
 | [README.md](README.md) | This spec |
+| [component-principles.md](component-principles.md) | High-level component rules |
 | [tokens.css](tokens.css) | CSS custom properties (canonical when enqueued) |
 | [image-guidelines.md](image-guidelines.md) | Hero, card, PDP image discipline |
 

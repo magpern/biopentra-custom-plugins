@@ -101,5 +101,15 @@ class Biopentra_Storefront {
 				Biopentra_Storefront_Crypto_Payment_Guide_Module::init();
 			}
 		}
+
+		$home_v2_helpers = BIOPENTRA_STOREFRONT_PATH . 'includes/home-v2-helpers.php';
+		if ( is_readable( $home_v2_helpers ) ) {
+			require_once $home_v2_helpers;
+		}
+
+		$home_v2_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/home-v2-assets.php';
+		if ( is_readable( $home_v2_assets ) ) {
+			require_once $home_v2_assets;
+		}
 	}
 }

@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.21
+Stable tag: 0.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,11 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.6.0 =
+* Milestone A — commercial homepage: `setup-home-page-v2-cli.php` rebuilds front page IA (compact hero, search, category chips, featured/newest/popular grids before editorial content).
+* Home v2 CSS (`assets/css/home-v2.css`) and helpers for search form + category chips.
+* Requires `biopentra-loop-card` live search on front page (enqueued when `is_front_page()`).
 
 = 0.5.21 =
 * Housekeeping: synced this file's Stable tag with the actual plugin version (previously stuck at 0.5.17 while the plugin header/const had already moved to 0.5.20). Backfilled the missing 0.5.18–0.5.20 changelog entries below. No functional change.
