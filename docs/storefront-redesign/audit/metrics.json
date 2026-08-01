@@ -1,0 +1,7263 @@
+{
+ "home@m360": {
+  "title": "Research Peptides & Laboratory Compounds | Biopentra",
+  "docH": 7537,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 9.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides.\nTrusted EU Fulfillment.",
+   "top": 198
+  },
+  "firstProductTop": 2459,
+  "firstProductVh": 3.07,
+  "addToCartTop": null,
+  "productCount": 8,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 711,
+    "pos": "fixed",
+    "topPx": 1111
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 360,
+    "disp": 144,
+    "h": 160
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 360,
+    "disp": 144,
+    "h": 160
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 360,
+    "disp": 144,
+    "h": 160
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 360,
+    "disp": 144,
+    "h": 160
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 360,
+    "disp": 144,
+    "h": 160
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 360,
+    "disp": 144,
+    "h": 160
+   },
+   {
+    "src": "tirzepatide-600x600.webp",
+    "nat": 360,
+    "disp": 144,
+    "h": 160
+   },
+   {
+    "src": "melanotan2-600x600.webp",
+    "nat": 360,
+    "disp": 144,
+    "h": 160
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4444",
+    "h": 5980,
+    "vhx": 7.5,
+    "top": 132
+   },
+   {
+    "cls": "why4444",
+    "h": 926,
+    "vhx": 1.2,
+    "top": 1358
+   },
+   {
+    "cls": "be24b65",
+    "h": 1190,
+    "vhx": 1.5,
+    "top": 2284
+   },
+   {
+    "cls": "0b22897",
+    "h": 871,
+    "vhx": 1.1,
+    "top": 3474
+   },
+   {
+    "cls": "faqPreview4444",
+    "h": 875,
+    "vhx": 1.1,
+    "top": 4345
+   },
+   {
+    "cls": "238bcc6",
+    "h": 893,
+    "vhx": 1.1,
+    "top": 5220
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1423,
+    "vhx": 1.8,
+    "top": 6114
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   }
+  ]
+ },
+ "shop@m360": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 2092,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 2.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 276
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 711,
+    "pos": "fixed",
+    "topPx": 1111
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1461,
+    "vhx": 1.8,
+    "top": 631
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cat-metabolic@m360": {
+  "title": "Metabolic Research Peptides Guide | Biopentra",
+  "docH": 8456,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 10.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Metabolic Research Peptides",
+   "top": 296
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 711,
+    "pos": "fixed",
+    "topPx": 1111
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4431",
+    "h": 6842,
+    "vhx": 8.6,
+    "top": 152
+   },
+   {
+    "cls": "metaroot",
+    "h": 6842,
+    "vhx": 8.6,
+    "top": 152
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1461,
+    "vhx": 1.8,
+    "top": 6994
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "cat-ghrp@m360": {
+  "title": "Growth Hormone Releasing Peptides Guide | Biopentra",
+  "docH": 8551,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 10.7,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Growth Hormone Releasing Peptides",
+   "top": 296
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 711,
+    "pos": "fixed",
+    "topPx": 1111
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4430",
+    "h": 6938,
+    "vhx": 8.7,
+    "top": 152
+   },
+   {
+    "cls": "ghrproot",
+    "h": 6938,
+    "vhx": 8.7,
+    "top": 152
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1461,
+    "vhx": 1.8,
+    "top": 7090
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "cat-lyo@m360": {
+  "title": "Lyophilized Research Materials & Freeze-Dried Peptides | Biopentra",
+  "docH": 8663,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 10.8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Lyophilized Research Materials",
+   "top": 296
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 711,
+    "pos": "fixed",
+    "topPx": 1111
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4432",
+    "h": 7050,
+    "vhx": 8.8,
+    "top": 152
+   },
+   {
+    "cls": "lyoroot",
+    "h": 7050,
+    "vhx": 8.8,
+    "top": 152
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1461,
+    "vhx": 1.8,
+    "top": 7202
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "prod-simple@m360": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 2092,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 2.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 276
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 717,
+    "pos": "fixed",
+    "topPx": 1117
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1461,
+    "vhx": 1.8,
+    "top": 631
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "prod-variable@m360": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 2092,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 2.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 276
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 717,
+    "pos": "fixed",
+    "topPx": 1117
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1461,
+    "vhx": 1.8,
+    "top": 631
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cart-empty@m360": {
+  "title": "Cart - BiopentraDev",
+  "docH": 2092,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 2.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 276
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 717,
+    "pos": "fixed",
+    "topPx": 1117
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1461,
+    "vhx": 1.8,
+    "top": 631
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "contact@m360": {
+  "title": "Contact - BiopentraDev",
+  "docH": 4668,
+  "vh": 800,
+  "vw": 360,
+  "viewports": 5.8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "We’re here to help",
+   "top": 274
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 482
+   },
+   {
+    "cls": "cky-modal",
+    "h": 711,
+    "pos": "fixed",
+    "topPx": 1111
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 400
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "peptide_onice.webp",
+    "nat": 360,
+    "disp": 189,
+    "h": 125
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "ct-container-full",
+    "h": 3054,
+    "vhx": 3.8,
+    "top": 152
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1461,
+    "vhx": 1.8,
+    "top": 3207
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   }
+  ]
+ },
+ "home@m390": {
+  "title": "Research Peptides & Laboratory Compounds | Biopentra",
+  "docH": 7387,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 8.8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides.\nTrusted EU Fulfillment.",
+   "top": 172
+  },
+  "firstProductTop": 2404,
+  "firstProductVh": 2.85,
+  "addToCartTop": null,
+  "productCount": 8,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1178
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 390,
+    "disp": 159,
+    "h": 160
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 390,
+    "disp": 159,
+    "h": 160
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 390,
+    "disp": 159,
+    "h": 160
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 390,
+    "disp": 159,
+    "h": 160
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 390,
+    "disp": 159,
+    "h": 160
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 390,
+    "disp": 159,
+    "h": 160
+   },
+   {
+    "src": "tirzepatide-600x600.webp",
+    "nat": 390,
+    "disp": 159,
+    "h": 160
+   },
+   {
+    "src": "melanotan2-600x600.webp",
+    "nat": 390,
+    "disp": 159,
+    "h": 160
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4444",
+    "h": 5880,
+    "vhx": 7,
+    "top": 106
+   },
+   {
+    "cls": "why4444",
+    "h": 926,
+    "vhx": 1.1,
+    "top": 1303
+   },
+   {
+    "cls": "be24b65",
+    "h": 1190,
+    "vhx": 1.4,
+    "top": 2229
+   },
+   {
+    "cls": "0b22897",
+    "h": 845,
+    "vhx": 1,
+    "top": 3419
+   },
+   {
+    "cls": "faqPreview4444",
+    "h": 829,
+    "vhx": 1,
+    "top": 4264
+   },
+   {
+    "cls": "238bcc6",
+    "h": 893,
+    "vhx": 1.1,
+    "top": 5093
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1400,
+    "vhx": 1.7,
+    "top": 5987
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   }
+  ]
+ },
+ "shop@m390": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 2047,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 2.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 250
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1178
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1442,
+    "vhx": 1.7,
+    "top": 605
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cat-metabolic@m390": {
+  "title": "Metabolic Research Peptides Guide | Biopentra",
+  "docH": 7778,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 9.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Metabolic Research Peptides",
+   "top": 270
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1178
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4431",
+    "h": 6210,
+    "vhx": 7.4,
+    "top": 126
+   },
+   {
+    "cls": "metaroot",
+    "h": 6210,
+    "vhx": 7.4,
+    "top": 126
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1442,
+    "vhx": 1.7,
+    "top": 6336
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "cat-ghrp@m390": {
+  "title": "Growth Hormone Releasing Peptides Guide | Biopentra",
+  "docH": 8034,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 9.5,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Growth Hormone Releasing Peptides",
+   "top": 270
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1178
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4430",
+    "h": 6466,
+    "vhx": 7.7,
+    "top": 126
+   },
+   {
+    "cls": "ghrproot",
+    "h": 6466,
+    "vhx": 7.7,
+    "top": 126
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1442,
+    "vhx": 1.7,
+    "top": 6592
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "cat-lyo@m390": {
+  "title": "Lyophilized Research Materials & Freeze-Dried Peptides | Biopentra",
+  "docH": 8076,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 9.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Lyophilized Research Materials",
+   "top": 270
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1178
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4432",
+    "h": 6508,
+    "vhx": 7.7,
+    "top": 126
+   },
+   {
+    "cls": "lyoroot",
+    "h": 6508,
+    "vhx": 7.7,
+    "top": 126
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1442,
+    "vhx": 1.7,
+    "top": 6634
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "prod-simple@m390": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 2047,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 2.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 250
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed",
+    "topPx": 1184
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1442,
+    "vhx": 1.7,
+    "top": 605
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "prod-variable@m390": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 2047,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 2.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 250
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed",
+    "topPx": 1184
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1442,
+    "vhx": 1.7,
+    "top": 605
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cart-empty@m390": {
+  "title": "Cart - BiopentraDev",
+  "docH": 2047,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 2.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 250
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed",
+    "topPx": 1184
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1442,
+    "vhx": 1.7,
+    "top": 605
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "contact@m390": {
+  "title": "Contact - BiopentraDev",
+  "docH": 4588,
+  "vh": 844,
+  "vw": 390,
+  "viewports": 5.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "We’re here to help",
+   "top": 248
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 526
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1178
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 422
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "peptide_onice.webp",
+    "nat": 390,
+    "disp": 213,
+    "h": 142
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "ct-container-full",
+    "h": 3020,
+    "vhx": 3.6,
+    "top": 126
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1442,
+    "vhx": 1.7,
+    "top": 3146
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 77,
+    "h": 15
+   }
+  ]
+ },
+ "home@m430": {
+  "title": "Research Peptides & Laboratory Compounds | Biopentra",
+  "docH": 7118,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 7.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides.\nTrusted EU Fulfillment.",
+   "top": 173
+  },
+  "firstProductTop": 2310,
+  "firstProductVh": 2.48,
+  "addToCartTop": null,
+  "productCount": 8,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1222
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 430,
+    "disp": 179,
+    "h": 160
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 430,
+    "disp": 179,
+    "h": 160
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 430,
+    "disp": 179,
+    "h": 160
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 430,
+    "disp": 179,
+    "h": 160
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 430,
+    "disp": 179,
+    "h": 160
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 430,
+    "disp": 179,
+    "h": 160
+   },
+   {
+    "src": "tirzepatide-600x600.webp",
+    "nat": 430,
+    "disp": 179,
+    "h": 160
+   },
+   {
+    "src": "melanotan2-600x600.webp",
+    "nat": 430,
+    "disp": 179,
+    "h": 160
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4444",
+    "h": 5632,
+    "vhx": 6,
+    "top": 107
+   },
+   {
+    "cls": "why4444",
+    "h": 900,
+    "vhx": 1,
+    "top": 1236
+   },
+   {
+    "cls": "be24b65",
+    "h": 1190,
+    "vhx": 1.3,
+    "top": 2136
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1377,
+    "vhx": 1.5,
+    "top": 5741
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 114,
+    "h": 15
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 58,
+    "h": 28
+   },
+   {
+    "t": "Gift Card",
+    "w": 51,
+    "h": 15
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 58,
+    "h": 28
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 59,
+    "h": 15
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 58,
+    "h": 28
+   },
+   {
+    "t": "MOTS-C",
+    "w": 49,
+    "h": 15
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 58,
+    "h": 28
+   }
+  ]
+ },
+ "shop@m430": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 2025,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 2.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 251
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1222
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1419,
+    "vhx": 1.5,
+    "top": 606
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cat-metabolic@m430": {
+  "title": "Metabolic Research Peptides Guide | Biopentra",
+  "docH": 7268,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 7.8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Metabolic Research Peptides",
+   "top": 271
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1222
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4431",
+    "h": 5722,
+    "vhx": 6.1,
+    "top": 127
+   },
+   {
+    "cls": "metaroot",
+    "h": 5722,
+    "vhx": 6.1,
+    "top": 127
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1419,
+    "vhx": 1.5,
+    "top": 5849
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "cat-ghrp@m430": {
+  "title": "Growth Hormone Releasing Peptides Guide | Biopentra",
+  "docH": 7406,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 7.9,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Growth Hormone Releasing Peptides",
+   "top": 271
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1222
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4430",
+    "h": 5860,
+    "vhx": 6.3,
+    "top": 127
+   },
+   {
+    "cls": "ghrproot",
+    "h": 5860,
+    "vhx": 6.3,
+    "top": 127
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1419,
+    "vhx": 1.5,
+    "top": 5987
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "cat-lyo@m430": {
+  "title": "Lyophilized Research Materials & Freeze-Dried Peptides | Biopentra",
+  "docH": 7413,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Lyophilized Research Materials",
+   "top": 271
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1222
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4432",
+    "h": 5867,
+    "vhx": 6.3,
+    "top": 127
+   },
+   {
+    "cls": "lyoroot",
+    "h": 5867,
+    "vhx": 6.3,
+    "top": 127
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1419,
+    "vhx": 1.5,
+    "top": 5994
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   }
+  ]
+ },
+ "prod-simple@m430": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 2025,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 2.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 251
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed",
+    "topPx": 1228
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1419,
+    "vhx": 1.5,
+    "top": 606
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "prod-variable@m430": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 2025,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 2.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 251
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed",
+    "topPx": 1228
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1419,
+    "vhx": 1.5,
+    "top": 606
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cart-empty@m430": {
+  "title": "Cart - BiopentraDev",
+  "docH": 2025,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 2.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 251
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed",
+    "topPx": 1228
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "782cf0a",
+    "h": 1419,
+    "vhx": 1.5,
+    "top": 606
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "contact@m430": {
+  "title": "Contact - BiopentraDev",
+  "docH": 4423,
+  "vh": 932,
+  "vw": 430,
+  "viewports": 4.7,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "We’re here to help",
+   "top": 249
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 318,
+    "pos": "fixed",
+    "topPx": 614
+   },
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed",
+    "topPx": 1222
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 466
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "ct-container-full",
+    "h": 2877,
+    "vhx": 3.1,
+    "top": 127
+   },
+   {
+    "cls": "782cf0a",
+    "h": 1419,
+    "vhx": 1.5,
+    "top": 3004
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   }
+  ]
+ },
+ "home@t768": {
+  "title": "Research Peptides & Laboratory Compounds | Biopentra",
+  "docH": 5722,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 5.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides.\nTrusted EU Fulfillment.",
+   "top": 264
+  },
+  "firstProductTop": 1781,
+  "firstProductVh": 1.74,
+  "addToCartTop": null,
+  "productCount": 8,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1160
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 600,
+    "disp": 213,
+    "h": 210
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 600,
+    "disp": 213,
+    "h": 210
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 600,
+    "disp": 213,
+    "h": 210
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 600,
+    "disp": 213,
+    "h": 210
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 600,
+    "disp": 213,
+    "h": 210
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 600,
+    "disp": 213,
+    "h": 210
+   },
+   {
+    "src": "tirzepatide-600x600.webp",
+    "nat": 600,
+    "disp": 213,
+    "h": 210
+   },
+   {
+    "src": "melanotan2-600x600.webp",
+    "nat": 600,
+    "disp": 213,
+    "h": 210
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 131,
+    "h": 24
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4444",
+    "h": 4814,
+    "vhx": 4.7,
+    "top": 111
+   },
+   {
+    "cls": "be24b65",
+    "h": 1178,
+    "vhx": 1.2,
+    "top": 1611
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 136,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "Gift Card",
+    "w": 59,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 70,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "MOTS-C",
+    "w": 56,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "GHK-CU",
+    "w": 55,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "Triple G",
+    "w": 52,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "Tirzepatide",
+    "w": 74,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "Melanotan II",
+    "w": 80,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   }
+  ]
+ },
+ "shop@t768": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 1343,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 1.3,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 255
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1160
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 129,
+    "h": 23
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 129,
+    "h": 16
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 129,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cat-metabolic@t768": {
+  "title": "Metabolic Research Peptides Guide | Biopentra",
+  "docH": 4590,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 4.5,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Metabolic Research Peptides",
+   "top": 249
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1160
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 131,
+    "h": 24
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 131,
+    "h": 16
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4431",
+    "h": 3662,
+    "vhx": 3.6,
+    "top": 131
+   },
+   {
+    "cls": "metaroot",
+    "h": 3662,
+    "vhx": 3.6,
+    "top": 131
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   },
+   {
+    "t": "Retatrutide",
+    "w": 77,
+    "h": 19
+   },
+   {
+    "t": "Trizepatide",
+    "w": 78,
+    "h": 19
+   },
+   {
+    "t": "MOTS-C",
+    "w": 59,
+    "h": 19
+   },
+   {
+    "t": "Storage & Handling",
+    "w": 137,
+    "h": 19
+   }
+  ]
+ },
+ "cat-ghrp@t768": {
+  "title": "Growth Hormone Releasing Peptides Guide | Biopentra",
+  "docH": 4747,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 4.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Growth Hormone Releasing Peptides",
+   "top": 249
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1160
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 131,
+    "h": 24
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 131,
+    "h": 16
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4430",
+    "h": 3820,
+    "vhx": 3.7,
+    "top": 131
+   },
+   {
+    "cls": "ghrproot",
+    "h": 3820,
+    "vhx": 3.7,
+    "top": 131
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 168,
+    "h": 19
+   }
+  ]
+ },
+ "cat-lyo@t768": {
+  "title": "Lyophilized Research Materials & Freeze-Dried Peptides | Biopentra",
+  "docH": 4887,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 4.8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Lyophilized Research Materials",
+   "top": 249
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1160
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 131,
+    "h": 24
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 131,
+    "h": 16
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4432",
+    "h": 3959,
+    "vhx": 3.9,
+    "top": 131
+   },
+   {
+    "cls": "lyoroot",
+    "h": 3959,
+    "vhx": 3.9,
+    "top": 131
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   },
+   {
+    "t": "Storage & Handling",
+    "w": 137,
+    "h": 19
+   },
+   {
+    "t": "Metabolic Research Peptides",
+    "w": 204,
+    "h": 19
+   },
+   {
+    "t": "Growth Hormone Releasing Peptides",
+    "w": 258,
+    "h": 19
+   },
+   {
+    "t": "BPC-157",
+    "w": 61,
+    "h": 19
+   },
+   {
+    "t": "TB-500",
+    "w": 51,
+    "h": 19
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 168,
+    "h": 19
+   },
+   {
+    "t": "MOTS-C",
+    "w": 59,
+    "h": 19
+   }
+  ]
+ },
+ "prod-simple@t768": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 1343,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 1.3,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 255
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed",
+    "topPx": 1166
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 129,
+    "h": 23
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 129,
+    "h": 16
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 129,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "prod-variable@t768": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 1343,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 1.3,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 255
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed",
+    "topPx": 1166
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 129,
+    "h": 23
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 129,
+    "h": 16
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 129,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cart-empty@t768": {
+  "title": "Cart - BiopentraDev",
+  "docH": 1343,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 1.3,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 255
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed",
+    "topPx": 1166
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 129,
+    "h": 23
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 129,
+    "h": 16
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 129,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "contact@t768": {
+  "title": "Contact - BiopentraDev",
+  "docH": 3628,
+  "vh": 1024,
+  "vw": 768,
+  "viewports": 3.5,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "We’re here to help",
+   "top": 252
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 730
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1160
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 512
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 129,
+    "h": 23
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 129,
+    "h": 16
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "ct-container-full",
+    "h": 2677,
+    "vhx": 2.6,
+    "top": 131
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 77,
+    "h": 15
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 129,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "home@d1440": {
+  "title": "Research Peptides & Laboratory Compounds | Biopentra",
+  "docH": 4421,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 4.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides.\nTrusted EU Fulfillment.",
+   "top": 310
+  },
+  "firstProductTop": 1621,
+  "firstProductVh": 1.62,
+  "addToCartTop": null,
+  "productCount": 8,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1148
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 600,
+    "disp": 277,
+    "h": 238
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 600,
+    "disp": 277,
+    "h": 238
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 600,
+    "disp": 277,
+    "h": 238
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 600,
+    "disp": 277,
+    "h": 238
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 600,
+    "disp": 277,
+    "h": 238
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 600,
+    "disp": 277,
+    "h": 238
+   },
+   {
+    "src": "tirzepatide-600x600.webp",
+    "nat": 600,
+    "disp": 277,
+    "h": 238
+   },
+   {
+    "src": "melanotan2-600x600.webp",
+    "nat": 600,
+    "disp": 277,
+    "h": 238
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4444",
+    "h": 3664,
+    "vhx": 3.7,
+    "top": 131
+   },
+   {
+    "cls": "be24b65",
+    "h": 984,
+    "vhx": 1,
+    "top": 1433
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 136,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "Gift Card",
+    "w": 59,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 70,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "MOTS-C",
+    "w": 56,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "GHK-CU",
+    "w": 55,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   },
+   {
+    "t": "Triple G",
+    "w": 52,
+    "h": 18
+   },
+   {
+    "t": "biopentra-loop-overlay__close",
+    "w": 60,
+    "h": 30
+   }
+  ]
+ },
+ "shop@d1440": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 1168,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 1.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 275
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1148
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 256,
+    "h": 32
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cat-metabolic@d1440": {
+  "title": "Metabolic Research Peptides Guide | Biopentra",
+  "docH": 3698,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 3.7,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Metabolic Research Peptides",
+   "top": 270
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1148
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4431",
+    "h": 2922,
+    "vhx": 2.9,
+    "top": 151
+   },
+   {
+    "cls": "metaroot",
+    "h": 2922,
+    "vhx": 2.9,
+    "top": 151
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   },
+   {
+    "t": "Retatrutide",
+    "w": 77,
+    "h": 19
+   },
+   {
+    "t": "Trizepatide",
+    "w": 78,
+    "h": 19
+   },
+   {
+    "t": "MOTS-C",
+    "w": 59,
+    "h": 19
+   },
+   {
+    "t": "Storage & Handling",
+    "w": 137,
+    "h": 19
+   },
+   {
+    "t": "What are metabolic research peptides com",
+    "w": 443,
+    "h": 19
+   },
+   {
+    "t": "Why are metabolic peptides grouped toget",
+    "w": 337,
+    "h": 19
+   },
+   {
+    "t": "What does lyophilized mean?",
+    "w": 210,
+    "h": 19
+   },
+   {
+    "t": "Why are products available in different ",
+    "w": 359,
+    "h": 19
+   },
+   {
+    "t": "How are metabolic signaling compounds ca",
+    "w": 474,
+    "h": 19
+   },
+   {
+    "t": "FAQ",
+    "w": 27,
+    "h": 18
+   },
+   {
+    "t": "Research & Intended Use",
+    "w": 166,
+    "h": 18
+   }
+  ]
+ },
+ "cat-ghrp@d1440": {
+  "title": "Growth Hormone Releasing Peptides Guide | Biopentra",
+  "docH": 3831,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 3.8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Growth Hormone Releasing Peptides",
+   "top": 270
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1148
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4430",
+    "h": 3055,
+    "vhx": 3.1,
+    "top": 151
+   },
+   {
+    "cls": "ghrproot",
+    "h": 3055,
+    "vhx": 3.1,
+    "top": 151
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 168,
+    "h": 19
+   },
+   {
+    "t": "Storage & Handling",
+    "w": 137,
+    "h": 19
+   },
+   {
+    "t": "What are GHRPs commonly researched for?",
+    "w": 317,
+    "h": 19
+   },
+   {
+    "t": "What is the difference between GHRP comp",
+    "w": 367,
+    "h": 19
+   },
+   {
+    "t": "Why are some products available in diffe",
+    "w": 403,
+    "h": 19
+   },
+   {
+    "t": "What does lyophilized mean?",
+    "w": 210,
+    "h": 19
+   },
+   {
+    "t": "How are GHRPs commonly categorized in re",
+    "w": 375,
+    "h": 19
+   },
+   {
+    "t": "FAQ",
+    "w": 27,
+    "h": 18
+   }
+  ]
+ },
+ "cat-lyo@d1440": {
+  "title": "Lyophilized Research Materials & Freeze-Dried Peptides | Biopentra",
+  "docH": 3961,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Lyophilized Research Materials",
+   "top": 270
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1148
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "elementor elementor-4432",
+    "h": 3185,
+    "vhx": 3.2,
+    "top": 151
+   },
+   {
+    "cls": "lyoroot",
+    "h": 3185,
+    "vhx": 3.2,
+    "top": 151
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Home",
+    "w": 42,
+    "h": 19
+   },
+   {
+    "t": "Storage & Handling",
+    "w": 137,
+    "h": 19
+   },
+   {
+    "t": "Product Variations & Concentrations",
+    "w": 256,
+    "h": 19
+   },
+   {
+    "t": "Metabolic Research Peptides",
+    "w": 204,
+    "h": 19
+   },
+   {
+    "t": "Growth Hormone Releasing Peptides",
+    "w": 258,
+    "h": 19
+   },
+   {
+    "t": "BPC-157",
+    "w": 61,
+    "h": 19
+   },
+   {
+    "t": "TB-500",
+    "w": 51,
+    "h": 19
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 168,
+    "h": 19
+   },
+   {
+    "t": "MOTS-C",
+    "w": 59,
+    "h": 19
+   },
+   {
+    "t": "Triple G (Retatrutide)",
+    "w": 146,
+    "h": 19
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 74,
+    "h": 19
+   },
+   {
+    "t": "What does lyophilized mean?",
+    "w": 210,
+    "h": 19
+   }
+  ]
+ },
+ "prod-simple@d1440": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 1168,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 1.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 275
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed",
+    "topPx": 1154
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 256,
+    "h": 32
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "prod-variable@d1440": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 1168,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 1.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 275
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed",
+    "topPx": 1154
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 256,
+    "h": 32
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "cart-empty@d1440": {
+  "title": "Cart - BiopentraDev",
+  "docH": 1168,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 1.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Great things are on the horizon",
+   "top": 275
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed",
+    "topPx": 1154
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 256,
+    "h": 32
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "contact@d1440": {
+  "title": "Contact - BiopentraDev",
+  "docH": 2619,
+  "vh": 1000,
+  "vw": 1440,
+  "viewports": 2.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "We’re here to help",
+   "top": 273
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "addToCartTop": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-consent-container cky-box-bottom-left",
+    "h": 254,
+    "pos": "fixed",
+    "topPx": 706
+   },
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed",
+    "topPx": 1148
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed",
+    "topPx": 500
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128,
+    "h": 23
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168,
+    "h": 30
+   }
+  ],
+  "tallSections": [
+   {
+    "cls": "ct-container-full",
+    "h": 1843,
+    "vhx": 1.8,
+    "top": 151
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Cookie Policy",
+    "w": 84,
+    "h": 18
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 77,
+    "h": 15
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 256,
+    "h": 32
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   }
+  ]
+ },
+ "cartflow@m390": {
+  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('button[name=add-to-cart], .single_add_to_cart_button').first()\n"
+ }
+}

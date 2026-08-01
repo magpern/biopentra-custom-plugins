@@ -1,0 +1,9 @@
+blocksy-child sync verification — 2026-08-01T22:50:31+02:00
+Repo: /opt/biopentra/dev/biopentra-blocksy-child
+Live: wordpress:/var/www/html/wp-content/themes/blocksy-child
+
+=== style.css ===
+OK (no diff)
+
+=== functions.php ===
+OK (no diff)

@@ -1,0 +1,4254 @@
+{
+ "shop@m360": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 4329,
+  "vh": 800,
+  "viewports": 5.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Products",
+   "top": 178
+  },
+  "firstProductTop": 1207,
+  "firstProductVh": 1.51,
+  "searchTop": 1105,
+  "chipsTop": 834,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 11,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 711,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128
+   },
+   {
+    "src": "lab_tested.png",
+    "nat": 293,
+    "disp": 50
+   },
+   {
+    "src": "eu_base.png",
+    "nat": 295,
+    "disp": 50
+   },
+   {
+    "src": "discrete_shipping.png",
+    "nat": 289,
+    "disp": 50
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 360,
+    "disp": 129
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 360,
+    "disp": 129
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 360,
+    "disp": 129
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 360,
+    "disp": 129
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 360,
+    "disp": 129
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 360,
+    "disp": 129
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "elementor elementor-3755 elementor-bc-flex-widget",
+    "vhx": 3.4,
+    "top": 152
+   },
+   {
+    "id": "eae00bb",
+    "vhx": 2.6,
+    "top": 786
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.8,
+    "top": 2868
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 114,
+    "h": 15
+   },
+   {
+    "t": "Gift Card",
+    "w": 51,
+    "h": 15
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 59,
+    "h": 15
+   },
+   {
+    "t": "MOTS-C",
+    "w": 49,
+    "h": 15
+   },
+   {
+    "t": "GHK-CU",
+    "w": 47,
+    "h": 15
+   },
+   {
+    "t": "Triple G",
+    "w": 44,
+    "h": 15
+   },
+   {
+    "t": "Tirzepatide",
+    "w": 64,
+    "h": 15
+   },
+   {
+    "t": "Melanotan II",
+    "w": 69,
+    "h": 15
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 114,
+    "h": 30
+   },
+   {
+    "t": "TB-500",
+    "w": 41,
+    "h": 15
+   }
+  ]
+ },
+ "wc-cat@m360": {
+  "title": "Research Peptides for Laboratory Use | BioPentra",
+  "docH": 7549,
+  "vh": 800,
+  "viewports": 9.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides",
+   "top": 255
+  },
+  "firstProductTop": 511,
+  "firstProductVh": 0.64,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 9,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 717,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container",
+    "vhx": 7.1,
+    "top": 402
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.8,
+    "top": 6088
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "BPC-157",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "RECOVERY SUPPORT",
+    "w": 117,
+    "h": 14
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 183,
+    "h": 20
+   },
+   {
+    "t": "GROWTH & PERFORMANCE",
+    "w": 153,
+    "h": 14
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "GHK-CU",
+    "w": 62,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "WELLNESS",
+    "w": 59,
+    "h": 14
+   }
+  ]
+ },
+ "prod-simple@m360": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 3761,
+  "vh": 800,
+  "viewports": 4.7,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Bacteriostatic Water",
+   "top": 752
+  },
+  "firstProductTop": 0,
+  "firstProductVh": 0,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 1076,
+  "galleryH": 422,
+  "productCount": 1,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 717,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.7,
+    "top": 152
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.8,
+    "top": 2300
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 119,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 137,
+    "h": 15
+   }
+  ]
+ },
+ "prod-variable@m360": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 3763,
+  "vh": 800,
+  "viewports": 4.7,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Tirzepatide",
+   "top": 733
+  },
+  "firstProductTop": 0,
+  "firstProductVh": 0,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 1237,
+  "galleryH": 422,
+  "productCount": 7,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 717,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.7,
+    "top": 152
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.8,
+    "top": 2302
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "WEIGHT MANAGEMENT",
+    "w": 131,
+    "h": 20
+   },
+   {
+    "t": "Clear",
+    "w": 32,
+    "h": 23
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "METABOLIC PEPTIDE",
+    "w": 134,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH PEPTIDE",
+    "w": 127,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH USE ONLY",
+    "w": 136,
+    "h": 15
+   }
+  ]
+ },
+ "cart-empty@m360": {
+  "title": "Cart - BiopentraDev",
+  "docH": 2036,
+  "vh": 800,
+  "viewports": 2.5,
+  "hOverflow": 0,
+  "firstH1": null,
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 717,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 360,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "782cf0a",
+    "vhx": 1.8,
+    "top": 575
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Show more",
+    "w": 70,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "View the step-by-step guide →",
+    "w": 207,
+    "h": 18
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   }
+  ]
+ },
+ "shop@m390": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 4116,
+  "vh": 844,
+  "viewports": 4.9,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Products",
+   "top": 152
+  },
+  "firstProductTop": 1102,
+  "firstProductVh": 1.31,
+  "searchTop": 1000,
+  "chipsTop": 784,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 11,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128
+   },
+   {
+    "src": "lab_tested.png",
+    "nat": 293,
+    "disp": 50
+   },
+   {
+    "src": "eu_base.png",
+    "nat": 295,
+    "disp": 50
+   },
+   {
+    "src": "discrete_shipping.png",
+    "nat": 289,
+    "disp": 50
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 390,
+    "disp": 144
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 390,
+    "disp": 144
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 390,
+    "disp": 144
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 390,
+    "disp": 144
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 390,
+    "disp": 144
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 390,
+    "disp": 144
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "elementor elementor-3755 elementor-bc-flex-widget",
+    "vhx": 3,
+    "top": 126
+   },
+   {
+    "id": "eae00bb",
+    "vhx": 2.3,
+    "top": 736
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.7,
+    "top": 2674
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 114,
+    "h": 15
+   },
+   {
+    "t": "Gift Card",
+    "w": 51,
+    "h": 15
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 59,
+    "h": 15
+   },
+   {
+    "t": "MOTS-C",
+    "w": 49,
+    "h": 15
+   },
+   {
+    "t": "GHK-CU",
+    "w": 47,
+    "h": 15
+   },
+   {
+    "t": "Triple G",
+    "w": 44,
+    "h": 15
+   },
+   {
+    "t": "Tirzepatide",
+    "w": 64,
+    "h": 15
+   },
+   {
+    "t": "Melanotan II",
+    "w": 69,
+    "h": 15
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "TB-500",
+    "w": 41,
+    "h": 15
+   },
+   {
+    "t": "BPC-157",
+    "w": 50,
+    "h": 15
+   }
+  ]
+ },
+ "wc-cat@m390": {
+  "title": "Research Peptides for Laboratory Use | BioPentra",
+  "docH": 7821,
+  "vh": 844,
+  "viewports": 9.3,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides",
+   "top": 229
+  },
+  "firstProductTop": 485,
+  "firstProductVh": 0.57,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 9,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container",
+    "vhx": 7.1,
+    "top": 376
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.7,
+    "top": 6379
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "BPC-157",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "RECOVERY SUPPORT",
+    "w": 117,
+    "h": 14
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 183,
+    "h": 20
+   },
+   {
+    "t": "GROWTH & PERFORMANCE",
+    "w": 153,
+    "h": 14
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "GHK-CU",
+    "w": 62,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "WELLNESS",
+    "w": 59,
+    "h": 14
+   }
+  ]
+ },
+ "prod-simple@m390": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 3652,
+  "vh": 844,
+  "viewports": 4.3,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Bacteriostatic Water",
+   "top": 742
+  },
+  "firstProductTop": 0,
+  "firstProductVh": 0,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 1065,
+  "galleryH": 458,
+  "productCount": 1,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.5,
+    "top": 126
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.7,
+    "top": 2210
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 119,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 137,
+    "h": 15
+   }
+  ]
+ },
+ "prod-variable@m390": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 3674,
+  "vh": 844,
+  "viewports": 4.4,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Tirzepatide",
+   "top": 742
+  },
+  "firstProductTop": 0,
+  "firstProductVh": 0,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 1220,
+  "galleryH": 458,
+  "productCount": 7,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.5,
+    "top": 126
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.7,
+    "top": 2232
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "WEIGHT MANAGEMENT",
+    "w": 131,
+    "h": 20
+   },
+   {
+    "t": "Clear",
+    "w": 32,
+    "h": 23
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "METABOLIC PEPTIDE",
+    "w": 134,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH PEPTIDE",
+    "w": 127,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH USE ONLY",
+    "w": 136,
+    "h": 15
+   }
+  ]
+ },
+ "cart-empty@m390": {
+  "title": "Cart - BiopentraDev",
+  "docH": 1991,
+  "vh": 844,
+  "viewports": 2.4,
+  "hOverflow": 0,
+  "firstH1": null,
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "782cf0a",
+    "vhx": 1.7,
+    "top": 549
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "View the step-by-step guide →",
+    "w": 207,
+    "h": 18
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "shop@m430": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 4034,
+  "vh": 932,
+  "viewports": 4.3,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Products",
+   "top": 153
+  },
+  "firstProductTop": 1065,
+  "firstProductVh": 1.14,
+  "searchTop": 963,
+  "chipsTop": 747,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 11,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 756,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128
+   },
+   {
+    "src": "lab_tested.png",
+    "nat": 293,
+    "disp": 50
+   },
+   {
+    "src": "eu_base.png",
+    "nat": 295,
+    "disp": 50
+   },
+   {
+    "src": "discrete_shipping.png",
+    "nat": 289,
+    "disp": 50
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 430,
+    "disp": 164
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 430,
+    "disp": 164
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 430,
+    "disp": 164
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 430,
+    "disp": 164
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 430,
+    "disp": 164
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 430,
+    "disp": 164
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "elementor elementor-3755 elementor-bc-flex-widget",
+    "vhx": 2.7,
+    "top": 127
+   },
+   {
+    "id": "eae00bb",
+    "vhx": 2.1,
+    "top": 699
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.5,
+    "top": 2615
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 114,
+    "h": 15
+   },
+   {
+    "t": "Gift Card",
+    "w": 51,
+    "h": 15
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 59,
+    "h": 15
+   },
+   {
+    "t": "MOTS-C",
+    "w": 49,
+    "h": 15
+   },
+   {
+    "t": "GHK-CU",
+    "w": 47,
+    "h": 15
+   },
+   {
+    "t": "Triple G",
+    "w": 44,
+    "h": 15
+   },
+   {
+    "t": "Tirzepatide",
+    "w": 64,
+    "h": 15
+   },
+   {
+    "t": "Melanotan II",
+    "w": 69,
+    "h": 15
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "TB-500",
+    "w": 41,
+    "h": 15
+   },
+   {
+    "t": "BPC-157",
+    "w": 50,
+    "h": 15
+   }
+  ]
+ },
+ "wc-cat@m430": {
+  "title": "Research Peptides for Laboratory Use | BioPentra",
+  "docH": 8221,
+  "vh": 932,
+  "viewports": 8.8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides",
+   "top": 230
+  },
+  "firstProductTop": 486,
+  "firstProductVh": 0.52,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 9,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container",
+    "vhx": 6.9,
+    "top": 377
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.5,
+    "top": 6802
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "BPC-157",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "RECOVERY SUPPORT",
+    "w": 117,
+    "h": 14
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 183,
+    "h": 20
+   },
+   {
+    "t": "GROWTH & PERFORMANCE",
+    "w": 153,
+    "h": 14
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "GHK-CU",
+    "w": 62,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "WELLNESS",
+    "w": 59,
+    "h": 14
+   }
+  ]
+ },
+ "prod-simple@m430": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 3650,
+  "vh": 932,
+  "viewports": 3.9,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Bacteriostatic Water",
+   "top": 790
+  },
+  "firstProductTop": 0,
+  "firstProductVh": 0,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 1113,
+  "galleryH": 505,
+  "productCount": 1,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.3,
+    "top": 127
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.5,
+    "top": 2231
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 119,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 137,
+    "h": 15
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   }
+  ]
+ },
+ "prod-variable@m430": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 3672,
+  "vh": 932,
+  "viewports": 3.9,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Tirzepatide",
+   "top": 790
+  },
+  "firstProductTop": 0,
+  "firstProductVh": 0,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 1268,
+  "galleryH": 505,
+  "productCount": 7,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.3,
+    "top": 127
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.5,
+    "top": 2254
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "WEIGHT MANAGEMENT",
+    "w": 131,
+    "h": 20
+   },
+   {
+    "t": "Clear",
+    "w": 32,
+    "h": 23
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "METABOLIC PEPTIDE",
+    "w": 134,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH PEPTIDE",
+    "w": 127,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH USE ONLY",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   }
+  ]
+ },
+ "cart-empty@m430": {
+  "title": "Cart - BiopentraDev",
+  "docH": 1943,
+  "vh": 932,
+  "viewports": 2.1,
+  "hOverflow": 0,
+  "firstH1": null,
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 429,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "782cf0a",
+    "vhx": 1.5,
+    "top": 524
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   },
+   {
+    "t": "@biopentra",
+    "w": 75,
+    "h": 16
+   }
+  ]
+ },
+ "shop@t768": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 2851,
+  "vh": 1024,
+  "viewports": 2.8,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Products",
+   "top": 176
+  },
+  "firstProductTop": 727,
+  "firstProductVh": 0.71,
+  "searchTop": 627,
+  "chipsTop": 521,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 11,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "lab_tested.png",
+    "nat": 293,
+    "disp": 50
+   },
+   {
+    "src": "eu_base.png",
+    "nat": 295,
+    "disp": 50
+   },
+   {
+    "src": "discrete_shipping.png",
+    "nat": 289,
+    "disp": 50
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 600,
+    "disp": 187
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 600,
+    "disp": 183
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 600,
+    "disp": 183
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 600,
+    "disp": 183
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 600,
+    "disp": 183
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 600,
+    "disp": 183
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "elementor elementor-3755 elementor-bc-flex-widget",
+    "vhx": 1.9,
+    "top": 131
+   },
+   {
+    "id": "eae00bb",
+    "vhx": 1.6,
+    "top": 461
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 136,
+    "h": 18
+   },
+   {
+    "t": "Gift Card",
+    "w": 59,
+    "h": 18
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 70,
+    "h": 18
+   },
+   {
+    "t": "MOTS-C",
+    "w": 56,
+    "h": 18
+   },
+   {
+    "t": "GHK-CU",
+    "w": 55,
+    "h": 18
+   },
+   {
+    "t": "Triple G",
+    "w": 52,
+    "h": 18
+   },
+   {
+    "t": "Tirzepatide",
+    "w": 74,
+    "h": 18
+   },
+   {
+    "t": "Melanotan II",
+    "w": 80,
+    "h": 18
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 163,
+    "h": 18
+   },
+   {
+    "t": "TB-500",
+    "w": 51,
+    "h": 18
+   },
+   {
+    "t": "BPC-157",
+    "w": 62,
+    "h": 18
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   }
+  ]
+ },
+ "wc-cat@t768": {
+  "title": "Research Peptides for Laboratory Use | BioPentra",
+  "docH": 3133,
+  "vh": 1024,
+  "viewports": 3.1,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides",
+   "top": 181
+  },
+  "firstProductTop": 797,
+  "firstProductVh": 0.78,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 9,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 129
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 129
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container",
+    "vhx": 1.6,
+    "top": 672
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "What Are Peptides?",
+    "w": 137,
+    "h": 19
+   },
+   {
+    "t": "Lyophilized Research Materials",
+    "w": 219,
+    "h": 19
+   },
+   {
+    "t": "Storage & Handling",
+    "w": 137,
+    "h": 19
+   },
+   {
+    "t": "FAQ",
+    "w": 29,
+    "h": 19
+   },
+   {
+    "t": "BPC-157",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "RECOVERY SUPPORT",
+    "w": 117,
+    "h": 14
+   },
+   {
+    "t": "CJC-1295 No DAC + IPA",
+    "w": 183,
+    "h": 20
+   },
+   {
+    "t": "GROWTH & PERFORMANCE",
+    "w": 153,
+    "h": 14
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "GHK-CU",
+    "w": 62,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   },
+   {
+    "t": "WELLNESS",
+    "w": 59,
+    "h": 14
+   }
+  ]
+ },
+ "prod-simple@t768": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 3268,
+  "vh": 1024,
+  "viewports": 3.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Bacteriostatic Water",
+   "top": 1220
+  },
+  "firstProductTop": 0,
+  "firstProductVh": 0,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 1517,
+  "galleryH": 922,
+  "productCount": 1,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 129
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 129
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.3,
+    "top": 131
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 119,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 137,
+    "h": 15
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 129,
+    "h": 16
+   }
+  ]
+ },
+ "prod-variable@t768": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 3256,
+  "vh": 1024,
+  "viewports": 3.2,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Tirzepatide",
+   "top": 1220
+  },
+  "firstProductTop": 0,
+  "firstProductVh": 0,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 1672,
+  "galleryH": 922,
+  "productCount": 7,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 129
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 129
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.3,
+    "top": 131
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "WEIGHT MANAGEMENT",
+    "w": 131,
+    "h": 20
+   },
+   {
+    "t": "Clear",
+    "w": 32,
+    "h": 23
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "WEIGHT MANAGEMENT",
+    "w": 151,
+    "h": 15
+   },
+   {
+    "t": "METABOLIC PEPTIDE",
+    "w": 134,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH PEPTIDE",
+    "w": 127,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH USE ONLY",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   }
+  ]
+ },
+ "cart-empty@t768": {
+  "title": "Cart - BiopentraDev",
+  "docH": 1271,
+  "vh": 1024,
+  "viewports": 1.2,
+  "hOverflow": 0,
+  "firstH1": null,
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 131
+   },
+   {
+    "src": "bp-e1.png",
+    "nat": 420,
+    "disp": 131
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "View the step-by-step guide →",
+    "w": 207,
+    "h": 18
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   },
+   {
+    "t": "Research Disclaimer",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Send email to Biopentra",
+    "w": 131,
+    "h": 16
+   },
+   {
+    "t": "Contact form",
+    "w": 93,
+    "h": 19
+   }
+  ]
+ },
+ "shop@d1440": {
+  "title": "Shop Research Compounds | Biopentra",
+  "docH": 2450,
+  "vh": 1000,
+  "viewports": 2.5,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Products",
+   "top": 191
+  },
+  "firstProductTop": 739,
+  "firstProductVh": 0.74,
+  "searchTop": 639,
+  "chipsTop": 588,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 11,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 648,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "lab_tested.png",
+    "nat": 293,
+    "disp": 50
+   },
+   {
+    "src": "eu_base.png",
+    "nat": 295,
+    "disp": 50
+   },
+   {
+    "src": "discrete_shipping.png",
+    "nat": 289,
+    "disp": 50
+   },
+   {
+    "src": "bac-water-600x600.webp",
+    "nat": 600,
+    "disp": 262
+   },
+   {
+    "src": "gift-card-600x600.webp",
+    "nat": 600,
+    "disp": 257
+   },
+   {
+    "src": "kisspeptin-600x600.webp",
+    "nat": 600,
+    "disp": 257
+   },
+   {
+    "src": "motsc-600x599.webp",
+    "nat": 600,
+    "disp": 257
+   },
+   {
+    "src": "ghkcu-600x600.webp",
+    "nat": 600,
+    "disp": 257
+   },
+   {
+    "src": "retatrutide-600x601.webp",
+    "nat": 600,
+    "disp": 257
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "elementor elementor-3755 elementor-bc-flex-widget",
+    "vhx": 1.7,
+    "top": 151
+   },
+   {
+    "id": "eae00bb",
+    "vhx": 1.3,
+    "top": 528
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 136,
+    "h": 18
+   },
+   {
+    "t": "Gift Card",
+    "w": 59,
+    "h": 18
+   },
+   {
+    "t": "Kisspeptin",
+    "w": 70,
+    "h": 18
+   },
+   {
+    "t": "MOTS-C",
+    "w": 56,
+    "h": 18
+   },
+   {
+    "t": "GHK-CU",
+    "w": 55,
+    "h": 18
+   },
+   {
+    "t": "Triple G",
+    "w": 52,
+    "h": 18
+   },
+   {
+    "t": "Tirzepatide",
+    "w": 74,
+    "h": 18
+   }
+  ]
+ },
+ "wc-cat@d1440": {
+  "title": "Research Peptides for Laboratory Use | BioPentra",
+  "docH": 3697,
+  "vh": 1000,
+  "viewports": 3.7,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Research Peptides",
+   "top": 201
+  },
+  "firstProductTop": 817,
+  "firstProductVh": 0.82,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 9,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container",
+    "vhx": 2.4,
+    "top": 692
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "What Are Peptides?",
+    "w": 137,
+    "h": 19
+   },
+   {
+    "t": "Lyophilized Research Materials",
+    "w": 219,
+    "h": 19
+   },
+   {
+    "t": "Storage & Handling",
+    "w": 137,
+    "h": 19
+   },
+   {
+    "t": "FAQ",
+    "w": 29,
+    "h": 19
+   },
+   {
+    "t": "BPC-157",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "RECOVERY SUPPORT",
+    "w": 117,
+    "h": 14
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 120,
+    "h": 14
+   }
+  ]
+ },
+ "prod-simple@d1440": {
+  "title": "Bacteriostatic Water - BiopentraDev",
+  "docH": 3056,
+  "vh": 1000,
+  "viewports": 3.1,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Bacteriostatic Water",
+   "top": 271
+  },
+  "firstProductTop": 1806,
+  "firstProductVh": 1.81,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 569,
+  "galleryH": 833,
+  "productCount": 1,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.3,
+    "top": 151
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 119,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 137,
+    "h": 15
+   },
+   {
+    "t": "Gift Card",
+    "w": 68,
+    "h": 20
+   },
+   {
+    "t": "RESEARCH SUPPLIES",
+    "w": 119,
+    "h": 14
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   }
+  ]
+ },
+ "prod-variable@d1440": {
+  "title": "Tirzepatide Research Peptide | Biopentra",
+  "docH": 3617,
+  "vh": 1000,
+  "viewports": 3.6,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Tirzepatide",
+   "top": 271
+  },
+  "firstProductTop": 1692,
+  "firstProductVh": 1.69,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": 723,
+  "galleryH": 833,
+  "productCount": 7,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 2.8,
+    "top": 151
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "HOME",
+    "w": 35,
+    "h": 20
+   },
+   {
+    "t": "WEIGHT MANAGEMENT",
+    "w": 131,
+    "h": 20
+   },
+   {
+    "t": "Clear",
+    "w": 32,
+    "h": 23
+   },
+   {
+    "t": "RESEARCH PEPTIDES",
+    "w": 136,
+    "h": 15
+   },
+   {
+    "t": "WEIGHT MANAGEMENT",
+    "w": 151,
+    "h": 15
+   },
+   {
+    "t": "METABOLIC PEPTIDE",
+    "w": 134,
+    "h": 15
+   },
+   {
+    "t": "RESEARCH PEPTIDE",
+    "w": 127,
+    "h": 15
+   }
+  ]
+ },
+ "cart-empty@d1440": {
+  "title": "Cart - BiopentraDev",
+  "docH": 1100,
+  "vh": 1000,
+  "viewports": 1.1,
+  "hOverflow": 0,
+  "firstH1": null,
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 654,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 588,
+    "disp": 168
+   }
+  ],
+  "tallSections": [],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Home",
+    "w": 43,
+    "h": 24
+   },
+   {
+    "t": "Shop",
+    "w": 37,
+    "h": 24
+   },
+   {
+    "t": "Information",
+    "w": 85,
+    "h": 24
+   },
+   {
+    "t": "Open Information",
+    "w": 16,
+    "h": 24
+   },
+   {
+    "t": "About Us",
+    "w": 65,
+    "h": 24
+   },
+   {
+    "t": "Contact",
+    "w": 55,
+    "h": 24
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "View the step-by-step guide →",
+    "w": 207,
+    "h": 18
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   }
+  ]
+ },
+ "cart-filled@m390": {
+  "title": "Cart - BiopentraDev",
+  "docH": 2853,
+  "vh": 844,
+  "viewports": 3.4,
+  "hOverflow": 0,
+  "firstH1": null,
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "bp-mini-cart-sticky",
+    "h": 0,
+    "pos": "sticky"
+   },
+   {
+    "cls": "cart_totals ",
+    "h": 488,
+    "pos": "sticky"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "elementor elementor-82",
+    "vhx": 1.3,
+    "top": 282
+   },
+   {
+    "id": "3fabc30e",
+    "vhx": 1.3,
+    "top": 282
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.7,
+    "top": 1411
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "View the step-by-step guide →",
+    "w": 207,
+    "h": 18
+   },
+   {
+    "t": "Bacteriostatic Water",
+    "w": 137,
+    "h": 18
+   },
+   {
+    "t": "Remove Bacteriostatic Water from ca",
+    "w": 22,
+    "h": 12
+   },
+   {
+    "t": "Calculate shipping",
+    "w": 331,
+    "h": 25
+   },
+   {
+    "t": "About Us",
+    "w": 57,
+    "h": 16
+   },
+   {
+    "t": "FAQ",
+    "w": 26,
+    "h": 16
+   },
+   {
+    "t": "Shipping Policy",
+    "w": 98,
+    "h": 16
+   },
+   {
+    "t": "Refund Policy",
+    "w": 88,
+    "h": 16
+   },
+   {
+    "t": "Contact",
+    "w": 50,
+    "h": 16
+   },
+   {
+    "t": "Terms & Conditions",
+    "w": 124,
+    "h": 16
+   },
+   {
+    "t": "Privacy Policy",
+    "w": 89,
+    "h": 16
+   },
+   {
+    "t": "Cookie Policy",
+    "w": 86,
+    "h": 16
+   }
+  ]
+ },
+ "checkout@m390": {
+  "title": "Checkout - BiopentraDev",
+  "docH": 4266,
+  "vh": 844,
+  "viewports": 5.1,
+  "hOverflow": 0,
+  "firstH1": {
+   "text": "Checkout",
+   "top": 176
+  },
+  "firstProductTop": null,
+  "firstProductVh": null,
+  "searchTop": null,
+  "chipsTop": null,
+  "addToCartTop": null,
+  "galleryH": null,
+  "productCount": 0,
+  "sticky": [
+   {
+    "cls": "cky-modal",
+    "h": 762,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__container elementor-lightbox",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "elementor-menu-cart__main bp-mini-cart--drawer",
+    "h": 0,
+    "pos": "fixed"
+   },
+   {
+    "cls": "bp-mini-cart-sticky",
+    "h": 0,
+    "pos": "sticky"
+   }
+  ],
+  "bigImgs": [
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 128
+   },
+   {
+    "src": "biopentra_logo.webp",
+    "nat": 390,
+    "disp": 168
+   }
+  ],
+  "tallSections": [
+   {
+    "id": "ct-container-full",
+    "vhx": 3.2,
+    "top": 126
+   },
+   {
+    "id": "782cf0a",
+    "vhx": 1.7,
+    "top": 2824
+   }
+  ],
+  "smallTargets": [
+   {
+    "t": "Consent Preferences",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "t": "Close",
+    "w": 24,
+    "h": 24
+   },
+   {
+    "t": "Necessary",
+    "w": 76,
+    "h": 24
+   },
+   {
+    "t": "Analytics",
+    "w": 66,
+    "h": 24
+   },
+   {
+    "t": "Marketing",
+    "w": 74,
+    "h": 24
+   },
+   {
+    "t": "Skip to content",
+    "w": 1,
+    "h": 1
+   },
+   {
+    "t": "Menu Toggle",
+    "w": 20,
+    "h": 20
+   },
+   {
+    "t": "Log in",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "t": "Select a country / region…\nAfghanis",
+    "w": 1,
+    "h": 42
+   }
+  ]
+ }
+}

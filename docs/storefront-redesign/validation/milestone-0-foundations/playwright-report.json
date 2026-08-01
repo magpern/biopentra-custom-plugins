@@ -1,0 +1,1964 @@
+{
+  "config": {
+    "configFile": "/work/playwright.config.ts",
+    "rootDir": "/work/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": "/work/global-setup.ts",
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/work/artifacts/playwright-report.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "/work/artifacts/playwright-html",
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/work/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-360",
+        "name": "mobile-360",
+        "testDir": "/work/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/work/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-390",
+        "name": "mobile-390",
+        "testDir": "/work/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/work/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-430",
+        "name": "mobile-430",
+        "testDir": "/work/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/work/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "tablet-768",
+        "name": "tablet-768",
+        "testDir": "/work/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "/work/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-1440",
+        "name": "desktop-1440",
+        "testDir": "/work/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.51.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "baseline.spec.ts",
+      "file": "baseline.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "home: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8630,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:44:15.930Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-afb94ca2fe34227561bd",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "search: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6807,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:44:25.047Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-d60a00b55644573e7f59",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "shop: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8717,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:44:31.865Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-541b183ae08980a4bb9d",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "wc-cat: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6019,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:44:40.596Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-873b73d8149a261839ff",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-metabolic: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6107,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:44:46.625Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-1121f4cf9f7b7666fc17",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-ghrp: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5734,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:44:52.746Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-aa24f96aac9c5d7b696e",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-lyo: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7502,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:44:58.487Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-ec556cc35be7ebcbe17e",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-simple: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7834,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:45:06.006Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-41dba5e1e92516374bff",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-variable: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7130,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:45:13.847Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-8b52e08a589c79a97a5b",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cart-empty: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7047,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:45:20.983Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-8f414a0157d78832ba3c",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "contact: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-360",
+              "projectName": "mobile-360",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6533,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:45:28.047Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-2f6275cb87ef4f50813b",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "home: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15207,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:45:37.001Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-147ea62d1744570309c1",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "search: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9242,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:45:54.193Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-eaa20564ffd0eedaa39d",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "shop: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11244,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:46:03.441Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-81e8a23b4899c65c3d7f",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "wc-cat: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10352,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:46:14.694Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-21de8e9be977cc3f4b8e",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-metabolic: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10948,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:46:25.055Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-f60a812d631139a35f22",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-ghrp: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8485,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:46:36.017Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-92f8f10e54fc07605a5f",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-lyo: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9519,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:46:44.516Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-c528af69b72b5bab1280",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-simple: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8874,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:46:54.050Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-03196a69eaf1e9660acc",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-variable: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8195,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:47:02.933Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-b831c3afaae38498a088",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cart-empty: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9306,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:47:11.140Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-cd1bd8079b86e9123c15",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "contact: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-390",
+              "projectName": "mobile-390",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9062,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:47:20.463Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-bacc4ac088308c9c2ad3",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "home: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9167,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:47:31.178Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-0278f62aa7130e3ac17c",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "search: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7850,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:47:40.565Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-0a6af889cf79015714d0",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "shop: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9523,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:47:48.432Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-ba65f79c8ff2ffc07db0",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "wc-cat: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9524,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:47:57.963Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-89d6ea53049c55960a6f",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-metabolic: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7766,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:48:07.495Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-954b4d7fc2076f3a5ee0",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-ghrp: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:48:15.272Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-b97c6dddf83b15bdffe5",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-lyo: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7806,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:48:22.429Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-acea1c47eeb4d25731f8",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-simple: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8514,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:48:30.253Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-1fce008ddfa4e70b2e23",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-variable: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8503,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:48:38.777Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-c3cddb66d12ebf27e681",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cart-empty: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8936,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:48:47.294Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-63c0fad291a3a824bf38",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "contact: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile-430",
+              "projectName": "mobile-430",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9285,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:48:56.237Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-0ff14046d65f06ccab84",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "home: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9748,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:49:07.448Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-a08cb57666c2ed841bed",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "search: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8365,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:49:17.482Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-e64dc4ebb32df69a98ad",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "shop: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10582,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:49:25.858Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-a389961db067fd5bfb80",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "wc-cat: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6664,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:49:36.462Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-d20030dd655539143d66",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-metabolic: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7306,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:49:43.135Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-8952aebb8956b533238a",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-ghrp: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7343,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:49:50.453Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-347ef29b3916bc6d7847",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-lyo: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10356,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:49:57.805Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-6e478e676cfcf544e1b5",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-simple: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10385,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:50:08.174Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-9464a47ffc0a77f61855",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-variable: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10678,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:50:18.581Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-c359f1101f981079fec7",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cart-empty: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7470,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:50:29.278Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-70346cde1f7df7867d42",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "contact: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "tablet-768",
+              "projectName": "tablet-768",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7888,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:50:36.757Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-dd177f31bd694b27b18c",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "home: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8661,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:50:46.492Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-0dd7cf15d968a4d870ce",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "search: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10078,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:50:55.518Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-d32facce63432b1fa4de",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "shop: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8366,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:51:05.613Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-4ceb8bcd8ee7434438a5",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "wc-cat: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8250,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:51:13.986Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-710c5dfff9e43a5833e0",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-metabolic: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8141,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:51:22.244Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-42c54586eaad1a5636d8",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-ghrp: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7491,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:51:30.411Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-330bea3786f9cdf2865b",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cat-lyo: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6724,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:51:37.914Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-a0d91872fc8435582a0e",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-simple: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7437,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:51:44.650Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-1870c1b32e5b586bb1eb",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "prod-variable: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8758,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:51:52.095Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-49e730872277239e5976",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "cart-empty: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8012,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:52:00.868Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-8ee1a2fcfc921dfba7bd",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        },
+        {
+          "title": "contact: availability, overflow, scroll budget",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-1440",
+              "projectName": "desktop-1440",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7146,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T21:52:08.892Z",
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d2923076b323a8336a93-2e81c6acf35305c2b2e8",
+          "file": "baseline.spec.ts",
+          "line": 54,
+          "column": 7
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-01T21:44:14.242Z",
+    "duration": 482065.425,
+    "expected": 55,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "search@m360": {
+    "title": "peptide - BiopentraDev",
+    "docH": 7394,
+    "vh": 800,
+    "viewports": 9.2,
+    "hOverflow": 0,
+    "firstH1": {
+      "text": "Search Results for peptide",
+      "top": 202
+    },
+    "firstProductTop": 391,
+    "firstProductVh": 0.49,
+    "searchTop": null,
+    "productCount": 9,
+    "cardRenderer": "blocksy-native",
+    "canonicalCardCount": 0,
+    "blocksyCardCount": 9
+  },
+  "search@m390": {
+    "title": "peptide - BiopentraDev",
+    "docH": 7662,
+    "vh": 844,
+    "viewports": 9.1,
+    "hOverflow": 0,
+    "firstH1": {
+      "text": "Search Results for peptide",
+      "top": 176
+    },
+    "firstProductTop": 365,
+    "firstProductVh": 0.43,
+    "searchTop": null,
+    "productCount": 9,
+    "cardRenderer": "blocksy-native",
+    "canonicalCardCount": 0,
+    "blocksyCardCount": 9
+  },
+  "search@m430": {
+    "title": "peptide - BiopentraDev",
+    "docH": 8017,
+    "vh": 932,
+    "viewports": 8.6,
+    "hOverflow": 0,
+    "firstH1": {
+      "text": "Search Results for peptide",
+      "top": 177
+    },
+    "firstProductTop": 321,
+    "firstProductVh": 0.34,
+    "searchTop": null,
+    "productCount": 9,
+    "cardRenderer": "blocksy-native",
+    "canonicalCardCount": 0,
+    "blocksyCardCount": 9
+  },
+  "search@t768": {
+    "title": "peptide - BiopentraDev",
+    "docH": 2677,
+    "vh": 1024,
+    "viewports": 2.6,
+    "hOverflow": 0,
+    "firstH1": {
+      "text": "Search Results for peptide",
+      "top": 191
+    },
+    "firstProductTop": 341,
+    "firstProductVh": 0.33,
+    "searchTop": null,
+    "productCount": 9,
+    "cardRenderer": "blocksy-native",
+    "canonicalCardCount": 0,
+    "blocksyCardCount": 9
+  },
+  "search@d1440": {
+    "title": "peptide - BiopentraDev",
+    "docH": 3241,
+    "vh": 1000,
+    "viewports": 3.2,
+    "hOverflow": 0,
+    "firstH1": {
+      "text": "Search Results for peptide",
+      "top": 211
+    },
+    "firstProductTop": 361,
+    "firstProductVh": 0.36,
+    "searchTop": null,
+    "productCount": 9,
+    "cardRenderer": "blocksy-native",
+    "canonicalCardCount": 0,
+    "blocksyCardCount": 9
+  }
+}

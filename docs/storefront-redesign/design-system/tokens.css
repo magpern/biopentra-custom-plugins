@@ -1,0 +1,108 @@
+/**
+ * Biopentra Storefront Design System — CSS custom properties.
+ *
+ * Spec: docs/storefront-redesign/design-system/README.md
+ * Production enqueue (planned): biopentra-storefront/assets/css/bp-tokens.css
+ *
+ * Milestone 0.2: spec only — not enqueued on the site yet.
+ */
+
+:root {
+  /* ── Spacing (4px base) ── */
+  --bp-space-1: 0.25rem;  /* 4px */
+  --bp-space-2: 0.5rem;   /* 8px */
+  --bp-space-3: 0.75rem;  /* 12px */
+  --bp-space-4: 1rem;     /* 16px */
+  --bp-space-5: 1.5rem;   /* 24px */
+  --bp-space-6: 2rem;     /* 32px */
+  --bp-space-7: 3rem;   /* 48px */
+  --bp-space-8: 4rem;     /* 64px */
+
+  /* ── Breakpoints (for reference in @media; also used in JS) ── */
+  --bp-bp-sm: 480px;
+  --bp-bp-md: 768px;
+  --bp-bp-lg: 1024px;
+
+  /* ── Typography — mobile-first defaults ── */
+  --bp-text-h1-size: 1.75rem;      /* 28px */
+  --bp-text-h1-line: 1.2;
+  --bp-text-h1-weight: 700;
+
+  --bp-text-h2-size: 1.375rem;    /* 22px */
+  --bp-text-h2-line: 1.25;
+  --bp-text-h2-weight: 600;
+
+  --bp-text-body-size: 1rem;      /* 16px */
+  --bp-text-body-line: 1.5;
+  --bp-text-body-weight: 400;
+
+  --bp-text-price-size: 1.125rem;  /* 18px */
+  --bp-text-price-line: 1.2;
+  --bp-text-price-weight: 600;
+
+  --bp-text-meta-size: 0.8125rem; /* 13px */
+  --bp-text-meta-line: 1.4;
+  --bp-text-meta-weight: 400;
+
+  --bp-text-label-size: 0.875rem; /* 14px */
+  --bp-text-label-line: 1.2;
+  --bp-text-label-weight: 500;
+
+  /* ── Colors (functional — brand colors inherit from theme) ── */
+  --bp-color-primary: var(--theme-palette-color-1, #0066cc);
+  --bp-color-text: var(--theme-text-color, #1a1a1a);
+  --bp-color-text-muted: #666;
+  --bp-color-surface: #fff;
+  --bp-color-border: rgba(0, 0, 0, 0.08);
+
+  /* ── Border radius ── */
+  --bp-radius-sm: 4px;
+  --bp-radius-button: 8px;
+  --bp-radius-card: 12px;
+  --bp-radius-chip: 9999px;
+  --bp-radius-modal: 16px;
+
+  /* ── Shadows ── */
+  --bp-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --bp-shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --bp-shadow-none: none;
+
+  /* ── Cards ── */
+  --bp-card-image-ratio: 1 / 1;
+  --bp-card-image-max-h: 160px;
+
+  /* ── Hero / section caps (mobile) ── */
+  --bp-hero-max-height-mobile: 40vh;
+  --bp-hero-max-height-desktop: 480px;
+
+  /* ── Touch ── */
+  --bp-touch-min: 44px;
+
+  /* ── Z-index ── */
+  --bp-z-sticky-bar: 100;
+  --bp-z-header: 200;
+  --bp-z-cookie: 300;
+  --bp-z-overlay: 400;
+
+  /* ── Section gaps ── */
+  --bp-gap-commercial: var(--bp-space-4);
+  --bp-gap-editorial: var(--bp-space-7);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --bp-text-h1-size: 2rem;       /* 32px */
+    --bp-text-h2-size: 1.5rem;     /* 24px */
+    --bp-text-price-size: 1.25rem; /* 20px */
+    --bp-gap-commercial: var(--bp-space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --bp-text-h1-size: 2.25rem;    /* 36px */
+    --bp-text-h2-size: 1.75rem;    /* 28px */
+    --bp-text-body-size: 1.0625rem; /* 17px */
+    --bp-gap-editorial: var(--bp-space-8);
+  }
+}
