@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.5.17
+Stable tag: 0.5.21
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,23 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.5.21 =
+* Housekeeping: synced this file's Stable tag with the actual plugin version (previously stuck at 0.5.17 while the plugin header/const had already moved to 0.5.20). Backfilled the missing 0.5.18–0.5.20 changelog entries below. No functional change.
+
+= 0.5.20 =
+* Crypto payment guide: cart informational banner and compact checkout link to /how-to-pay-with-crypto/ (`biopentra_crypto_guide_enabled`, optional `biopentra_crypto_guide_page_id`).
+* Content bundle for reproducible Elementor import of the crypto payment guide page.
+* Mega-menu CLI: `BIOPENTRA_MEGA_CRYPTO_GUIDE_LINK=1` appends a Learn-column link idempotently.
+* Checkout pause banner: extended default info-banner copy with card-to-crypto settlement guidance.
+
+= 0.5.19 =
+* Checkout pause module recovered into git (was previously filesystem-only on production): outage mode that disables gateways and shows a storefront banner.
+* Info banner mode (`biopentra_checkout_banner` / `biopentra_checkout_banner_message`) for a site/cart/checkout notice without disabling gateways.
+* Card gateway title rewrite: "Card to USDC via {Provider}" → "Card to crypto via {Provider} (4% fee)"; BTCPay unchanged.
+
+= 0.5.18 =
+* Fixed duplicate FAQPage structured data on the FAQ page by consolidating Elementor accordion Q&A into a single JSON-LD node; strips per-widget Elementor FAQ JSON-LD on that page.
 
 = 0.5.17 =
 * Mini-cart: restore WooCommerce widget cart total/buttons hooks and current remove-link attributes while preserving the custom drawer layout (header-auth module 1.5.18).

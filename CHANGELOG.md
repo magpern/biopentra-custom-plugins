@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.5.21] — 2026-08-01
+
+### Fixed
+
+- **`readme.txt` Stable tag drift:** the field was stuck at `0.5.17` while the plugin header/`BIOPENTRA_STOREFRONT_VERSION` constant had already moved to `0.5.20`. Synced `Stable tag` to `0.5.21` and backfilled the missing 0.5.18–0.5.20 entries in `readme.txt`'s own `== Changelog ==` section. No functional change; part of Phase 0 (Foundations) of the mobile-first storefront redesign — see `/opt/biopentra/docs/storefront-redesign/`.
+
+**Git tag:** `storefront-v0.5.21` (not yet tagged/pushed — pending product-owner approval)
+
+---
+
 ## [0.5.20] — 2026-07-25
 
 ### Added
