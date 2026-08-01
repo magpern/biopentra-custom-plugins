@@ -125,6 +125,6 @@ Remove scaffold files; revert Playwright config to previous commit in `storefron
 | Repo | Commit | Branch |
 |---|---|---|
 | `storefront-acceptance` | `bd40c82` | main |
-| `biopentra-custom-plugins` | _(see docs commit below)_ | main |
+| `biopentra-custom-plugins` | `3892bdd` | main |
 
 Git mirror: `biopentra-custom-plugins/docs/storefront-redesign/` (canonical VPS path: `/opt/biopentra/docs/storefront-redesign/`).
