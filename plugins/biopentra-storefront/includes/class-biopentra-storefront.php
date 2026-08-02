@@ -111,5 +111,15 @@ class Biopentra_Storefront {
 		if ( is_readable( $home_v2_assets ) ) {
 			require_once $home_v2_assets;
 		}
+
+		$shopping_v2_helpers = BIOPENTRA_STOREFRONT_PATH . 'includes/shopping-v2-helpers.php';
+		if ( is_readable( $shopping_v2_helpers ) ) {
+			require_once $shopping_v2_helpers;
+		}
+
+		$shopping_v2_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/shopping-v2-assets.php';
+		if ( is_readable( $shopping_v2_assets ) ) {
+			require_once $shopping_v2_assets;
+		}
 	}
 }

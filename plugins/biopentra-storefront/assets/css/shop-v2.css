@@ -1,0 +1,83 @@
+/**
+ * Milestone B — commercial shop page layout overrides.
+ */
+
+body.bp-shop-v2 .bp-shop-hero {
+	min-height: 0 !important;
+}
+
+body.bp-shop-v2 .bp-shop-hero > .e-con-inner {
+	padding-top: 16px !important;
+	padding-bottom: 12px !important;
+	padding-left: 16px !important;
+	padding-right: 16px !important;
+	min-height: 0 !important;
+	max-height: 24vh;
+}
+
+@media (max-width: 767px) {
+	body.bp-shop-v2 .bp-shop-hero > .e-con-inner {
+		max-height: 20vh;
+		overflow: hidden;
+	}
+
+	body.bp-shop-v2 .bp-shop-hero .bp-shop-trust-row,
+	body.bp-shop-v2 .bp-shop-hero .elementor-widget-text-editor {
+		display: none;
+	}
+
+	body.bp-shop-v2 .bp-shop-products-section .elementor-widget-taxonomy-filter {
+		display: none !important;
+	}
+}
+
+.bp-shop-search-section .bp-shop-search__input,
+.bp-shop-search-section .biopentra-shop-search input[type="search"] {
+	width: 100%;
+	min-height: 48px;
+	font-size: 1rem;
+	padding: 12px 16px;
+	border-radius: 8px;
+}
+
+.bp-shop-cats-section {
+	padding-top: 0 !important;
+	padding-bottom: 8px !important;
+}
+
+.bp-shop-cats-section .bp-home-cats__scroll {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 8px;
+	overflow-x: auto;
+	padding: 4px 0 8px;
+}
+
+.bp-shop-cats-section .bp-home-cat-chip {
+	min-height: 44px;
+}
+
+body.bp-shop-v2 .bp-shop-products-section {
+	margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+	body.bp-shop-v2 .bp-shop-products-section {
+		margin-top: -20px;
+	}
+}
+
+body.bp-shop-v2 .bp-shop-products-section .elementor-widget-taxonomy-filter {
+	margin-bottom: 12px;
+}
+
+body.bp-shop-v2 .mp-category-description {
+	margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+	.bp-shop-cats-section .bp-home-cats__scroll {
+		flex-wrap: wrap;
+		overflow-x: visible;
+	}
+}
