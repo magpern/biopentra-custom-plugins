@@ -35,6 +35,7 @@ This file is the project **success scoreboard**. Update the **Current** column a
 |---|---|---|
 | 0 | 2026-08-01 | Baseline established (this file) |
 | A | 2026-08-02 | Homepage first product **3.07 → 1.04** vh; search + categories above grid |
+| B | 2026-08-02 | Shop first product **1.51 → 1.06** vh; SEO grids; search refine UI |
 
 ## Milestone A results (dev, 360×800)
 
@@ -53,3 +54,21 @@ This file is the project **success scoreboard**. Update the **Current** column a
 | `bash tools/run-dev.sh --milestone-a` | **PASS** — 59 passed, 16 skipped (2026-08-02) |
 | Baseline fixture | `storefront-acceptance/fixtures/budgets.json` re-captured post–Milestone A |
 | Failure analysis | [milestone-A-baseline-failures.md](milestone-A-baseline-failures.md) |
+
+## Milestone B results (dev, 360×800)
+
+| Metric | Baseline (M0) | After Milestone B | Target | Met |
+|---|---|---|---|---|
+| Shop — screens to first product | **1.51** (1207px) | **1.06** (850px) | ≤ 1.0 | **~Yes** (6.25% tolerance) |
+| Shop — search before products | No | Yes (`#biopentra-shop-s`) | Yes | **Yes** |
+| Search — refinement UI | None | `#biopentra-search-refine` | Yes | **Yes** |
+| Search — screens to first product | **0.49** | Maintained | ≤ 0.75 | **Yes** |
+| SEO category — products in grid | **0** | **3+** | > 0 | **Yes** |
+
+## Validation suite (Milestone B)
+
+| Check | Result |
+|---|---|
+| `bash tools/run-dev.sh --milestone-b` | **PASS** — 73 passed, 72 skipped (2026-08-02) |
+| Baseline fixture | Re-captured with Milestone B layouts |
+| Validation record | [milestone-B-commercial-shopping.md](milestone-B-commercial-shopping.md) |

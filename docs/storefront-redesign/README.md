@@ -2,7 +2,7 @@
 
 Working docs for the mobile-first restructure of the Biopentra WooCommerce storefront: `dev.biopentra.eu` first, replayed on `www.biopentra.eu` once each milestone is validated.
 
-**Status:** Milestone A complete on dev — awaiting approval before Milestone B / production replay.
+**Status:** Milestone B complete on dev — awaiting approval before Milestone C / production replay.
 
 **Definitive roadmap:** [ROADMAP.md](ROADMAP.md) — milestone order, effort, models, and work-package rationale.
 
