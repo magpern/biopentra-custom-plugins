@@ -110,5 +110,5 @@ See [../deployment/milestone-A-home.md](../deployment/milestone-A-home.md)
 |---|---|---|
 | `biopentra-custom-plugins` | `ffe7de7` | main |
 | `biopentra-custom-plugins` | `82c0a57` | main (docs + after screenshot) |
-| `storefront-acceptance` | _(pending — baseline cleanup)_ | main |
+| `storefront-acceptance` | `b45f0d4` | main |
 | `biopentra-loop-card` | `f48234a` | main |
