@@ -305,6 +305,27 @@ Addresses original business requirement: **oversized imagery**.
 
 **Depends on:** Milestone C (canonical cards on related/upsell); SDS z-index stack from milestone E planning
 
+### D3 — SEO category grid metadata migration (required before production replay)
+
+**Goal:** Replace curated PHP product slug lists with page-owned metadata.
+
+**Prerequisite:** Must be **complete before Milestone B production replay**. If a **fourth SEO guide page** is added before Milestone D ships, run this migration **first** (do not add another hardcoded PHP list).
+
+| Deliverable | Detail |
+|---|---|
+| Post meta | `_bp_seo_grid_products` — ordered product slugs; `_bp_seo_archive_term` — optional WC archive term slug |
+| Migration CLI | One-time idempotent WP-CLI script copies current config → page meta on 4430–4432 |
+| Runtime filter | Read page meta first; current `biopentra_storefront_seo_category_configs()` remains **deprecated fallback for one release** |
+| Validation | Warn (admin notice or CLI) on missing/invalid product slugs |
+| Cleanup | Remove hardcoded product inventory from plugin PHP after fallback period |
+| Out of scope | Editor UI (ACF/custom fields) unless explicitly approved |
+
+**Target files:** `includes/shopping-v2-helpers.php`, new `scripts/migrate-seo-grid-meta-cli.php`
+
+**Effort:** ~1 day · **Model:** Composer
+
+**Depends on:** Milestone B (grids exist); independent of D1 image system
+
 ---
 
 ## Milestone E — Mobile Polish

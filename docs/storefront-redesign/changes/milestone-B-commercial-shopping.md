@@ -1,6 +1,6 @@
 # Milestone B — Commercial Shopping Experience
 
-**Status:** Complete on dev — pending approval  
+**Status:** Approved — tagged `storefront-v0.7.0` / loop-card `v1.5.0`  
 **Date:** 2026-08-02  
 **Version:** `biopentra-storefront` **0.7.0**, `biopentra-loop-card` **1.5.0**
 
@@ -85,15 +85,29 @@ docker compose run --rm -T wpcli wp cache flush
 
 Search results continue to use **Blocksy native** `ul.products li.product` cards. Canonical Elementor loop template **3608** migration is **Milestone C** scope.
 
+## Technical debt — SEO category product selection
+
+**Decision (accepted 2026-08-02):** SEO guide grids use **curated product slug lists** in `shopping-v2-helpers.php` (`biopentra_storefront_seo_category_configs()`). This is intentional for Milestone B; it is **not** the long-term architecture.
+
+| Item | Detail |
+|---|---|
+| **Why PHP lists now** | Editorial guide pages are not 1:1 with WooCommerce categories; grids must match curated “Commonly researched compounds,” not full taxonomy archives |
+| **Temporary?** | Yes — slug lists remain in plugin PHP until Milestone D migration |
+| **Removal condition** | Migration **must complete before production replay** of Milestone B. If a **fourth SEO guide page** is added before Milestone D, perform the migration **first** |
+| **Target end state (Milestone D)** | Page-owned post meta: `_bp_seo_grid_products` (ordered slugs), `_bp_seo_archive_term` (optional WC term slug); idempotent migration CLI; runtime filter reads meta first; PHP config deprecated fallback for one release; validation warns on missing/invalid slugs; hardcoded inventory removed after fallback period; editor UI out of scope unless approved |
+
+See [ROADMAP.md](../ROADMAP.md) § Milestone D — D3 SEO grid metadata migration.
+
 ## Commit hashes
 
-| Repo | Commit | Branch |
+| Repo | Commit | Notes |
 |---|---|---|
-| `biopentra-custom-plugins` | `64e449d` | shop v2 CLI + styles |
-| `biopentra-custom-plugins` | `2a6e136` | search + SEO category CLIs |
-| `biopentra-custom-plugins` | `df1b4b2` | docs + screenshots |
+| `biopentra-custom-plugins` | `64e449d` | Shop v2 CLI + styles |
+| `biopentra-custom-plugins` | `2a6e136` | Search + SEO category CLIs |
+| `biopentra-custom-plugins` | `df1b4b2` | Docs + screenshots |
+| `biopentra-custom-plugins` | `eca290b` | Commit refs |
 | `storefront-acceptance` | `fb80b84` | shop-ia + baselines |
-| `biopentra-loop-card` | `c0cac58` | category copy + live search |
+| `biopentra-loop-card` | `c0cac58` | Category copy + live search |
 
 ## Production replay
 
