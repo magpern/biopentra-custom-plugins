@@ -106,6 +106,9 @@ See [../deployment/milestone-A-home.md](../deployment/milestone-A-home.md)
 
 ## Commit hashes
 
+| Repo | Commit | Branch |
+|---|---|---|
 | `biopentra-custom-plugins` | `ffe7de7` | main |
-| `storefront-acceptance` | `a278f2c` | main |
+| `biopentra-custom-plugins` | `82c0a57` | main (docs + after screenshot) |
+| `storefront-acceptance` | _(pending — baseline cleanup)_ | main |
 | `biopentra-loop-card` | `f48234a` | main |

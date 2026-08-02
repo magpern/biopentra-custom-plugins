@@ -45,3 +45,11 @@ This file is the project **success scoreboard**. Update the **Current** column a
 | Primary search on homepage | Not present | `#biopentra-shop-s` above product grid | Prominent, above products | **Yes** |
 | Category shortcuts on homepage | Not present | 6 chip links above product grid | Before editorial | **Yes** |
 | Editorial (`why4444`) vs first product | Above products | Below featured grid | Below products | **Yes** |
+
+## Validation suite (Milestone A baseline)
+
+| Check | Result |
+|---|---|
+| `bash tools/run-dev.sh --milestone-a` | **PASS** — 59 passed, 16 skipped (2026-08-02) |
+| Baseline fixture | `storefront-acceptance/fixtures/budgets.json` re-captured post–Milestone A |
+| Failure analysis | [milestone-A-baseline-failures.md](milestone-A-baseline-failures.md) |
