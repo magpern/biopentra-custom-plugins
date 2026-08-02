@@ -87,7 +87,13 @@ Search results continue to use **Blocksy native** `ul.products li.product` cards
 
 ## Commit hashes
 
-_(Filled after commits)_
+| Repo | Commit | Branch |
+|---|---|---|
+| `biopentra-custom-plugins` | `64e449d` | shop v2 CLI + styles |
+| `biopentra-custom-plugins` | `2a6e136` | search + SEO category CLIs |
+| `biopentra-custom-plugins` | `df1b4b2` | docs + screenshots |
+| `storefront-acceptance` | `fb80b84` | shop-ia + baselines |
+| `biopentra-loop-card` | `c0cac58` | category copy + live search |
 
 ## Production replay
 
