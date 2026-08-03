@@ -87,16 +87,15 @@ Search results continue to use **Blocksy native** `ul.products li.product` cards
 
 ## Technical debt — SEO category product selection
 
-**Decision (accepted 2026-08-02):** SEO guide grids use **curated product slug lists** in `shopping-v2-helpers.php` (`biopentra_storefront_seo_category_configs()`). This is intentional for Milestone B; it is **not** the long-term architecture.
+**Decision (accepted 2026-08-02):** SEO guide grids used **curated product slug lists** in `shopping-v2-helpers.php` for Milestone B.
+
+**Status (2026-08-03):** **CLOSED by Milestone D3** — see [milestone-D3-seo-content-ownership.md](milestone-D3-seo-content-ownership.md). Page meta `_bp_seo_grid_products` / `_bp_seo_archive_term` is the source of truth. Deprecated PHP fallback (`biopentra_storefront_seo_category_legacy_inventory()`) remains for one release only.
 
 | Item | Detail |
 |---|---|
-| **Why PHP lists now** | Editorial guide pages are not 1:1 with WooCommerce categories; grids must match curated “Commonly researched compounds,” not full taxonomy archives |
-| **Temporary?** | Yes — slug lists remain in plugin PHP until Milestone D migration |
-| **Removal condition** | Migration **must complete before production replay** of Milestone B. If a **fourth SEO guide page** is added before Milestone D, perform the migration **first** |
-| **Target end state (Milestone D)** | Page-owned post meta: `_bp_seo_grid_products` (ordered slugs), `_bp_seo_archive_term` (optional WC term slug); idempotent migration CLI; runtime filter reads meta first; PHP config deprecated fallback for one release; validation warns on missing/invalid slugs; hardcoded inventory removed after fallback period; editor UI out of scope unless approved |
-
-See [ROADMAP.md](../ROADMAP.md) § Milestone D — D3 SEO grid metadata migration.
+| **Why PHP lists then** | Editorial guide pages are not 1:1 with WooCommerce categories |
+| **Target end state** | Achieved in D3 — page-owned meta + migrate/validate/rollback CLIs |
+| **Remaining** | Remove `biopentra_storefront_seo_category_legacy_inventory()` after storefront 0.8.0 landing period |
 
 ## Commit hashes
 

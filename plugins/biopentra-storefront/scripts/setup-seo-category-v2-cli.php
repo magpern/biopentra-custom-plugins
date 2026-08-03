@@ -59,6 +59,9 @@ function biopentra_seo_category_v2_shortcode_widget( $shortcode, $widget_id ) {
 }
 
 $configs = biopentra_storefront_seo_category_configs();
+$legacy  = function_exists( 'biopentra_storefront_seo_category_legacy_inventory' )
+	? biopentra_storefront_seo_category_legacy_inventory()
+	: array();
 
 foreach ( $configs as $slug => $config ) {
 	$page = get_page_by_path( $slug, OBJECT, 'page' );
@@ -74,6 +77,26 @@ foreach ( $configs as $slug => $config ) {
 	if ( ! is_array( $data ) || empty( $data[0]['elements'] ) ) {
 		echo "ERROR: Unexpected Elementor data on page {$page_id} ({$slug}).\n";
 		continue;
+	}
+
+	// Ensure page-owned inventory exists (D3); seed from legacy when missing.
+	$existing_prods = biopentra_storefront_normalize_seo_grid_products(
+		get_post_meta( $page_id, BIOPENTRA_SEO_GRID_PRODUCTS_META, true )
+	);
+	$existing_term = sanitize_title( (string) get_post_meta( $page_id, BIOPENTRA_SEO_ARCHIVE_TERM_META, true ) );
+	if ( empty( $existing_prods ) && ! empty( $legacy[ $slug ]['product_slugs'] ) ) {
+		update_post_meta(
+			$page_id,
+			BIOPENTRA_SEO_GRID_PRODUCTS_META,
+			array_map( 'sanitize_title', $legacy[ $slug ]['product_slugs'] )
+		);
+	}
+	if ( '' === $existing_term && ! empty( $legacy[ $slug ]['wc_archive'] ) ) {
+		update_post_meta(
+			$page_id,
+			BIOPENTRA_SEO_ARCHIVE_TERM_META,
+			sanitize_title( (string) $legacy[ $slug ]['wc_archive'] )
+		);
 	}
 
 	$root = &$data[0];
@@ -116,7 +139,8 @@ foreach ( $configs as $slug => $config ) {
 		}
 	}
 
-	$archive_shortcode = sprintf( '[biopentra_wc_archive_link slug="%s"]', esc_attr( $config['wc_archive'] ) );
+	// Archive term comes from page meta at render time; shortcode needs no slug attr.
+	$archive_shortcode = '[biopentra_wc_archive_link]';
 
 	$search_section = array(
 		'id'       => 'b2sr' . substr( md5( $slug ), 0, 4 ),
