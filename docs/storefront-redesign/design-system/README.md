@@ -20,6 +20,7 @@ Lightweight working standards for the Biopentra mobile-first storefront redesign
 | [component-principles.md](component-principles.md) | High-level component rules |
 | [tokens.css](tokens.css) | CSS custom properties (canonical when enqueued) |
 | [image-guidelines.md](image-guidelines.md) | Hero, card, PDP image discipline |
+| [canonical-product-card-architecture.md](canonical-product-card-architecture.md) | One renderer + adapters (Milestone C) |
 
 ## Spacing scale
 
