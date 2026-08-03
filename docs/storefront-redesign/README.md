@@ -2,7 +2,7 @@
 
 Working docs for the mobile-first restructure of the Biopentra WooCommerce storefront: `dev.biopentra.eu` first, replayed on `www.biopentra.eu` once each milestone is validated.
 
-**Status:** Milestone C COMPLETE — tagged `biopentra-loop-card` `v1.6.0`. Next: Milestone D (not started). No production replay.
+**Status:** Milestone C COMPLETE — tagged `biopentra-loop-card` `v1.6.0`. Milestone D **FROZEN** ([plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md)) — awaiting execution approval. No production replay.
 
 **Definitive roadmap:** [ROADMAP.md](ROADMAP.md) — milestone order, effort, models, and work-package rationale.
 
@@ -22,7 +22,7 @@ The storefront reads as scientific/editorial rather than commercial on mobile: h
 | **A** Commercial Homepage | Flagship `/` — search, category shortcuts, products within ~1 viewport | `biopentra-storefront` v0.6.0 |
 | **B** Commercial Shopping Experience | Shop reorder, search results, SEO category grids | `biopentra-loop-card` v1.5.0–v1.7.0 |
 | **C** Canonical Product Components | One card (3608) on **all** surfaces including related/upsell/cross-sell | `biopentra-loop-card` |
-| **D** Product Detail + Image System | Sticky purchase bar, gallery, price, stock, image discipline | `biopentra-blocksy-child` + `biopentra-storefront` |
+| **D** Product Detail + Image System + SEO Content Ownership | Sticky purchase, gallery, SDS images; page-owned SEO grids (**D3 hard production gate**) | [plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md) **FROZEN** |
 | **E** Mobile Polish | Touch targets, cookie/currency placement, header/footer | `biopentra-storefront` v0.7.0 |
 | **F** Production Deployment | Replay all deployment records on production | ops |
 

@@ -250,70 +250,56 @@ Adapters → biopentra_loop_card_render_product_card() → Elementor template 36
 
 ---
 
-## Milestone D — Product Detail Experience + Image System
+## Milestone D — Product Detail Experience + Image System + SEO Content Ownership
 
-**Goal:** PDP optimized for mobile purchase decisions; image discipline site-wide.
+**Status:** **FROZEN** — definitive specification: [plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md)  
+**Do not implement** until explicit execution approval of the frozen plan.  
+**Goal:** PDP optimized for mobile purchase; image discipline site-wide; SEO guide content ownership on pages (not plugin PHP).
 
-Split into two work packages that ship together but document separately.
+### Milestone invariants
 
-### D1 — Image system (dedicated work package)
+1. **Production gate (hard):** No production replay of Milestones **B**, **C**, or **D** until **D3 SEO Content Ownership** completes successfully.
+2. **Test policy:** Targeted Playwright during implementation; full `--milestone-d` **exactly once** before tag.
+3. **D2** stays one milestone package; implement internally as **D2A** then **D2B**.
 
-Addresses original business requirement: **oversized imagery**.
+### Implementation order
 
-| Area | Current (audit) | Standard (SDS) |
-|---|---|---|
-| Home hero | Tall sections 7.5vh+ | Mobile cap ~40vh; desktop separate asset optional |
-| Shop hero | ~2.6vh section before grid | Compact intro band |
-| Trust icon row | 50px icons in tall row | Inline compact strip or move below grid |
-| Card image height | ~129–160px display from 600px source | SDS `--bp-card-image-ratio`; review `sizes` |
-| PDP gallery | Sticky, tall on mobile | Max height mobile; swipe-friendly |
-| Section spacing | `why4444` 926px, FAQ 875px | SDS section gaps; accordion collapse |
-| Lazy loading | WP defaults | No lazy on LCP/first row; lazy below fold |
-| srcset | 600×600 WebP | Audit `sizes` per breakpoint in change record |
+**D3 → D1 → D2A → D2B → `--milestone-d` once → tags**
 
-**Deliverables:** `design-system/image-guidelines.md` (updated), `bp-tokens.css`, Elementor/home/shop/PDP CSS changes, Playwright image budget checks.
+### D3 — SEO Content Ownership
 
-**Effort:** ~3–4 days (cross-cutting; starts in A/B, finalized in D) · **Model:** Composer
-
-### D2 — Product page commerce
-
-| Feature | Detail |
-|---|---|
-| Sticky purchase bar | Price + variation + add-to-cart; mobile only; z-index per SDS |
-| Compact gallery | Cap height; maintain zoom/accessibility |
-| Price prominence | SDS typography token `--bp-price-*` |
-| Stock visibility | Integrate [product-stock-display](../../dev/biopentra-custom-plugins/plugins/biopentra-storefront/modules/product-stock-display/) |
-| Mobile spacing | Reduce meta clutter above fold |
-| Related / upsell | Canonical cards from milestone C |
-
-**Constraint:** Do not alter checkout logic, gateways, or cart AJAX.
-
-**Repos / versions:** `biopentra-blocksy-child` v1.1.0; `biopentra-storefront` v0.8.0
-
-**Effort:** ~4–6 days · **Model:** **Opus** (sticky bar + Blocksy + variation selector interaction)
-
-**Depends on:** Milestone C (canonical cards on related/upsell); SDS z-index stack from milestone E planning
-
-### D3 — SEO category grid metadata migration (required before production replay)
-
-**Goal:** Replace curated PHP product slug lists with page-owned metadata.
-
-**Prerequisite:** Must be **complete before Milestone B production replay**. If a **fourth SEO guide page** is added before Milestone D ships, run this migration **first** (do not add another hardcoded PHP list).
+**Goal:** Move curated SEO guide product/content ownership from plugin PHP to page-owned data (`_bp_seo_grid_products`, `_bp_seo_archive_term`).
 
 | Deliverable | Detail |
 |---|---|
-| Post meta | `_bp_seo_grid_products` — ordered product slugs; `_bp_seo_archive_term` — optional WC archive term slug |
-| Migration CLI | One-time idempotent WP-CLI script copies current config → page meta on 4430–4432 |
-| Runtime filter | Read page meta first; current `biopentra_storefront_seo_category_configs()` remains **deprecated fallback for one release** |
-| Validation | Warn (admin notice or CLI) on missing/invalid product slugs |
-| Cleanup | Remove hardcoded product inventory from plugin PHP after fallback period |
-| Out of scope | Editor UI (ACF/custom fields) unless explicitly approved |
+| Post meta | Ordered product slugs + optional WC archive term |
+| Migration CLI | Idempotent copy from current PHP configs → page meta |
+| Runtime | Meta first; brief deprecated PHP fallback during landing |
+| Cleanup | Remove hardcoded product inventories from PHP before D tag |
+| Out of scope | ACF/editor UI |
 
-**Target files:** `includes/shopping-v2-helpers.php`, new `scripts/migrate-seo-grid-meta-cli.php`
+**Effort:** ~1–1.5 days · **Model:** Composer  
+**Hard gate for:** production replay of B, C, and D
 
-**Effort:** ~1 day · **Model:** Composer
+### D1 — Image system
 
-**Depends on:** Milestone B (grids exist); independent of D1 image system
+Addresses oversized imagery (heroes, cards, PDP gallery, `sizes`/LCP/lazy, ship `bp-tokens.css`).
+
+**Effort:** ~3–4 days · **Model:** Composer
+
+### D2 — Product page commerce (D2A + D2B)
+
+**D2A — Product Detail Layout:** gallery, images, price, stock, trust, disclaimer, related, upsells, responsive layout (~2–3 days, Composer).
+
+**D2B — Sticky Purchase Experience:** sticky bar, variation/ATC sync, IntersectionObserver, a11y, safe-area, keyboard (~2–3.5 days; Opus for sync).
+
+**Constraint:** Do not alter checkout logic, gateways, or cart AJAX.
+
+**Repos / versions:** `biopentra-blocksy-child` **1.1.0**; `biopentra-storefront` **0.8.0**
+
+**Depends on:** Milestone C (canonical related/upsell cards); D1 tokens for z-index/gallery caps
+
+**Total Milestone D effort:** ~9–14 days
 
 ---
 
