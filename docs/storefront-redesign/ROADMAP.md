@@ -252,8 +252,8 @@ Adapters → biopentra_loop_card_render_product_card() → Elementor template 36
 
 ## Milestone D — Product Detail Experience + Image System + SEO Content Ownership
 
-**Status:** **FROZEN** — definitive specification: [plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md)  
-**Do not implement** until explicit execution approval of the frozen plan.  
+**Status:** **COMPLETE on dev** — awaiting tag/approval. Spec: [plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md)  
+**Implemented:** D3 → D1 → D2A → D2B (2026-08-03).  
 **Goal:** PDP optimized for mobile purchase; image discipline site-wide; SEO guide content ownership on pages (not plugin PHP).
 
 ### Milestone invariants

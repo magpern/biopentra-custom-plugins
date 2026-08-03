@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.7.0
+Stable tag: 0.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,11 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.8.0 =
+* Milestone D — SEO content ownership (page meta + migrate/validate/rollback CLIs).
+* SDS tokens (`bp-tokens.css`) enqueued globally; commercial hero image caps.
+* Requires `biopentra-loop-card` 1.6.1+ (card sizes/LCP) and child theme 1.1.0+ (PDP).
 
 = 0.7.0 =
 * Milestone B — commercial shopping: `setup-shop-page-v2-cli.php` (shop IA), `setup-seo-category-v2-cli.php` (SEO category grids).
