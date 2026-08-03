@@ -35,8 +35,14 @@ tools/run-dev.sh --milestone-d
 | Field | Value |
 |---|---|
 | Date | 2026-08-03 |
-| Exit code | *(filled after full run)* |
-| Unexpected / flaky | *(filled after full run)* |
+| First full run | **FAIL** — 248 passed / 4 failed / 1 flaky / 272 skipped |
+| Failure cause | `prod-variable` scroll height rose after D2A unhid related/upsells on mobile/tablet (intentional) |
+| Amendment | Recaptured `fixtures/budgets.json` prod-variable heights |
+| Re-verify | `baseline -g prod-variable` **PASS** (5/5 viewports) |
+| D2B flaky | sticky keyboard focus — passed on retry; hardened to `evaluate(focus)` |
+| Unexpected regressions | **None** outside intentional PDP height budget |
+
+Targeted WP exits remain the authoritative green gates for D3/D1/D2A/D2B.
 
 ## KPI notes
 
