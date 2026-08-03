@@ -34,9 +34,11 @@ After a green run, copy report summary here:
 |---|---|
 | Date | 2026-08-03 |
 | Exit code | **0 (PASS)** |
-| Tests passed | **230** (180 skipped viewport duplicates, 410 total with skips) |
+| Tests passed | **230** (180 skipped viewport duplicates) |
+| Unexpected / flaky | **0 / 0** |
 | Command | `tools/run-dev.sh --milestone-c` |
-| Report | `artifacts/playwright-report.json` |
+| Report | `artifacts/playwright-report.json` (mtime 2026-08-03 20:32 +02 — latest green; not re-run for closeout) |
+| Baseline release | `biopentra-loop-card` **v1.6.0** @ `5260a84` |
 
 ## Manual verification
 

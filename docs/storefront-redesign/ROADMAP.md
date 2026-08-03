@@ -19,8 +19,8 @@ gate for Phase 1; it only gates milestone-A-style visual/layout work
 (home/shop page redesign), which Phase 1 does not touch.
 
 - **Phase 0 — Foundations:** formally released and closed.
-- **Phase 1 — Product Card Clickability:** active (see
-  `changes/phase-1-card-clickability.md` once shipped).
+- **Phase 1 / Milestone C — Canonical Product Card:** COMPLETE — `biopentra-loop-card` **v1.6.0**.
+- **Milestone D onward:** not started; do not begin until explicitly directed.
 - **Phase 2–8:** unchanged, not started; scope per the milestone sections
   below (treat "Milestone B" ≈ old Phase 2/4, "Milestone D" ≈ old Phase 7,
   etc., per the traceability table).
@@ -222,42 +222,31 @@ Uses [setup-shop-page-v2-cli.php](../../dev/biopentra-loop-card/includes/) patte
 
 ## Milestone C — Canonical Product Components
 
+**Status:** COMPLETE (2026-08-03) — tag `biopentra-loop-card` **v1.6.0** @ `5260a84`  
+**Artifact:** `biopentra-loop-card-1.6.0.zip`  
+**Docs:** [changes](changes/milestone-C-canonical-cards.md) · [architecture](design-system/canonical-product-card-architecture.md) · [validation](validation/milestone-C-canonical-cards.md)
+
 **Goal:** **Zero** page-specific card implementations. One renderer on every product listing surface.
 
-### Canonical stack (unchanged technically)
+### Canonical stack
 
 ```
-Elementor loop-grid → template 3608 → biopentra-loop-card JS/CSS
+Adapters → biopentra_loop_card_render_product_card() → Elementor template 3608 → loop-card.js/CSS → SDS
 ```
 
-### Surfaces that MUST migrate to 3608
+### Surfaces (shipped)
 
-| Surface | Current | Milestone C task |
+| Surface | Entry | Status |
 |---|---|---|
-| Home grids | 3608 ✓ | Verify after A |
-| Shop grid | 3608 ✓ | Verify after B |
-| WC archives | Blocksy native | Theme Builder archive template |
-| Search results | TBD | Loop grid on search template |
-| SEO category pages | None | Loop grid added in B; card parity here |
-| Related products | Custom HTML | Replace [related-research-products.php](../../dev/biopentra-loop-card/includes/related-research-products.php) |
-| Upsells | Blocksy/WC default | Loop grid or 3608 mini-loop |
-| Cross-sells | Cart/PDP default | Loop grid on cart + PDP sections |
+| Home / shop / SEO grids | Elementor Loop Grid → 3608 | Verified |
+| WC archives | `wc_get_template_part` adapter | Migrated |
+| Product search | content-product adapter | Migrated |
+| Related / upsells | content-product adapter | Migrated |
+| Sidebar related research | Programmatic adapter | Migrated |
 
-### Card interaction (old Phase 1)
+**Repos / versions:** `biopentra-loop-card` **v1.6.0** (frozen baseline). Storefront unchanged at **0.7.0**.
 
-Accept existing stretched-link implementation:
-
-- [loop-card.js](../../dev/biopentra-loop-card/assets/loop-card.js) + [card-interaction.spec.ts](../../dev/storefront-acceptance/tests/card-interaction.spec.ts)
-- Template v3 class migration on 3608
-- **No nested anchors**; `+` quick-add remains interactive sibling
-
-**Why deferred after A:** Homepage commercial IA delivers the largest conversion lift; card clickability code already exists on shop/home grids.
-
-**Repos / versions:** `biopentra-loop-card` v1.4.0 (accept) → v1.6.0+ (archives/related)
-
-**Effort:** ~6–10 days · **Model:** **Opus** for WC archive Theme Builder + pagination/SEO preservation; Composer for card acceptance + related products
-
-**Depends on:** Milestones A + B (commercial pages exist before card migration)
+**Depends on:** Milestones A + B (complete)
 
 ---
 

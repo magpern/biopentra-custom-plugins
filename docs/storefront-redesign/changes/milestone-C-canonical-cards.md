@@ -1,8 +1,14 @@
 # Milestone C — Canonical Product Components
 
-**Status:** Validated — pending approval tag `v1.6.0`  
+**Status:** COMPLETE — tagged `biopentra-loop-card` `v1.6.0`  
 **Date:** 2026-08-03  
-**Version:** `biopentra-loop-card` **1.6.0**
+**Version:** `biopentra-loop-card` **1.6.0**  
+**Release commit:** `5260a84`  
+**Feature commit:** `33a6c54`  
+**Artifact:** [biopentra-loop-card-1.6.0.zip](https://github.com/magpern/biopentra-loop-card/releases/download/v1.6.0/biopentra-loop-card-1.6.0.zip)  
+**Release URL:** https://github.com/magpern/biopentra-loop-card/releases/tag/v1.6.0
+
+**Storefront:** No bump — `biopentra-storefront` remains **0.7.0** / `storefront-v0.7.0` (Milestone B). Milestone C shipped only in `biopentra-loop-card`.
 
 ## Summary
 
@@ -39,20 +45,23 @@ Architecture reference: [canonical-product-card-architecture.md](../design-syste
 | WC sidebar widgets | `content-widget-product.php` | Blocksy/WC mini cards |
 | Cart cross-sells | WC default | Adapter ready; no fixture products configured |
 
-## Files changed
+## Release record
 
-| Repo | Path |
+| Field | Value |
 |---|---|
-| biopentra-loop-card | `includes/class-product-card-renderer.php` |
-| biopentra-loop-card | `includes/adapters/wc-content-product-adapter.php` |
-| biopentra-loop-card | `includes/adapters/programmatic-adapter.php` |
-| biopentra-loop-card | `templates/woocommerce/content-product.php` |
-| biopentra-loop-card | `assets/canonical-wc-loop.css` |
-| biopentra-loop-card | `includes/related-research-products.php` |
-| biopentra-loop-card | `assets/loop-card.js`, `assets/loop-card.css` |
-| biopentra-custom-plugins | `docs/storefront-redesign/design-system/canonical-product-card-architecture.md` |
-| storefront-acceptance | `tests/canonical-cards.spec.ts`, `tests/card-interaction.spec.ts` |
-| storefront-acceptance | `fixtures/cards.ts`, `tools/run-dev.sh --milestone-c` |
+| Tag | `v1.6.0` |
+| Tagged commit | `5260a84b588047e4030cf47ae2677cbc89f88594` |
+| Release workflow | success — https://github.com/magpern/biopentra-loop-card/actions/runs/30843253401 |
+| ZIP | `biopentra-loop-card-1.6.0.zip` |
+| Published | 2026-08-03 |
+| Validation | `--milestone-c` PASS (230 expected / 0 unexpected) |
+
+## Related commits (supporting repos)
+
+| Repo | Commit | Notes |
+|---|---|---|
+| `biopentra-custom-plugins` | `3feffa1` | Architecture + Milestone C docs |
+| `storefront-acceptance` | `f4f5a94` | `--milestone-c` suite |
 
 ## WP-CLI replay (dev)
 
@@ -75,3 +84,4 @@ docker compose run --rm -T wpcli wp cache flush
 
 - Blocksy hides PDP related/upsell sections on mobile/tablet (`ct-hidden-sm/md`) — acceptance tests use `desktop-1440` for those surfaces.
 - Sidebar `bp-related-products` widget replaces demo block `block-16` only when present on the PDP sidebar.
+- **Production replay:** deferred until Milestone D SEO grid metadata migration is complete.

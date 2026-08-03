@@ -1,26 +1,33 @@
 # Milestone C — Deployment
 
+**Status:** COMPLETE (dev baseline frozen)  
 **Target:** dev.biopentra.eu only (no production replay)  
-**Plugin:** `biopentra-loop-card` 1.6.0  
-**Tag (after green validation):** `v1.6.0`
+**Plugin:** `biopentra-loop-card` **1.6.0**  
+**Tag:** `v1.6.0` → commit `5260a84`  
+**Artifact:** `biopentra-loop-card-1.6.0.zip`  
+**Release:** https://github.com/magpern/biopentra-loop-card/releases/tag/v1.6.0  
+**Date:** 2026-08-03
 
 ## Pre-deploy checklist
 
-- [ ] Architecture doc merged: `design-system/canonical-product-card-architecture.md`
-- [ ] Plugin files synced to `wp-content/plugins/biopentra-loop-card` (symlink or copy)
-- [ ] `docker compose run --rm wpcli wp plugin list` shows 1.6.0 active
+- [x] Architecture doc merged: `design-system/canonical-product-card-architecture.md`
+- [x] Plugin files synced to `wp-content/plugins/biopentra-loop-card` (compose mount)
+- [x] Tag `v1.6.0` pushed; GitHub Release workflow success
+- [x] Release ZIP published: `biopentra-loop-card-1.6.0.zip`
+- [x] Acceptance `--milestone-c` green (230 passed)
 
 ## Deploy steps (dev)
 
-```bash
-cd /opt/biopentra/dev/biopentra-loop-card
-# After tag: install from GitHub Release ZIP, or symlink is already live on dev VPS
+Dev already mounts the git checkout. After release:
 
+```bash
 cd /opt/biopentra/apps/wordpress
 docker compose run --rm -T wpcli wp elementor flush-css
 docker compose run --rm -T wpcli wp cache flush
 curl -sI https://dev.biopentra.eu/product-category/research-peptides/ | head -5
 ```
+
+Production install (when approved later): upload `biopentra-loop-card-1.6.0.zip` from the GitHub Release.
 
 ## Smoke checks
 

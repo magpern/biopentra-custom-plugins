@@ -2,7 +2,7 @@
 
 Working docs for the mobile-first restructure of the Biopentra WooCommerce storefront: `dev.biopentra.eu` first, replayed on `www.biopentra.eu` once each milestone is validated.
 
-**Status:** Milestone B approved and tagged — Milestone C in progress. No production replay.
+**Status:** Milestone C COMPLETE — tagged `biopentra-loop-card` `v1.6.0`. Next: Milestone D (not started). No production replay.
 
 **Definitive roadmap:** [ROADMAP.md](ROADMAP.md) — milestone order, effort, models, and work-package rationale.
 
