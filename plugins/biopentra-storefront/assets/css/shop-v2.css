@@ -7,17 +7,28 @@ body.bp-shop-v2 .bp-shop-hero {
 }
 
 body.bp-shop-v2 .bp-shop-hero > .e-con-inner {
-	padding-top: 16px !important;
-	padding-bottom: 12px !important;
-	padding-left: 16px !important;
-	padding-right: 16px !important;
+	padding-top: var(--bp-space-4, 16px) !important;
+	padding-bottom: var(--bp-space-3, 12px) !important;
+	padding-left: var(--bp-space-4, 16px) !important;
+	padding-right: var(--bp-space-4, 16px) !important;
 	min-height: 0 !important;
-	max-height: 24vh;
+	max-height: var(--bp-hero-shop-max-height, 24vh);
+}
+
+/* Trust icons — compact when present (SDS image guidelines). */
+body.bp-shop-v2 .bp-shop-trust-row img,
+body.bp-shop-v2 .bp-shop-hero .elementor-widget-image img,
+body.home .bp-home-trust img,
+body.home .elementor-widget-icon-box .elementor-icon-box-img img {
+	max-height: var(--bp-trust-icon-max-h, 48px);
+	width: auto;
+	height: auto;
+	object-fit: contain;
 }
 
 @media (max-width: 767px) {
 	body.bp-shop-v2 .bp-shop-hero > .e-con-inner {
-		max-height: 20vh;
+		max-height: var(--bp-hero-shop-max-height-mobile, 20vh);
 		overflow: hidden;
 	}
 

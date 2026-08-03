@@ -20,7 +20,7 @@ function biopentra_storefront_home_v2_enqueue_assets() {
 	wp_enqueue_style(
 		'biopentra-home-v2',
 		BIOPENTRA_STOREFRONT_URL . 'assets/css/home-v2.css',
-		array( 'biopentra-loop-card' ),
+		array( 'biopentra-bp-tokens', 'biopentra-loop-card' ),
 		BIOPENTRA_STOREFRONT_VERSION
 	);
 }

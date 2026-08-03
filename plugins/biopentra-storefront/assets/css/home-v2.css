@@ -3,23 +3,26 @@
  * Spec: docs/storefront-redesign/design-system/
  */
 
-/* Compact hero — cap height on mobile (SDS ~40vh) */
+/* Compact hero — commercial cap via SDS tokens (tighter than SDS absolute max). */
 body.home .bp-home-hero {
 	min-height: 0 !important;
+	max-height: min(var(--bp-hero-home-max-height, 28vh), var(--bp-hero-max-height-mobile, 40vh)) !important;
+	overflow: hidden !important;
 }
 
 body.home .bp-home-hero > .e-con-inner {
-	padding-top: 16px !important;
-	padding-bottom: 12px !important;
-	padding-left: 16px !important;
-	padding-right: 16px !important;
+	padding-top: var(--bp-space-4, 16px) !important;
+	padding-bottom: var(--bp-space-3, 12px) !important;
+	padding-left: var(--bp-space-4, 16px) !important;
+	padding-right: var(--bp-space-4, 16px) !important;
 	min-height: 0 !important;
-	max-height: 28vh;
+	max-height: min(var(--bp-hero-home-max-height, 28vh), var(--bp-hero-max-height-mobile, 40vh));
 }
 
 @media (max-width: 767px) {
+	body.home .bp-home-hero,
 	body.home .bp-home-hero > .e-con-inner {
-		max-height: 28vh;
+		max-height: min(var(--bp-hero-home-max-height, 28vh), var(--bp-hero-max-height-mobile, 40vh));
 		overflow: hidden;
 	}
 

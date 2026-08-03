@@ -102,6 +102,11 @@ class Biopentra_Storefront {
 			}
 		}
 
+		$bp_tokens_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/bp-tokens-assets.php';
+		if ( is_readable( $bp_tokens_assets ) ) {
+			require_once $bp_tokens_assets;
+		}
+
 		$home_v2_helpers = BIOPENTRA_STOREFRONT_PATH . 'includes/home-v2-helpers.php';
 		if ( is_readable( $home_v2_helpers ) ) {
 			require_once $home_v2_helpers;
