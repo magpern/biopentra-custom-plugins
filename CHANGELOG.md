@@ -12,6 +12,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.8.0] — 2026-08-04
+
+### Added
+
+- **Milestone D3 — SEO content ownership:** page meta `_bp_seo_grid_products` / `_bp_seo_archive_term`, migrate/validate/rollback CLIs, one-release legacy inventory fallback.
+- **Milestone D1 — SDS image tokens:** `assets/css/bp-tokens.css`, `includes/bp-tokens-assets.php`; hero max-height caps in home/shop v2 CSS.
+
+**Git tag:** `storefront-v0.8.0`
+
+---
+
+## [0.7.0] — 2026-08-03
+
+### Added
+
+- **Milestone B — commercial shopping IA:** shop page v2, search refinement, SEO category product grids (see release notes `GITHUB_RELEASE_NOTES_biopentra-storefront_0_7_0.md`).
+
+**Git tag:** `storefront-v0.7.0`
+
+---
+
 ## [0.6.0] — 2026-08-02
 
 ### Added
