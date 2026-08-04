@@ -73,7 +73,7 @@ a.biopentra-header-auth__trigger {
 	border: 1px solid var(--bph-dropdown-border);
 	border-radius: 8px;
 	box-shadow: var(--bph-shadow);
-	z-index: 100000;
+	z-index: var(--bp-z-header, 200);
 	flex-direction: column;
 	gap: 0;
 }

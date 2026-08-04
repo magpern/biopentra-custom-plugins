@@ -1,0 +1,49 @@
+{
+    "cky_settings": {
+        "site": {
+            "url": "https:\/\/dev.biopentra.eu",
+            "installed": 1777833798
+        },
+        "api": {
+            "token": ""
+        },
+        "account": {
+            "email": "",
+            "domain": "",
+            "connected": false,
+            "plan": "free",
+            "website_id": "",
+            "website_key": ""
+        },
+        "consent_logs": {
+            "status": true
+        },
+        "languages": {
+            "selected": [
+                "en"
+            ],
+            "default": "en"
+        },
+        "onboarding": {
+            "step": 2
+        }
+    },
+    "cky_gcm_settings": {
+        "status": false,
+        "default_settings": [
+            {
+                "analytics": "denied",
+                "advertisement": "denied",
+                "functional": "denied",
+                "necessary": "granted",
+                "ad_user_data": "denied",
+                "ad_personalization": "denied",
+                "regions": "All"
+            }
+        ],
+        "wait_for_update": 2000,
+        "url_passthrough": false,
+        "ads_data_redaction": false
+    },
+    "cky_banner_template_exists": true
+}

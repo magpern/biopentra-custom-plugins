@@ -107,6 +107,11 @@ class Biopentra_Storefront {
 			require_once $bp_tokens_assets;
 		}
 
+		$chrome_v1_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/chrome-v1-assets.php';
+		if ( is_readable( $chrome_v1_assets ) ) {
+			require_once $chrome_v1_assets;
+		}
+
 		$home_v2_helpers = BIOPENTRA_STOREFRONT_PATH . 'includes/home-v2-helpers.php';
 		if ( is_readable( $home_v2_helpers ) ) {
 			require_once $home_v2_helpers;

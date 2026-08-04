@@ -2,7 +2,7 @@
 
 Working docs for the mobile-first restructure of the Biopentra WooCommerce storefront: `dev.biopentra.eu` first, replayed on `www.biopentra.eu` once each milestone is validated.
 
-**Status:** Milestone D **tagged and released** (2026-08-04): `storefront-v0.8.0`, loop-card `v1.6.1`, child `v1.1.0`. Frozen baseline for Milestone E. **No production replay.**
+**Status:** Milestone E **COMPLETE / tagged** (2026-08-04) — storefront **0.9.0**. Milestone F next (production replay). **No production replay yet.**
 
 **Definitive roadmap:** [ROADMAP.md](ROADMAP.md) — milestone order, effort, models, and work-package rationale.
 
@@ -23,7 +23,7 @@ The storefront reads as scientific/editorial rather than commercial on mobile: h
 | **B** Commercial Shopping Experience | Shop reorder, search results, SEO category grids | `biopentra-loop-card` v1.5.0–v1.7.0 |
 | **C** Canonical Product Components | One card (3608) on **all** surfaces including related/upsell/cross-sell | `biopentra-loop-card` |
 | **D** Product Detail + Image System + SEO Content Ownership | Sticky purchase, gallery, SDS images; page-owned SEO grids (**D3 hard production gate**) | [plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md) **FROZEN** |
-| **E** Mobile Polish | Touch targets, cookie/currency placement, header/footer | `biopentra-storefront` v0.7.0 |
+| **E** Mobile Polish | Touch targets, cookie/currency placement, header/footer | `biopentra-storefront` **0.9.0** — COMPLETE |
 | **F** Production Deployment | Replay all deployment records on production | ops |
 
 Each milestone is independently shippable, testable, and replayable. **Do not start a milestone before the previous one is accepted.** Tagging/deploying any plugin or theme release requires explicit product-owner approval.

@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.8.0
+Stable tag: 0.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,10 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.9.0 =
+* Milestone E — global chrome: SDS z-index coordination (CookieYes, mini-cart, header), UMC manual header switcher, 44×44 header touch targets, frozen header search control, compact mobile footer.
+* New assets: `chrome-v1.css` / `chrome-v1.js`; CLIs `setup-milestone-e-chrome-cli.php`, `setup-milestone-e-footer-cli.php`.
 
 = 0.8.0 =
 * Milestone D — SEO content ownership (page meta + migrate/validate/rollback CLIs).

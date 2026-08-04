@@ -1,0 +1,255 @@
+/**
+ * Milestone E — SDS chrome z-index contract + touch targets + header search control.
+ *
+ * Z-index values come only from bp-tokens.css:
+ *   --bp-z-sticky-bar: 100
+ *   --bp-z-header: 200
+ *   --bp-z-cookie: 300
+ *   --bp-z-overlay: 400
+ */
+
+/* ── Header / navigation chrome (closed) → 200 ── */
+.elementor-location-header,
+.elementor-location-header .e-con,
+.biopentra-header-auth,
+.biopentra-header-auth__dropdown {
+	z-index: var(--bp-z-header, 200);
+}
+
+.elementor-location-header .e-n-menu-toggle {
+	z-index: var(--bp-z-header, 200);
+}
+
+/* Open mega / nestable menu panel — non-modal panel stays in header band */
+.elementor-location-header .e-n-menu,
+.elementor-location-header .e-n-menu-wrapper,
+.biopentra-information-mega {
+	z-index: var(--bp-z-header, 200);
+}
+
+/* ── CookieYes: banner + revisit → cookie 300; modal + backdrop → overlay 400 ── */
+.cky-consent-container,
+.cky-consent-bar,
+.cky-btn-revisit-wrapper,
+.cky-btn-revisit {
+	z-index: var(--bp-z-cookie, 300) !important;
+}
+
+.cky-overlay,
+.cky-modal,
+.cky-preference-center {
+	z-index: var(--bp-z-overlay, 400) !important;
+}
+
+/* ── Mini-cart drawer dialog + backdrop → overlay 400 ── */
+.elementor-menu-cart__container.elementor-lightbox,
+.elementor-menu-cart__container,
+.elementor-menu-cart__main.bp-mini-cart--drawer,
+.bp-mini-cart--drawer.elementor-menu-cart__main,
+#woo-cart-panel.bp-mini-cart--drawer {
+	z-index: var(--bp-z-overlay, 400) !important;
+}
+
+/* ── Age gate / Elementor popups → overlay 400 ── */
+.dialog-widget.dialog-lightbox-widget,
+.elementor-popup-modal,
+.age-gate,
+#age-gate {
+	z-index: var(--bp-z-overlay, 400);
+}
+
+/* ── E1 touch targets (≥ 44×44) ── */
+.elementor-location-header .e-n-menu-toggle {
+	min-width: var(--bp-touch-min, 44px);
+	min-height: var(--bp-touch-min, 44px);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
+.biopentra-header-auth__trigger {
+	min-height: var(--bp-touch-min, 44px);
+	min-width: var(--bp-touch-min, 44px);
+	padding: 10px 8px;
+	box-sizing: border-box;
+	align-items: center;
+}
+
+.biopentra-header-auth__trigger:focus-visible,
+.elementor-location-header .e-n-menu-toggle:focus-visible,
+.bp-chrome-search__btn:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+/* Compact header search control */
+.bp-chrome-search {
+	display: inline-flex;
+	align-items: center;
+	margin: 0;
+}
+
+.bp-chrome-search__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--bp-touch-min, 44px);
+	height: var(--bp-touch-min, 44px);
+	min-width: var(--bp-touch-min, 44px);
+	min-height: var(--bp-touch-min, 44px);
+	padding: 0;
+	margin: 0;
+	border: 0;
+	border-radius: var(--bp-radius-button, 8px);
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.bp-chrome-search__btn svg {
+	width: 22px;
+	height: 22px;
+	display: block;
+}
+
+/* Inline UMC in header — bind plugin CSS var to SDS header layer */
+.umc-switcher,
+.elementor-location-header .umc-switcher {
+	--umc-switcher-z-index: var(--bp-z-header, 200);
+	position: relative;
+	z-index: var(--bp-z-header, 200);
+}
+
+.umc-switcher__menu {
+	z-index: var(--bp-z-overlay, 400);
+}
+
+/* Footer contact touch target + mobile compaction helpers (E3) */
+.elementor-location-footer .elementor-button,
+.elementor-location-footer .biopentra-footer-email,
+.elementor-location-footer [class*="footer-contact"] a,
+.elementor-location-footer a.elementor-button {
+	min-height: var(--bp-touch-min, 44px);
+}
+
+@media (max-width: 767px) {
+	.elementor-location-footer.elementor-location-footer {
+		padding-block: 0;
+	}
+
+	.elementor-location-footer .e-con.e-con {
+		--padding-top: 0px;
+		--padding-bottom: 0px;
+	}
+
+	.elementor-location-footer > .e-con {
+		padding-top: var(--bp-space-4, 16px) !important;
+		padding-bottom: var(--bp-space-4, 16px) !important;
+		padding-inline: var(--bp-space-3, 12px) !important;
+		gap: var(--bp-space-3, 12px) !important;
+		row-gap: var(--bp-space-3, 12px) !important;
+	}
+
+	.elementor-location-footer .e-con,
+	.elementor-location-footer .elementor-widget {
+		--gap: var(--bp-space-2, 8px);
+	}
+
+	.elementor-location-footer .e-con > .e-con {
+		gap: var(--bp-space-2, 8px) !important;
+		row-gap: var(--bp-space-2, 8px) !important;
+		margin: 0 !important;
+	}
+
+	.elementor-location-footer .elementor-heading-title {
+		margin-top: 0;
+		margin-bottom: var(--bp-space-1, 4px);
+		font-size: 0.95rem;
+		line-height: 1.25;
+	}
+
+	.elementor-location-footer .elementor-widget-text-editor p,
+	.elementor-location-footer .elementor-widget-text-editor div {
+		margin-top: 0;
+		margin-bottom: var(--bp-space-1, 4px);
+		line-height: 1.35;
+	}
+
+	.elementor-location-footer .elementor-icon-list-items,
+	.elementor-location-footer .bp-ft-v2-links,
+	.elementor-location-footer ul {
+		gap: var(--bp-space-1, 4px);
+		margin: 0;
+		padding: 0;
+	}
+
+	.elementor-location-footer .elementor-widget {
+		margin-bottom: 0 !important;
+	}
+
+	.elementor-location-footer .elementor-widget-icon,
+	.elementor-location-footer .elementor-icon-wrapper {
+		display: none;
+	}
+
+	.elementor-location-footer .bp-ft-v2-brand {
+		font-size: 0.9rem;
+		line-height: 1.35;
+	}
+
+	.elementor-location-footer img {
+		max-height: 28px;
+		width: auto;
+	}
+
+	.elementor-location-footer .elementor-widget-html {
+		line-height: 1.35;
+	}
+
+	/* Two-column link/contact band — material height cut on narrow viewports */
+	.elementor-location-footer .elementor-element-77baf59.e-con {
+		flex-direction: row !important;
+		flex-wrap: wrap !important;
+		align-items: flex-start !important;
+		column-gap: var(--bp-space-3, 12px) !important;
+		row-gap: var(--bp-space-3, 12px) !important;
+	}
+
+	.elementor-location-footer .elementor-element-90e7b9a {
+		flex: 0 0 100% !important;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	.elementor-location-footer .elementor-element-5a08358,
+	.elementor-location-footer .elementor-element-537f779,
+	.elementor-location-footer .elementor-element-f352048 {
+		flex: 0 0 calc(50% - 6px) !important;
+		width: calc(50% - 6px) !important;
+		max-width: calc(50% - 6px) !important;
+	}
+
+	.elementor-location-footer .elementor-element-0ffe789 .bp-ft-v2-brand,
+	.elementor-location-footer .elementor-element-0ffe789 p {
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.elementor-location-footer .elementor-element-4ced69d,
+	.elementor-location-footer .elementor-element-e15aa02,
+	.elementor-location-footer .elementor-element-cae4044 {
+		min-height: 0;
+		margin: 0;
+	}
+
+	.elementor-location-footer .elementor-element-4ced69d .elementor-heading-title,
+	.elementor-location-footer .elementor-element-e15aa02 .elementor-heading-title,
+	.elementor-location-footer .elementor-element-cae4044 .elementor-heading-title {
+		font-size: 0.85rem;
+		margin: 0;
+	}
+}

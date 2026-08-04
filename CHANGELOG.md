@@ -12,6 +12,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.0] — 2026-08-04
+
+### Milestone E — Global chrome polish (dev)
+
+- **E2 Fixed UI:** SDS z-index contract for CookieYes (300/400), mini-cart overlay (400), header chrome (200); UMC `placement` `sticky_footer` → `manual` with one `[universal_multicurrency_switcher]` in Elementor header 3782 (no floating-bottom instance; no CSS-hide workaround).
+- **E1 Header:** ≥44×44 menu/account/search; frozen header search focuses `#biopentra-shop-s` / `#biopentra-search-refine` or navigates to shop; header-auth dropdown z-index aligned to `--bp-z-header`.
+- **E3 Footer:** Elementor footer 3823 mobile padding/gap compaction + chrome CSS two-column link band; crawlable links preserved.
+- **Assets/CLIs:** `assets/css/chrome-v1.css`, `assets/js/chrome-v1.js`, `includes/chrome-v1-assets.php`, `scripts/setup-milestone-e-chrome-cli.php`, `scripts/setup-milestone-e-footer-cli.php`.
+
+**Git tag:** `storefront-v0.9.0`
+
 ## [0.8.0] — 2026-08-04
 
 ### Added

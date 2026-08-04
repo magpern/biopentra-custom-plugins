@@ -21,7 +21,8 @@ gate for Phase 1; it only gates milestone-A-style visual/layout work
 - **Phase 0 — Foundations:** formally released and closed.
 - **Phase 1 / Milestone C — Canonical Product Card:** COMPLETE — `biopentra-loop-card` **v1.6.0**.
 - **Milestone D:** COMPLETE / tagged (2026-08-04) — storefront `storefront-v0.8.0`, loop-card `v1.6.1`, child `v1.1.0`. Frozen baseline for Milestone E; no production replay.
-- **Milestone E onward:** not started; do not begin until explicitly directed.
+- **Milestone E:** **COMPLETE / tagged** (2026-08-04) — storefront `storefront-v0.9.0`. Frozen baseline for Milestone F; no production replay.
+- **Milestone F onward:** not started; do not begin until explicitly directed.
 - **Phase 2–8:** unchanged, not started; scope per the milestone sections
   below (treat "Milestone B" ≈ old Phase 2/4, "Milestone D" ≈ old Phase 7,
   etc., per the traceability table).
@@ -309,22 +310,29 @@ Addresses oversized imagery (heroes, cards, PDP gallery, `sizes`/LCP/lazy, ship 
 
 ## Milestone E — Mobile Polish
 
+**Status:** **COMPLETE / TAGGED** (2026-08-04). Spec: [plans/MILESTONE_E_IMPLEMENTATION.md](plans/MILESTONE_E_IMPLEMENTATION.md)  
+**Release:** `biopentra-storefront` **0.9.0** (`storefront-v0.9.0`); child/loop-card unchanged  
+**Validation:** `tools/run-dev.sh --milestone-e` — see [validation/milestone-E.md](validation/milestone-E.md)  
+**Frozen baseline for Milestone F. Production replay has not occurred.**
+
 **Goal:** Header, footer, cookie, currency — no conflicts with sticky commerce UI.
 
 | Task | Detail |
 |---|---|
 | Header touch targets | Menu toggle 20×20 → 44×44 minimum |
-| Header search | Optional compact icon → expand pattern |
-| CookieYes | Reposition vs sticky bar; document settings |
-| Currency (`mp-woocs-browse-currency`) | **No floating control** conflicting with sticky bar |
+| Header search | Compact 44×44 control: focus on-page commercial search, else navigate to shop |
+| CookieYes | Banner/revisit → z 300; preference modal/backdrop → z 400 |
+| Currency (Universal Multicurrency) | `umc_settings.display.placement` `sticky_footer` → **`manual`**; one `[universal_multicurrency_switcher]` in header 3782 |
 | Footer disclosures | Compact; crawlable |
 | Megamenu | Prefer links to WC archives over essay pages |
 
-**Repos / versions:** `biopentra-storefront` v0.7.0
+**Repos / versions:** `biopentra-storefront` **0.9.0** (primary); child **1.2.0** only if sticky coexistence CSS requires it — **not required**
 
-**Effort:** ~3–5 days · **Model:** Composer
+**Effort:** ~4–5.5 days · **Model:** Composer
 
 **Depends on:** Milestone D sticky bar (z-index stack finalized)
+
+**Order:** E2 → E1 → E3 → E4 (`--milestone-e` once before tag)
 
 ---
 

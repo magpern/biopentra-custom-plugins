@@ -10,11 +10,11 @@ This file is the project **success scoreboard**. Update the **Current** column a
 |---|---|---|
 | **Homepage — screens to first product** | **3.07** (2459px @ 800px vh) | **≤ 1.0** (~800px) |
 | **Homepage — hero section height** | min-height **680px** + padding 84/88px; first tall block **7.5× vh** | **≤ 40vh** (~320px band) |
-| **Homepage — first interactive element (header)** | Menu toggle **20×20px** (below 44px minimum) | **≥ 44×44px** touch target (Milestone E) |
+| **Homepage — first interactive element (header)** | Menu toggle **≥44×44px** (Milestone E) | **≥ 44×44px** touch target (Milestone E) |
 | **Shop — screens to first product** | **1.51** (1207px @ 800px vh) | **≤ 1.0** |
 | **Search results — screens to first product** | **0.49** (391px @ 800px vh) | **≤ 0.75** (maintain; migrate card in C) |
 | **Product card implementations (distinct renderers)** | **3** — (1) Elementor **3608** + `biopentra-loop-card` on home/shop; (2) Blocksy native on WC archives + search; (3) custom HTML on related/upsell surfaces | **1** canonical (3608 everywhere) |
-| **Mobile header — menu toggle size** | **20×20px** | **≥ 44×44px** (Milestone E) |
+| **Mobile header — menu toggle size** | **≥44×44px** (Milestone E) | **≥ 44×44px** (Milestone E) |
 | **Card image display height (mobile)** | **~144–160px** (600px source) | **≤ 160px** per SDS; review `sizes` in C/D |
 | **Home hero / above-fold image height** | Hero container **680px** min-height; no separate hero bitmap | Compact band; decorative assets **≤ 40vh** |
 | **Number of duplicated card renderers** | **3** (see above) | **0** duplicates — one renderer |
@@ -36,6 +36,7 @@ This file is the project **success scoreboard**. Update the **Current** column a
 | 0 | 2026-08-01 | Baseline established (this file) |
 | A | 2026-08-02 | Homepage first product **3.07 → 1.04** vh; search + categories above grid |
 | B | 2026-08-02 | Shop first product **1.51 → 1.06** vh; SEO grids; search refine UI |
+| E | 2026-08-04 | Menu toggle **20→≥44**; footer ~1424→~778px @360; UMC manual header; SDS z-index |
 
 ## Milestone A results (dev, 360×800)
 
@@ -72,3 +73,19 @@ This file is the project **success scoreboard**. Update the **Current** column a
 | `bash tools/run-dev.sh --milestone-b` | **PASS** — 73 passed, 72 skipped (2026-08-02) |
 | Baseline fixture | Re-captured with Milestone B layouts |
 | Validation record | [milestone-B-commercial-shopping.md](milestone-B-commercial-shopping.md) |
+
+## Milestone E results (dev, 360×800)
+
+| Metric | Before E | After E | Target | Met |
+|---|---|---|---|---|
+| Mobile header menu toggle | 20×20 | ≥44×44 | ≥44×44 | **Yes** |
+| Footer height @360 | ~1424px | ~778px | Materially shorter | **Yes** |
+| UMC placement | sticky_footer | manual (header) | No floating bottom | **Yes** |
+| SDS z-index contract | Violated by CookieYes/UMC | 100/200/300/400 | Aligned | **Yes** |
+
+## Validation suite (Milestone E)
+
+| Check | Result |
+|---|---|
+| `bash tools/run-dev.sh --milestone-e` | **PASS** — 264 passed / 0 failed / 0 flaky / 306 skipped (2026-08-04) |
+| Validation record | [milestone-E.md](milestone-E.md) |
