@@ -30,19 +30,23 @@ tools/run-dev.sh --milestone-d
 | `image-budget` mobile-360 | PASS (6/6) |
 | `pdp-layout` + `pdp-sticky` | PASS (D2A green; D2B green after focus harden) |
 
-## Full `--milestone-d` (once before tag)
+## Full `--milestone-d` (stabilization → release)
 
 | Field | Value |
 |---|---|
-| Date | 2026-08-03 |
-| First full run | **FAIL** — 248 passed / 4 failed / 1 flaky / 272 skipped |
-| Failure cause | `prod-variable` scroll height rose after D2A unhid related/upsells on mobile/tablet (intentional) |
-| Amendment | Recaptured `fixtures/budgets.json` prod-variable heights |
-| Re-verify | `baseline -g prod-variable` **PASS** (5/5 viewports) |
-| D2B flaky | sticky keyboard focus — passed on retry; hardened to `evaluate(focus)` |
-| Unexpected regressions | **None** outside intentional PDP height budget |
+| First full run (2026-08-03) | **FAIL** — 248 passed / 4 failed / 1 flaky / 272 skipped |
+| Failure cause | `prod-variable` scroll height rose after D2A unhid related/upsells (intentional) |
+| Amendment | Recaptured `fixtures/budgets.json`; sticky focus + card-interaction + baseline harness harden |
+| Classification | See [milestone-D-failure-classification.md](milestone-D-failure-classification.md) |
+| **Final green run (accepted)** | **2026-08-04** — **253 passed / 0 failed / 0 flaky / 272 skipped** |
+| Acceptance commit (baseline harden) | `1af21d1` on `storefront-acceptance` `main` |
+| Unexpected regressions | **None** |
 
-Targeted WP exits remain the authoritative green gates for D3/D1/D2A/D2B.
+## Release closure
+
+Tags and ZIPs published 2026-08-04. **Production replay has not occurred.**
+
+See [deployment/milestone-D.md](../deployment/milestone-D.md).
 
 ## KPI notes
 

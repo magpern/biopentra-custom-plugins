@@ -20,7 +20,8 @@ gate for Phase 1; it only gates milestone-A-style visual/layout work
 
 - **Phase 0 — Foundations:** formally released and closed.
 - **Phase 1 / Milestone C — Canonical Product Card:** COMPLETE — `biopentra-loop-card` **v1.6.0**.
-- **Milestone D onward:** not started; do not begin until explicitly directed.
+- **Milestone D:** COMPLETE / tagged (2026-08-04) — storefront `storefront-v0.8.0`, loop-card `v1.6.1`, child `v1.1.0`. Frozen baseline for Milestone E; no production replay.
+- **Milestone E onward:** not started; do not begin until explicitly directed.
 - **Phase 2–8:** unchanged, not started; scope per the milestone sections
   below (treat "Milestone B" ≈ old Phase 2/4, "Milestone D" ≈ old Phase 7,
   etc., per the traceability table).
@@ -252,8 +253,11 @@ Adapters → biopentra_loop_card_render_product_card() → Elementor template 36
 
 ## Milestone D — Product Detail Experience + Image System + SEO Content Ownership
 
-**Status:** **COMPLETE on dev** — awaiting tag/approval. Spec: [plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md)  
-**Implemented:** D3 → D1 → D2A → D2B (2026-08-03).  
+**Status:** **COMPLETE / TAGGED** (2026-08-04). Spec: [plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md)  
+**Tags:** `storefront-v0.8.0`, loop-card `v1.6.1`, child `v1.1.0` — see [deployment/milestone-D.md](deployment/milestone-D.md).  
+**Validation:** 253 passed / 0 failed / 0 flaky — [validation/milestone-D.md](validation/milestone-D.md).  
+**Frozen baseline for Milestone E. Production replay has not occurred.**  
+**Implemented:** D3 → D1 → D2A → D2B.  
 **Goal:** PDP optimized for mobile purchase; image discipline site-wide; SEO guide content ownership on pages (not plugin PHP).
 
 ### Milestone invariants
