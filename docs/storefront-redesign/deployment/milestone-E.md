@@ -20,6 +20,18 @@
 | `biopentra-loop-card` | 1.6.1 (unchanged) | — |
 | `biopentra-blocksy-child` | 1.1.0 (unchanged; no sticky safe-area bump required) | — |
 
+## Release artifacts
+
+| Artifact | Size | Release URL |
+|---|---|---|
+| `biopentra-storefront-0.9.0.zip` | 110976 bytes | https://github.com/magpern/biopentra-custom-plugins/releases/tag/storefront-v0.9.0 |
+
+ZIP checks (2026-08-04): single plugin root; Plugin header + `BIOPENTRA_STOREFRONT_VERSION` = 0.9.0; chrome-v1 CSS/JS present; no `.git` / `node_modules` / `scripts` paths.
+
+**Workflow:** https://github.com/magpern/biopentra-custom-plugins/actions/runs/30951867048 — **success**
+
+**Acceptance HEAD:** `e09d66c` (`magpern/storefront-acceptance`)
+
 ## Dev apply procedure (idempotent)
 
 ```bash
