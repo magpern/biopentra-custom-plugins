@@ -2,7 +2,7 @@
 
 Working docs for the mobile-first restructure of the Biopentra WooCommerce storefront: `dev.biopentra.eu` first, replayed on `www.biopentra.eu` once each milestone is validated.
 
-**Status:** Milestone E **COMPLETE / tagged** (2026-08-04) — storefront **0.9.0**. Milestone F next (production replay). **No production replay yet.**
+**Status:** Milestone E **APPROVED / tagged** (storefront **0.9.0**). Next: **P0 — Production Rollout** playbook ([plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md)). **Do not deploy to production until explicitly prompted.** Milestone F is superseded by P0 for rollout.
 
 **Definitive roadmap:** [ROADMAP.md](ROADMAP.md) — milestone order, effort, models, and work-package rationale.
 
@@ -23,8 +23,9 @@ The storefront reads as scientific/editorial rather than commercial on mobile: h
 | **B** Commercial Shopping Experience | Shop reorder, search results, SEO category grids | `biopentra-loop-card` v1.5.0–v1.7.0 |
 | **C** Canonical Product Components | One card (3608) on **all** surfaces including related/upsell/cross-sell | `biopentra-loop-card` |
 | **D** Product Detail + Image System + SEO Content Ownership | Sticky purchase, gallery, SDS images; page-owned SEO grids (**D3 hard production gate**) | [plans/MILESTONE_D_IMPLEMENTATION.md](plans/MILESTONE_D_IMPLEMENTATION.md) **FROZEN** |
-| **E** Mobile Polish | Touch targets, cookie/currency placement, header/footer | `biopentra-storefront` **0.9.0** — COMPLETE |
-| **F** Production Deployment | Replay all deployment records on production | ops |
+| **E** Mobile Polish | Touch targets, cookie/currency placement, header/footer | `biopentra-storefront` **0.9.0** — APPROVED |
+| **P0** Production Rollout | Replay A–E on `www.biopentra.eu` (deployment only) | [plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md) |
+| **F** *(legacy name)* | Superseded by **P0** for production rollout | — |
 
 Each milestone is independently shippable, testable, and replayable. **Do not start a milestone before the previous one is accepted.** Tagging/deploying any plugin or theme release requires explicit product-owner approval.
 
@@ -110,7 +111,7 @@ docker compose run --rm -T wpcli wp cache flush
 5. Run `storefront-acceptance/tools/run-prod.sh`
 6. Complete QA table in `deployment/phase-*.md`
 
-See [ROADMAP.md § milestone F](ROADMAP.md#milestone-f--production-deployment).
+See [ROADMAP.md § milestone P0](ROADMAP.md#milestone-p0--production-rollout) and [plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md).
 
 ## Directory guide
 

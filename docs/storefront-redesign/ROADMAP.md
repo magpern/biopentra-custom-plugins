@@ -21,7 +21,8 @@ gate for Phase 1; it only gates milestone-A-style visual/layout work
 - **Phase 0 — Foundations:** formally released and closed.
 - **Phase 1 / Milestone C — Canonical Product Card:** COMPLETE — `biopentra-loop-card` **v1.6.0**.
 - **Milestone D:** COMPLETE / tagged (2026-08-04) — storefront `storefront-v0.8.0`, loop-card `v1.6.1`, child `v1.1.0`. Frozen baseline for Milestone E; no production replay.
-- **Milestone E:** **COMPLETE / tagged** (2026-08-04) — storefront `storefront-v0.9.0`. Frozen baseline for Milestone F; no production replay.
+- **Milestone E:** **APPROVED / tagged** (2026-08-04/05) — storefront `storefront-v0.9.0`.  
+- **Milestone P0:** **PLAYBOOK READY** — [plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md). Production deploy not started. Do not begin execution until explicitly prompted.
 - **Milestone F onward:** not started; do not begin until explicitly directed.
 - **Phase 2–8:** unchanged, not started; scope per the milestone sections
   below (treat "Milestone B" ≈ old Phase 2/4, "Milestone D" ≈ old Phase 7,
@@ -60,7 +61,8 @@ High-level groups replace the old numbered phases 0–8. Technical detail is pre
 | **C** | Canonical Product Components | One card everywhere; whole-card click |
 | **D** | Product Detail Experience | Sticky buy bar, gallery, price, stock, imagery |
 | **E** | Mobile Polish | Touch targets, cookie/currency chrome |
-| **F** | Production Deployment | Replay all records on production |
+| **P0** | Production Rollout | Replay A–E on production (deployment only) |
+| **F** | *(legacy)* | Superseded by P0 |
 
 ### Old phase → new milestone (traceability)
 
@@ -336,22 +338,24 @@ Addresses oversized imagery (heroes, cards, PDP gallery, `sizes`/LCP/lazy, ship 
 
 ---
 
-## Milestone F — Production Deployment
+## Milestone P0 — Production Rollout
 
-**Goal:** Replay every milestone on `www.biopentra.eu` with validation.
+**Status:** **PLAYBOOK READY** — not executed. Spec: [plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md)  
+**Goal:** Safely replay the completed storefront redesign (Milestones A–E) on `www.biopentra.eu`.  
+**Packages:** storefront **0.9.0**, loop-card **1.6.1**, child **1.1.0**  
+**Nature:** Deployment only — no new product features.  
+**Do not deploy** until an explicit execution prompt.
 
-Per [README.md](README.md) production replay rules:
+Order: packages → Elementor A → B → SEO migrate/validate → Elementor E → flush trio + Cloudflare → `run-prod.sh` + mobile smoke.
 
-1. Release ZIP per repo/tag
-2. Idempotent CLI scripts (slug-based, never dev post IDs)
-3. Documented settings with screenshots
-4. Flush trio + Cloudflare purge
-5. `storefront-acceptance/tools/run-prod.sh`
-6. QA tables in `deployment/phase-*.md`
-
-**Effort:** ~2–3 days per production push (can batch A+B) · **Model:** Composer (ops-heavy)
-
+**Effort:** ~3.5–6.5 hours clean (+ buffer) · **Model:** Composer (ops)  
 **Never:** copy dev DB to production.
+
+---
+
+## Milestone F — Production Deployment *(legacy name)*
+
+**Superseded by Milestone P0.** Keep this heading for traceability only. Use [plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md).
 
 ---
 
