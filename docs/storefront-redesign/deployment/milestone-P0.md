@@ -1,6 +1,6 @@
 # Milestone P0 — Production Rollout
 
-**Status:** PLAYBOOK READY — **not executed**  
+**Status:** **OPERATIONAL FREEZE** — playbook ready; **not executed**  
 **Full playbook:** [../plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](../plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md)
 
 This file is the deployment-record stub. Fill it during/after the production window. Do not deploy until explicitly prompted.
@@ -13,18 +13,19 @@ This file is the deployment-record stub. Fill it during/after the production win
 | `biopentra-loop-card` | 1.6.1 | `v1.6.1` |
 | `biopentra-blocksy-child` | 1.1.0 | `v1.1.0` |
 
-## Order (summary)
+## Order (summary — unchanged)
 
-1. Preflight + backups  
-2. Stage ZIPs + CLIs (ZIPs exclude `scripts/`)  
-3. Install packages  
-4. Elementor A → B  
-5. SEO migrate + validate (0 errors)  
-6. Elementor E (production Theme Builder IDs)  
-7. Flush trio + Cloudflare  
-8. `run-prod.sh` + mobile smoke  
-9. Sign-off  
+1. Preflight + baseline + backups  
+2. Stage ZIPs + CLIs  
+3. **GO / NO-GO** (mandatory stop gate)  
+4. Install packages  
+5. Elementor A → B  
+6. SEO migrate + validate (0 errors)  
+7. Elementor E (production Theme Builder IDs)  
+8. Flush trio + Cloudflare  
+9. `run-prod.sh` + mobile smoke  
+10. Sign-off  
 
 ## Execution
 
-See playbook §15–§16. **Production replay has not started.**
+See playbook §§0–20 (change freeze, baseline, GO/NO-GO, decision matrix, timeline). **Production replay has not started.**

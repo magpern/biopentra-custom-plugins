@@ -1,7 +1,7 @@
 # Milestone P0 — Production Rollout Playbook
 
-**Status:** READY FOR EXECUTION — **not started**  
-**Approval:** Milestone E APPROVED (2026-08-05). This playbook is the production deployment plan only.  
+**Status:** **OPERATIONAL FREEZE** — ready for production execution  
+**Approval:** Milestone E APPROVED (2026-08-05). Playbook approved in principle; refinements below frozen.  
 **Do not deploy** until an explicit production execution prompt.  
 **Do not begin Milestone F** as a separate planning track — **P0 is the production rollout.**
 
@@ -15,10 +15,16 @@
 
 ## 0. How to use this playbook
 
-1. Execute sections **in order**. Do not skip preflight.
-2. Record every checkbox result in the execution log (§16).
-3. Stop and escalate on any hard fail in §11 Success criteria.
-4. Keep a second engineer available for rollback (§8 / §14).
+1. Execute sections **in order**. Do not skip preflight, baseline recording, or the GO / NO-GO gate.
+2. Record every checkbox result in the execution log (§18).
+3. Stop and escalate on any hard fail in §13 Success criteria, or on any **Immediate rollback** trigger in §10.0.
+4. Keep a second engineer available for rollback (§10 / §16).
+
+### 0.1 Production change freeze
+
+**During P0, no code commits, plugin updates, content edits, configuration changes, or manual Elementor edits may be made unless explicitly described in this playbook.**
+
+Unexpected production changes invalidate deployment evidence. If an out-of-band change is discovered mid-window: **STOP**, document it in §18, and obtain a fresh GO before continuing.
 
 ### Conventions
 
@@ -27,7 +33,7 @@
 | `PROD_WP` | Production WordPress working directory (where `wp` / `docker compose` for WP-CLI works) |
 | `wp …` | Production WP-CLI. On dockerized hosts: `docker compose run --rm -T wpcli wp …` from `PROD_WP` |
 | `STAGING_DIR` | Local/ops directory for ZIPs, CLI copies, and prod backups (not the web root) |
-| Flush trio | `wp elementor flush-css` → `wp cache flush` → Cloudflare purge (§6–§7) |
+| Flush trio | `wp elementor flush-css` → `wp cache flush` → Cloudflare purge (§8–§9) |
 
 Adapt only the **transport** (`wp` vs `docker compose run … wp`). Do not change CLI script names, option keys, or order.
 
@@ -38,8 +44,9 @@ Adapt only the **transport** (`wp` vs `docker compose run … wp`). Do not chang
 Batched final-state rollout (code already contains A–E). Database/Elementor steps still run in milestone order.
 
 ```text
-P0.0  Preflight + backups
+P0.0  Preflight + backups + production baseline record (§4)
 P0.1  Stage ZIPs + CLI scripts (from git; ZIPs exclude scripts/)
+      ── GO / NO-GO GATE (§5) — mandatory; STOP if any item fails ──
 P0.2  Install packages (code only)
         → loop-card 1.6.1
         → blocksy-child 1.1.0
@@ -47,7 +54,7 @@ P0.2  Install packages (code only)
 P0.3  Elementor A — homepage IA
 P0.4  Elementor B — shop + SEO category layouts
 P0.5  SEO D3 — migrate + validate page-owned grid meta
-P0.6  Elementor E — discover header/footer TB IDs → chrome + footer CLIs (+ UMC)
+P0.6  Elementor E — header/footer TB IDs → chrome + footer CLIs (+ UMC)
 P0.7  Flush trio + Cloudflare
 P0.8  Automated + manual validation
 P0.9  Sign-off / freeze as production baseline
@@ -80,6 +87,7 @@ Install **exactly** these versions (final E stack). Earlier milestone ZIPs are s
 ```bash
 # From STAGING_DIR after download
 sha256sum biopentra-storefront-0.9.0.zip biopentra-loop-card-1.6.1.zip blocksy-child-1.1.0.zip
+# Persist hashes into $STAGING_DIR/backups/p0-*/zip-sha256.txt for the deployment record
 # Unzip headers (example for storefront)
 python3 - <<'PY'
 import zipfile, re
@@ -98,7 +106,7 @@ PY
 | If rolling back… | Reinstall |
 |---|---|
 | Storefront only (post-E chrome) | `storefront-v0.8.0` — https://github.com/magpern/biopentra-custom-plugins/releases/tag/storefront-v0.8.0 |
-| Full redesign code stack | Whatever versions production reports **before** P0.2 (record in §16). Absolute last resort: pre-redesign storefront ≤ `0.5.21` + prior loop-card/child — only if preflight recorded them. |
+| Full redesign code stack | Whatever versions production reports **before** P0.2 (record in §4 / §18). Absolute last resort: pre-redesign storefront ≤ `0.5.21` + prior loop-card/child — only if preflight recorded them. |
 
 ---
 
@@ -130,58 +138,130 @@ Production ZIPs **exclude** `scripts/`. Stage CLIs from git tag `storefront-v0.9
 | Home | `page_on_front` (fallback slug `home`) |
 | Shop | `woocommerce_shop_page_id` (fallback slug `shop`) |
 | SEO guides | Slugs: `growth-hormone-releasing-peptides`, `metabolic-research-peptides`, `lyophilized-research-materials` |
-| Header / footer Theme Builder | **Must discover on production** — see §4 (dev IDs 3782/3823 are **not** portable) |
+| Header / footer Theme Builder | **Must discover on production** — see §6 (dev IDs 3782/3823 are **not** portable) |
 
 ---
 
-## 4. Elementor replay sequence
+## 4. Production baseline (P0.0 — record before any change)
 
-### 4.1 Preflight discovery (run once on production)
+Complete this **before** package install. Persist outputs under `$STAGING_DIR/backups/p0-YYYYMMDD/baseline/` and copy key fields into §18.
+
+### 4.1 Platform snapshot
 
 ```bash
-# Home / shop IDs
+B="$STAGING_DIR/backups/p0-$(date +%Y%m%d)/baseline"
+mkdir -p "$B"
+
+wp core version > "$B/wordpress-version.txt"
+wp plugin get woocommerce --field=version > "$B/woocommerce-version.txt" 2>/dev/null || \
+  wp eval 'echo defined("WC_VERSION")?WC_VERSION:"missing";' > "$B/woocommerce-version.txt"
+wp eval 'echo PHP_VERSION;' > "$B/php-version.txt"
+wp theme list --status=active --format=csv > "$B/active-theme.csv"
+wp theme list --format=csv > "$B/all-themes.csv"
+```
+
+### 4.2 Package versions (pre-P0)
+
+```bash
+wp plugin list --format=csv > "$B/plugins-all.csv"
+wp plugin list --status=active --format=csv > "$B/plugins-active.csv"
+
+# Named first-party packages (record even if inactive/missing)
+wp plugin get biopentra-storefront --fields=name,status,version --format=csv > "$B/biopentra-storefront.csv" || echo 'missing' > "$B/biopentra-storefront.csv"
+wp plugin get biopentra-loop-card --fields=name,status,version --format=csv > "$B/biopentra-loop-card.csv" || echo 'missing' > "$B/biopentra-loop-card.csv"
+wp theme list --format=csv | grep -i blocksy > "$B/blocksy-themes.csv" || true
+```
+
+Record into §18 at minimum:
+
+| Field | Source |
+|---|---|
+| WordPress version | `wordpress-version.txt` |
+| WooCommerce version | `woocommerce-version.txt` |
+| PHP version | `php-version.txt` |
+| Active theme (stylesheet + version) | `active-theme.csv` |
+| Storefront version (pre) | `biopentra-storefront.csv` |
+| Loop-card version (pre) | `biopentra-loop-card.csv` |
+| Blocksy child version (pre) | `blocksy-themes.csv` / active theme |
+| Active plugin list | `plugins-active.csv` (full export retained) |
+
+### 4.3 Discovery + Elementor / option backups
+
+```bash
+# Home / shop / SEO pages
 wp option get page_on_front
 wp option get woocommerce_shop_page_id
 wp post list --post_type=page --name=growth-hormone-releasing-peptides,metabolic-research-peptides,lyophilized-research-materials --fields=ID,post_name,post_status
 
-# Active Elementor Theme Builder header + footer (adjust query if site uses different titles)
+# Theme Builder candidates — identify active sitewide Header + Footer
 wp post list --post_type=elementor_library --fields=ID,post_title,post_status --posts_per_page=50
-# Then inspect which template is the sitewide Header / Footer in Elementor → Theme Builder
-# Record:
-#   PROD_HEADER_TB_ID=…
-#   PROD_FOOTER_TB_ID=…
+# Record PROD_HEADER_TB_ID and PROD_FOOTER_TB_ID after Theme Builder confirmation
 ```
 
-Confirm production templates contain the expected widgets (logo, nestable menu / mega, `biopentra_header_auth` or equivalent, menu cart) before running E CLIs.
-
-### 4.2 Backup Elementor `_elementor_data` (mandatory before each mutate)
-
 ```bash
-mkdir -p "$STAGING_DIR/backups/p0-$(date +%Y%m%d)"
-B="$STAGING_DIR/backups/p0-$(date +%Y%m%d)"
-
+ROOT="$STAGING_DIR/backups/p0-$(date +%Y%m%d)"
+mkdir -p "$ROOT"
 HOME_ID=$(wp option get page_on_front | tr -d '\r')
 SHOP_ID=$(wp option get woocommerce_shop_page_id | tr -d '\r')
 
-wp post meta get "$HOME_ID" _elementor_data > "$B/home-pre-P0.json"
-wp post meta get "$SHOP_ID" _elementor_data > "$B/shop-pre-P0.json"
+wp post meta get "$HOME_ID" _elementor_data > "$ROOT/home-pre-P0.json"
+wp post meta get "$SHOP_ID" _elementor_data > "$ROOT/shop-pre-P0.json"
 
 for SLUG in growth-hormone-releasing-peptides metabolic-research-peptides lyophilized-research-materials; do
   PID=$(wp post list --post_type=page --name="$SLUG" --field=ID | tr -d '\r')
-  wp post meta get "$PID" _elementor_data > "$B/seo-${SLUG}-pre-P0.json"
+  wp post meta get "$PID" _elementor_data > "$ROOT/seo-${SLUG}-pre-P0.json"
 done
 
-wp post meta get "$PROD_HEADER_TB_ID" _elementor_data > "$B/header-tb-pre-P0.json"
-wp post meta get "$PROD_FOOTER_TB_ID" _elementor_data > "$B/footer-tb-pre-P0.json"
+wp post meta get "$PROD_HEADER_TB_ID" _elementor_data > "$ROOT/header-tb-pre-P0.json"
+wp post meta get "$PROD_FOOTER_TB_ID" _elementor_data > "$ROOT/footer-tb-pre-P0.json"
 
-# UMC + CookieYes (E)
-wp option get umc_settings --format=json > "$B/umc_settings-pre-P0.json"
-wp option get cky_options --format=json > "$B/cky_options-pre-P0.json" || true
+wp option get umc_settings --format=json > "$ROOT/umc_settings-pre-P0.json"
+wp option get cky_options --format=json > "$ROOT/cky_options-pre-P0.json" || true
 ```
 
-Also screenshot production @360×800: home, shop, one SEO guide, one simple PDP, one variable PDP, cart → `$B/screenshots/before/`.
+Also:
 
-### 4.3 Apply Elementor (after §2 packages installed)
+- Production **database** backup completed and restore-tested (ops procedure for this host).
+- Production **filesystem** backup of `wp-content/plugins`, `wp-content/themes`, and relevant uploads Elementor CSS paths (ops procedure).
+- Screenshots @360×800 before/: home, shop, one SEO guide, simple PDP, variable PDP, cart → `$ROOT/screenshots/before/`.
+
+Confirm header/footer templates contain expected widgets (logo, nestable menu / mega, header auth or equivalent, menu cart) before GO.
+
+---
+
+## 5. GO / NO-GO CHECK (mandatory before P0.2)
+
+Complete **after** P0.0–P0.1 (baseline, backups, ZIPs staged, CLIs staged, TB IDs identified).  
+Complete **before** any package install (P0.2).
+
+### GO / NO-GO CHECK
+
+| ☐ | Item |
+|---|---|
+| ☐ | Production database backup completed and verified |
+| ☐ | Production filesystem backup completed and verified |
+| ☐ | Release ZIP hashes verified (§2) |
+| ☐ | Rollback ZIPs downloaded and locally available (`STAGING_DIR/rollback/`) |
+| ☐ | WP-CLI verified working (`wp core version` succeeds on production) |
+| ☐ | Cloudflare access verified (can purge) |
+| ☐ | Required CLI scripts staged (§3 inventory) |
+| ☐ | Active production Header Theme Builder template identified (`PROD_HEADER_TB_ID`) |
+| ☐ | Active production Footer Theme Builder template identified (`PROD_FOOTER_TB_ID`) |
+| ☐ | SEO guide pages verified (three slugs present and published or known-good) |
+| ☐ | Production baseline recorded (§4 → §18) |
+| ☐ | Operator has reviewed rollback procedure (§10) and decision matrix (§10.0) |
+| ☐ | Deployment approval recorded (approver name + timestamp in §18) |
+| ☐ | Production change freeze acknowledged (§0.1) |
+
+**If any item is not satisfied: STOP. Do not begin deployment (do not start P0.2).**
+
+Only when every box is checked may the operator proceed to package install.
+
+---
+
+## 6. Elementor replay sequence
+
+### 6.1 Apply Elementor (after GO and §2 packages installed)
 
 ```bash
 # A — Homepage
@@ -196,7 +276,7 @@ wp eval-file wp-content/plugins/biopentra-storefront/scripts/setup-seo-category-
 # WARN if a slug is missing on production — stop and reconcile pages before continuing
 ```
 
-### 4.4 Apply Elementor E (after §5 SEO migrate)
+### 6.2 Apply Elementor E (after §7 SEO migrate)
 
 ```bash
 export BIOPENTRA_E_HEADER_POST_ID="$PROD_HEADER_TB_ID"
@@ -215,7 +295,7 @@ wp eval-file wp-content/plugins/biopentra-storefront/scripts/setup-milestone-e-f
 
 ---
 
-## 5. SEO content migration sequence
+## 7. SEO content migration sequence
 
 **Hard gate (from Milestone D):** Do not consider B/C/D production-complete without D3 meta migration + validation.
 
@@ -252,7 +332,7 @@ If validate fails with **missing pages** or **zero published products**, fix cat
 
 ---
 
-## 6. Cache flush order
+## 8. Cache flush order
 
 After **all** DB/Elementor/option writes (or after each Elementor batch):
 
@@ -267,14 +347,14 @@ wp cache flush
 # wp post meta delete <ID> _elementor_css
 # wp post meta delete <ID> _elementor_element_cache
 
-# 4) Cloudflare — see §7 (always last)
+# 4) Cloudflare — see §9 (always last)
 ```
 
 **Order rule:** Elementor flush → WP object cache → Cloudflare. Never Cloudflare-only after Elementor changes.
 
 ---
 
-## 7. Cloudflare considerations
+## 9. Cloudflare considerations
 
 Production zone uses Cloudflare (orange cloud). SSL mode must remain **Full (strict)**.
 
@@ -290,14 +370,32 @@ If a surface still shows old layout after purge: re-run `wp elementor flush-css`
 
 ---
 
-## 8. Rollback strategy
+## 10. Rollback strategy
 
-Execute **bottom-up** until the site is stable. Prefer the smallest layer that restores commerce.
+Execute **bottom-up** until the site is stable. Prefer the smallest layer that restores commerce.  
+Operators **must not improvise** — use §10.0 first, then §10.1 / §10.2.
 
-### 8.1 Immediate soft rollback (Elementor / options only)
+### 10.0 Rollback decision matrix (mandatory)
+
+| Condition | Action |
+|---|---|
+| Homepage unusable (blank, fatal, cannot reach products) | **Immediate rollback** (§10.1 then §10.2 if needed) |
+| Shop cannot list products | **Immediate rollback** |
+| Add-to-cart broken | **Immediate rollback** |
+| Checkout broken / payment step unreachable | **Immediate rollback** |
+| Major PHP fatal (white screen, repeated 500s) | **Immediate rollback** |
+| SEO validate returns errors after migrate and cannot be fixed within timeline without risking commerce | **Immediate rollback** of SEO meta + affected Elementor; escalate |
+| Commerce intact; cosmetic layout defect on one surface | **Continue**; document in §18; fix-forward or soft-restore that surface after sign-off decision |
+| Minor CSS / spacing issue | **Continue**; document |
+| Cookie / banner overlap only | **Continue** if add-to-cart, shop, and checkout remain usable; document |
+| Timeline significantly exceeded (§14) without clear recovery path | **Pause** for deployment review before continuing or rolling back |
+
+“Immediate rollback” means: stop further CLIs, execute §10.1, verify commerce, then §10.2 if still broken, then §16 recovery close-out.
+
+### 10.1 Immediate soft rollback (Elementor / options only)
 
 ```bash
-B="$STAGING_DIR/backups/p0-YYYYMMDD"   # path from §4.2
+B="$STAGING_DIR/backups/p0-YYYYMMDD"   # path from §4.3
 
 # Restore pages
 HOME_ID=$(wp option get page_on_front | tr -d '\r')
@@ -316,14 +414,14 @@ wp elementor flush-css && wp cache flush
 # Cloudflare purge everything
 ```
 
-### 8.2 Code rollback
+### 10.2 Code rollback
 
 | Symptom | Action |
 |---|---|
 | Chrome / z-index / search only | Reinstall `biopentra-storefront-0.8.0.zip` |
-| Cards / archives / related | Reinstall prior loop-card ZIP recorded in preflight |
-| Sticky PDP | Reinstall prior child theme ZIP recorded in preflight |
-| Full abort | Restore all three preflight package versions + §8.1 |
+| Cards / archives / related | Reinstall prior loop-card ZIP recorded in §4 baseline |
+| Sticky PDP | Reinstall prior child theme ZIP recorded in §4 baseline |
+| Full abort | Restore all three preflight package versions + §10.1 |
 
 Activate after ZIP install:
 
@@ -333,7 +431,7 @@ wp theme activate blocksy-child   # confirm child slug on production
 wp elementor flush-css && wp cache flush
 ```
 
-### 8.3 What not to do
+### 10.3 What not to do
 
 - Do not import the dev database.
 - Do not “fix” production Elementor by hand without a new backup.
@@ -341,9 +439,9 @@ wp elementor flush-css && wp cache flush
 
 ---
 
-## 9. Production validation checklist
+## 11. Production validation checklist
 
-### 9.1 Automated
+### 11.1 Automated
 
 From a machine with Docker + checkout of `storefront-acceptance` @ `e09d66c` or newer:
 
@@ -369,7 +467,7 @@ docker run --rm \
 
 **Pass bar:** 0 failed, 0 flaky. Investigate any production-only skips caused by missing fixtures (e.g. product slug differences) before sign-off.
 
-### 9.2 WP-CLI post-checks
+### 11.2 WP-CLI post-checks
 
 ```bash
 wp plugin list --status=active | grep -E 'biopentra-storefront|biopentra-loop-card'
@@ -381,7 +479,7 @@ wp option get umc_settings --format=json | python3 -c "import sys,json; u=json.l
 wp eval-file wp-content/plugins/biopentra-storefront/scripts/validate-seo-grid-meta-cli.php
 ```
 
-### 9.3 Spot HTML checks (logged-out)
+### 11.3 Spot HTML checks (logged-out)
 
 | URL | Expect |
 |---|---|
@@ -396,7 +494,7 @@ wp eval-file wp-content/plugins/biopentra-storefront/scripts/validate-seo-grid-m
 
 ---
 
-## 10. Mobile smoke-test checklist
+## 12. Mobile smoke-test checklist
 
 Viewports: **360 / 390 / 430** (primary), spot **768 / 1440**. Logged-out. Cookie banner: accept once, retest revisit control.
 
@@ -419,7 +517,7 @@ Viewports: **360 / 390 / 430** (primary), spot **768 / 1440**. Logged-out. Cooki
 
 ---
 
-## 11. Success criteria
+## 13. Success criteria
 
 P0 is **successful** only when all are true:
 
@@ -430,22 +528,25 @@ P0 is **successful** only when all are true:
 5. Header/footer E chrome applied on **production** Theme Builder IDs.
 6. Flush trio + Cloudflare purge completed after final writes.
 7. Automated suite: **0 failed / 0 flaky** against `https://www.biopentra.eu`.
-8. Mobile smoke checklist (§10) complete with no Sev-1 defects.
+8. Mobile smoke checklist (§12) complete with no Immediate-rollback conditions (§10.0).
 9. Checkout/payment behaviour unchanged (smoke only).
-10. Execution log (§16) filled; backups retained ≥ 30 days.
-11. **No** open Sev-1: site down, checkout broken, empty shop, missing CSS sitewide, wrong currency injection doubling prices unexpectedly.
+10. Execution log (§18) filled including §4 baseline; backups retained ≥ 30 days.
+11. GO / NO-GO (§5) was completed with all boxes checked before P0.2.
+12. **No** open Immediate-rollback conditions from §10.0.
 
 ---
 
-## 12. Estimated deployment time
+## 14. Estimated deployment time and timeline checkpoints
+
+### 14.1 Phase estimates
 
 | Phase | Estimate |
 |---|---|
-| Preflight, downloads, backups, discovery | 45–75 min |
+| Preflight, baseline, backups, discovery, GO/NO-GO | 45–75 min |
 | Package install + activate | 15–30 min |
 | Elementor A + B CLIs | 20–40 min |
 | SEO migrate + validate | 10–20 min |
-| Elementor E (incl. ID discovery issues) | 20–45 min |
+| Elementor E | 20–45 min |
 | Flush + Cloudflare | 10–15 min |
 | Automated Playwright | 45–75 min |
 | Manual mobile smoke | 45–90 min |
@@ -454,64 +555,81 @@ P0 is **successful** only when all are true:
 
 Schedule a **half-day** maintenance window with a named rollback owner.
 
+### 14.2 Timeline checkpoints (from window start T+0)
+
+| Checkpoint | Target | Meaning |
+|---|---|---|
+| T+00:30 | Preflight + baseline complete | §4 done; discovery IDs recorded |
+| T+00:45 | GO / NO-GO passed | §5 all boxes checked |
+| T+01:15 | Packages installed | P0.2 complete; versions verified |
+| T+02:00 | Elementor A+B complete | P0.3–P0.4 done |
+| T+02:30 | SEO migration validated | P0.5 validate CLI 0 errors |
+| T+03:00 | Elementor E + flush + CF | P0.6–P0.7 done |
+| T+03:45 | Automated validation complete | Playwright 0 failed / 0 flaky |
+| T+04:30 | Manual mobile validation complete | §12 done |
+| T+05:00 | Final sign-off | §13 + §18 complete |
+
+**Significant deviation** from this timeline (roughly **>60 minutes behind** a checkpoint without a clear recovery path) **must trigger a deployment review** before continuing. The review decides: continue with a revised ETA, pause, or execute §10 rollback. Do not silently extend the window.
+
 ---
 
-## 13. Downtime expectations
+## 15. Downtime expectations
 
 | Mode | Expectation |
 |---|---|
 | Preferred | **No planned downtime.** ZIP installs and CLIs are online operations. |
 | Brief inconsistency | 5–20 minutes while Elementor CSS regenerates / CF purge propagates — some visitors may see mixed old/new chrome. |
 | Optional maintenance | Enable WooCommerce Coming Soon or a maintenance plugin only if production policy requires a frozen catalog during CLIs. |
-| Checkout | Do **not** pause payments unless a Sev-1 appears mid-flight. |
+| Checkout | Do **not** pause payments unless an Immediate-rollback condition (§10.0) appears mid-flight. |
 
 Communicate: “Storefront layout update in progress; checkout remains available.”
 
 ---
 
-## 14. Recovery procedure
+## 16. Recovery procedure
 
-### Sev-1 during rollout (site broken / checkout dead / empty commercial pages)
+### Sev-1 / Immediate-rollback conditions (§10.0)
 
 1. **Stop** further CLIs.
-2. Announce incident; freeze deploys.
-3. Run §8.1 soft rollback (Elementor + UMC + SEO meta).
-4. If still broken → §8.2 reinstall preflight package versions.
+2. Announce incident; freeze deploys (reinforce §0.1).
+3. Run §10.1 soft rollback (Elementor + UMC + SEO meta).
+4. If still broken → §10.2 reinstall preflight package versions from §4 baseline.
 5. Flush trio + Cloudflare purge everything.
 6. Verify: home loads, `/shop/` lists products, add-to-cart works, checkout loads.
 7. Capture logs (`wp`, PHP, nginx) and Elementor errors; open incident note.
 8. Do not re-attempt P0 until root cause is classified (template ID mismatch, missing page slug, ZIP extract failure, etc.).
 
-### Sev-2 (cosmetic / single surface)
+### Continue / document conditions (§10.0 cosmetic)
 
 1. Keep new packages if commerce works.
-2. Restore only the affected `_elementor_data` backup **or** fix forward with a new idempotent CLI patch (new change record).
+2. Restore only the affected `_elementor_data` backup **or** fix forward with a new idempotent CLI patch (new change record) — only after sign-off decision if still inside the window.
 3. Flush trio + targeted CF purge.
 4. Re-run the relevant Playwright project/spec only, then full prod suite before sign-off.
 
 ### Post-recovery
 
-- Update §16 with timestamps and actions.
+- Update §18 with timestamps and actions.
 - Retain failed-state screenshots.
 - If storefront ZIP was rolled back from 0.9.0 → 0.8.0, document that E chrome is not on production.
 
 ---
 
-## 15. Step-by-step execution script (copy/paste outline)
+## 17. Step-by-step execution script (copy/paste outline)
 
 ```bash
-# === P0.0 Preflight ===
-# Record: date, engineer, PROD_WP path, current plugin/theme versions
-wp plugin list
-wp theme list
-wp option get blogname
-# Download ZIPs + rollback ZIPs into STAGING_DIR
+# === P0.0 Preflight + baseline (§4) ===
+# Record: date, engineer, PROD_WP path
+# §4.1–4.2 platform + package baseline exports
+# §4.3 discover PROD_HEADER_TB_ID / PROD_FOOTER_TB_ID; Elementor + umc backups
+# Screenshots before/
+# DB + filesystem backups (ops)
+
+# === P0.1 Stage ZIPs + CLIs (§2–§3) ===
+# Download release + rollback ZIPs; verify hashes
 # Stage CLI *.php into plugin scripts/ or STAGING_DIR/cli
 
-# === P0.1 Backups + discovery ===
-# §4.1 discover PROD_HEADER_TB_ID / PROD_FOOTER_TB_ID
-# §4.2 backup Elementor + umc_settings
-# Screenshots before/
+# === GO / NO-GO (§5) — STOP if incomplete ===
+# All checkboxes must be checked before P0.2
 
 # === P0.2 Install code ===
 # Upload/install ZIPs via WP admin or wp plugin install --force / theme
@@ -519,47 +637,63 @@ wp plugin activate biopentra-storefront biopentra-loop-card
 wp theme activate <blocksy-child-stylesheet>
 wp eval 'echo defined("BIOPENTRA_STOREFRONT_VERSION")?BIOPENTRA_STOREFRONT_VERSION:"missing";'
 
-# === P0.3–P0.4 Elementor A/B ===
+# === P0.3–P0.4 Elementor A/B (§6.1) ===
 wp eval-file …/setup-home-page-v2-cli.php
 wp eval-file …/setup-shop-page-v2-cli.php
 wp eval-file …/setup-seo-category-v2-cli.php
 
-# === P0.5 SEO ===
+# === P0.5 SEO (§7) ===
 wp eval-file …/migrate-seo-grid-meta-cli.php
 wp eval-file …/validate-seo-grid-meta-cli.php   # MUST pass
 
-# === P0.6 Elementor E ===
+# === P0.6 Elementor E (§6.2) ===
 BIOPENTRA_E_HEADER_POST_ID=… BIOPENTRA_E_FOOTER_POST_ID=… \
   wp eval-file …/setup-milestone-e-chrome-cli.php
 BIOPENTRA_E_FOOTER_POST_ID=… \
   wp eval-file …/setup-milestone-e-footer-cli.php
 
-# === P0.7 Caches ===
+# === P0.7 Caches (§8–§9) ===
 wp elementor flush-css
 wp cache flush
 # Cloudflare: Purge Everything
 
-# === P0.8 Validate ===
-# run-prod.sh + §10 mobile smoke
-# Fill §16; declare P0 complete only if §11 satisfied
+# === P0.8 Validate (§11–§12) ===
+# run-prod.sh + mobile smoke
+# Apply §10.0 if any Immediate-rollback condition appears
+
+# === P0.9 Sign-off ===
+# Fill §18; declare P0 complete only if §13 satisfied
 ```
 
 ---
 
-## 16. Execution log (fill during deploy)
+## 18. Execution log (fill during deploy)
 
 | Field | Value |
 |---|---|
 | Date / time start (UTC) | |
 | Engineer | |
 | Approver | |
+| Deployment approval timestamp | |
 | `PROD_WP` | |
-| Preflight storefront version | |
-| Preflight loop-card version | |
-| Preflight child version | |
+| Change freeze acknowledged (§0.1) | ☐ |
+| **Baseline — WordPress** | |
+| **Baseline — WooCommerce** | |
+| **Baseline — PHP** | |
+| **Baseline — active theme** | |
+| **Baseline — storefront (pre)** | |
+| **Baseline — loop-card (pre)** | |
+| **Baseline — blocksy-child (pre)** | |
+| **Baseline — active plugins export path** | |
+| DB backup verified | ☐ path: |
+| Filesystem backup verified | ☐ path: |
+| ZIP sha256 file path | |
+| Rollback ZIPs path | |
 | `PROD_HEADER_TB_ID` | |
 | `PROD_FOOTER_TB_ID` | |
 | Backup directory | |
+| GO / NO-GO (§5) all checked | ☐ |
+| Timeline checkpoint notes (§14.2) | |
 | A CLI result | |
 | B shop CLI result | |
 | B SEO CLI result | |
@@ -571,13 +705,13 @@ wp cache flush
 | CF purge ticket/time | |
 | Playwright command + result | |
 | Mobile smoke result | |
-| Sev issues | |
+| §10.0 conditions hit | |
 | Rollback used? | |
 | Sign-off | ☐ Success / ☐ Aborted |
 
 ---
 
-## 17. References
+## 19. References
 
 | Doc | Use |
 |---|---|
@@ -586,6 +720,7 @@ wp cache flush
 | [deployment/milestone-C-canonical-cards.md](../deployment/milestone-C-canonical-cards.md) | Loop-card expectations |
 | [deployment/milestone-D.md](../deployment/milestone-D.md) | D package set / SEO gate |
 | [deployment/milestone-E.md](../deployment/milestone-E.md) | E chrome/footer/UMC |
+| [deployment/milestone-P0.md](../deployment/milestone-P0.md) | Deployment-record stub |
 | [changes/milestone-D3-seo-content-ownership.md](../changes/milestone-D3-seo-content-ownership.md) | Meta keys + migrate/validate |
 | [changes/milestone-E2-fixed-ui.md](../changes/milestone-E2-fixed-ui.md) | UMC + z-index |
 | [validation/milestone-E.md](../validation/milestone-E.md) | Dev acceptance baseline |
@@ -593,9 +728,10 @@ wp cache flush
 
 ---
 
-## 18. Explicit non-goals
+## 20. Explicit non-goals
 
-- Do not start deployment in this planning milestone.
+- Do not start deployment until an explicit production execution prompt.
 - Do not begin a separate “Milestone F” document set — **P0 replaces F for production rollout**.
 - Do not change checkout, gateways, or cart AJAX.
 - Do not invent new Elementor layouts on production outside these CLIs.
+- Do not change package versions or deployment order in this playbook without a new frozen revision.
