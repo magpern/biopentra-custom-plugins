@@ -12,6 +12,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.2] — 2026-08-07
+
+### Fixed
+
+- **Milestone E1.2 — Information mega-menu closed while hovering toward its own items.** With Elementor Pro's mega-menu default `open_on=hover`, moving the mouse from the "Information" title down into its open panel very often crossed a sibling top-level title (Home / Shop / About Us / Contact) still in the same row — Elementor Pro's own `mega-menu.js` unconditionally deactivates the active tab whenever the mouse enters *any* title (`onMouseTitleEnter` → `changeActiveTab()` → `deactivateActiveTab()`), even a plain link with no dropdown of its own. Confirmed live: hovering "Shop" while "Information" was open closed the panel every time. This was unreachable before Milestone E1.1 — desktop was stuck in the collapsed/hamburger layout, so the hover-open codepath never actually ran on desktop until E1.1 restored the horizontal nav; this is a newly-exposed, pre-existing widget-interaction issue, not a regression introduced by the E1.1 fix itself.
+  Fix: set the mega-menu widget's own `open_on` setting to `click` (a supported Elementor Pro control, applied via a new idempotent CLI: `scripts/setup-milestone-e1-2-mega-menu-open-on-click.php`) in header 3782. Click-to-open sidesteps the fragile hover geometry entirely and matches the behaviour already used on mobile/tablet (which always open on click, regardless of this setting). No CSS changes; no JS changes.
+
+**Git tag:** none yet — patch prepared but not tagged/released; see `MILESTONE_P0_PRODUCTION_ROLLOUT.md` amendment.
+
+---
+
 ## [0.9.1] — 2026-08-07
 
 ### Fixed
