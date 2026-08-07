@@ -12,6 +12,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.4] — 2026-08-07
+
+### Fixed
+
+- **Legal/info pages lost their boxed layout.** Privacy Policy, Cookie Policy, Terms & Conditions, Refund Policy, Shipping Policy, FAQ, and Research Use Disclaimer had `_wp_page_template = elementor_header_footer` (Elementor's edge-to-edge canvas) despite holding plain WordPress content (no real `_elementor_data`) — that template skips the theme's boxed `.entry-content` column, so text rendered unconstrained to the viewport edge. Fixed via `scripts/fix-legal-page-content-template.php`: reset to the theme's `default` template (matching Contact and every other plain-content page) and disabled Blocksy's `has_hero_section` for them, since the theme's own title bar was duplicating each page's own `<h1>`.
+- **Homepage quick-search row was unboxed and always stacked.** The search input and category-chip containers (`bp-home-search-section`, `bp-home-cats-section`) explicitly set `content_width: full`, unlike every other homepage section, so they hugged the viewport edge instead of sitting in the site's centered ~1240px column; they were also two separate top-level Elementor containers, so they could never share a row. Fixed via `scripts/fix-home-search-cats-row.php`: merged the category-chips widget into the search container, boxed it to `1240px` to match Featured Products, and made it a flex row (chips left, search field fixed-width right) above Elementor's own tablet cutoff (1025px, matching the mega-menu's breakpoint), falling back to the existing stacked/scrollable mobile layout below that. `assets/css/home-v2.css` updated to size the two children within the merged row.
+
+**Git tag:** none yet — patches prepared but not tagged/released.
+
+---
+
 ## [0.9.2] — 2026-08-07
 
 ### Fixed

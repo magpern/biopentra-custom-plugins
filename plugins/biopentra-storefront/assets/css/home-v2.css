@@ -51,10 +51,28 @@ body.home .bp-home-hero > .e-con-inner {
 	margin-bottom: 8px;
 }
 
-/* Category shortcut rail */
-.bp-home-cats-section {
-	padding-top: 0 !important;
-	padding-bottom: 8px !important;
+/* Desktop: category chips + search field share one row (search fixed width,
+ * chips take remaining space and wrap internally). The container itself is
+ * row-direction only above Elementor's own tablet cutoff (--bp-bp-lg /
+ * viewport_lg = 1025px — same cutoff the mega-menu uses); below that its
+ * own flex_direction_tablet/mobile settings already switch it to a column,
+ * where these children stack full-width automatically. Matching this
+ * threshold (rather than an arbitrary 768px) avoids fighting the
+ * column-direction flex-basis math in the 768–1024px range. */
+@media (min-width: 1025px) {
+	.bp-home-search-section > .e-con-inner {
+		flex-wrap: nowrap !important;
+	}
+
+	.bp-home-search-section > .e-con-inner > .elementor-element-a1cats1 {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.bp-home-search-section > .e-con-inner > .elementor-element-a1srch3 {
+		flex: 0 0 300px;
+		width: 300px;
+	}
 }
 
 .bp-home-cats__scroll {
@@ -96,7 +114,6 @@ body.home .bp-home-hero > .e-con-inner {
 
 /* Tighter commercial block spacing */
 body.home .bp-home-search-section,
-body.home .bp-home-cats-section,
 body.home .bp-home-products-section {
 	margin-bottom: 16px;
 }
