@@ -12,6 +12,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.1] — 2026-08-07
+
+### Fixed
+
+- **Milestone E1.1 — Desktop header regressed to hamburger nav.** `assets/css/chrome-v1.css`'s `.e-n-menu-toggle` touch-target rule (added in 0.9.0 for the ≥44×44 requirement) declared `display: inline-flex` with no `@media` guard. That selector ties Elementor Pro's mega-menu widget's own desktop `.elementor-widget-n-menu .e-n-menu-toggle{display:none}` rule on specificity (2 classes each); because `chrome-v1.css` loads after Elementor's CSS in the enqueue order, it won the cascade at every width, forcing the hamburger toggle open on desktop (confirmed 1024px–1688px) while the horizontal nav (`.e-n-menu-wrapper`) rendered underneath as an unstyled block. Elementor's own responsive config (`item_layout=horizontal`, `breakpoint_selector=tablet` / 1024px) was untouched and correct. Fix: drop the `display` declaration from that rule — sizing/centering are still applied whenever Elementor's own (higher-specificity, media-scoped) rule shows the toggle. No Elementor config or CLI changes required.
+- Discovered during pre-production smoke testing at ~1688px; dev header 3782 (Elementor `_elementor_data`) required no changes.
+
+**Git tag:** `storefront-v0.9.1` (patch; supersedes `0.9.0` — 0.9.0 should not be installed on production, see updated `MILESTONE_P0_PRODUCTION_ROLLOUT.md`)
+
+---
+
 ## [0.9.0] — 2026-08-04
 
 ### Milestone E — Global chrome polish (dev)

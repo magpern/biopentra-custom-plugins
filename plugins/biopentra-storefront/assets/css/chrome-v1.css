@@ -58,11 +58,20 @@
 	z-index: var(--bp-z-overlay, 400);
 }
 
-/* ── E1 touch targets (≥ 44×44) ── */
+/* ── E1 touch targets (≥ 44×44) ──
+ * No `display` here on purpose: Elementor Pro's mega-menu widget hides
+ * `.e-n-menu-toggle` on desktop via `.elementor-widget-n-menu .e-n-menu-toggle{display:none}`
+ * (2-class specificity) and only shows it below its own breakpoint via a
+ * higher-specificity (5-class) rule scoped inside `@media (max-width:1024px)`.
+ * Declaring `display` here at equal (2-class) specificity, loaded after
+ * Elementor's CSS, silently won the cascade at ALL widths and forced the
+ * hamburger toggle open on desktop (regression fixed 2026-08-07, see
+ * docs/storefront-redesign/changes/milestone-E1-header.md). Sizing/centering
+ * alone is sufficient — Elementor's own rule supplies `display` when the
+ * toggle is meant to be visible. */
 .elementor-location-header .e-n-menu-toggle {
 	min-width: var(--bp-touch-min, 44px);
 	min-height: var(--bp-touch-min, 44px);
-	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
