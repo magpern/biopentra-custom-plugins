@@ -1,0 +1,193 @@
+[
+  {
+    "vp": "360",
+    "width": 360,
+    "hasSpecimen": 0,
+    "hasDemoText": 0,
+    "hasVial": 0,
+    "hasTrial": 1,
+    "heroVisible": true,
+    "searchVisible": true,
+    "chips": 7,
+    "cards": 12,
+    "cardImgs": 4,
+    "overflow": false,
+    "fonts": {
+      "headingFont": "\"Barlow Condensed\", system-ui, sans-serif",
+      "cardRadius": "4px",
+      "cardShadow": "none",
+      "chipRadius": "4px",
+      "btnRadius": "4px",
+      "bodyHasTrial": true
+    },
+    "nav": {},
+    "interactions": {},
+    "consoleErrors": []
+  },
+  {
+    "vp": "390",
+    "width": 390,
+    "hasSpecimen": 0,
+    "hasDemoText": 0,
+    "hasVial": 0,
+    "hasTrial": 1,
+    "heroVisible": true,
+    "searchVisible": true,
+    "chips": 7,
+    "cards": 12,
+    "cardImgs": 4,
+    "overflow": false,
+    "fonts": {
+      "headingFont": "\"Barlow Condensed\", system-ui, sans-serif",
+      "cardRadius": "4px",
+      "cardShadow": "none",
+      "chipRadius": "4px",
+      "btnRadius": "4px",
+      "bodyHasTrial": true
+    },
+    "nav": {},
+    "interactions": {
+      "searchVal": "tirz",
+      "qaVisible": true,
+      "nestedAnchors": 0
+    },
+    "consoleErrors": []
+  },
+  {
+    "vp": "430",
+    "width": 430,
+    "hasSpecimen": 0,
+    "hasDemoText": 0,
+    "hasVial": 0,
+    "hasTrial": 1,
+    "heroVisible": true,
+    "searchVisible": true,
+    "chips": 7,
+    "cards": 12,
+    "cardImgs": 4,
+    "overflow": false,
+    "fonts": {
+      "headingFont": "\"Barlow Condensed\", system-ui, sans-serif",
+      "cardRadius": "4px",
+      "cardShadow": "none",
+      "chipRadius": "4px",
+      "btnRadius": "4px",
+      "bodyHasTrial": true
+    },
+    "nav": {},
+    "interactions": {},
+    "consoleErrors": []
+  },
+  {
+    "vp": "1024",
+    "width": 1024,
+    "hasSpecimen": 0,
+    "hasDemoText": 0,
+    "hasVial": 0,
+    "hasTrial": 1,
+    "heroVisible": true,
+    "searchVisible": true,
+    "chips": 7,
+    "cards": 12,
+    "cardImgs": 4,
+    "overflow": false,
+    "fonts": {
+      "headingFont": "\"Barlow Condensed\", system-ui, sans-serif",
+      "cardRadius": "4px",
+      "cardShadow": "none",
+      "chipRadius": "4px",
+      "btnRadius": "4px",
+      "bodyHasTrial": true
+    },
+    "nav": {
+      "toggleVisible": true,
+      "wrapperDisplay": "none",
+      "headingVisible": false,
+      "expectCollapsed": true,
+      "ok": true
+    },
+    "interactions": {},
+    "consoleErrors": []
+  },
+  {
+    "vp": "1025",
+    "width": 1025,
+    "hasSpecimen": 0,
+    "hasDemoText": 0,
+    "hasVial": 0,
+    "hasTrial": 1,
+    "heroVisible": true,
+    "searchVisible": true,
+    "chips": 7,
+    "cards": 12,
+    "cardImgs": 4,
+    "overflow": false,
+    "fonts": {
+      "headingFont": "\"Barlow Condensed\", system-ui, sans-serif",
+      "cardRadius": "4px",
+      "cardShadow": "none",
+      "chipRadius": "4px",
+      "btnRadius": "4px",
+      "bodyHasTrial": true
+    },
+    "nav": {
+      "toggleVisible": false,
+      "wrapperDisplay": "flex",
+      "headingVisible": true,
+      "expectCollapsed": false,
+      "ok": true
+    },
+    "interactions": {},
+    "consoleErrors": []
+  },
+  {
+    "vp": "1440",
+    "width": 1440,
+    "hasSpecimen": 0,
+    "hasDemoText": 0,
+    "hasVial": 0,
+    "hasTrial": 1,
+    "heroVisible": true,
+    "searchVisible": true,
+    "chips": 7,
+    "cards": 12,
+    "cardImgs": 4,
+    "overflow": false,
+    "fonts": {
+      "headingFont": "\"Barlow Condensed\", system-ui, sans-serif",
+      "cardRadius": "4px",
+      "cardShadow": "none",
+      "chipRadius": "4px",
+      "btnRadius": "4px",
+      "bodyHasTrial": true
+    },
+    "nav": {},
+    "interactions": {},
+    "consoleErrors": []
+  },
+  {
+    "vp": "1680",
+    "width": 1680,
+    "hasSpecimen": 0,
+    "hasDemoText": 0,
+    "hasVial": 0,
+    "hasTrial": 1,
+    "heroVisible": true,
+    "searchVisible": true,
+    "chips": 7,
+    "cards": 12,
+    "cardImgs": 4,
+    "overflow": false,
+    "fonts": {
+      "headingFont": "\"Barlow Condensed\", system-ui, sans-serif",
+      "cardRadius": "4px",
+      "cardShadow": "none",
+      "chipRadius": "4px",
+      "btnRadius": "4px",
+      "bodyHasTrial": true
+    },
+    "nav": {},
+    "interactions": {},
+    "consoleErrors": []
+  }
+]

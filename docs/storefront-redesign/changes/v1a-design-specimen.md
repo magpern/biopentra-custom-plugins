@@ -1,18 +1,34 @@
 # V1A — Design Specimen (trial visual system)
 
-**Status:** Live on `dev.biopentra.eu` — awaiting Product Owner visual review  
-**Date:** 2026-08-20  
+**Status:** Iteration 2 live on `dev.biopentra.eu` — awaiting Product Owner visual review  
+**Dates:** 2026-08-20 (iter 1) · 2026-08-20 (iter 2 correction)  
 **Not:** SDS v2 freeze · V1 complete · V2 started · release tag · production
 
-## Summary
+---
 
-Implemented a **reversible homepage-only** visual specimen so the Product Owner can judge the proposed direction (Barlow / Barlow Condensed, steel-blue `#5980a6`, 4px radii, hairline borders, denser commercial chrome, specimen-level card preview). No architecture changes. No template 3608 migration. No header/cart V2 work.
+## Iteration history
 
-## URLs affected
+### V1A iteration 1 — REJECTED BY PRODUCT OWNER
+
+**What shipped:** Injected `#bp-v1a-specimen` demo panel after the Elementor header (typography demos, fake buttons/chips/search, fake card / “VIAL PHOTO”, explanatory banners).
+
+**Why rejected:** Misunderstood “design specimen.” The Product Owner opened the real homepage and saw a style-guide panel before the storefront. The development storefront itself must *be* the specimen — evaluate the proposed visual language on **real** BioPentra components, not a demo inserted into customer-facing markup.
+
+### V1A iteration 2 — corrected real-homepage specimen
+
+Removed all demo HTML. Applies Barlow / steel-blue `#5980a6` / 4px geometry / hairline cards **only** via scoped CSS on existing Milestone A homepage components under `body.bp-v1a-trial.home`.
+
+---
+
+## Summary (iteration 2)
+
+Reversible homepage-only visual trial so the Product Owner can browse normally and judge whether the proposed system improves the real storefront. No architecture changes. No template 3608 migration. No header/cart V2 work.
+
+## URLs
 
 | Environment | URL |
 |---|---|
-| Dev (inspect) | https://dev.biopentra.eu/ (hard-refresh / `?v1a=1` if cached) |
+| Dev (inspect) | https://dev.biopentra.eu/ (hard-refresh / `?v1a2=1` if cached) |
 | Production | **not deployed** |
 
 ## Page / template IDs
@@ -21,120 +37,62 @@ Implemented a **reversible homepage-only** visual specimen so the Product Owner 
 |---|---|---|
 | Home | 4444 | No Elementor `_elementor_data` mutation |
 | Header TB | 3782 | Untouched |
-| Loop card | 3608 | Untouched |
+| Loop card | 3608 | Untouched (homepage CSS overlay only) |
 
 ## Component owner
 
-`biopentra-storefront` (working tree; **not tagged**; still reports version **0.9.4**)
+`biopentra-storefront` (working tree; **not tagged**; header still **0.9.4**)
 
-## Previous state
+## Real components receiving V1A treatment
 
-Homepage commercial IA from Milestones A–E; soft/pill SDS v1 tokens; theme fonts; no Barlow; saturated primary via theme palette.
+| Component | How |
+|---|---|
+| Homepage body / surfaces | `body.bp-v1a-trial.home` fonts + `#f2f2f3` ground |
+| Hero heading | Barlow Condensed |
+| Hero CTAs | 4px radius; primary steel-blue fill; secondary outline preserved |
+| Category chips | 4px, hairline, steel text |
+| Search field | 4px, surface fill, hairline |
+| Featured / product section headings | Barlow Condensed |
+| Homepage product cards (Featured/Newest/Popular grids) | 4px, hairline, no soft shadow; title/price type; square quick-add |
+| Quick-add control | 4px square on homepage cards only |
 
-## New state
+**Not treated (deferred):** header/cart chrome (V2), shop/archives (V3/V4), cart/checkout (V5), global `bp-tokens.css` freeze (V1).
 
-- Body class `bp-v1a-trial` on front page
-- Specimen panel `#bp-v1a-specimen` injected after Elementor header (`elementor/theme/after_do_header`)
-- Light scoped home chrome (chips/search radius + heading fonts) under `body.bp-v1a-trial.home`
-- Self-hosted Barlow + Barlow Condensed (OFL)
-
-## Files changed
+## Files changed (iteration 2)
 
 | Path | Role |
 |---|---|
-| `plugins/biopentra-storefront/includes/v1a-specimen.php` | Enqueue, body class, panel HTML |
-| `plugins/biopentra-storefront/includes/class-biopentra-storefront.php` | Require V1A include |
-| `plugins/biopentra-storefront/assets/css/bp-v1a-fonts.css` | `@font-face` |
-| `plugins/biopentra-storefront/assets/css/bp-v1a-specimen.css` | Specimen + scoped trial chrome |
-| `plugins/biopentra-storefront/assets/fonts/barlow/*.woff2` | Self-hosted body weights |
-| `plugins/biopentra-storefront/assets/fonts/barlow-condensed/*.woff2` | Self-hosted heading weights |
-| `plugins/biopentra-storefront/assets/fonts/OFL-Barlow.txt` | License notice |
+| `plugins/biopentra-storefront/includes/v1a-specimen.php` | Enqueue + body class only (no HTML injection) |
+| `plugins/biopentra-storefront/assets/css/bp-v1a-specimen.css` | Real-homepage scoped trial styles |
+| Fonts / `bp-v1a-fonts.css` | Unchanged from iter 1 (still used) |
 
-**Not changed:** `bp-tokens.css` defaults (so loop-card / archives do not inherit V1A radii globally), template 3608, chrome-v1 header/cart, UMC, sticky bar, SEO meta.
+## Settings / DB
 
-## Typography / fonts
+None.
 
-| Role | Family | Source |
-|---|---|---|
-| Body / UI | Barlow 400/500/700 | Self-hosted WOFF2 (Fontsource latin subset) |
-| Headings / display / buttons | Barlow Condensed 600/700 | Same |
-| License | SIL OFL 1.1 | `assets/fonts/OFL-Barlow.txt` |
-| Loading | `font-display: swap` + preload of 400 body + 700 condensed | |
+## Screenshots (iteration 2)
 
-## Design tokens demonstrated (specimen-scoped)
+Canonical project repo:
 
-| Token | Value |
-|---|---|
-| Primary | `#5980a6` |
-| Primary hover / pressed | `#416180` / `#2c455d` |
-| Background | `#f2f2f3` |
-| Surface | `#e9e9ea` |
-| Text | `#1d1f20` |
-| Border | ~16% ink hairline |
-| Radius | `4px` |
-| Card shadow | `none` (hairline only) |
+`screenshots/v1a/iteration-2/home-v1a2-{360,390,430,1024,1025,1440,1680}.png`  
+`screenshots/v1a/iteration-2/capture-report.json`
 
-## Selectors
+Iteration 1 panel crops remain under `screenshots/v1a/screenshots/` as historical evidence of the rejected approach.
 
-- `#bp-v1a-specimen`, `.bp-v1a-specimen__*`
-- `.bp-v1a-card-preview`
-- `body.bp-v1a-trial.home` scoped chip/search/heading overrides
+## Validation
 
-## Settings / DB changes
-
-None. No Elementor JSON, no options, no UMC/CookieYes changes.
-
-## WP-CLI / cache
-
-```bash
-cd /opt/biopentra/apps/wordpress
-docker compose run --rm -T wpcli wp cache flush
-# Hard-refresh browser; append ?v1a=1 if edge/page cache sticky
-```
-
-## Screenshots
-
-[`validation/v1a-design-specimen/screenshots/`](../validation/v1a-design-specimen/screenshots/)
-
-| File | Viewport |
-|---|---|
-| `home-v1a-{360,390,430,768,1024,1025,1440,1680}.png` | Full above-the-fold home |
-| `specimen-{…}.png` | Specimen panel crop |
-| `capture-report.json` | Automated font/radius/nav/overflow checks |
-
-## Acceptance / targeted validation
-
-See [`validation/v1a-design-specimen.md`](../validation/v1a-design-specimen.md). Full acceptance matrix **not** run.
-
-## Production replay
-
-**N/A** — V1A is dev specimen only. P0 remains on hold.
+See matching validation record. Full acceptance matrix **not** run.
 
 ## Rollback
 
-1. Disable without deploy: `add_filter( 'biopentra_v1a_specimen_enabled', '__return_false' );` (mu-plugin or temporary snippet), **or**
-2. Remove `require_once` of `v1a-specimen.php` from `class-biopentra-storefront.php`, **or**
-3. Revert the V1A commit on `biopentra-custom-plugins`.
+```php
+add_filter( 'biopentra_v1a_specimen_enabled', '__return_false' );
+```
 
-Then `wp cache flush`. No Elementor restore needed (no DB mutation).
-
-## Commit hash(es)
-
-`biopentra-custom-plugins` — `d0e2ce4b867e25a5e1d10025d7b504a1ba1c766f` (local main; not tagged; not pushed).
-
-## Intentionally deferred
-
-| Item | Phase |
-|---|---|
-| Freeze SDS v2 / replace `bp-tokens.css` defaults | V1 (after PO approve) |
-| Header cart icon / kill floating pill | V2 |
-| Page-wide home/shop/search polish | V3 |
-| Template 3608 / loop-card full visual migration | V4 |
-| Cart/checkout/account styling | V5 |
-| Blueprint `+` marks, duotone, account-gated checkout | Rejected |
-| Catalog / Uncategorized / featured-loop merchandising | Out of scope |
+or remove the `v1a-specimen.php` require / revert V1A commits. Then `wp cache flush`. No Elementor restore.
 
 ## Explicit status
 
-**V1A specimen ready for Product Owner visual review.**  
+**V1A iteration 1: REJECTED.**  
+**V1A iteration 2: corrected real-homepage specimen ready for Product Owner visual review.**  
 **V1 is NOT frozen. V2 has NOT started.**

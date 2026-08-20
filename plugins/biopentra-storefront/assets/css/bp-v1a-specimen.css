@@ -1,12 +1,14 @@
 /**
- * V1A Design Specimen — trial visual system on homepage only.
+ * V1A iteration 2 — trial visual system on the REAL homepage only.
  *
- * Does NOT freeze SDS v2. Does NOT migrate template 3608 / loop-card globally.
- * Scoped to .bp-v1a-specimen + light homepage chrome under body.bp-v1a-trial.home.
- * Rollback: disable via biopentra_v1a_specimen_enabled filter or remove this include.
+ * Applies Barlow / steel-blue / 4px geometry to existing Milestone A components.
+ * Does NOT inject demo panels. Does NOT freeze SDS v2 / bp-tokens.css.
+ * Does NOT migrate template 3608 globally — homepage product grids only.
+ *
+ * Rollback: filter biopentra_v1a_specimen_enabled → false, or remove the include.
  */
 
-/* ── Trial tokens (specimen + scoped home chrome only) ── */
+/* ── Trial tokens (scoped via body.bp-v1a-trial) ── */
 body.bp-v1a-trial {
 	--bp-v1a-font-heading: "Barlow Condensed", system-ui, sans-serif;
 	--bp-v1a-font-body: "Barlow", system-ui, sans-serif;
@@ -22,325 +24,188 @@ body.bp-v1a-trial {
 	--bp-v1a-shadow: none;
 }
 
-/* Light homepage context (not a page redesign) */
+/* ── Page surface + body type (homepage commercial content) ── */
 body.bp-v1a-trial.home {
 	font-family: var(--bp-v1a-font-body);
 	background-color: var(--bp-v1a-color-bg);
 	color: var(--bp-v1a-color-text);
 }
 
+body.bp-v1a-trial.home #main,
+body.bp-v1a-trial.home .site-main,
+body.bp-v1a-trial.home .elementor-location-single {
+	font-family: var(--bp-v1a-font-body);
+}
+
+/* Generic typography in main content — do not restyle header chrome layout */
+body.bp-v1a-trial.home .site-main h1,
+body.bp-v1a-trial.home .site-main h2,
+body.bp-v1a-trial.home .site-main h3,
+body.bp-v1a-trial.home .elementor-location-single .elementor-heading-title,
 body.bp-v1a-trial.home .bp-home-hero .elementor-heading-title,
-body.bp-v1a-trial.home .bp-home-products-section .elementor-heading-title {
+body.bp-v1a-trial.home .bp-home-products-section .elementor-heading-title,
+body.bp-v1a-trial.home .bp-home-search-section .elementor-heading-title {
 	font-family: var(--bp-v1a-font-heading);
 	font-weight: 700;
 	letter-spacing: -0.015em;
+	color: var(--bp-v1a-color-text);
 }
 
+body.bp-v1a-trial.home .bp-home-hero .elementor-heading-title {
+	line-height: 1.1;
+}
+
+/* ── Hero CTAs (real Elementor buttons) ── */
+body.bp-v1a-trial.home .bp-home-hero .elementor-button {
+	font-family: var(--bp-v1a-font-heading) !important;
+	font-weight: 600 !important;
+	font-size: 14px !important;
+	letter-spacing: 0.01em;
+	border-radius: var(--bp-v1a-radius) !important;
+	min-height: 44px;
+	padding: 10px 18px !important;
+	box-shadow: none !important;
+	border-width: 1px !important;
+	border-style: solid !important;
+}
+
+body.bp-v1a-trial.home .bp-home-hero .elementor-button-link {
+	background-color: var(--bp-v1a-color-primary) !important;
+	border-color: var(--bp-v1a-color-primary) !important;
+	color: #f2f2f3 !important;
+}
+
+body.bp-v1a-trial.home .bp-home-hero .elementor-button-link:hover,
+body.bp-v1a-trial.home .bp-home-hero .elementor-button-link:focus {
+	background-color: var(--bp-v1a-color-primary-hover) !important;
+	border-color: var(--bp-v1a-color-primary-hover) !important;
+	color: #f2f2f3 !important;
+}
+
+body.bp-v1a-trial.home .bp-home-hero .elementor-button.elementor-button-link.elementor-size-md {
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* If a second CTA is white/light in Elementor, square it without forcing fill */
+body.bp-v1a-trial.home .bp-home-hero .elementor-widget-button + .elementor-widget-button .elementor-button {
+	background-color: transparent !important;
+	border-color: rgba(255, 255, 255, 0.85) !important;
+	color: #fff !important;
+}
+
+/* ── Category chips (real) ── */
+body.bp-v1a-trial.home .bp-home-cat-chip,
 body.bp-v1a-trial.home .bp-home-cats__scroll a,
 body.bp-v1a-trial.home .bp-home-cats a {
 	border-radius: var(--bp-v1a-radius) !important;
 	border: 1px solid var(--bp-v1a-color-border) !important;
 	background: #fff !important;
 	color: var(--bp-v1a-color-primary-hover) !important;
-	font-family: var(--bp-v1a-font-body);
-	font-weight: 500;
-	font-size: 0.8125rem;
+	font-family: var(--bp-v1a-font-body) !important;
+	font-weight: 500 !important;
+	font-size: 0.8125rem !important;
 	min-height: var(--bp-touch-min, 44px);
 	box-shadow: none !important;
 }
 
-body.bp-v1a-trial.home .bp-home-search-section .bp-home-search__input,
-body.bp-v1a-trial.home .bp-home-search-section .biopentra-shop-search input[type="search"] {
-	border-radius: var(--bp-v1a-radius) !important;
-	border: 1px solid var(--bp-v1a-color-border) !important;
-	background: var(--bp-v1a-color-surface) !important;
-	font-family: var(--bp-v1a-font-body);
-	box-shadow: none !important;
-}
-
-/* ── Specimen panel ── */
-.bp-v1a-specimen {
-	box-sizing: border-box;
-	max-width: 1120px;
-	margin: 0 auto;
-	padding: 16px 14px 24px;
-	background: var(--bp-v1a-color-bg, #f2f2f3);
-	color: var(--bp-v1a-color-text, #1d1f20);
-	font-family: var(--bp-v1a-font-body, "Barlow", system-ui, sans-serif);
-	border-bottom: 1px solid var(--bp-v1a-color-border, rgba(29, 31, 32, 0.16));
-}
-
-.bp-v1a-specimen *,
-.bp-v1a-specimen *::before,
-.bp-v1a-specimen *::after {
-	box-sizing: border-box;
-}
-
-.bp-v1a-specimen__banner {
-	margin: 0 0 16px;
-	padding: 8px 12px;
-	background: #1d2d3d;
-	color: #eef6ff;
-	font-size: 12px;
-	font-weight: 500;
-	border-radius: var(--bp-v1a-radius, 4px);
-	letter-spacing: 0.02em;
-}
-
-.bp-v1a-specimen__grid {
-	display: grid;
-	gap: 20px;
-}
-
-@media (min-width: 768px) {
-	.bp-v1a-specimen__grid {
-		grid-template-columns: 1.2fr 1fr;
-		align-items: start;
-	}
-}
-
-.bp-v1a-specimen__section-title {
-	font-family: var(--bp-v1a-font-heading);
-	font-weight: 700;
-	font-size: 13px;
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--bp-v1a-color-primary);
-	margin: 0 0 10px;
-}
-
-.bp-v1a-specimen__type h1 {
-	font-family: var(--bp-v1a-font-heading);
-	font-weight: 700;
-	font-size: 32px;
-	line-height: 1.05;
-	letter-spacing: -0.015em;
-	margin: 0 0 8px;
-}
-
-.bp-v1a-specimen__type h2 {
-	font-family: var(--bp-v1a-font-heading);
-	font-weight: 700;
-	font-size: 22px;
-	line-height: 1.15;
-	margin: 0 0 8px;
-}
-
-.bp-v1a-specimen__type h3 {
-	font-family: var(--bp-v1a-font-heading);
-	font-weight: 600;
-	font-size: 17px;
-	line-height: 1.2;
-	margin: 0 0 6px;
-}
-
-.bp-v1a-specimen__type p {
-	margin: 0 0 8px;
-	font-size: 15px;
-	line-height: 1.55;
-	font-weight: 400;
-}
-
-.bp-v1a-specimen__meta {
-	font-size: 13px;
-	line-height: 1.4;
-	color: var(--bp-v1a-color-muted);
-	margin: 0 0 8px;
-}
-
-.bp-v1a-specimen__price {
-	font-size: 18px;
-	font-weight: 700;
-	line-height: 1.2;
-	color: var(--bp-v1a-color-primary-hover);
-	margin: 0 0 12px;
-}
-
-.bp-v1a-specimen__controls {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	align-items: center;
-	margin: 0 0 14px;
-}
-
-.bp-v1a-specimen__btn {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 44px;
-	padding: 10px 16px;
-	font-family: var(--bp-v1a-font-heading);
-	font-weight: 600;
-	font-size: 14px;
-	line-height: 1.2;
-	border-radius: var(--bp-v1a-radius);
-	border: 1px solid transparent;
-	cursor: default;
+body.bp-v1a-trial.home .bp-home-cat-chip:hover,
+body.bp-v1a-trial.home .bp-home-cat-chip:focus,
+body.bp-v1a-trial.home .bp-home-cats__scroll a:hover,
+body.bp-v1a-trial.home .bp-home-cats__scroll a:focus {
+	border-color: var(--bp-v1a-color-primary) !important;
+	color: var(--bp-v1a-color-primary-pressed) !important;
 	text-decoration: none;
 }
 
-.bp-v1a-specimen__btn--primary {
-	background: var(--bp-v1a-color-primary);
-	color: #f2f2f3;
-	border-color: var(--bp-v1a-color-primary);
-}
-
-.bp-v1a-specimen__btn--primary:hover {
-	background: var(--bp-v1a-color-primary-hover);
-}
-
-.bp-v1a-specimen__btn--primary:active {
-	background: var(--bp-v1a-color-primary-pressed);
-}
-
-.bp-v1a-specimen__btn--secondary {
-	background: transparent;
-	color: var(--bp-v1a-color-text);
-	border-color: var(--bp-v1a-color-border);
-}
-
-.bp-v1a-specimen__chip {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+/* ── Search field (real) ── */
+body.bp-v1a-trial.home .bp-home-search-section .bp-home-search__input,
+body.bp-v1a-trial.home .bp-home-search-section .biopentra-shop-search input[type="search"],
+body.bp-v1a-trial.home .bp-home-search-section input[type="search"] {
+	border-radius: var(--bp-v1a-radius) !important;
+	border: 1px solid var(--bp-v1a-color-border) !important;
+	background: var(--bp-v1a-color-surface) !important;
+	font-family: var(--bp-v1a-font-body) !important;
+	color: var(--bp-v1a-color-text) !important;
+	box-shadow: none !important;
 	min-height: 44px;
-	padding: 0 14px;
-	font-family: var(--bp-v1a-font-body);
-	font-size: 13px;
-	font-weight: 500;
-	border-radius: var(--bp-v1a-radius);
-	border: 1px solid var(--bp-v1a-color-primary);
-	color: var(--bp-v1a-color-primary-hover);
-	background: transparent;
 }
 
-.bp-v1a-specimen__chip--active {
-	background: var(--bp-v1a-color-primary);
-	color: #f2f2f3;
-	border-color: var(--bp-v1a-color-primary);
-}
-
-.bp-v1a-specimen__field {
-	display: block;
-	width: 100%;
-	max-width: 420px;
-	margin: 0 0 14px;
-}
-
-.bp-v1a-specimen__field label {
-	display: block;
-	font-size: 12px;
-	margin-bottom: 5px;
-	color: var(--bp-v1a-color-muted);
-}
-
-.bp-v1a-specimen__input {
-	width: 100%;
-	min-height: 44px;
-	padding: 8px 12px;
-	font-family: var(--bp-v1a-font-body);
-	font-size: 14px;
-	color: var(--bp-v1a-color-text);
-	background: var(--bp-v1a-color-surface);
-	border: 1px solid var(--bp-v1a-color-border);
-	border-radius: var(--bp-v1a-radius);
-	box-shadow: none;
-}
-
-.bp-v1a-specimen__input:focus-visible {
+body.bp-v1a-trial.home .bp-home-search-section .bp-home-search__input:focus,
+body.bp-v1a-trial.home .bp-home-search-section input[type="search"]:focus {
+	border-color: var(--bp-v1a-color-primary) !important;
 	outline: 2px solid var(--bp-v1a-color-primary);
-	outline-offset: 2px;
+	outline-offset: 1px;
 }
 
-/* Card preview — specimen only, not template 3608 */
-.bp-v1a-card-preview {
-	position: relative;
-	max-width: 220px;
-	background: var(--bp-v1a-color-bg);
-	border: 1px solid var(--bp-v1a-color-border);
-	border-radius: var(--bp-v1a-radius);
-	box-shadow: var(--bp-v1a-shadow);
+/* Tighter commercial rhythm (still Milestone A IA) */
+body.bp-v1a-trial.home .bp-home-search-section,
+body.bp-v1a-trial.home .bp-home-products-section {
+	margin-bottom: 12px;
+}
+
+/* ── Homepage product cards only (real 3608 output; not global migration) ── */
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root {
+	border-radius: var(--bp-v1a-radius) !important;
+	border: 1px solid var(--bp-v1a-color-border) !important;
+	background: #fff !important;
+	box-shadow: var(--bp-v1a-shadow) !important;
 	overflow: hidden;
 }
 
-.bp-v1a-card-preview__media {
-	position: relative;
-	aspect-ratio: 1 / 1;
-	max-height: 160px;
-	background: var(--bp-v1a-color-surface);
-	border-bottom: 1px solid var(--bp-v1a-color-border);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: var(--bp-v1a-color-muted);
-	font-size: 12px;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root:hover {
+	box-shadow: none !important;
+	transform: none;
+	border-color: color-mix(in srgb, var(--bp-v1a-color-primary) 45%, var(--bp-v1a-color-border)) !important;
 }
 
-.bp-v1a-card-preview__media img {
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root .elementor-widget-theme-post-featured-image img,
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root .biopentra-loop-card-media-link {
+	border-radius: 0 !important;
 }
 
-.bp-v1a-card-preview__add {
-	position: absolute;
-	top: 8px;
-	right: 8px;
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root .elementor-widget-woocommerce-product-title .elementor-heading-title,
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root .biopentra-loop-card-title-link {
+	font-family: var(--bp-v1a-font-heading) !important;
+	font-weight: 600 !important;
+	letter-spacing: -0.01em;
+	color: var(--bp-v1a-color-text) !important;
+}
+
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root .elementor-element.elementor-widget-woocommerce-product-price .price,
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root .elementor-element.elementor-widget-woocommerce-product-price .price bdi,
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-root .elementor-element.elementor-widget-woocommerce-product-price ins {
+	font-family: var(--bp-v1a-font-body) !important;
+	font-weight: 700 !important;
+	color: var(--bp-v1a-color-primary-hover) !important;
+}
+
+/* Quick-add: square 4px control (homepage grids only) */
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-action {
+	border-radius: var(--bp-v1a-radius) !important;
+	border: 1px solid var(--bp-v1a-color-primary) !important;
+	background: #fff !important;
+	color: var(--bp-v1a-color-primary-hover) !important;
+	box-shadow: none !important;
 	width: 36px;
 	height: 36px;
 	min-width: 36px;
-	border-radius: var(--bp-v1a-radius);
-	border: 1px solid var(--bp-v1a-color-primary);
-	background: #fff;
-	color: var(--bp-v1a-color-primary-hover);
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 20px;
-	line-height: 1;
-	cursor: default;
-	box-shadow: none;
 }
 
-.bp-v1a-card-preview__body {
-	padding: 10px 10px 12px;
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-action:hover:not(:disabled),
+body.bp-v1a-trial.home .bp-home-products-section .biopentra-loop-card-action:focus-visible {
+	background: var(--bp-v1a-color-primary) !important;
+	border-color: var(--bp-v1a-color-primary) !important;
+	color: #f2f2f3 !important;
 }
 
-.bp-v1a-card-preview__badge {
-	display: inline-block;
-	font-size: 10px;
-	letter-spacing: 0.06em;
-	text-transform: uppercase;
-	font-weight: 600;
-	color: var(--bp-v1a-color-primary-hover);
-	background: #eef6ff;
-	padding: 3px 8px;
-	border-radius: var(--bp-v1a-radius);
-	margin-bottom: 6px;
+/* Dense section headings */
+body.bp-v1a-trial.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
+	font-size: 1.25rem;
+	margin-bottom: 10px;
 }
 
-.bp-v1a-card-preview__title {
-	font-family: var(--bp-v1a-font-heading);
-	font-weight: 600;
-	font-size: 15px;
-	line-height: 1.2;
-	margin: 0 0 4px;
-}
-
-.bp-v1a-card-preview__price {
-	font-size: 14px;
-	font-weight: 700;
-	color: var(--bp-v1a-color-primary-hover);
-	margin: 0;
-}
-
-.bp-v1a-specimen__note {
-	margin: 16px 0 0;
-	font-size: 12px;
-	color: var(--bp-v1a-color-muted);
-	line-height: 1.45;
+@media (min-width: 1025px) {
+	body.bp-v1a-trial.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
+		font-size: 1.5rem;
+	}
 }
