@@ -18,7 +18,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - **M1 drawer Information caret:** keep the dropdown arrow on the same row as the label (nowrap flex; title link no longer `width:100%`).
 
-**Git tag:** none — awaiting Product Owner visual review.
+### Release
+
+- **M1 PO-approved / frozen on dev.** Git tag: **`storefront-v0.9.14`**. Production replay still requires an explicit GO (see redesign `deployment/m1-premium-header.md`).
 
 ---
 
