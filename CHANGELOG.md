@@ -18,7 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - **M1 drawer Information panel:** Elementor left the dropdown’s inner `.e-con` at `display:none` (zero-height mega); force in-flow flex when the panel is active. Rebuild stripped `<template>` detail nodes so mobile accordion can clone copy. Stop using document capture `stopPropagation` (it blocked accordion button handlers); use wrapper bubble-phase guards instead so leaf links and disclosures still receive clicks.
 
-**Git tag:** none — awaiting Product Owner visual review.
+**Production replay:** documented in redesign repo `deployment/m1-premium-header.md` (not replayed; requires ≥0.9.7). **Git tag:** none — awaiting Product Owner visual review.
 
 ---
 
