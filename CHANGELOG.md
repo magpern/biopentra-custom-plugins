@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.5] — 2026-08-20
+
+### Added
+
+- **M1 — Responsive Premium Header / Navigation (dev).** Scoped Broadsheet / Premium Ecommerce header palette tokens (`bp-header-m1.css`), in-place left mobile nav drawer (`bp-nav-drawer.js`, Approach A — no Elementor DOM reparenting), desktop utility chrome (Search / Account / UMC / Cart), kill floating-pill cart trigger in the header, store-notice dark-teal alignment. V1A homepage trial disabled via `biopentra_v1a_specimen_enabled` filter only (`m1-review-hygiene.php`); V1A files retained. No production tag/release.
+
+**Git tag:** none — awaiting Product Owner visual review.
+
+---
+
 ## [0.9.4] — 2026-08-07
 
 ### Fixed

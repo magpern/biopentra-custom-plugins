@@ -113,6 +113,12 @@ class Biopentra_Storefront {
 			require_once $v1a_specimen;
 		}
 
+		// M1 review hygiene: disable V1A trial via existing filter (do not delete files).
+		$m1_hygiene = BIOPENTRA_STOREFRONT_PATH . 'includes/m1-review-hygiene.php';
+		if ( is_readable( $m1_hygiene ) ) {
+			require_once $m1_hygiene;
+		}
+
 		$chrome_v1_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/chrome-v1-assets.php';
 		if ( is_readable( $chrome_v1_assets ) ) {
 			require_once $chrome_v1_assets;
