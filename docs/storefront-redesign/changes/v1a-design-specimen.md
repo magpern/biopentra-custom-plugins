@@ -120,7 +120,7 @@ Then `wp cache flush`. No Elementor restore needed (no DB mutation).
 
 ## Commit hash(es)
 
-Recorded after commit in validation doc / this section update.
+`biopentra-custom-plugins` — `d0e2ce4b867e25a5e1d10025d7b504a1ba1c766f` (local main; not tagged; not pushed).
 
 ## Intentionally deferred
 
