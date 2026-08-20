@@ -12,7 +12,59 @@
 
 	var MQ = '(min-width: 1025px)';
 
+	var TITLE_TO_DETAIL_ID = {
+		'quality standards': 'quality-standards',
+		'third-party testing': 'third-party-testing',
+		'certificates / coas': 'certificates-coas',
+		'purity & analytics': 'purity-analytics',
+		'compliance & safety': 'compliance-safety'
+	};
+
+	/**
+	 * Elementor HTML widgets sometimes strip <template> wrappers and leave
+	 * bare .bp-detail-template-root divs. Rebuild real <template> nodes so
+	 * .content cloning works for desktop flyouts + mobile accordion.
+	 */
+	function normalizeTemplates(root) {
+		if (!root || root.getAttribute('data-bp-templates-normalized') === '1') {
+			return;
+		}
+		root.setAttribute('data-bp-templates-normalized', '1');
+		var host = root.querySelector('.biopentra-info-mega-templates');
+		if (!host) {
+			return;
+		}
+		if (host.querySelector('template[id^="bp-detail-template-"]')) {
+			return;
+		}
+		var roots = Array.prototype.slice.call(
+			host.querySelectorAll(':scope > .bp-detail-template-root')
+		);
+		roots.forEach(function (wrap) {
+			var heading = wrap.querySelector('.biopentra-info-mega-detail-heading');
+			var title = (heading && heading.textContent ? heading.textContent : '')
+				.replace(/\s+/g, ' ')
+				.trim()
+				.toLowerCase();
+			var id = TITLE_TO_DETAIL_ID[title];
+			if (!id) {
+				id = title
+					.replace(/&/g, ' ')
+					.replace(/[^a-z0-9]+/g, '-')
+					.replace(/^-+|-+$/g, '');
+			}
+			if (!id || host.querySelector('#bp-detail-template-' + id)) {
+				return;
+			}
+			var tpl = document.createElement('template');
+			tpl.id = 'bp-detail-template-' + id;
+			tpl.content.appendChild(wrap);
+			host.appendChild(tpl);
+		});
+	}
+
 	function getTemplate(root, detailId) {
+		normalizeTemplates(root);
 		return root.querySelector('#bp-detail-template-' + detailId);
 	}
 
@@ -166,6 +218,7 @@
 	function initMega(root) {
 		if (root.getAttribute('data-bp-mega-init') === '1') return;
 		root.setAttribute('data-bp-mega-init', '1');
+		normalizeTemplates(root);
 
 		var mq = window.matchMedia(MQ);
 		var triggers = Array.prototype.slice.call(

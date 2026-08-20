@@ -12,6 +12,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.7] — 2026-08-20
+
+### Fixed
+
+- **M1 drawer Information panel:** Elementor left the dropdown’s inner `.e-con` at `display:none` (zero-height mega); force in-flow flex when the panel is active. Rebuild stripped `<template>` detail nodes so mobile accordion can clone copy. Stop using document capture `stopPropagation` (it blocked accordion button handlers); use wrapper bubble-phase guards instead so leaf links and disclosures still receive clicks.
+
+**Git tag:** none — awaiting Product Owner visual review.
+
+---
+
+## [0.9.6] — 2026-08-20
+
+### Fixed
+
+- **M1 mobile drawer:** left-align nav labels (stop center/right crop on phone/tablet); elevate header stacking context while open so the backdrop no longer steals taps; in-flow Information mega/accordion inside the drawer; leaf links navigate without an instant close.
+
+**Git tag:** none — awaiting Product Owner visual review.
+
+---
+
 ## [0.9.5] — 2026-08-20
 
 ### Added

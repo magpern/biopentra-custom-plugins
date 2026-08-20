@@ -31,7 +31,7 @@ class Biopentra_Storefront_Information_Megamenu_Module {
 	 */
 	const STYLE_HANDLE = 'biopentra-information-mega';
 
-	const STYLE_VERSION = '1.3.2';
+	const STYLE_VERSION = '1.3.3';
 
 	const STYLE_REL_PATH = 'assets/information-megamenu/information-mega.css';
 
@@ -40,7 +40,7 @@ class Biopentra_Storefront_Information_Megamenu_Module {
 	 */
 	const SCRIPT_HANDLE = 'biopentra-storefront-information-mega';
 
-	const SCRIPT_VERSION = '1.3.2';
+	const SCRIPT_VERSION = '1.3.3';
 
 	const SCRIPT_REL_PATH = 'assets/information-megamenu/information-mega.js';
 

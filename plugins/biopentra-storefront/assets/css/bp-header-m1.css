@@ -246,17 +246,30 @@
 		box-shadow: 8px 0 28px rgba(10, 48, 62, 0.12);
 		overflow-x: hidden !important;
 		overflow-y: auto !important;
-		z-index: var(--bp-z-overlay, 400) !important;
+		/* z-index alone is insufficient: header creates a stacking context at 200,
+		 * trapping fixed descendants under a body-level backdrop. Elevated when open. */
+		z-index: 1 !important;
 		transform: translateX(-105%);
 		transition: transform 0.22s ease;
 		box-sizing: border-box;
 		isolation: isolate;
+		text-align: left !important;
+		direction: ltr !important;
 	}
 
-	/* Keep header utilities under the backdrop while drawer is open (no paint-through). */
-	html.bp-nav-drawer-open .elementor-location-header > .e-con,
-	html.bp-nav-drawer-open .elementor-location-header .e-con {
-		z-index: var(--bp-z-header, 200);
+	/*
+	 * Elevate header above the body backdrop while the drawer is open so
+	 * in-drawer controls receive clicks. Non-drawer chrome is pointer-events:none
+	 * so taps on the dimmed area still hit the backdrop.
+	 */
+	html.bp-nav-drawer-open .elementor-location-header {
+		z-index: var(--bp-z-overlay, 400) !important;
+		pointer-events: none;
+	}
+
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-wrapper,
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-wrapper * {
+		pointer-events: auto;
 	}
 
 	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-wrapper {
@@ -273,10 +286,41 @@
 		overflow: hidden;
 	}
 
+	/* Left-aligned full-width nav list (fixes center/right crop on phone + tablet) */
 	.elementor-location-header .e-n-menu-heading {
+		display: flex !important;
 		flex-direction: column !important;
 		align-items: stretch !important;
+		justify-content: flex-start !important;
 		gap: 0.15rem !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		text-align: left !important;
+	}
+
+	.elementor-location-header .e-n-menu-item {
+		display: block !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 !important;
+		text-align: left !important;
+	}
+
+	.elementor-location-header .e-n-menu-title,
+	.elementor-location-header .e-n-menu-title-container,
+	.elementor-location-header .e-n-menu-title-text {
+		display: flex !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		justify-content: flex-start !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin: 0 !important;
+		margin-inline: 0 !important;
+		text-align: left !important;
+		box-sizing: border-box !important;
 	}
 
 	.elementor-location-header .e-n-menu-title {
@@ -285,15 +329,122 @@
 		color: var(--bp-header-text);
 		padding: 0.85rem 0.35rem;
 		min-height: var(--bp-header-control);
-		display: flex;
-		align-items: center;
 		border-radius: var(--bp-header-radius);
+		gap: 0.5rem;
 	}
 
 	.elementor-location-header .e-n-menu-title:hover,
 	.elementor-location-header .e-n-menu-title:focus-visible {
 		color: var(--bp-header-accent);
 		background: var(--bp-header-accent-tint);
+	}
+
+	.elementor-location-header .e-n-menu-title-text {
+		flex: 1 1 auto !important;
+		justify-content: flex-start !important;
+	}
+
+	.elementor-location-header .e-n-menu-dropdown-icon {
+		margin-inline-start: auto !important;
+		margin-inline-end: 0 !important;
+		flex: 0 0 auto;
+	}
+
+	/* In-flow dropdown / Information mega inside the drawer */
+	.elementor-location-header .e-n-menu-content {
+		position: static !important;
+		inset: auto !important;
+		left: auto !important;
+		top: auto !important;
+		right: auto !important;
+		transform: none !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-height: 0 !important;
+		height: auto !important;
+		max-height: none !important;
+		overflow: visible !important;
+		display: none !important;
+		flex-direction: column !important;
+		box-shadow: none !important;
+		background: transparent !important;
+		padding: 0.25rem 0 0.75rem !important;
+		margin: 0 !important;
+	}
+
+	.elementor-location-header .e-n-menu-item:has(> .e-n-menu-title[aria-expanded='true']) > .e-n-menu-content,
+	.elementor-location-header .e-n-menu-item:has(> .e-n-menu-title.e-active) > .e-n-menu-content,
+	.elementor-location-header .e-n-menu-item.e-active > .e-n-menu-content,
+	.elementor-location-header .e-n-menu-item[aria-expanded='true'] > .e-n-menu-content,
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-item .e-n-menu-content.e-active,
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-content[aria-hidden='false'] {
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: stretch !important;
+		height: auto !important;
+		min-height: min-content !important;
+	}
+
+	/*
+	 * Elementor keeps the dropdown's inner .e-con at display:none until its own
+	 * desktop open path runs — force it visible whenever the panel is active.
+	 */
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-content.e-active > .e-con,
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-content[aria-hidden='false'] > .e-con,
+	.elementor-location-header .e-n-menu-item:has(> .e-n-menu-title[aria-expanded='true']) > .e-n-menu-content > .e-con,
+	.elementor-location-header .e-n-menu-item:has(> .e-n-menu-title.e-active) > .e-n-menu-content > .e-con {
+		display: flex !important;
+		flex-direction: column !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		height: auto !important;
+		align-self: stretch !important;
+	}
+
+	.elementor-location-header .e-n-menu-content .e-con,
+	.elementor-location-header .e-n-menu-content .e-con-inner,
+	.elementor-location-header .biopentra-information-mega {
+		position: static !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		margin: 0 !important;
+		padding: 0.5rem 0.25rem !important;
+		transform: none !important;
+		box-sizing: border-box !important;
+		--container-widget-width: 100% !important;
+		--width: 100% !important;
+	}
+
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-content.e-active .e-con-inner,
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-content.e-active .biopentra-information-mega {
+		display: flex !important;
+		flex-direction: column !important;
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	/* Override megamenu mobile rule that forces near-viewport width (crops in drawer). */
+	.elementor-location-header .biopentra-information-mega {
+		width: 100% !important;
+		max-width: 100% !important;
+		display: flex !important;
+		flex-direction: column !important;
+	}
+
+	.elementor-location-header .biopentra-information-mega .biopentra-info-mega-columns {
+		display: grid !important;
+		grid-template-columns: 1fr !important;
+		width: 100% !important;
+	}
+
+	.elementor-location-header .biopentra-info-mega-inline-detail {
+		display: block !important;
+	}
+
+	.elementor-location-header .biopentra-info-mega-inline-detail[hidden],
+	.elementor-location-header .biopentra-info-mega-inline-detail[aria-hidden='true'] {
+		display: none !important;
 	}
 }
 
@@ -368,6 +519,10 @@
 
 /* Desktop: never apply drawer transforms */
 @media (min-width: 1025px) {
+	.elementor-location-header {
+		pointer-events: auto !important;
+	}
+
 	.elementor-location-header .e-n-menu-wrapper {
 		position: static !important;
 		transform: none !important;
@@ -379,6 +534,17 @@
 		box-shadow: none !important;
 		border: 0 !important;
 		background: transparent !important;
+		isolation: auto !important;
+	}
+
+	.elementor-location-header .e-n-menu-content {
+		/* Restore Elementor desktop mega positioning — do not keep drawer in-flow rules */
+		width: auto !important;
+		max-width: none !important;
+		display: revert !important;
+		position: revert !important;
+		height: revert !important;
+		padding: revert !important;
 	}
 
 	.bp-nav-drawer-backdrop,
@@ -389,6 +555,11 @@
 
 	html.bp-nav-drawer-open {
 		overflow: visible;
+	}
+
+	html.bp-nav-drawer-open .elementor-location-header {
+		z-index: var(--bp-z-header, 200) !important;
+		pointer-events: auto !important;
 	}
 }
 
