@@ -12,6 +12,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.13] — 2026-08-20
+
+### Fixed
+
+- **M1 drawer Information toggle:** second tap on Information collapses the in-drawer panel (previously always re-forced open).
+
+**Git tag:** none — awaiting Product Owner visual review.
+
+---
+
+## [0.9.12] — 2026-08-20
+
+### Fixed
+
+- **M1 drawer polish:** animate slide-in from the left (Elementor `display:none` previously skipped CSS transform); hide header hamburger→X and UMC while open so they do not float over scrolling Information content or shine through the panel; keep the drawer close control in normal document flow so it scrolls with the menu.
+
+**Production replay:** still `deployment/m1-premium-header.md` (prefer ≥0.9.13). **Git tag:** none — awaiting Product Owner visual review.
+
+---
+
 ## [0.9.7] — 2026-08-20
 
 ### Fixed

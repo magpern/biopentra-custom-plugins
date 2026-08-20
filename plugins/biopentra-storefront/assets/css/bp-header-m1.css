@@ -230,27 +230,36 @@
 
 /* ── Approach A: in-place left drawer (≤1024 only) ── */
 @media (max-width: 1024px) {
+	/*
+	 * Keep the wrapper in the render tree (override Elementor display:none) so
+	 * transform can animate. Closed = off-canvas + invisible; open = slide in.
+	 */
 	.elementor-location-header .e-n-menu-wrapper {
+		display: flex !important;
+		flex-direction: column !important;
 		position: fixed !important;
 		top: 0 !important;
+		/* Elementor stretch sets left via --stretch-left; keep left:0 and slide with transform. */
 		left: 0 !important;
 		bottom: 0 !important;
 		width: min(88vw, 20.5rem) !important;
 		max-width: 20.5rem !important;
 		height: 100dvh !important;
 		margin: 0 !important;
-		padding: 3.25rem 1rem 1.5rem !important;
+		padding: 0.65rem 1rem 1.5rem !important;
 		background: #ffffff !important;
 		background: var(--bp-header-ground, #ffffff) !important;
 		border-right: 1px solid var(--bp-header-border);
 		box-shadow: 8px 0 28px rgba(10, 48, 62, 0.12);
 		overflow-x: hidden !important;
 		overflow-y: auto !important;
-		/* z-index alone is insufficient: header creates a stacking context at 200,
-		 * trapping fixed descendants under a body-level backdrop. Elevated when open. */
-		z-index: 1 !important;
-		transform: translateX(-105%);
-		transition: transform 0.22s ease;
+		/* Above header chrome (UMC/toggle at --bp-z-header) inside elevated header. */
+		z-index: 10 !important;
+		transform: translate3d(-105%, 0, 0);
+		visibility: hidden !important;
+		pointer-events: none !important;
+		/* Elementor sets transition:max-height — neutralize; motion is WAAPI in JS. */
+		transition: none !important;
 		box-sizing: border-box;
 		isolation: isolate;
 		text-align: left !important;
@@ -273,12 +282,40 @@
 	}
 
 	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-wrapper {
-		transform: translateX(0);
+		/* Transform end-state is committed by JS after WAAPI; keep CSS from snapping. */
+		visibility: visible !important;
+		pointer-events: auto !important;
+		transition: none !important;
+	}
+
+	/*
+	 * Hide Elementor’s hamburger→X toggle while open (do NOT set display — E1.1).
+	 * Close control lives in-flow inside the drawer and scrolls with content.
+	 */
+	html.bp-nav-drawer-open .elementor-location-header .e-n-menu-toggle {
+		opacity: 0 !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+	}
+
+	/*
+	 * UMC sits in the header at z-index 200 and overlaps the drawer panel.
+	 * Mini-cart avoids this by living at overlay 400 outside the header —
+	 * hide UMC while the left drawer is open so EUR does not shine through.
+	 */
+	html.bp-nav-drawer-open .elementor-location-header .umc-switcher,
+	html.bp-nav-drawer-open .elementor-location-header .bp-chrome-umc,
+	html.bp-nav-drawer-open .elementor-location-header .elementor-widget-shortcode.bp-chrome-umc {
+		opacity: 0 !important;
+		visibility: hidden !important;
+		pointer-events: none !important;
+		z-index: 0 !important;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.elementor-location-header .e-n-menu-wrapper {
-			transition: none;
+		.elementor-location-header .e-n-menu-wrapper,
+		html.bp-nav-drawer-open .elementor-location-header .e-n-menu-wrapper {
+			transition: none !important;
 		}
 	}
 
@@ -457,16 +494,33 @@
 	padding: 0;
 	margin: 0;
 	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition:
+		opacity 0.28s ease,
+		visibility 0s linear 0.28s;
+}
+
+html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition:
+		opacity 0.28s ease,
+		visibility 0s linear 0s;
 }
 
 .bp-nav-drawer-backdrop[hidden] {
-	display: none !important;
+	/* Keep in tree for fade-out; visibility/opacity handle interaction. */
+	display: block !important;
 }
 
+/* In normal flow at the top of the drawer — scrolls away with Information content. */
 .bp-nav-drawer-close {
-	position: absolute;
-	top: 0.65rem;
-	inset-inline-end: 0.65rem;
+	position: static;
+	align-self: flex-end;
+	flex: 0 0 auto;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -474,12 +528,20 @@
 	height: var(--bp-header-control);
 	min-width: var(--bp-header-control);
 	min-height: var(--bp-header-control);
+	margin: 0 0 0.35rem auto;
 	border: 0;
 	border-radius: var(--bp-header-radius);
 	background: transparent;
 	color: var(--bp-header-text);
 	cursor: pointer;
 	z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bp-nav-drawer-backdrop,
+	html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
+		transition: none !important;
+	}
 }
 
 .bp-nav-drawer-close:hover,
@@ -526,6 +588,9 @@
 	.elementor-location-header .e-n-menu-wrapper {
 		position: static !important;
 		transform: none !important;
+		visibility: visible !important;
+		pointer-events: auto !important;
+		left: auto !important;
 		width: auto !important;
 		max-width: none !important;
 		height: auto !important;
@@ -535,6 +600,7 @@
 		border: 0 !important;
 		background: transparent !important;
 		isolation: auto !important;
+		transition: none !important;
 	}
 
 	.elementor-location-header .e-n-menu-content {

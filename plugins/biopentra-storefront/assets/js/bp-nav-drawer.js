@@ -125,17 +125,89 @@
 			});
 	}
 
+	function prefersReducedMotion() {
+		return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	}
+
+	function commitDrawerTransform(wrapper, open) {
+		if (!wrapper) {
+			return;
+		}
+		if (!mqMobile()) {
+			wrapper.style.removeProperty('transform');
+			return;
+		}
+		wrapper.style.setProperty(
+			'transform',
+			open ? 'translate3d(0, 0, 0)' : 'translate3d(-105%, 0, 0)',
+			'important'
+		);
+	}
+
+	function slideDrawer(wrapper, open) {
+		if (!wrapper || !mqMobile()) {
+			return;
+		}
+		wrapper.style.setProperty('transition', 'none', 'important');
+		if (prefersReducedMotion() || typeof wrapper.animate !== 'function') {
+			commitDrawerTransform(wrapper, open);
+			return;
+		}
+		try {
+			if (wrapper._bpDrawerAnim) {
+				wrapper._bpDrawerAnim.cancel();
+			}
+		} catch (e) {
+			/* ignore */
+		}
+		var from = open ? 'translate3d(-105%, 0, 0)' : 'translate3d(0, 0, 0)';
+		var to = open ? 'translate3d(0, 0, 0)' : 'translate3d(-105%, 0, 0)';
+		/* Clear prior committed transform so WAAPI owns the property. */
+		wrapper.style.removeProperty('transform');
+		wrapper.style.setProperty('transform', from);
+		void wrapper.offsetWidth;
+		wrapper._bpDrawerAnim = wrapper.animate(
+			[{ transform: from }, { transform: to }],
+			{
+				duration: 280,
+				easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+				fill: 'forwards'
+			}
+		);
+		wrapper._bpDrawerAnim.onfinish = function () {
+			commitDrawerTransform(wrapper, open);
+			try {
+				wrapper._bpDrawerAnim.cancel();
+			} catch (err) {
+				/* ignore */
+			}
+			wrapper._bpDrawerAnim = null;
+		};
+	}
+
 	function setOpen(open) {
 		var html = document.documentElement;
 		var backdrop = ensureBackdrop();
 		var wrapper = wrapperEl();
 		var toggle = toggleEl();
+		var wasOpen = html.classList.contains(OPEN_CLASS);
+		var opening = wrapper && wrapper.getAttribute('data-bp-opening') === '1';
 
 		if (open && mqMobile()) {
-			if (!html.classList.contains(OPEN_CLASS)) {
+			if (!wasOpen && !opening) {
 				lastFocus = document.activeElement;
 			}
-			html.classList.add(OPEN_CLASS);
+			if (wrapper && !wasOpen && !opening) {
+				wrapper.setAttribute('data-bp-opening', '1');
+				slideDrawer(wrapper, true);
+				html.classList.add(OPEN_CLASS);
+				wrapper.removeAttribute('data-bp-opening');
+			} else if (!wasOpen && !opening) {
+				html.classList.add(OPEN_CLASS);
+				commitDrawerTransform(wrapper, true);
+			} else {
+				html.classList.add(OPEN_CLASS);
+			}
 			backdrop.removeAttribute('hidden');
 			backdrop.setAttribute('aria-hidden', 'false');
 			if (wrapper) {
@@ -152,9 +224,21 @@
 				}, 10);
 			}
 		} else {
+			if (wrapper) {
+				wrapper.removeAttribute('data-bp-opening');
+			}
+			if (wasOpen) {
+				slideDrawer(wrapper, false);
+			} else {
+				commitDrawerTransform(wrapper, false);
+			}
 			html.classList.remove(OPEN_CLASS);
-			backdrop.setAttribute('hidden', '');
 			backdrop.setAttribute('aria-hidden', 'true');
+			window.setTimeout(function () {
+				if (!document.documentElement.classList.contains(OPEN_CLASS)) {
+					backdrop.setAttribute('hidden', '');
+				}
+			}, 300);
 			if (wrapper) {
 				wrapper.removeAttribute('role');
 				wrapper.removeAttribute('aria-modal');
@@ -216,16 +300,55 @@
 		return true;
 	}
 
-	function markDropdownContentOpen(title) {
+	function isDropdownContentOpen(content) {
+		if (!content) {
+			return false;
+		}
+		if (content.getAttribute('aria-hidden') === 'true') {
+			return false;
+		}
+		if (content.classList.contains('e-active')) {
+			return true;
+		}
+		try {
+			return getComputedStyle(content).display !== 'none' && content.offsetHeight > 0;
+		} catch (e) {
+			return false;
+		}
+	}
+
+	function setDropdownContentOpen(title, open) {
 		var item = title ? title.closest('.e-n-menu-item') : null;
 		var content = item ? item.querySelector(':scope > .e-n-menu-content') : null;
-		if (content) {
+		if (!content) {
+			return;
+		}
+		if (open) {
 			content.setAttribute('aria-hidden', 'false');
 			content.classList.add('e-active');
+			title.classList.add('e-active');
+			title.setAttribute('aria-expanded', 'true');
+			if (item) {
+				item.classList.add('e-active');
+			}
+		} else {
+			content.setAttribute('aria-hidden', 'true');
+			content.classList.remove('e-active');
+			title.classList.remove('e-active');
+			title.setAttribute('aria-expanded', 'false');
+			if (item) {
+				item.classList.remove('e-active');
+			}
 		}
 		if (isExpanded(toggleEl())) {
 			document.documentElement.classList.add(OPEN_CLASS);
 		}
+	}
+
+	function toggleDropdownContent(title) {
+		var item = title ? title.closest('.e-n-menu-item') : null;
+		var content = item ? item.querySelector(':scope > .e-n-menu-content') : null;
+		setDropdownContentOpen(title, !isDropdownContentOpen(content));
 	}
 
 	function onKeydown(e) {
@@ -283,18 +406,34 @@
 			return;
 		}
 
-		var title = e.target.closest('.e-n-menu-title');
-		if (title && titleHasDropdown(title)) {
-			window.setTimeout(function () {
-				markDropdownContentOpen(title);
-			}, 0);
-			return;
-		}
-
 		// Leaf links: allow default navigation; drawer closes with page unload.
 		if (isLeafNavLink(e.target) || e.target.closest('[data-bp-drawer-account] a')) {
 			return;
 		}
+	}
+
+	/**
+	 * Own Information (and other dropdown) expand/collapse in the drawer.
+	 * Capture + stop so Elementor cannot fight us; second tap closes.
+	 */
+	function onDropdownTitleCapture(e) {
+		if (!document.documentElement.classList.contains(OPEN_CLASS) || !mqMobile()) {
+			return;
+		}
+		var title = e.target.closest('.e-n-menu-title');
+		if (!title || !titleHasDropdown(title)) {
+			return;
+		}
+		// Accordion triggers inside Information are not menu titles — leave them alone.
+		if (e.target.closest('.biopentra-info-mega-trigger, .biopentra-info-mega-inline-detail, .e-n-menu-content a')) {
+			return;
+		}
+		e.preventDefault();
+		e.stopPropagation();
+		if (typeof e.stopImmediatePropagation === 'function') {
+			e.stopImmediatePropagation();
+		}
+		toggleDropdownContent(title);
 	}
 
 	function bindWrapperGuards(wrapper) {
@@ -304,6 +443,7 @@
 		wrapper.setAttribute('data-bp-drawer-guard', '1');
 		wrapper.addEventListener('pointerdown', onWrapperBubble, false);
 		wrapper.addEventListener('click', onWrapperClick, false);
+		wrapper.addEventListener('click', onDropdownTitleCapture, true);
 	}
 
 	function bind() {
@@ -338,12 +478,24 @@
 		});
 
 		window.matchMedia(MQ).addEventListener('change', function (ev) {
+			var w = wrapperEl();
 			if (!ev.matches) {
 				setOpen(false);
+				if (w) {
+					w.style.removeProperty('transform');
+					w.style.removeProperty('transition');
+				}
 			} else {
+				commitDrawerTransform(w, false);
 				syncFromToggle();
 			}
 		});
+
+		if (mqMobile()) {
+			commitDrawerTransform(wrapper, false);
+		} else {
+			wrapper.style.removeProperty('transform');
+		}
 
 		syncFromToggle();
 	}
