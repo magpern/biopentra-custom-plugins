@@ -12,6 +12,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.15] — 2026-08-20
+
+### Added
+
+- **M2 Premium Ecommerce homepage hero:** Broadsheet teal/cyan surfaces, desktop ≥1025 two-column composition with 1240 content-rail alignment, compact mobile text-over-image, env-relative CTA URLs, `setup-m2-homepage-hero-cli.php`, hero CSS in `home-v2.css` (migrated off Elementor page custom CSS).
+
+### Changed
+
+- Homepage hero height: preferred ~28vh, hard maximum 40vh (no longer clamps hard at 28vh).
+
+### Release
+
+- **M2 PO-approved / frozen on dev.** Git tag: **`storefront-v0.9.15`**. Production replay still requires an explicit GO.
+
+---
+
 ## [0.9.14] — 2026-08-20
 
 ### Fixed

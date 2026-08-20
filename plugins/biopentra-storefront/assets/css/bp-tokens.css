@@ -70,9 +70,10 @@
   --bp-card-image-max-h: 160px;
 
   /* ── Hero / section caps ── */
+  /* Hard maximum for homepage / mobile hero bands (M2). */
   --bp-hero-max-height-mobile: 40vh;
   --bp-hero-max-height-desktop: 480px;
-  /* Commercial pages use tighter intentional caps (Milestone A/B validated). */
+  /* Preferred commercial density target for home hero (not a hard clamp as of M2). */
   --bp-hero-home-max-height: 28vh;
   --bp-hero-shop-max-height: 24vh;
   --bp-hero-shop-max-height-mobile: 20vh;
