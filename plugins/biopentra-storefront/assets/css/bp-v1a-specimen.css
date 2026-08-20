@@ -1,0 +1,346 @@
+/**
+ * V1A Design Specimen — trial visual system on homepage only.
+ *
+ * Does NOT freeze SDS v2. Does NOT migrate template 3608 / loop-card globally.
+ * Scoped to .bp-v1a-specimen + light homepage chrome under body.bp-v1a-trial.home.
+ * Rollback: disable via biopentra_v1a_specimen_enabled filter or remove this include.
+ */
+
+/* ── Trial tokens (specimen + scoped home chrome only) ── */
+body.bp-v1a-trial {
+	--bp-v1a-font-heading: "Barlow Condensed", system-ui, sans-serif;
+	--bp-v1a-font-body: "Barlow", system-ui, sans-serif;
+	--bp-v1a-color-bg: #f2f2f3;
+	--bp-v1a-color-surface: #e9e9ea;
+	--bp-v1a-color-text: #1d1f20;
+	--bp-v1a-color-muted: #5d5d60;
+	--bp-v1a-color-primary: #5980a6;
+	--bp-v1a-color-primary-hover: #416180;
+	--bp-v1a-color-primary-pressed: #2c455d;
+	--bp-v1a-color-border: color-mix(in srgb, #1d1f20 16%, transparent);
+	--bp-v1a-radius: 4px;
+	--bp-v1a-shadow: none;
+}
+
+/* Light homepage context (not a page redesign) */
+body.bp-v1a-trial.home {
+	font-family: var(--bp-v1a-font-body);
+	background-color: var(--bp-v1a-color-bg);
+	color: var(--bp-v1a-color-text);
+}
+
+body.bp-v1a-trial.home .bp-home-hero .elementor-heading-title,
+body.bp-v1a-trial.home .bp-home-products-section .elementor-heading-title {
+	font-family: var(--bp-v1a-font-heading);
+	font-weight: 700;
+	letter-spacing: -0.015em;
+}
+
+body.bp-v1a-trial.home .bp-home-cats__scroll a,
+body.bp-v1a-trial.home .bp-home-cats a {
+	border-radius: var(--bp-v1a-radius) !important;
+	border: 1px solid var(--bp-v1a-color-border) !important;
+	background: #fff !important;
+	color: var(--bp-v1a-color-primary-hover) !important;
+	font-family: var(--bp-v1a-font-body);
+	font-weight: 500;
+	font-size: 0.8125rem;
+	min-height: var(--bp-touch-min, 44px);
+	box-shadow: none !important;
+}
+
+body.bp-v1a-trial.home .bp-home-search-section .bp-home-search__input,
+body.bp-v1a-trial.home .bp-home-search-section .biopentra-shop-search input[type="search"] {
+	border-radius: var(--bp-v1a-radius) !important;
+	border: 1px solid var(--bp-v1a-color-border) !important;
+	background: var(--bp-v1a-color-surface) !important;
+	font-family: var(--bp-v1a-font-body);
+	box-shadow: none !important;
+}
+
+/* ── Specimen panel ── */
+.bp-v1a-specimen {
+	box-sizing: border-box;
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: 16px 14px 24px;
+	background: var(--bp-v1a-color-bg, #f2f2f3);
+	color: var(--bp-v1a-color-text, #1d1f20);
+	font-family: var(--bp-v1a-font-body, "Barlow", system-ui, sans-serif);
+	border-bottom: 1px solid var(--bp-v1a-color-border, rgba(29, 31, 32, 0.16));
+}
+
+.bp-v1a-specimen *,
+.bp-v1a-specimen *::before,
+.bp-v1a-specimen *::after {
+	box-sizing: border-box;
+}
+
+.bp-v1a-specimen__banner {
+	margin: 0 0 16px;
+	padding: 8px 12px;
+	background: #1d2d3d;
+	color: #eef6ff;
+	font-size: 12px;
+	font-weight: 500;
+	border-radius: var(--bp-v1a-radius, 4px);
+	letter-spacing: 0.02em;
+}
+
+.bp-v1a-specimen__grid {
+	display: grid;
+	gap: 20px;
+}
+
+@media (min-width: 768px) {
+	.bp-v1a-specimen__grid {
+		grid-template-columns: 1.2fr 1fr;
+		align-items: start;
+	}
+}
+
+.bp-v1a-specimen__section-title {
+	font-family: var(--bp-v1a-font-heading);
+	font-weight: 700;
+	font-size: 13px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--bp-v1a-color-primary);
+	margin: 0 0 10px;
+}
+
+.bp-v1a-specimen__type h1 {
+	font-family: var(--bp-v1a-font-heading);
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 1.05;
+	letter-spacing: -0.015em;
+	margin: 0 0 8px;
+}
+
+.bp-v1a-specimen__type h2 {
+	font-family: var(--bp-v1a-font-heading);
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 1.15;
+	margin: 0 0 8px;
+}
+
+.bp-v1a-specimen__type h3 {
+	font-family: var(--bp-v1a-font-heading);
+	font-weight: 600;
+	font-size: 17px;
+	line-height: 1.2;
+	margin: 0 0 6px;
+}
+
+.bp-v1a-specimen__type p {
+	margin: 0 0 8px;
+	font-size: 15px;
+	line-height: 1.55;
+	font-weight: 400;
+}
+
+.bp-v1a-specimen__meta {
+	font-size: 13px;
+	line-height: 1.4;
+	color: var(--bp-v1a-color-muted);
+	margin: 0 0 8px;
+}
+
+.bp-v1a-specimen__price {
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--bp-v1a-color-primary-hover);
+	margin: 0 0 12px;
+}
+
+.bp-v1a-specimen__controls {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+	margin: 0 0 14px;
+}
+
+.bp-v1a-specimen__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	padding: 10px 16px;
+	font-family: var(--bp-v1a-font-heading);
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 1.2;
+	border-radius: var(--bp-v1a-radius);
+	border: 1px solid transparent;
+	cursor: default;
+	text-decoration: none;
+}
+
+.bp-v1a-specimen__btn--primary {
+	background: var(--bp-v1a-color-primary);
+	color: #f2f2f3;
+	border-color: var(--bp-v1a-color-primary);
+}
+
+.bp-v1a-specimen__btn--primary:hover {
+	background: var(--bp-v1a-color-primary-hover);
+}
+
+.bp-v1a-specimen__btn--primary:active {
+	background: var(--bp-v1a-color-primary-pressed);
+}
+
+.bp-v1a-specimen__btn--secondary {
+	background: transparent;
+	color: var(--bp-v1a-color-text);
+	border-color: var(--bp-v1a-color-border);
+}
+
+.bp-v1a-specimen__chip {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	padding: 0 14px;
+	font-family: var(--bp-v1a-font-body);
+	font-size: 13px;
+	font-weight: 500;
+	border-radius: var(--bp-v1a-radius);
+	border: 1px solid var(--bp-v1a-color-primary);
+	color: var(--bp-v1a-color-primary-hover);
+	background: transparent;
+}
+
+.bp-v1a-specimen__chip--active {
+	background: var(--bp-v1a-color-primary);
+	color: #f2f2f3;
+	border-color: var(--bp-v1a-color-primary);
+}
+
+.bp-v1a-specimen__field {
+	display: block;
+	width: 100%;
+	max-width: 420px;
+	margin: 0 0 14px;
+}
+
+.bp-v1a-specimen__field label {
+	display: block;
+	font-size: 12px;
+	margin-bottom: 5px;
+	color: var(--bp-v1a-color-muted);
+}
+
+.bp-v1a-specimen__input {
+	width: 100%;
+	min-height: 44px;
+	padding: 8px 12px;
+	font-family: var(--bp-v1a-font-body);
+	font-size: 14px;
+	color: var(--bp-v1a-color-text);
+	background: var(--bp-v1a-color-surface);
+	border: 1px solid var(--bp-v1a-color-border);
+	border-radius: var(--bp-v1a-radius);
+	box-shadow: none;
+}
+
+.bp-v1a-specimen__input:focus-visible {
+	outline: 2px solid var(--bp-v1a-color-primary);
+	outline-offset: 2px;
+}
+
+/* Card preview — specimen only, not template 3608 */
+.bp-v1a-card-preview {
+	position: relative;
+	max-width: 220px;
+	background: var(--bp-v1a-color-bg);
+	border: 1px solid var(--bp-v1a-color-border);
+	border-radius: var(--bp-v1a-radius);
+	box-shadow: var(--bp-v1a-shadow);
+	overflow: hidden;
+}
+
+.bp-v1a-card-preview__media {
+	position: relative;
+	aspect-ratio: 1 / 1;
+	max-height: 160px;
+	background: var(--bp-v1a-color-surface);
+	border-bottom: 1px solid var(--bp-v1a-color-border);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--bp-v1a-color-muted);
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.bp-v1a-card-preview__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.bp-v1a-card-preview__add {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	width: 36px;
+	height: 36px;
+	min-width: 36px;
+	border-radius: var(--bp-v1a-radius);
+	border: 1px solid var(--bp-v1a-color-primary);
+	background: #fff;
+	color: var(--bp-v1a-color-primary-hover);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	line-height: 1;
+	cursor: default;
+	box-shadow: none;
+}
+
+.bp-v1a-card-preview__body {
+	padding: 10px 10px 12px;
+}
+
+.bp-v1a-card-preview__badge {
+	display: inline-block;
+	font-size: 10px;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: var(--bp-v1a-color-primary-hover);
+	background: #eef6ff;
+	padding: 3px 8px;
+	border-radius: var(--bp-v1a-radius);
+	margin-bottom: 6px;
+}
+
+.bp-v1a-card-preview__title {
+	font-family: var(--bp-v1a-font-heading);
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 1.2;
+	margin: 0 0 4px;
+}
+
+.bp-v1a-card-preview__price {
+	font-size: 14px;
+	font-weight: 700;
+	color: var(--bp-v1a-color-primary-hover);
+	margin: 0;
+}
+
+.bp-v1a-specimen__note {
+	margin: 16px 0 0;
+	font-size: 12px;
+	color: var(--bp-v1a-color-muted);
+	line-height: 1.45;
+}

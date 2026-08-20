@@ -107,6 +107,12 @@ class Biopentra_Storefront {
 			require_once $bp_tokens_assets;
 		}
 
+		// V1A design specimen (homepage trial only; reversible; not SDS v2 freeze).
+		$v1a_specimen = BIOPENTRA_STOREFRONT_PATH . 'includes/v1a-specimen.php';
+		if ( is_readable( $v1a_specimen ) ) {
+			require_once $v1a_specimen;
+		}
+
 		$chrome_v1_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/chrome-v1-assets.php';
 		if ( is_readable( $chrome_v1_assets ) ) {
 			require_once $chrome_v1_assets;

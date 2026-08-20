@@ -1,0 +1,118 @@
+[
+  {
+    "vp": "360",
+    "width": 360,
+    "hasSpecimen": true,
+    "overflow": false,
+    "fonts": {
+      "bodyFont": "Barlow, system-ui, sans-serif",
+      "h1Font": "\"Barlow Condensed\", system-ui, sans-serif",
+      "btnRadius": "4px",
+      "primary": "#5980a6"
+    },
+    "nav": {}
+  },
+  {
+    "vp": "390",
+    "width": 390,
+    "hasSpecimen": true,
+    "overflow": false,
+    "fonts": {
+      "bodyFont": "Barlow, system-ui, sans-serif",
+      "h1Font": "\"Barlow Condensed\", system-ui, sans-serif",
+      "btnRadius": "4px",
+      "primary": "#5980a6"
+    },
+    "nav": {}
+  },
+  {
+    "vp": "430",
+    "width": 430,
+    "hasSpecimen": true,
+    "overflow": false,
+    "fonts": {
+      "bodyFont": "Barlow, system-ui, sans-serif",
+      "h1Font": "\"Barlow Condensed\", system-ui, sans-serif",
+      "btnRadius": "4px",
+      "primary": "#5980a6"
+    },
+    "nav": {}
+  },
+  {
+    "vp": "768",
+    "width": 768,
+    "hasSpecimen": true,
+    "overflow": false,
+    "fonts": {
+      "bodyFont": "Barlow, system-ui, sans-serif",
+      "h1Font": "\"Barlow Condensed\", system-ui, sans-serif",
+      "btnRadius": "4px",
+      "primary": "#5980a6"
+    },
+    "nav": {}
+  },
+  {
+    "vp": "1024",
+    "width": 1024,
+    "hasSpecimen": true,
+    "overflow": false,
+    "fonts": {
+      "bodyFont": "Barlow, system-ui, sans-serif",
+      "h1Font": "\"Barlow Condensed\", system-ui, sans-serif",
+      "btnRadius": "4px",
+      "primary": "#5980a6"
+    },
+    "nav": {
+      "toggleVisible": true,
+      "wrapperDisplay": "none",
+      "headingVisible": false,
+      "expectCollapsed": true,
+      "ok": true
+    }
+  },
+  {
+    "vp": "1025",
+    "width": 1025,
+    "hasSpecimen": true,
+    "overflow": false,
+    "fonts": {
+      "bodyFont": "Barlow, system-ui, sans-serif",
+      "h1Font": "\"Barlow Condensed\", system-ui, sans-serif",
+      "btnRadius": "4px",
+      "primary": "#5980a6"
+    },
+    "nav": {
+      "toggleVisible": false,
+      "wrapperDisplay": "flex",
+      "headingVisible": true,
+      "expectCollapsed": false,
+      "ok": true
+    }
+  },
+  {
+    "vp": "1440",
+    "width": 1440,
+    "hasSpecimen": true,
+    "overflow": false,
+    "fonts": {
+      "bodyFont": "Barlow, system-ui, sans-serif",
+      "h1Font": "\"Barlow Condensed\", system-ui, sans-serif",
+      "btnRadius": "4px",
+      "primary": "#5980a6"
+    },
+    "nav": {}
+  },
+  {
+    "vp": "1680",
+    "width": 1680,
+    "hasSpecimen": true,
+    "overflow": false,
+    "fonts": {
+      "bodyFont": "Barlow, system-ui, sans-serif",
+      "h1Font": "\"Barlow Condensed\", system-ui, sans-serif",
+      "btnRadius": "4px",
+      "primary": "#5980a6"
+    },
+    "nav": {}
+  }
+]

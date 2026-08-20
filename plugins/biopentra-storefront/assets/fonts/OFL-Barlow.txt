@@ -1,0 +1,12 @@
+Barlow and Barlow Condensed font files in this directory are licensed under
+the SIL Open Font License, Version 1.1.
+
+Original projects:
+  https://github.com/jpt/barlow
+  Distributed via Google Fonts / Fontsource (OFL).
+
+These WOFF2 latin subsets were vendored into biopentra-storefront for the
+V1A design specimen (self-hosted, font-display: swap). Commercial use is
+permitted under the OFL; the fonts themselves may not be sold by themselves.
+
+Full OFL text: https://scripts.sil.org/OFL
