@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.14] — 2026-08-20
+
+### Fixed
+
+- **M1 drawer Information caret:** keep the dropdown arrow on the same row as the label (nowrap flex; title link no longer `width:100%`).
+
+**Git tag:** none — awaiting Product Owner visual review.
+
+---
+
 ## [0.9.13] — 2026-08-20
 
 ### Fixed
