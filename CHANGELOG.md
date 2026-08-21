@@ -12,6 +12,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.21] — 2026-08-21
+
+### Added
+
+- **M6 Brand Story & Ordering Confidence (dev):** compact Confidence Strip (`7fe474f`), typography-led Why BioPentra (`why4444`, 3 proofs, no image), Ordering Questions Elementor accordion (`faqPreview4444`, collapsed by default, no FAQPage schema).
+- Idempotent CLI: `scripts/setup-m6-brand-story-cli.php`.
+- Homepage CSS in `home-v2.css` + tiny `m6-faq-init.js` for initial collapsed FAQ state.
+
+### Notes
+
+- Development version on DEV only — **not tagged / not released**. Awaiting Product Owner visual review before freeze.
+
+---
+
 ## [0.9.20] — 2026-08-21
 
 ### Fixed

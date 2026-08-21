@@ -59,5 +59,18 @@ function biopentra_storefront_home_v2_enqueue_assets() {
 		);
 		wp_add_inline_style( 'biopentra-home-v2', $css );
 	}
+
+	// M6 FAQ: ensure all accordion answers start collapsed (Elementor may activate first item).
+	$js_path = BIOPENTRA_STOREFRONT_PATH . 'assets/js/m6-faq-init.js';
+	if ( is_readable( $js_path ) ) {
+		$js_ver = BIOPENTRA_STOREFRONT_VERSION . '.' . (string) filemtime( $js_path );
+		wp_enqueue_script(
+			'biopentra-m6-faq',
+			BIOPENTRA_STOREFRONT_URL . 'assets/js/m6-faq-init.js',
+			array( 'jquery', 'elementor-frontend' ),
+			$js_ver,
+			true
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'biopentra_storefront_home_v2_enqueue_assets', 25 );

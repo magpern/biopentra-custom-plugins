@@ -877,3 +877,323 @@ body.home .bp-m5-trust .bp-m5-trust__point-body p {
 body.home .elementor-element-17b27f7 + .elementor-element-0b22897.bp-m5-trust {
 	margin-top: 0;
 }
+
+/* ==========================================================================
+   M6 — Brand Story & Ordering Confidence
+   Confidence Strip (7fe474f) · Why BioPentra (why4444) · FAQ (faqPreview4444)
+   No new photography. Typography / graphic / functional only.
+   ========================================================================== */
+
+/* --- Confidence Strip ---------------------------------------------------- */
+
+body.home .elementor-element-7fe474f.bp-m6-confidence,
+body.home .bp-m6-confidence {
+	background: #0a303e !important;
+	background-image: none !important;
+	border: 0;
+	box-shadow: none;
+}
+
+body.home .bp-m6-confidence > .e-con-inner {
+	max-width: 1240px;
+	margin-inline: auto;
+	gap: 0 !important;
+}
+
+body.home .bp-m6-confidence .bp-m6-confidence__row,
+body.home .bp-m6-confidence .bp-m6-confidence__row > .e-con-inner,
+body.home .bp-m6-confidence .elementor-element-b2e4a7f {
+	display: grid !important;
+	grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+	grid-auto-flow: row !important;
+	align-items: stretch;
+	justify-items: stretch;
+	gap: 0 !important;
+	width: 100% !important;
+	max-width: 1240px;
+	margin-inline: auto;
+	flex-direction: unset !important;
+	flex-wrap: unset !important;
+}
+
+body.home .bp-m6-confidence .bp-m6-confidence__item {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	backdrop-filter: none !important;
+	-webkit-backdrop-filter: none !important;
+	transform: none !important;
+	overflow: visible !important;
+	width: 100% !important;
+	max-width: none !important;
+	min-width: 0 !important;
+	flex: none !important;
+	grid-column: auto !important;
+}
+
+body.home .bp-m6-confidence .bp-m6-confidence__item > .e-con-inner {
+	width: 100% !important;
+	max-width: none !important;
+	min-width: 0 !important;
+}
+
+body.home .bp-m6-confidence .bp-m6-confidence__item::before,
+body.home .bp-m6-confidence .bp-m6-confidence__item::after {
+	content: none !important;
+	display: none !important;
+}
+
+body.home .bp-m6-confidence .bp-m6-confidence__title .elementor-heading-title {
+	color: #e9f8ff !important;
+	font-size: 0.9375rem !important;
+	font-weight: 600 !important;
+	line-height: 1.25 !important;
+	margin: 0 !important;
+}
+
+body.home .bp-m6-confidence .bp-m6-confidence__body,
+body.home .bp-m6-confidence .bp-m6-confidence__body p {
+	color: #b8c9d4 !important;
+	font-size: 0.8125rem !important;
+	line-height: 1.4 !important;
+	margin: 0 !important;
+}
+
+@media (min-width: 768px) {
+	body.home .bp-m6-confidence .bp-m6-confidence__item + .bp-m6-confidence__item {
+		border-left: 1px solid rgba(233, 248, 255, 0.14);
+	}
+}
+
+@media (max-width: 767px) {
+	body.home .bp-m6-confidence .bp-m6-confidence__row,
+	body.home .bp-m6-confidence .bp-m6-confidence__row > .e-con-inner,
+	body.home .bp-m6-confidence .elementor-element-b2e4a7f {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+
+	body.home .bp-m6-confidence .bp-m6-confidence__item {
+		width: 100% !important;
+		max-width: none !important;
+		flex: none !important;
+	}
+
+	body.home .bp-m6-confidence .bp-m6-confidence__item:nth-child(odd) {
+		border-right: 1px solid rgba(233, 248, 255, 0.12);
+	}
+
+	body.home .bp-m6-confidence .bp-m6-confidence__item:nth-child(-n + 2) {
+		border-bottom: 1px solid rgba(233, 248, 255, 0.12);
+	}
+}
+
+/* --- Why BioPentra ------------------------------------------------------- */
+
+body.home .elementor-element-why4444.bp-m6-why,
+body.home .bp-m6-why {
+	background: #f3f2f2 !important;
+}
+
+body.home .bp-m6-why > .e-con-inner {
+	max-width: 1240px;
+	margin-inline: auto;
+}
+
+body.home .bp-m6-why .bp-m6-why__heading .elementor-heading-title {
+	color: #0a303e !important;
+	font-weight: 700 !important;
+	line-height: 1.15 !important;
+	letter-spacing: -0.02em;
+	margin: 0 !important;
+}
+
+body.home .bp-m6-why .bp-m6-why__intro,
+body.home .bp-m6-why .bp-m6-why__intro p {
+	color: #486077 !important;
+	font-size: 1.0625rem !important;
+	line-height: 1.55 !important;
+	max-width: 38rem;
+	margin: 0 !important;
+}
+
+body.home .bp-m6-why .bp-m6-why__proof {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	transform: none !important;
+}
+
+body.home .bp-m6-why .bp-m6-why__proof::before,
+body.home .bp-m6-why .bp-m6-why__proof::after {
+	content: none !important;
+	display: none !important;
+}
+
+body.home .bp-m6-why .bp-m6-why__proof + .bp-m6-why__proof {
+	border-top: 1px solid rgba(10, 48, 62, 0.12);
+}
+
+body.home .bp-m6-why .bp-m6-why__proof-title .elementor-heading-title {
+	color: #0a303e !important;
+	font-size: 1.0625rem !important;
+	font-weight: 600 !important;
+	line-height: 1.3 !important;
+	margin: 0 0 0.25rem !important;
+}
+
+body.home .bp-m6-why .bp-m6-why__proof-body,
+body.home .bp-m6-why .bp-m6-why__proof-body p {
+	color: #486077 !important;
+	font-size: 0.9375rem !important;
+	line-height: 1.45 !important;
+	margin: 0 !important;
+}
+
+@media (min-width: 1025px) {
+	body.home .bp-m6-why > .e-con-inner {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+		column-gap: clamp(2rem, 4vw, 4.5rem);
+		align-items: start;
+		max-width: 1240px;
+		width: 100%;
+		margin-inline: auto;
+	}
+
+	body.home .bp-m6-why .bp-m6-why__heading {
+		grid-column: 1;
+		grid-row: 1;
+		padding-right: 0.5rem;
+	}
+
+	body.home .bp-m6-why .bp-m6-why__heading .elementor-heading-title {
+		font-size: clamp(2.5rem, 3.2vw, 3.25rem) !important;
+		max-width: 11ch;
+	}
+
+	body.home .bp-m6-why .bp-m6-why__body,
+	body.home .bp-m6-why .elementor-element-m6whybd {
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	body.home .bp-m6-why .bp-m6-why__body > .e-con-inner,
+	body.home .bp-m6-why .elementor-element-m6whybd {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 1.5rem !important;
+	}
+}
+
+@media (max-width: 1024px) {
+	body.home .bp-m6-why .bp-m6-why__heading .elementor-heading-title {
+		font-size: clamp(1.625rem, 5vw, 2rem) !important;
+		max-width: none;
+	}
+
+	body.home .bp-m6-why .bp-m6-why__body > .e-con-inner {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 1.25rem !important;
+	}
+}
+
+/* --- Ordering Questions (accordion) -------------------------------------- */
+
+body.home .elementor-element-faqPreview4444.bp-m6-faq,
+body.home .bp-m6-faq {
+	background: #ffffff !important;
+	border-bottom: 1px solid #e5edf5;
+}
+
+body.home .bp-m6-faq > .e-con-inner {
+	max-width: 840px;
+	margin-inline: auto;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__heading .elementor-heading-title {
+	color: #0a303e !important;
+	font-size: clamp(1.5rem, 2.4vw, 1.875rem) !important;
+	font-weight: 700 !important;
+	line-height: 1.2 !important;
+	margin: 0 0 0.5rem !important;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__intro,
+body.home .bp-m6-faq .bp-m6-faq__intro p {
+	color: #486077 !important;
+	font-size: 1rem !important;
+	line-height: 1.5 !important;
+	margin: 0 0 1.25rem !important;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-accordion {
+	border: 0;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-accordion-item {
+	border: 0;
+	border-bottom: 1px solid rgba(10, 48, 62, 0.12);
+	background: transparent;
+	box-shadow: none;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-tab-title {
+	padding: 0.9rem 0 !important;
+	background: transparent !important;
+	border: 0 !important;
+	min-height: 44px;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-tab-title:focus,
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-tab-title:focus-visible,
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-accordion-title:focus,
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-accordion-title:focus-visible {
+	outline: 2px solid #0088b0;
+	outline-offset: 2px;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-accordion-title {
+	color: #0a303e !important;
+	font-size: 1.0625rem !important;
+	font-weight: 600 !important;
+	line-height: 1.35 !important;
+	text-decoration: none !important;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-accordion-icon {
+	color: #0088b0 !important;
+	flex-shrink: 0;
+}
+
+body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-tab-content {
+	padding: 0 0 1rem !important;
+	border: 0 !important;
+	background: transparent !important;
+	color: #486077 !important;
+	font-size: 0.975rem !important;
+	line-height: 1.5 !important;
+}
+
+/* Ensure initial collapsed state (Elementor may activate first item). */
+body.home .bp-m6-faq.bp-m6-faq--force-collapsed .elementor-tab-content:not(.elementor-active) {
+	display: none !important;
+	height: 0 !important;
+	overflow: hidden !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+/* M5 → M6 / FAQ → guidance handoff spacing (M6-side only). */
+body.home .elementor-element-0b22897.bp-m5-trust + .elementor-element-7fe474f.bp-m6-confidence {
+	margin-top: 0;
+}
+
+body.home .elementor-element-faqPreview4444.bp-m6-faq + .elementor-element-238bcc6 {
+	margin-top: 0;
+}
