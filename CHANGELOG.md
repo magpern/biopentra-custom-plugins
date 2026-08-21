@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.25] — 2026-08-21
+
+### Fixed
+
+- **M7 desktop density:** stop stretching the primary Research Use panel to the secondary column height (`align-items: flex-start`); tighten desktop section/intro/primary padding. Mobile rules unchanged.
+
+### Release
+
+- **M7 PO-approved / frozen on DEV** (desktop density corrective). Git tag: **`storefront-v0.9.25`**.
+
+---
+
 ## [0.9.24] — 2026-08-21
 
 ### Added
