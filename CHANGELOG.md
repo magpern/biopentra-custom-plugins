@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.17] — 2026-08-21
+
+### Changed
+
+- **M4 homepage product sections:** Premium teal headings and CTAs for Featured/Newest/Popular; tighter section rhythm. Card chrome remains in `biopentra-loop-card` (soft/rounded/elevated baseline preserved).
+
+**Git tag:** none — awaiting Product Owner visual review.
+
+---
+
 ## [0.9.16] — 2026-08-21
 
 ### Added

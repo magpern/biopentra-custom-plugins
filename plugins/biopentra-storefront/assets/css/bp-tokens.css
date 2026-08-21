@@ -67,7 +67,7 @@
 
   /* ── Cards ── */
   --bp-card-image-ratio: 1 / 1;
-  --bp-card-image-max-h: 160px;
+  --bp-card-image-max-h: 168px;
 
   /* ── Hero / section caps ── */
   /* Hard maximum for homepage / mobile hero bands (M2). */

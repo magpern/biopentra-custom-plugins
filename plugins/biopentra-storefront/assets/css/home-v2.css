@@ -462,13 +462,50 @@ body.home .bp-home-cat-chip:focus-visible {
 }
 
 body.home .bp-home-products-section {
-	margin-bottom: 16px;
+	margin-bottom: 12px;
+}
+
+/* M4 — homepage product section hierarchy (cards stay soft/elevated via loop-card). */
+body.home .bp-home-products-section > .e-con-inner {
+	gap: 22px !important;
+}
+
+body.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
+	color: #0a303e !important;
+	letter-spacing: -0.015em;
+}
+
+body.home .elementor-element-be24b65 .elementor-widget-heading .elementor-heading-title {
+	font-weight: 700 !important;
+}
+
+body.home .elementor-element-a3853b0 .elementor-widget-heading .elementor-heading-title,
+body.home .elementor-element-17b27f7 .elementor-widget-heading .elementor-heading-title {
+	font-weight: 650 !important;
+}
+
+body.home .bp-home-products-section .elementor-button {
+	background-color: #0a303e !important;
+	border-color: #0a303e !important;
+	color: #fff !important;
+	box-shadow: none !important;
+}
+
+body.home .bp-home-products-section .elementor-button:hover,
+body.home .bp-home-products-section .elementor-button:focus {
+	background-color: #0088b0 !important;
+	border-color: #0088b0 !important;
+	color: #fff !important;
 }
 
 @media (max-width: 767px) {
 	body.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
-		font-size: 1.125rem;
-		margin-bottom: 8px;
+		font-size: 1.1875rem;
+		margin-bottom: 6px;
+	}
+
+	body.home .bp-home-products-section > .e-con-inner {
+		gap: 18px !important;
 	}
 }
 
