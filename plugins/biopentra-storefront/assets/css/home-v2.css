@@ -332,7 +332,8 @@ body.home {
 body.home .bp-home-cats-section,
 body.home .bp-home-search-section.bp-m3-cats {
 	background: var(--bp-m3-paper);
-	margin-bottom: 12px;
+	/* Boundary only — keep M3 rail chrome unchanged; compact handoff to Featured. */
+	margin-bottom: 8px;
 }
 
 body.home .bp-home-cats-section > .e-con-inner,
@@ -467,7 +468,7 @@ body.home .bp-home-products-section {
 
 /* M4 — homepage product section hierarchy (cards stay soft/elevated via loop-card). */
 body.home .bp-home-products-section > .e-con-inner {
-	gap: 22px !important;
+	gap: 24px !important;
 }
 
 body.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
@@ -498,14 +499,53 @@ body.home .bp-home-products-section .elementor-button:focus {
 	color: #fff !important;
 }
 
+/*
+ * M4 PO correction: compact M3 → Featured transition.
+ * Elementor applies top padding on both the section and `.e-con-inner` — keep a
+ * single layer so mobile lands ~24–32px band→heading. M3 rail chrome untouched.
+ */
+body.home .elementor-element-be24b65 {
+	--padding-top: 0 !important;
+	padding-top: 0 !important;
+}
+
+body.home .elementor-element-be24b65 > .e-con-inner {
+	gap: 22px !important;
+	--padding-top: 24px !important;
+	padding-top: 24px !important;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	body.home .elementor-element-be24b65 > .e-con-inner {
+		--padding-top: 24px !important;
+		padding-top: 24px !important;
+		gap: 22px !important;
+	}
+}
+
+@media (min-width: 1025px) {
+	body.home .elementor-element-be24b65 > .e-con-inner {
+		--padding-top: 28px !important;
+		padding-top: 28px !important;
+		gap: 24px !important;
+	}
+}
+
 @media (max-width: 767px) {
-	body.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
-		font-size: 1.1875rem;
-		margin-bottom: 6px;
+	body.home .elementor-element-be24b65 > .e-con-inner {
+		--padding-top: 16px !important;
+		padding-top: 16px !important;
+		gap: 20px !important;
 	}
 
-	body.home .bp-home-products-section > .e-con-inner {
-		gap: 18px !important;
+	body.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
+		font-size: 1.1875rem;
+		margin-bottom: 0;
+	}
+
+	/* Newest/Popular keep a slightly airier section gap than Featured handoff. */
+	body.home .bp-home-products-section:not(.elementor-element-be24b65) > .e-con-inner {
+		gap: 22px !important;
 	}
 }
 
