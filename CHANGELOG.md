@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.19] — 2026-08-21
+
+### Fixed
+
+- **M5 desktop content rhythm:** stop spanning the image across heading/intro/points grid rows (which stretched vertical gaps). Top-align a naturally stacked content block beside the image (≥1025px only).
+
+### Release
+
+- **Not tagged.** PO visual review of spacing refinement.
+
+---
+
 ## [0.9.18] — 2026-08-21
 
 ### Added
