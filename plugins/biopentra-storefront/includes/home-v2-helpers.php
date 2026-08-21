@@ -1,6 +1,6 @@
 <?php
 /**
- * Home page v2 helpers — search markup and category chips (Milestone A).
+ * Home page v2 helpers — search markup and category chips (Milestone A / M3).
  *
  * @package Biopentra_Storefront
  */
@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Product search form for the homepage (submits to site search with post_type=product).
+ *
+ * Still used on SEO guide pages. Homepage Elementor instance removed in M3.
  *
  * @return string HTML or empty when WooCommerce is unavailable.
  */
@@ -38,6 +40,9 @@ function biopentra_storefront_get_home_search_form_html() {
 /**
  * Touch-friendly category shortcut chips linking to WooCommerce archive URLs.
  *
+ * Homepage (front page) only: exclude Uncategorized and show a visible
+ * "Shop by category" label. Shop / SEO shortcode instances stay unchanged.
+ *
  * @return string HTML nav markup.
  */
 function biopentra_storefront_build_home_category_chips_html() {
@@ -56,8 +61,31 @@ function biopentra_storefront_build_home_category_chips_html() {
 		return '';
 	}
 
-	$label = esc_attr__( 'Shop by category', 'biopentra-storefront' );
-	$html  = '<nav class="bp-home-cats" aria-label="' . $label . '"><div class="bp-home-cats__scroll">';
+	$is_home = function_exists( 'is_front_page' ) && is_front_page();
+
+	if ( $is_home ) {
+		$terms = array_values(
+			array_filter(
+				$terms,
+				static function ( $term ) {
+					return isset( $term->slug ) && 'uncategorized' !== $term->slug;
+				}
+			)
+		);
+		if ( empty( $terms ) ) {
+			return '';
+		}
+	}
+
+	$label_text = __( 'Shop by category', 'biopentra-storefront' );
+	$label_attr = esc_attr( $label_text );
+	$html       = '<nav class="bp-home-cats" aria-label="' . $label_attr . '">';
+
+	if ( $is_home ) {
+		$html .= '<p class="bp-home-cats__label">' . esc_html( $label_text ) . '</p>';
+	}
+
+	$html .= '<div class="bp-home-cats__rail"><div class="bp-home-cats__scroll">';
 
 	foreach ( $terms as $term ) {
 		$link = get_term_link( $term );
@@ -71,7 +99,7 @@ function biopentra_storefront_build_home_category_chips_html() {
 		);
 	}
 
-	$html .= '</div></nav>';
+	$html .= '</div></div></nav>';
 
 	return $html;
 }
