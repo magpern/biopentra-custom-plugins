@@ -640,3 +640,176 @@ body.home .elementor-element-17b27f7 > .e-con-inner {
 		overflow-x: visible;
 	}
 }
+
+
+/* ==========================================================================
+   M5 — Trust & Fulfillment Story (section 0b22897 / .bp-m5-trust)
+   Light editorial band: heading → intro → image → compact rows on mobile;
+   desktop CSS grid: image left / content right. No scroll motion.
+   ========================================================================== */
+
+body.home .elementor-element-0b22897.bp-m5-trust,
+body.home .bp-m5-trust {
+	--bp-m5-paper: var(--bp-m2-paper, #f3f2f2);
+	--bp-m5-teal: var(--bp-m2-teal, #0a303e);
+	--bp-m5-cyan: var(--bp-m2-cyan, #0088b0);
+	--bp-m5-tint: #eef4fb;
+	--bp-m5-secondary: var(--bp-m2-secondary, #486077);
+	background-color: var(--bp-m5-tint) !important;
+	overflow: visible !important;
+}
+
+/* Kill legacy page-custom-css pattern overlays / card chrome for this section. */
+body.home .elementor-element-0b22897.bp-m5-trust::before,
+body.home .elementor-element-0b22897.bp-m5-trust::after {
+	content: none !important;
+	display: none !important;
+	background: none !important;
+}
+
+body.home .bp-m5-trust > .e-con-inner {
+	gap: 16px !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__heading .elementor-heading-title {
+	color: var(--bp-m5-teal) !important;
+	letter-spacing: -0.02em;
+	text-align: left !important;
+	margin: 0 !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__intro {
+	max-width: 42rem;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__intro,
+body.home .bp-m5-trust .bp-m5-trust__intro p {
+	color: var(--bp-m5-secondary) !important;
+	text-align: left !important;
+	margin: 0 !important;
+	line-height: 1.55;
+}
+
+/* Image — mobile: after intro; aspect preserves packaging story. */
+body.home .bp-m5-trust .bp-m5-trust__media {
+	margin: 0 !important;
+	width: 100% !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__media .elementor-widget-container,
+body.home .bp-m5-trust .bp-m5-trust__media .elementor-image {
+	margin: 0 !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__media img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	object-position: 55% 45%;
+	border-radius: 10px;
+	background: var(--bp-m5-paper);
+}
+
+/* Compact trust rows — not elevated cards. */
+body.home .bp-m5-trust .bp-m5-trust__points > .e-con-inner {
+	gap: 0 !important;
+	flex-direction: column !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__point {
+	background: transparent !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	transform: none !important;
+	width: 100% !important;
+	max-width: 100% !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__point::before,
+body.home .bp-m5-trust .bp-m5-trust__point::after {
+	content: none !important;
+	display: none !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__point + .bp-m5-trust__point {
+	border-top: 1px solid #d9e5f1 !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__point-title .elementor-heading-title {
+	color: var(--bp-m5-teal) !important;
+	text-align: left !important;
+	font-size: 1.0625rem !important;
+	font-weight: 600 !important;
+	margin: 0 !important;
+}
+
+body.home .bp-m5-trust .bp-m5-trust__point-body,
+body.home .bp-m5-trust .bp-m5-trust__point-body p {
+	color: var(--bp-m5-secondary) !important;
+	text-align: left !important;
+	font-size: 0.9375rem !important;
+	line-height: 1.5 !important;
+	margin: 0 !important;
+}
+
+/* Desktop: image left / content right via grid on section inner. */
+@media (min-width: 1025px) {
+	body.home .bp-m5-trust > .e-con-inner {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+		grid-template-areas:
+			"media heading"
+			"media intro"
+			"media points";
+		column-gap: 40px !important;
+		row-gap: 14px !important;
+		align-items: start;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__media {
+		grid-area: media;
+		align-self: stretch;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__heading {
+		grid-area: heading;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__intro {
+		grid-area: intro;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__points {
+		grid-area: points;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__media img {
+		/* Taller column crop from 3:2 master — keep vial + open packing visible. */
+		aspect-ratio: 4 / 5;
+		height: 100%;
+		min-height: 420px;
+		max-height: 560px;
+		object-position: 58% 42%;
+		border-radius: 12px;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__heading .elementor-heading-title {
+		font-size: 1.75rem !important;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+	body.home .bp-m5-trust .bp-m5-trust__media img {
+		aspect-ratio: 16 / 10;
+		object-position: 55% 42%;
+		max-height: 360px;
+	}
+}
+
+/* Popular → M5 handoff: keep light separation without a dead zone. */
+body.home .elementor-element-17b27f7 + .elementor-element-0b22897.bp-m5-trust {
+	margin-top: 0;
+}

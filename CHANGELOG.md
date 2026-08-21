@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.18] — 2026-08-21
+
+### Added
+
+- **M5 Trust & Fulfillment Story:** editorial image-left / content-right homepage band (Elementor `0b22897`), compact trust rows, idempotent CLI + media import (`setup-m5-trust-fulfillment-cli.php`), styles in `home-v2.css`. Untagged development build for PO visual review.
+
+### Release
+
+- **Not tagged.** Awaiting Product Owner visual approval before freeze/release.
+
+---
+
 ## [0.9.17] — 2026-08-21
 
 ### Changed
