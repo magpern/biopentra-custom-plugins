@@ -4,7 +4,7 @@
  *
  * Transforms:
  * - 7fe474f Confidence Strip → compact dark cues
- * - why4444 Why BioPentra → typography-led editorial (3 proofs, no cards/image)
+ * - why4444 Why BioPentra → desktop content | visual statement; mobile typography stack
  * - faqPreview4444 Ordering Questions → Elementor accordion (collapsed; no FAQ schema)
  *
  * Does NOT mutate 0b22897 (M5) or 238bcc6 (guidance).
@@ -26,9 +26,16 @@ const BIOPENTRA_M6_FAQ_ID   = 'faqPreview4444';
 const BIOPENTRA_M6_FAQ_WID  = 'm6faq01';
 const BIOPENTRA_M6_WHY_BODY = 'm6whybd';
 const BIOPENTRA_M6_WHY_PROOFS = 'm6whypr';
+const BIOPENTRA_M6_WHY_CONTENT = 'm6whycn';
+const BIOPENTRA_M6_WHY_IMAGE   = 'm6whyim';
 const BIOPENTRA_M6_EU_CUE   = 'Reliable European dispatch.';
 const BIOPENTRA_M6_RESEARCH_TITLE = 'Research-use positioning';
 const BIOPENTRA_M6_RESEARCH_BODY  = 'Products are presented for laboratory research use.';
+const BIOPENTRA_M6_VISUAL_FILE    = 'm6-why-biopentra-visual.png';
+const BIOPENTRA_M6_VISUAL_SHA256  = 'b4ded743112c73692b296ffcdefaadee5e8ef398a85d3f5678aea4b20060630f';
+const BIOPENTRA_M6_VISUAL_META    = '_biopentra_m6_why_visual';
+const BIOPENTRA_M6_VISUAL_KEY     = 'm6-why-biopentra-visual';
+const BIOPENTRA_M6_VISUAL_ALT     = 'BioPentra research vial in a laboratory setting';
 
 /**
  * @param string $classes Existing classes.
@@ -271,6 +278,188 @@ function biopentra_m6_refresh_research_proof( array &$why ) {
 }
 
 /**
+ * Find M6 Why visual attachment by stable meta.
+ *
+ * @return int
+ */
+function biopentra_m6_find_visual_attachment() {
+	$q = new WP_Query(
+		array(
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => BIOPENTRA_M6_VISUAL_META,
+			'meta_value'     => BIOPENTRA_M6_VISUAL_KEY,
+			'no_found_rows'  => true,
+		)
+	);
+	return ! empty( $q->posts[0] ) ? (int) $q->posts[0] : 0;
+}
+
+/**
+ * Import Why visual derivative if missing (dedup via meta).
+ *
+ * @return int Attachment ID or 0.
+ */
+function biopentra_m6_ensure_visual_attachment() {
+	$existing = biopentra_m6_find_visual_attachment();
+	if ( $existing > 0 ) {
+		echo "M6 why media: existing attachment {$existing}\n";
+		return $existing;
+	}
+
+	$src = trailingslashit( BIOPENTRA_STOREFRONT_PATH ) . 'assets/media/' . BIOPENTRA_M6_VISUAL_FILE;
+	if ( ! is_readable( $src ) ) {
+		echo "ERROR: M6 why visual not readable at {$src}\n";
+		return 0;
+	}
+
+	$hash = hash_file( 'sha256', $src );
+	if ( $hash !== BIOPENTRA_M6_VISUAL_SHA256 ) {
+		echo "ERROR: M6 why visual SHA-256 mismatch (got {$hash})\n";
+		return 0;
+	}
+
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+
+	$tmp = wp_tempnam( BIOPENTRA_M6_VISUAL_FILE );
+	if ( ! $tmp || ! copy( $src, $tmp ) ) {
+		echo "ERROR: Could not stage M6 why visual for import\n";
+		return 0;
+	}
+
+	$att_id = media_handle_sideload(
+		array(
+			'name'     => BIOPENTRA_M6_VISUAL_FILE,
+			'tmp_name' => $tmp,
+		),
+		0,
+		BIOPENTRA_M6_VISUAL_ALT
+	);
+
+	if ( is_wp_error( $att_id ) ) {
+		@unlink( $tmp ); // phpcs:ignore
+		echo 'ERROR: media_handle_sideload failed: ' . $att_id->get_error_message() . "\n";
+		return 0;
+	}
+
+	update_post_meta( (int) $att_id, BIOPENTRA_M6_VISUAL_META, BIOPENTRA_M6_VISUAL_KEY );
+	update_post_meta( (int) $att_id, '_biopentra_m6_why_visual_sha256', BIOPENTRA_M6_VISUAL_SHA256 );
+	update_post_meta( (int) $att_id, '_wp_attachment_image_alt', BIOPENTRA_M6_VISUAL_ALT );
+	wp_update_post(
+		array(
+			'ID'           => (int) $att_id,
+			'post_excerpt' => 'M6 Why BioPentra desktop visual statement (vial / lab crop)',
+		)
+	);
+
+	echo "M6 why media: imported attachment {$att_id}\n";
+	return (int) $att_id;
+}
+
+/**
+ * Build / refresh Why image widget bound to attachment.
+ *
+ * @param int $att_id Attachment ID.
+ * @return array
+ */
+function biopentra_m6_why_image_widget( $att_id ) {
+	$url = wp_get_attachment_image_url( $att_id, 'large' );
+	if ( ! is_string( $url ) || $url === '' ) {
+		$url = wp_get_attachment_image_url( $att_id, 'full' );
+	}
+	return array(
+		'id'         => BIOPENTRA_M6_WHY_IMAGE,
+		'elType'     => 'widget',
+		'widgetType' => 'image',
+		'settings'   => array(
+			'image'          => array(
+				'url'    => is_string( $url ) ? $url : '',
+				'id'     => (int) $att_id,
+				'size'   => '',
+				'alt'    => BIOPENTRA_M6_VISUAL_ALT,
+				'source' => 'library',
+			),
+			'image_size'     => 'large',
+			'align'          => 'center',
+			'caption_source' => 'none',
+			'_css_classes'   => 'bp-m6-why__media',
+			'css_classes'    => 'bp-m6-why__media',
+		),
+		'elements'   => array(),
+	);
+}
+
+/**
+ * Assemble Why section: content column (heading+intro+proofs) | visual (desktop).
+ *
+ * @param array $why     Why section (by ref).
+ * @param array $title   Heading widget.
+ * @param array $intro   Intro widget.
+ * @param array $proofs  Proofs container.
+ * @param int   $att_id  Attachment ID.
+ */
+function biopentra_m6_apply_why_desktop_layout( array &$why, array $title, array $intro, array $proofs, $att_id ) {
+	$title['settings']['_css_classes'] = biopentra_m6_normalize_classes(
+		$title['settings']['_css_classes'] ?? '',
+		array( 'bp-m6-why__heading' )
+	);
+	$title['settings']['css_classes'] = $title['settings']['_css_classes'];
+	$title['settings']['align']       = 'left';
+	$title['settings']['title_color'] = '#0a303e';
+	$title['settings']['typography_font_weight'] = '700';
+
+	$intro['settings']['_css_classes'] = biopentra_m6_normalize_classes(
+		$intro['settings']['_css_classes'] ?? '',
+		array( 'bp-m6-why__intro' )
+	);
+	$intro['settings']['css_classes'] = $intro['settings']['_css_classes'];
+
+	$body = array(
+		'id'       => BIOPENTRA_M6_WHY_BODY,
+		'elType'   => 'container',
+		'settings' => array(
+			'content_width'  => 'full',
+			'flex_direction' => 'column',
+			'flex_gap'       => array(
+				'column'   => '16',
+				'row'      => '16',
+				'isLinked' => true,
+				'unit'     => 'px',
+				'size'     => 16,
+			),
+			'_css_classes'   => 'bp-m6-why__body',
+			'css_classes'    => 'bp-m6-why__body',
+		),
+		'elements' => array( $intro, $proofs ),
+	);
+
+	$content = array(
+		'id'       => BIOPENTRA_M6_WHY_CONTENT,
+		'elType'   => 'container',
+		'settings' => array(
+			'content_width'  => 'full',
+			'flex_direction' => 'column',
+			'flex_gap'       => array(
+				'column'   => '20',
+				'row'      => '20',
+				'isLinked' => true,
+				'unit'     => 'px',
+				'size'     => 20,
+			),
+			'_css_classes'   => 'bp-m6-why__content',
+			'css_classes'    => 'bp-m6-why__content',
+		),
+		'elements' => array( $title, $body ),
+	);
+
+	$why['elements'] = array( $content, biopentra_m6_why_image_widget( $att_id ) );
+}
+
+/**
  * Strip legacy glass-card / elevated FAQ rules from homepage page custom CSS.
  * Leaves non-M6 selectors intact (including mixed :is() lists after faq* removal).
  *
@@ -484,8 +673,14 @@ unset( $card, $row, $strip );
 echo "M6 strip: compact cues + EU body shortened\n";
 
 // -------------------------------------------------------------------------
-// B. Why BioPentra
+// B. Why BioPentra (desktop content | visual; mobile content-only)
 // -------------------------------------------------------------------------
+$att_id = biopentra_m6_ensure_visual_attachment();
+if ( $att_id <= 0 ) {
+	echo "ERROR: M6 why visual attachment unavailable\n";
+	return;
+}
+
 $why = &$data[ $why_i ];
 $why['settings']['_css_classes'] = biopentra_m6_normalize_classes(
 	$why['settings']['_css_classes'] ?? '',
@@ -495,9 +690,9 @@ $why['settings']['css_classes']      = $why['settings']['_css_classes'];
 $why['settings']['background_color'] = '#f3f2f2';
 $why['settings']['padding']          = array(
 	'unit'     => 'px',
-	'top'      => '56',
+	'top'      => '48',
 	'right'    => '24',
-	'bottom'   => '56',
+	'bottom'   => '48',
 	'left'     => '24',
 	'isLinked' => false,
 );
@@ -510,36 +705,37 @@ $why['settings']['padding_mobile']   = array(
 	'isLinked' => false,
 );
 
-$wby = biopentra_m6_index_children( $why );
-$title = $wby['whyTitle'] ?? null;
-$intro = $wby['whyIntro'] ?? null;
-$grid  = $wby['whyGrid'] ?? null;
-$body  = $wby[ BIOPENTRA_M6_WHY_BODY ] ?? null;
+$wby     = biopentra_m6_index_children( $why );
+$title   = $wby['whyTitle'] ?? null;
+$intro   = $wby['whyIntro'] ?? null;
+$grid    = $wby['whyGrid'] ?? null;
+$body    = $wby[ BIOPENTRA_M6_WHY_BODY ] ?? null;
+$content = $wby[ BIOPENTRA_M6_WHY_CONTENT ] ?? null;
 
-if ( $body && ! $grid ) {
-	echo "M6 why: already wrapped — refreshing research proof copy\n";
-	biopentra_m6_refresh_research_proof( $why );
-} elseif ( ! $title || ! $intro || ! $grid ) {
-	echo "ERROR: why4444 missing whyTitle/whyIntro/whyGrid (and no prior M6 body)\n";
-	return;
+// Extract title/intro/proofs from already-transformed trees.
+if ( $content ) {
+	$cby   = biopentra_m6_index_children( $content );
+	$title = $cby['whyTitle'] ?? $title;
+	$body  = $cby[ BIOPENTRA_M6_WHY_BODY ] ?? $body;
+}
+if ( $body ) {
+	$bby   = biopentra_m6_index_children( $body );
+	$intro = $bby['whyIntro'] ?? $intro;
+	$proofs_existing = $bby[ BIOPENTRA_M6_WHY_PROOFS ] ?? null;
+} else {
+	$proofs_existing = null;
 }
 
 if ( $title && $intro && $grid ) {
-	$title['settings']['_css_classes'] = biopentra_m6_normalize_classes(
-		$title['settings']['_css_classes'] ?? '',
-		array( 'bp-m6-why__heading' )
-	);
-	$title['settings']['css_classes']  = $title['settings']['_css_classes'];
-	$title['settings']['align']        = 'left';
-	$title['settings']['title_color']  = '#0a303e';
+	// First-time transform from original four-card grid.
 	$title['settings']['typography_font_size'] = array(
 		'unit'  => 'px',
-		'size'  => 40,
+		'size'  => 36,
 		'sizes' => array(),
 	);
 	$title['settings']['typography_font_size_tablet'] = array(
 		'unit'  => 'px',
-		'size'  => 32,
+		'size'  => 30,
 		'sizes' => array(),
 	);
 	$title['settings']['typography_font_size_mobile'] = array(
@@ -547,17 +743,11 @@ if ( $title && $intro && $grid ) {
 		'size'  => 26,
 		'sizes' => array(),
 	);
-	$title['settings']['typography_font_weight'] = '700';
 
-	$intro['settings']['_css_classes'] = biopentra_m6_normalize_classes(
-		$intro['settings']['_css_classes'] ?? '',
-		array( 'bp-m6-why__intro' )
-	);
-	$intro['settings']['css_classes'] = $intro['settings']['_css_classes'];
-	$intro['settings']['align']       = 'left';
-	$intro['settings']['text_color']  = '#486077';
+	$intro['settings']['align']      = 'left';
+	$intro['settings']['text_color'] = '#486077';
 
-	$gby   = array();
+	$gby = array();
 	foreach ( ( $grid['elements'] ?? array() ) as $gc ) {
 		$gby[ $gc['id'] ] = $gc;
 	}
@@ -571,18 +761,17 @@ if ( $title && $intro && $grid ) {
 	$clear = biopentra_m6_why_proof( $clear, 'bp-m6-why__proof' );
 	$prof  = biopentra_m6_why_proof( $prof, 'bp-m6-why__proof' );
 
-	// Research-use proof: reuse why0card shell with new copy.
-	$research = $gby['why0card'] ?? $clear;
-	$research['id'] = 'whyRcard';
-	$research = biopentra_m6_why_proof( $research, 'bp-m6-why__proof' );
+	$research         = $gby['why0card'] ?? $clear;
+	$research['id']   = 'whyRcard';
+	$research         = biopentra_m6_why_proof( $research, 'bp-m6-why__proof' );
 	foreach ( $research['elements'] as &$rw ) {
 		if ( ( $rw['widgetType'] ?? '' ) === 'heading' ) {
-			$rw['id'] = 'whyRh';
-			$rw['settings']['title'] = BIOPENTRA_M6_RESEARCH_TITLE;
+			$rw['id']                 = 'whyRh';
+			$rw['settings']['title']  = BIOPENTRA_M6_RESEARCH_TITLE;
 		}
 		if ( ( $rw['widgetType'] ?? '' ) === 'text-editor' ) {
-			$rw['id'] = 'whyRp';
-			$rw['settings']['editor'] = '<p>' . esc_html( BIOPENTRA_M6_RESEARCH_BODY ) . '</p>';
+			$rw['id']                  = 'whyRp';
+			$rw['settings']['editor']  = '<p>' . esc_html( BIOPENTRA_M6_RESEARCH_BODY ) . '</p>';
 		}
 	}
 	unset( $rw );
@@ -606,27 +795,15 @@ if ( $title && $intro && $grid ) {
 		'elements' => array( $clear, $prof, $research ),
 	);
 
-	$body = array(
-		'id'       => BIOPENTRA_M6_WHY_BODY,
-		'elType'   => 'container',
-		'settings' => array(
-			'content_width'  => 'full',
-			'flex_direction' => 'column',
-			'flex_gap'       => array(
-				'column'   => '16',
-				'row'      => '16',
-				'isLinked' => true,
-				'unit'     => 'px',
-				'size'     => 16,
-			),
-			'_css_classes'   => 'bp-m6-why__body',
-			'css_classes'    => 'bp-m6-why__body',
-		),
-		'elements' => array( $intro, $proofs ),
-	);
-
-	$why['elements'] = array( $title, $body );
-	echo "M6 why: typography layout + 3 proofs (dropped EU/Secure Ordering cards)\n";
+	biopentra_m6_apply_why_desktop_layout( $why, $title, $intro, $proofs, $att_id );
+	echo "M6 why: content | visual layout + 3 proofs (desktop image; mobile content-only via CSS)\n";
+} elseif ( $title && $intro && $proofs_existing ) {
+	biopentra_m6_refresh_research_proof( $why );
+	biopentra_m6_apply_why_desktop_layout( $why, $title, $intro, $proofs_existing, $att_id );
+	echo "M6 why: refreshed content | visual layout + media binding\n";
+} else {
+	echo "ERROR: why4444 missing expected title/intro/proofs structure\n";
+	return;
 }
 unset( $why );
 
@@ -643,9 +820,9 @@ $faq['settings']['css_classes']      = $faq['settings']['_css_classes'];
 $faq['settings']['background_color'] = '#ffffff';
 $faq['settings']['padding']          = array(
 	'unit'     => 'px',
-	'top'      => '48',
+	'top'      => '20',
 	'right'    => '24',
-	'bottom'   => '56',
+	'bottom'   => '28',
 	'left'     => '24',
 	'isLinked' => false,
 );

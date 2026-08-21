@@ -12,6 +12,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.22] — 2026-08-21
+
+### Changed
+
+- **M6 desktop refinement (dev):** Why BioPentra is now content-left | visual-right using PO-selected master crop (`m6-why-biopentra-visual.png`); mobile Why stack preserved (image omitted ≤1024). FAQ desktop vertical spacing tightened.
+- Idempotent CLI imports Why visual via attachment meta `_biopentra_m6_why_visual` (no hardcoded attachment ID).
+
+### Notes
+
+- Untagged development version — awaiting PO visual review. Does not freeze M6.
+
+---
+
 ## [0.9.21] — 2026-08-21
 
 ### Added

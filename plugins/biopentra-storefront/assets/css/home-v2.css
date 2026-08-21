@@ -1051,48 +1051,84 @@ body.home .bp-m6-why .bp-m6-why__proof-body p {
 	margin: 0 !important;
 }
 
+body.home .bp-m6-why .bp-m6-why__media,
+body.home .bp-m6-why .elementor-element-m6whyim {
+	margin: 0;
+}
+
+body.home .bp-m6-why .bp-m6-why__media img,
+body.home .bp-m6-why .elementor-element-m6whyim img {
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 0;
+}
+
+/* Desktop: content (left ~57%) | visual statement (right ~43%). */
 @media (min-width: 1025px) {
 	body.home .bp-m6-why > .e-con-inner {
 		display: grid !important;
-		grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-		column-gap: clamp(2rem, 4vw, 4.5rem);
-		align-items: start;
+		grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+		column-gap: clamp(1.75rem, 3.5vw, 3.25rem);
+		align-items: center;
 		max-width: 1240px;
 		width: 100%;
 		margin-inline: auto;
 	}
 
-	body.home .bp-m6-why .bp-m6-why__heading {
+	body.home .bp-m6-why .bp-m6-why__content,
+	body.home .bp-m6-why .elementor-element-m6whycn {
 		grid-column: 1;
 		grid-row: 1;
-		padding-right: 0.5rem;
+		min-width: 0;
+	}
+
+	body.home .bp-m6-why .bp-m6-why__media,
+	body.home .bp-m6-why .elementor-element-m6whyim {
+		grid-column: 2;
+		grid-row: 1;
+		min-width: 0;
+		align-self: stretch;
+		display: flex !important;
+		align-items: center;
 	}
 
 	body.home .bp-m6-why .bp-m6-why__heading .elementor-heading-title {
-		font-size: clamp(2.5rem, 3.2vw, 3.25rem) !important;
-		max-width: 11ch;
-	}
-
-	body.home .bp-m6-why .bp-m6-why__body,
-	body.home .bp-m6-why .elementor-element-m6whybd {
-		grid-column: 2;
-		grid-row: 1;
+		font-size: clamp(2rem, 2.6vw, 2.625rem) !important;
+		max-width: none;
 	}
 
 	body.home .bp-m6-why .bp-m6-why__body > .e-con-inner,
 	body.home .bp-m6-why .elementor-element-m6whybd {
 		display: flex !important;
 		flex-direction: column !important;
-		gap: 1.5rem !important;
+		gap: 1.35rem !important;
+	}
+
+	body.home .bp-m6-why .bp-m6-why__media img,
+	body.home .bp-m6-why .elementor-element-m6whyim img {
+		width: 100%;
+		max-height: min(520px, 58vh);
+		object-fit: cover;
+		object-position: center 40%;
 	}
 }
 
+/* Mobile/tablet: preserve approved typography stack; omit large visual. */
 @media (max-width: 1024px) {
+	body.home .bp-m6-why .bp-m6-why__media,
+	body.home .bp-m6-why .elementor-element-m6whyim {
+		display: none !important;
+	}
+
 	body.home .bp-m6-why .bp-m6-why__heading .elementor-heading-title {
 		font-size: clamp(1.625rem, 5vw, 2rem) !important;
 		max-width: none;
 	}
 
+	body.home .bp-m6-why .bp-m6-why__content > .e-con-inner,
+	body.home .bp-m6-why .elementor-element-m6whycn > .e-con-inner,
 	body.home .bp-m6-why .bp-m6-why__body > .e-con-inner {
 		display: flex !important;
 		flex-direction: column !important;
@@ -1118,7 +1154,7 @@ body.home .bp-m6-faq .bp-m6-faq__heading .elementor-heading-title {
 	font-size: clamp(1.5rem, 2.4vw, 1.875rem) !important;
 	font-weight: 700 !important;
 	line-height: 1.2 !important;
-	margin: 0 0 0.5rem !important;
+	margin: 0 0 0.35rem !important;
 }
 
 body.home .bp-m6-faq .bp-m6-faq__intro,
@@ -1126,7 +1162,50 @@ body.home .bp-m6-faq .bp-m6-faq__intro p {
 	color: #486077 !important;
 	font-size: 1rem !important;
 	line-height: 1.5 !important;
-	margin: 0 0 1.25rem !important;
+	margin: 0 0 0.85rem !important;
+}
+
+@media (min-width: 1025px) {
+	body.home .elementor-element-faqPreview4444.bp-m6-faq,
+	body.home .bp-m6-faq {
+		padding-top: 20px !important;
+		padding-bottom: 28px !important;
+		--padding-top: 20px !important;
+		--padding-bottom: 28px !important;
+	}
+
+	body.home .bp-m6-faq > .e-con-inner {
+		padding-top: 20px !important;
+		padding-bottom: 28px !important;
+		row-gap: 0.35rem !important;
+		gap: 0.35rem !important;
+	}
+
+	body.home .bp-m6-faq .bp-m6-faq__heading .elementor-heading-title {
+		margin-bottom: 0.15rem !important;
+	}
+
+	body.home .bp-m6-faq .bp-m6-faq__intro,
+	body.home .bp-m6-faq .bp-m6-faq__intro p {
+		margin-bottom: 0.5rem !important;
+	}
+
+	body.home .bp-m6-faq .elementor-element-faqTitle4444,
+	body.home .bp-m6-faq .elementor-element-faqIntro4444,
+	body.home .bp-m6-faq .elementor-element-m6faq01 {
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+
+	body.home .bp-m6-faq .elementor-element-faqTitle4444 {
+		margin-bottom: 0.15rem !important;
+	}
+
+	body.home .bp-m6-faq .elementor-element-faqIntro4444 {
+		margin-bottom: 0.45rem !important;
+	}
 }
 
 body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-accordion {
