@@ -18,11 +18,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - **M3 Homepage Category Discovery:** compact low-radius category rail under the M2 hero, visible “Shop by category” label on the front page, homepage Uncategorized exclusion, idempotent `setup-m3-homepage-category-cli.php`.
 
+### Changed
+
+- Quieter chip visual weight after PO feedback: ~38px chip height, 5px radius, lighter muted label.
+
 ### Removed
 
 - Homepage under-hero search widget instance (M1 header search remains; `[biopentra_home_search]` PHP retained for SEO pages).
 
-**Git tag:** none — awaiting Product Owner visual review.
+### Release
+
+- **M3 PO-approved / frozen on dev.** Git tag: **`storefront-v0.9.16`**. Production replay still requires an explicit GO.
 
 ---
 
