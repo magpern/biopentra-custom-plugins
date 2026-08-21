@@ -463,12 +463,12 @@ body.home .bp-home-cat-chip:focus-visible {
 }
 
 body.home .bp-home-products-section {
-	margin-bottom: 12px;
+	margin-bottom: 8px;
 }
 
 /* M4 — homepage product section hierarchy (cards stay soft/elevated via loop-card). */
 body.home .bp-home-products-section > .e-con-inner {
-	gap: 24px !important;
+	gap: 20px !important;
 }
 
 body.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
@@ -499,26 +499,56 @@ body.home .bp-home-products-section .elementor-button:focus {
 	color: #fff !important;
 }
 
+/* Elementor button widgets carry ~26px margin-top — kills grid→CTA rhythm. */
+body.home .bp-home-products-section .elementor-widget-button {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
 /*
- * M4 PO correction: compact M3 → Featured transition.
- * Elementor applies top padding on both the section and `.e-con-inner` — keep a
- * single layer so mobile lands ~24–32px band→heading. M3 rail chrome untouched.
+ * M4 PO correction: compact M3 → Featured transition + full product-stack rhythm.
+ * Single-layer padding on .e-con-inner; section top/bottom vars zeroed where needed.
+ * M3 rail chrome untouched. Cards untouched.
  */
-body.home .elementor-element-be24b65 {
+body.home .elementor-element-be24b65,
+body.home .elementor-element-a3853b0,
+body.home .elementor-element-17b27f7 {
 	--padding-top: 0 !important;
 	padding-top: 0 !important;
 }
 
 body.home .elementor-element-be24b65 > .e-con-inner {
-	gap: 22px !important;
+	gap: 20px !important;
 	--padding-top: 24px !important;
 	padding-top: 24px !important;
+	--padding-bottom: 36px !important;
+	padding-bottom: 36px !important;
+}
+
+body.home .elementor-element-a3853b0 > .e-con-inner,
+body.home .elementor-element-17b27f7 > .e-con-inner {
+	gap: 20px !important;
+	--padding-top: 28px !important;
+	padding-top: 28px !important;
+	--padding-bottom: 36px !important;
+	padding-bottom: 36px !important;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
 	body.home .elementor-element-be24b65 > .e-con-inner {
 		--padding-top: 24px !important;
 		padding-top: 24px !important;
+		--padding-bottom: 40px !important;
+		padding-bottom: 40px !important;
+		gap: 22px !important;
+	}
+
+	body.home .elementor-element-a3853b0 > .e-con-inner,
+	body.home .elementor-element-17b27f7 > .e-con-inner {
+		--padding-top: 32px !important;
+		padding-top: 32px !important;
+		--padding-bottom: 40px !important;
+		padding-bottom: 40px !important;
 		gap: 22px !important;
 	}
 }
@@ -527,6 +557,17 @@ body.home .elementor-element-be24b65 > .e-con-inner {
 	body.home .elementor-element-be24b65 > .e-con-inner {
 		--padding-top: 28px !important;
 		padding-top: 28px !important;
+		--padding-bottom: 48px !important;
+		padding-bottom: 48px !important;
+		gap: 24px !important;
+	}
+
+	body.home .elementor-element-a3853b0 > .e-con-inner,
+	body.home .elementor-element-17b27f7 > .e-con-inner {
+		--padding-top: 36px !important;
+		padding-top: 36px !important;
+		--padding-bottom: 48px !important;
+		padding-bottom: 48px !important;
 		gap: 24px !important;
 	}
 }
@@ -535,17 +576,23 @@ body.home .elementor-element-be24b65 > .e-con-inner {
 	body.home .elementor-element-be24b65 > .e-con-inner {
 		--padding-top: 16px !important;
 		padding-top: 16px !important;
-		gap: 20px !important;
+		--padding-bottom: 28px !important;
+		padding-bottom: 28px !important;
+		gap: 18px !important;
+	}
+
+	body.home .elementor-element-a3853b0 > .e-con-inner,
+	body.home .elementor-element-17b27f7 > .e-con-inner {
+		--padding-top: 24px !important;
+		padding-top: 24px !important;
+		--padding-bottom: 28px !important;
+		padding-bottom: 28px !important;
+		gap: 18px !important;
 	}
 
 	body.home .bp-home-products-section .elementor-widget-heading .elementor-heading-title {
 		font-size: 1.1875rem;
 		margin-bottom: 0;
-	}
-
-	/* Newest/Popular keep a slightly airier section gap than Featured handoff. */
-	body.home .bp-home-products-section:not(.elementor-element-be24b65) > .e-con-inner {
-		gap: 22px !important;
 	}
 }
 

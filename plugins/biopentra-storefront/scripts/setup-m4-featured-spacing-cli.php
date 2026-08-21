@@ -1,9 +1,10 @@
 <?php
 /**
- * M4 — Compact Featured section top spacing (idempotent).
+ * M4 — Compact Featured / Newest / Popular section spacing (idempotent).
  *
- * Tightens Elementor padding on homepage Featured container be24b65 only.
- * Does not modify M3 category rail widgets/classes.
+ * Zeroes Elementor section top padding (CSS owns single-layer inner padding).
+ * Reduces bottom padding so CTA → next heading is not a dead zone.
+ * Does not modify M3 or product cards.
  *
  * @package Biopentra_Storefront
  */
@@ -25,60 +26,67 @@ if ( ! is_array( $data ) ) {
 	return;
 }
 
-$found = false;
+$targets = array( 'be24b65', 'a3853b0', '17b27f7' );
+$found   = array();
+
 foreach ( $data as &$section ) {
-	if ( ( $section['id'] ?? '' ) !== 'be24b65' ) {
+	$id = $section['id'] ?? '';
+	if ( ! in_array( $id, $targets, true ) ) {
 		continue;
 	}
-	$found = true;
-	$section['settings']['padding']         = array(
+	$found[] = $id;
+
+	// Section shell: no top pad (inner owns it). Modest bottom for Elementor fallback.
+	$section['settings']['padding'] = array(
 		'unit'     => 'px',
 		'top'      => '0',
 		'right'    => '24',
-		'bottom'   => '78',
+		'bottom'   => '0',
 		'left'     => '24',
 		'isLinked' => false,
 	);
-	$section['settings']['padding_tablet']  = array(
+	$section['settings']['padding_tablet'] = array(
 		'unit'     => 'px',
 		'top'      => '0',
 		'right'    => '20',
-		'bottom'   => '66',
+		'bottom'   => '0',
 		'left'     => '20',
 		'isLinked' => false,
 	);
-	$section['settings']['padding_mobile']  = array(
+	$section['settings']['padding_mobile'] = array(
 		'unit'     => 'px',
 		'top'      => '0',
 		'right'    => '16',
-		'bottom'   => '54',
+		'bottom'   => '0',
 		'left'     => '16',
 		'isLinked' => false,
 	);
-	/* Boxed containers apply content padding on the inner — keep top here only. */
-	$section['settings']['padding']['top']        = '0';
-	$section['settings']['padding_tablet']['top'] = '0';
-	$section['settings']['padding_mobile']['top'] = '0';
-	$section['settings']['flex_gap']        = array(
-		'column'   => '22',
-		'row'      => '22',
-		'isLinked' => true,
-		'unit'     => 'px',
-		'size'     => 22,
-	);
-	$section['settings']['flex_gap_mobile'] = array(
+	$section['settings']['flex_gap'] = array(
 		'column'   => '20',
 		'row'      => '20',
 		'isLinked' => true,
 		'unit'     => 'px',
 		'size'     => 20,
 	);
-	break;
+	$section['settings']['flex_gap_mobile'] = array(
+		'column'   => '18',
+		'row'      => '18',
+		'isLinked' => true,
+		'unit'     => 'px',
+		'size'     => 18,
+	);
+	$section['settings']['flex_gap_tablet'] = array(
+		'column'   => '22',
+		'row'      => '22',
+		'isLinked' => true,
+		'unit'     => 'px',
+		'size'     => 22,
+	);
 }
 unset( $section );
 
-if ( ! $found ) {
-	echo "ERROR: Featured section be24b65 not found\n";
+if ( count( $found ) !== 3 ) {
+	echo 'ERROR: expected 3 product sections, found ' . implode( ',', $found ) . "\n";
 	return;
 }
 
@@ -92,6 +100,6 @@ if ( function_exists( 'wp_cache_flush' ) ) {
 	wp_cache_flush();
 }
 
-echo "M4 Featured spacing patch applied on page {$home_id}\n";
-echo "  section padding-top=0 (all breakpoints); CSS owns single-layer inner top pad\n";
-echo "  flex_gap mobile=20 desktop=22\n";
+echo "M4 product-stack spacing patch applied on page {$home_id}\n";
+echo '  sections=' . implode( ',', $found ) . "\n";
+echo "  section padding top/bottom=0; CSS owns inner rhythm; flex_gap mobile=18\n";
