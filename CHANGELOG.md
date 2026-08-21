@@ -17,8 +17,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - **M4 homepage product sections:** Premium teal headings and CTAs for Featured/Newest/Popular; tighter section rhythm. Card chrome remains in `biopentra-loop-card` (soft/rounded/elevated baseline preserved).
+- **M4 product-stack rhythm (PO):** compact M3→Featured handoff; zero Elementor button `margin-top`; unified Featured/Newest/Popular inner padding so mobile grid→CTA and CTA→next-heading spacing are consistent without changing cards.
 
-**Git tag:** none — awaiting Product Owner visual review.
+### Release
+
+- **M4 PO-approved / frozen on dev.** Git tag: **`storefront-v0.9.17`**. Requires companion **`biopentra-loop-card` 1.6.2** / `v1.6.2`. Production replay still requires an explicit GO.
 
 ---
 
