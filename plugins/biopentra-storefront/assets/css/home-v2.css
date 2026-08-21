@@ -1283,3 +1283,220 @@ body.home .elementor-element-0b22897.bp-m5-trust + .elementor-element-7fe474f.bp
 body.home .elementor-element-faqPreview4444.bp-m6-faq + .elementor-element-238bcc6 {
 	margin-top: 0;
 }
+
+/* =============================================================================
+   M7 — Research & Product Guidance (238bcc6)
+   Light editorial hub: primary Research Use + secondary navigation rows.
+   ============================================================================= */
+
+body.home .elementor-element-238bcc6.bp-m7-guidance,
+body.home .bp-m7-guidance {
+	--bp-m7-teal: #0a303e;
+	--bp-m7-cyan: #0088b0;
+	--bp-m7-muted: #486077;
+	--bp-m7-paper: #f3f2f2;
+	--bp-m7-panel: #ffffff;
+	background-color: var(--bp-m7-paper) !important;
+	overflow: visible !important;
+}
+
+body.home .bp-m7-guidance > .e-con-inner {
+	max-width: 1240px;
+	margin-inline: auto;
+	gap: 0.65rem !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__heading .elementor-heading-title {
+	color: var(--bp-m7-teal) !important;
+	font-size: clamp(1.5rem, 1.2rem + 0.8vw, 2rem) !important;
+	font-weight: 700 !important;
+	letter-spacing: -0.02em;
+	line-height: 1.2 !important;
+	margin: 0 !important;
+	text-shadow: none !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__intro,
+body.home .bp-m7-guidance .bp-m7-guidance__intro p {
+	color: var(--bp-m7-muted) !important;
+	font-size: 0.975rem !important;
+	line-height: 1.45 !important;
+	margin: 0 0 0.85rem !important;
+	max-width: 42rem;
+	text-shadow: none !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__layout {
+	width: 100% !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__layout > .e-con-inner {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 1.15rem !important;
+	align-items: stretch !important;
+}
+
+/* Primary feature */
+body.home .bp-m7-guidance .bp-m7-guidance__primary {
+	background: var(--bp-m7-panel) !important;
+	border: 1px solid color-mix(in srgb, var(--bp-m7-teal) 10%, transparent) !important;
+	border-radius: 14px !important;
+	box-shadow: 0 1px 2px rgba(15, 31, 51, 0.04), 0 10px 28px rgba(15, 31, 51, 0.05);
+	padding: 1.15rem 1.25rem 1.2rem !important;
+	box-sizing: border-box;
+	position: relative;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__primary::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 14px;
+	bottom: 14px;
+	width: 3px;
+	border-radius: 2px;
+	background: var(--bp-m7-cyan);
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__primary-title .elementor-heading-title {
+	color: var(--bp-m7-teal) !important;
+	font-size: 1.2rem !important;
+	font-weight: 700 !important;
+	line-height: 1.25 !important;
+	margin: 0 0 0.4rem !important;
+	text-shadow: none !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__primary-body,
+body.home .bp-m7-guidance .bp-m7-guidance__primary-body p {
+	color: var(--bp-m7-muted) !important;
+	font-size: 0.95rem !important;
+	line-height: 1.45 !important;
+	margin: 0 0 0.75rem !important;
+	text-shadow: none !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__cta .elementor-button {
+	display: inline-flex !important;
+	align-items: center !important;
+	background: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+	color: var(--bp-m7-cyan) !important;
+	font-size: 0.95rem !important;
+	font-weight: 650 !important;
+	padding: 0.35rem 0 !important;
+	min-height: 44px;
+	text-shadow: none !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__cta .elementor-button:hover,
+body.home .bp-m7-guidance .bp-m7-guidance__cta .elementor-button:focus-visible {
+	color: var(--bp-m7-teal) !important;
+	background: transparent !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__cta .elementor-button:focus-visible {
+	outline: 2px solid var(--bp-m7-cyan);
+	outline-offset: 3px;
+}
+
+/* Secondary rows */
+body.home .bp-m7-guidance .bp-m7-guidance__secondary > .e-con-inner {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 0 !important;
+	justify-content: center !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__row {
+	border: 0 !important;
+	border-bottom: 1px solid color-mix(in srgb, var(--bp-m7-teal) 12%, transparent) !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	padding: 0.85rem 0.15rem 0.9rem 0 !important;
+	min-height: 44px;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__row:last-child {
+	border-bottom: 0 !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__row-title .elementor-heading-title,
+body.home .bp-m7-guidance .bp-m7-guidance__row-title .elementor-heading-title a {
+	color: var(--bp-m7-teal) !important;
+	font-size: 1.02rem !important;
+	font-weight: 650 !important;
+	line-height: 1.3 !important;
+	margin: 0 !important;
+	text-decoration: none !important;
+	text-shadow: none !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__row-title .elementor-heading-title a::after {
+	content: ' →';
+	color: var(--bp-m7-cyan);
+	font-weight: 600;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__row-title .elementor-heading-title a:hover,
+body.home .bp-m7-guidance .bp-m7-guidance__row-title .elementor-heading-title a:focus-visible {
+	color: var(--bp-m7-cyan) !important;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__row-title .elementor-heading-title a:focus-visible {
+	outline: 2px solid var(--bp-m7-cyan);
+	outline-offset: 3px;
+}
+
+body.home .bp-m7-guidance .bp-m7-guidance__row-body,
+body.home .bp-m7-guidance .bp-m7-guidance__row-body p {
+	color: var(--bp-m7-muted) !important;
+	font-size: 0.9rem !important;
+	line-height: 1.4 !important;
+	margin: 0.25rem 0 0 !important;
+	text-shadow: none !important;
+}
+
+@media (min-width: 1025px) {
+	body.home .bp-m7-guidance > .e-con-inner {
+		padding-top: 8px;
+		padding-bottom: 8px;
+	}
+
+	body.home .bp-m7-guidance .bp-m7-guidance__layout > .e-con-inner {
+		flex-direction: row !important;
+		align-items: stretch !important;
+		gap: 2rem !important;
+	}
+
+	body.home .bp-m7-guidance .bp-m7-guidance__primary {
+		flex: 1 1 58%;
+		max-width: 58%;
+		padding: 1.4rem 1.5rem 1.45rem 1.55rem !important;
+	}
+
+	body.home .bp-m7-guidance .bp-m7-guidance__secondary {
+		flex: 1 1 40%;
+		max-width: 40%;
+		align-self: center;
+	}
+
+	body.home .bp-m7-guidance .bp-m7-guidance__primary-title .elementor-heading-title {
+		font-size: 1.35rem !important;
+	}
+}
+
+@media (max-width: 1024px) {
+	body.home .bp-m7-guidance .bp-m7-guidance__primary {
+		padding: 1rem 1.05rem 1.05rem 1.15rem !important;
+	}
+
+	body.home .bp-m7-guidance .bp-m7-guidance__row {
+		padding: 0.75rem 0 0.8rem !important;
+	}
+}
+

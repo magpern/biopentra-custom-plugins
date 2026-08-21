@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.24] — 2026-08-21
+
+### Added
+
+- **M7 Research & Product Guidance:** light editorial guidance hub on homepage `238bcc6` (primary Research Use + secondary Storage / Ordering rows). CLI `setup-m7-research-guidance-cli.php`; CSS `.bp-m7-*` in `home-v2.css`. No image.
+
+### Release
+
+- **M7 PO-approved / frozen on DEV.** Git tag: **`storefront-v0.9.24`**.
+
+---
+
 ## [0.9.23] — 2026-08-21
 
 ### Changed
