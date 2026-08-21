@@ -758,56 +758,67 @@ body.home .bp-m5-trust .bp-m5-trust__point-body p {
 /*
  * Desktop: image left / content right.
  *
- * Do NOT use a multi-row grid with the image spanning heading|intro|points —
- * that stretches those rows to the image height and invents large vertical
- * gaps. Keep the image out of the content flow (absolute in the left half)
- * so heading → intro → points stack as one top-aligned editorial block.
+ * Content (heading + intro + points) lives in .bp-m5-trust__content so the
+ * image does not span multiple grid rows (which stretched vertical gaps).
+ * Mobile uses display:contents + flex order so DOM can stay
+ * content-wrapper + image while visual order remains heading → intro → image → points.
  */
 @media (min-width: 1025px) {
 	body.home .bp-m5-trust > .e-con-inner {
-		display: block !important;
-		position: relative !important;
-		padding-left: calc(52% + 24px) !important;
-		min-height: 560px;
-		gap: 0 !important;
+		display: grid !important;
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+		grid-template-areas: "media content";
+		column-gap: 40px !important;
 		row-gap: 0 !important;
-		column-gap: 0 !important;
+		align-items: start;
+		align-content: start;
 	}
 
 	body.home .bp-m5-trust .bp-m5-trust__media,
 	body.home .bp-m5-trust .elementor-element-m5img01 {
-		position: absolute !important;
-		left: 0 !important;
-		top: 0 !important;
-		width: 52% !important;
-		max-width: 52% !important;
-		margin: 0 !important;
+		grid-area: media;
+		position: static !important;
+		width: auto !important;
+		max-width: none !important;
+		left: auto !important;
+		top: auto !important;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__content,
+	body.home .bp-m5-trust .elementor-element-m5cnt01 {
+		grid-area: content;
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: stretch !important;
+		justify-content: flex-start !important;
+		gap: 12px !important;
+		width: 100% !important;
+		max-width: 36rem;
+		min-width: 0;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__content > .e-con-inner {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 12px !important;
+		width: 100% !important;
+	}
+
+	/* Extra beat before trust rows (after the 12px flex gap on intro). */
+	body.home .bp-m5-trust .bp-m5-trust__intro {
+		margin: 0 0 8px !important;
 	}
 
 	body.home .bp-m5-trust .bp-m5-trust__heading,
-	body.home .bp-m5-trust .bp-m5-trust__intro,
-	body.home .bp-m5-trust .bp-m5-trust__points {
-		width: 100%;
-		max-width: 36rem;
-	}
-
-	body.home .bp-m5-trust .bp-m5-trust__heading {
-		margin: 0 0 0.75rem !important;
-	}
-
-	body.home .bp-m5-trust .bp-m5-trust__intro {
-		margin: 0 0 1.25rem !important;
-	}
-
 	body.home .bp-m5-trust .bp-m5-trust__points {
 		margin: 0 !important;
 	}
 
 	body.home .bp-m5-trust .bp-m5-trust__media img {
-		/* Taller column crop from 3:2 master — keep vial + open packing visible. */
 		aspect-ratio: 4 / 5;
 		width: 100%;
 		height: auto;
+		min-height: 420px;
 		max-height: 560px;
 		object-fit: cover;
 		object-position: 58% 42%;
@@ -816,6 +827,41 @@ body.home .bp-m5-trust .bp-m5-trust__point-body p {
 
 	body.home .bp-m5-trust .bp-m5-trust__heading .elementor-heading-title {
 		font-size: 1.75rem !important;
+	}
+}
+
+/* Mobile / tablet: unwrap content so image can sit between intro and points. */
+@media (max-width: 1024px) {
+	body.home .bp-m5-trust .bp-m5-trust__content,
+	body.home .bp-m5-trust .elementor-element-m5cnt01,
+	body.home .bp-m5-trust .bp-m5-trust__content > .e-con-inner,
+	body.home .bp-m5-trust .elementor-element-m5cnt01 > .e-con-inner {
+		display: contents !important;
+	}
+
+	body.home .bp-m5-trust > .e-con-inner {
+		display: flex !important;
+		flex-direction: column !important;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__heading {
+		order: 1;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__intro {
+		order: 2;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__media,
+	body.home .bp-m5-trust .elementor-element-m5img01 {
+		order: 3;
+		position: static !important;
+		width: 100% !important;
+		max-width: none !important;
+	}
+
+	body.home .bp-m5-trust .bp-m5-trust__points {
+		order: 4;
 	}
 }
 

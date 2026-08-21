@@ -21,6 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 const BIOPENTRA_M5_SECTION_ID     = '0b22897';
 const BIOPENTRA_M5_IMAGE_ID       = 'm5img01';
+const BIOPENTRA_M5_CONTENT_ID     = 'm5cnt01';
 const BIOPENTRA_M5_ASSET_META     = '_biopentra_m5_master';
 const BIOPENTRA_M5_ASSET_KEY      = 'm5-trust-fulfillment-master';
 const BIOPENTRA_M5_MASTER_SHA256  = 'e37001d57c98cecefe1c46c318eaf276a86d36c3934a4d7b89a2538bb9432500';
@@ -371,12 +372,19 @@ $section['settings']['padding_mobile']    = array(
 $by_id = array();
 foreach ( $section['elements'] as $child ) {
 	$by_id[ $child['id'] ] = $child;
+	// Unwrap previously nested content children for idempotent rebuild.
+	if ( ( $child['id'] ?? '' ) === BIOPENTRA_M5_CONTENT_ID && ! empty( $child['elements'] ) ) {
+		foreach ( $child['elements'] as $nested ) {
+			$by_id[ $nested['id'] ] = $nested;
+		}
+	}
 }
 
 $heading = $by_id['dd45b67'] ?? null;
 $intro   = $by_id['7d26d1f'] ?? null;
 $points  = $by_id['4f720f0'] ?? null;
 $image   = $by_id[ BIOPENTRA_M5_IMAGE_ID ] ?? null;
+$content = $by_id[ BIOPENTRA_M5_CONTENT_ID ] ?? null;
 
 if ( ! $heading || ! $intro || ! $points ) {
 	echo "ERROR: Expected heading dd45b67, intro 7d26d1f, points 4f720f0\n";
@@ -462,8 +470,49 @@ if ( ! $image ) {
 	echo "M5 structure: refreshed image widget " . BIOPENTRA_M5_IMAGE_ID . " → attachment {$att_id}\n";
 }
 
-// Canonical child order: heading → intro → image → points (mobile DOM order).
-$section['elements'] = array( $heading, $intro, $image, $points );
+// Content column wrapper (desktop grid cell; mobile display:contents).
+if ( ! $content ) {
+	$content = array(
+		'id'       => BIOPENTRA_M5_CONTENT_ID,
+		'elType'   => 'container',
+		'settings' => array(
+			'content_width'   => 'full',
+			'flex_direction'  => 'column',
+			'flex_gap'        => array(
+				'column'   => '12',
+				'row'      => '12',
+				'isLinked' => true,
+				'unit'     => 'px',
+				'size'     => 12,
+			),
+			'_css_classes'    => 'bp-m5-trust__content',
+			'css_classes'     => 'bp-m5-trust__content',
+		),
+		'elements' => array(),
+	);
+	echo 'M5 structure: added content wrapper ' . BIOPENTRA_M5_CONTENT_ID . "\n";
+} else {
+	$content['settings']['content_width']  = 'full';
+	$content['settings']['flex_direction'] = 'column';
+	$content['settings']['flex_gap']       = array(
+		'column'   => '12',
+		'row'      => '12',
+		'isLinked' => true,
+		'unit'     => 'px',
+		'size'     => 12,
+	);
+	$content['settings']['_css_classes'] = biopentra_m5_normalize_classes(
+		$content['settings']['_css_classes'] ?? '',
+		array( 'bp-m5-trust__content' )
+	);
+	$content['settings']['css_classes'] = $content['settings']['_css_classes'];
+	echo 'M5 structure: refreshed content wrapper ' . BIOPENTRA_M5_CONTENT_ID . "\n";
+}
+
+$content['elements'] = array( $heading, $intro, $points );
+
+// Image + content column (mobile CSS reorders via display:contents + flex order).
+$section['elements'] = array( $image, $content );
 unset( $section );
 
 update_post_meta( $home_id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
