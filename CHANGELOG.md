@@ -12,15 +12,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.20] — 2026-08-21
+
+### Fixed
+
+- **M5 desktop rhythm (safe):** content wrapper `m5cnt01` + two-column grid (`media | content`) with compact flex gaps; replaces the reverted 0.9.19 absolute-column attempt.
+
+### Release
+
+- **M5 PO-approved / frozen on dev.** Git tag: **`storefront-v0.9.20`**. Production replay still requires an explicit GO.
+
+---
+
 ## [0.9.19] — 2026-08-21
 
 ### Fixed
 
-- **M5 desktop content rhythm:** stop spanning the image across heading/intro/points grid rows (which stretched vertical gaps). Top-align a naturally stacked content block beside the image (≥1025px only).
+- Attempted M5 desktop rhythm via absolute image column — **reverted in 0.9.20** (collapsed content width / vertical glyph stacking on some viewports).
 
 ### Release
 
-- **Not tagged.** PO visual review of spacing refinement.
+- Superseded by **0.9.20** / `storefront-v0.9.20`.
 
 ---
 
@@ -28,11 +40,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- **M5 Trust & Fulfillment Story:** editorial image-left / content-right homepage band (Elementor `0b22897`), compact trust rows, idempotent CLI + media import (`setup-m5-trust-fulfillment-cli.php`), styles in `home-v2.css`. Untagged development build for PO visual review.
+- **M5 Trust & Fulfillment Story:** editorial image-left / content-right homepage band (Elementor `0b22897`), compact trust rows, idempotent CLI + media import (`setup-m5-trust-fulfillment-cli.php`), styles in `home-v2.css`.
 
 ### Release
 
-- **Not tagged.** Awaiting Product Owner visual approval before freeze/release.
+- Development build; freeze completed at **0.9.20**.
 
 ---
 
