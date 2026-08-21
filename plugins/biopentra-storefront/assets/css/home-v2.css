@@ -1168,26 +1168,26 @@ body.home .bp-m6-faq .bp-m6-faq__intro p {
 @media (min-width: 1025px) {
 	body.home .elementor-element-faqPreview4444.bp-m6-faq,
 	body.home .bp-m6-faq {
-		padding-top: 20px !important;
-		padding-bottom: 28px !important;
-		--padding-top: 20px !important;
-		--padding-bottom: 28px !important;
+		padding-top: 16px !important;
+		padding-bottom: 20px !important;
+		--padding-top: 16px !important;
+		--padding-bottom: 20px !important;
 	}
 
 	body.home .bp-m6-faq > .e-con-inner {
-		padding-top: 20px !important;
-		padding-bottom: 28px !important;
-		row-gap: 0.35rem !important;
-		gap: 0.35rem !important;
+		padding-top: 16px !important;
+		padding-bottom: 20px !important;
+		row-gap: 0.25rem !important;
+		gap: 0.25rem !important;
 	}
 
 	body.home .bp-m6-faq .bp-m6-faq__heading .elementor-heading-title {
-		margin-bottom: 0.15rem !important;
+		margin-bottom: 0.1rem !important;
 	}
 
 	body.home .bp-m6-faq .bp-m6-faq__intro,
 	body.home .bp-m6-faq .bp-m6-faq__intro p {
-		margin-bottom: 0.5rem !important;
+		margin-bottom: 0.4rem !important;
 	}
 
 	body.home .bp-m6-faq .elementor-element-faqTitle4444,
@@ -1200,11 +1200,11 @@ body.home .bp-m6-faq .bp-m6-faq__intro p {
 	}
 
 	body.home .bp-m6-faq .elementor-element-faqTitle4444 {
-		margin-bottom: 0.15rem !important;
+		margin-bottom: 0.1rem !important;
 	}
 
 	body.home .bp-m6-faq .elementor-element-faqIntro4444 {
-		margin-bottom: 0.45rem !important;
+		margin-bottom: 0.35rem !important;
 	}
 }
 
@@ -1227,6 +1227,13 @@ body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-tab-title {
 	display: flex;
 	align-items: center;
 	gap: 0.75rem;
+}
+
+@media (min-width: 1025px) {
+	body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-tab-title {
+		padding: 0.62rem 0 !important;
+		min-height: 0;
+	}
 }
 
 body.home .bp-m6-faq .bp-m6-faq__accordion .elementor-tab-title:focus,

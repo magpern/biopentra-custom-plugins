@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.23] — 2026-08-21
+
+### Changed
+
+- **M6 freeze:** final desktop Ordering Questions density (tighter section pad + accordion row padding ≥1025). Why BioPentra left unchanged (PO-approved). Mobile FAQ untouched.
+
+### Release
+
+- **M6 PO-approved / frozen on DEV.** Git tag: **`storefront-v0.9.23`**.
+
+---
+
 ## [0.9.22] — 2026-08-21
 
 ### Changed

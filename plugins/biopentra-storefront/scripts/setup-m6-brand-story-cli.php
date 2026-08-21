@@ -820,9 +820,9 @@ $faq['settings']['css_classes']      = $faq['settings']['_css_classes'];
 $faq['settings']['background_color'] = '#ffffff';
 $faq['settings']['padding']          = array(
 	'unit'     => 'px',
-	'top'      => '20',
+	'top'      => '16',
 	'right'    => '24',
-	'bottom'   => '28',
+	'bottom'   => '20',
 	'left'     => '24',
 	'isLinked' => false,
 );
