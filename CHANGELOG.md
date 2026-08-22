@@ -22,7 +22,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Notes
 
-- Acceptance: `storefront-acceptance` `tests/m8-footer.spec.ts` via `tools/run-dev.sh --m8-only` (19 passed / 0 failed). Still dev-only, still untagged — M8 remains not frozen.
+- Acceptance: `storefront-acceptance` `tests/m8-footer.spec.ts` via `tools/run-dev.sh --m8-only` (19 passed / 0 failed).
+
+### Release
+
+- **M8 Global Footer Redesign — PO-approved / frozen on DEV** (desktop + mobile density corrective). Git tag: **`storefront-v0.9.27`**. Spec: [docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md](docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md). Production replay not performed — DEV only until a separate, explicit PO GO. The two pre-existing desktop defects noted above (stacked/invisible Telegram handle, invisible "Information"/"Legal" labels) were reviewed and approved as part of the desktop sign-off; still available as a follow-up fix if the PO wants them addressed later.
 
 ---
 
