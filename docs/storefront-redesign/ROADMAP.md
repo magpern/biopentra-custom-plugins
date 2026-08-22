@@ -1,6 +1,8 @@
 # Storefront Mobile-First Redesign — Definitive Roadmap
 
-**Status:** Phase 0 (Foundations) formally released and closed. Phase 1
+> **Program closure (2026-08-23):** The Premium Ecommerce **M1–M10 UI overhaul** is **CLOSED / PO-APPROVED ON DEV**. This file documents the **legacy lettered track** (0, A–E, P0) and historical sequencing debates. **Do not** use this roadmap to infer that M11 or Motion polish is pending as part of that program. Authority for closure: [UI-OVERHAUL-CLOSURE.md](UI-OVERHAUL-CLOSURE.md).
+
+**Status (lettered track, historical):** Phase 0 (Foundations) formally released and closed. Phase 1
 (Product Card Clickability) in progress.
 **Site:** `dev.biopentra.eu` first → replay on `www.biopentra.eu` per phase.  
 **Audit baseline:** [audit/](audit/) (metrics unchanged; evidence preserved).

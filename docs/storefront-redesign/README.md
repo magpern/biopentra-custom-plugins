@@ -2,9 +2,19 @@
 
 Working docs for the mobile-first restructure of the Biopentra WooCommerce storefront: `dev.biopentra.eu` first, replayed on `www.biopentra.eu` once each milestone is validated.
 
-**Status:** Milestone E **APPROVED / tagged** (storefront **0.9.0**). Next: **P0 — Production Rollout** playbook ([plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md)). **Do not deploy to production until explicitly prompted.** Milestone F is superseded by P0 for rollout.
+## Program status (authoritative)
 
-**Definitive roadmap:** [ROADMAP.md](ROADMAP.md) — milestone order, effort, models, and work-package rationale.
+**BIOPENTRA STOREFRONT UI OVERHAUL: CLOSED / PO-APPROVED ON DEV** (2026-08-23)
+
+The Premium Ecommerce numbered program **M1–M10** ended at **M10**. Final Storefront baseline: **`storefront-v0.9.33`**. There is **no M11** as continuation of this program. Motion & Interaction Polish remains a **separate deferred initiative**. Production rollout has **not** been performed and requires an explicit PO GO.
+
+**Read first:** [UI-OVERHAUL-CLOSURE.md](UI-OVERHAUL-CLOSURE.md) — verdict, milestone table, DEV baseline, production-replay index, governance.
+
+### Legacy lettered track (0, A–E, P0)
+
+Historical engineering program documented below and in [ROADMAP.md](ROADMAP.md). Milestone E **APPROVED / tagged** (storefront **0.9.0**). **P0 — Production Rollout** playbook ([plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md](plans/MILESTONE_P0_PRODUCTION_ROLLOUT.md)) was **never executed**. Milestone F is superseded by P0 for rollout naming. The **active visual program that closed in 2026-08** is the **M1–M10** track (closure doc above), not a continuation of P0.
+
+**Definitive roadmap (historical lettered track):** [ROADMAP.md](ROADMAP.md) — milestone order, effort, models, and work-package rationale.
 
 **Audit evidence:** [audit/](audit/) — baseline metrics and screenshots (2026-07-31 / 2026-08-01); do not overwrite.
 
@@ -117,7 +127,7 @@ See [ROADMAP.md § milestone P0](ROADMAP.md#milestone-p0--production-rollout) an
 
 | Path | Purpose |
 |---|---|
-| [ROADMAP.md](ROADMAP.md) | Definitive milestone order, effort, models |
+| [ROADMAP.md](ROADMAP.md) | Historical lettered track (0, A–E, P0); M1–M10 closure in [UI-OVERHAUL-CLOSURE.md](UI-OVERHAUL-CLOSURE.md) |
 | [design-system/](design-system/) | SDS spec (milestone 0) |
 | [audit/](audit/) | Baseline metrics/screenshots — preserved |
 | [changes/](changes/) | Per-change records + `_elementor_data` backups |

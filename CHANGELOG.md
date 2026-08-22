@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Planned
 
-- Future improvements only after production soak; see `docs/legacy-plugin-retirement-plan.md`.
+- Future storefront work only after explicit new project authorization or production rollout GO; see `docs/legacy-plugin-retirement-plan.md`.
+- **UI overhaul program closure (2026-08-23):** M1–M10 PO-approved / frozen on DEV. Program closed at M10 — no M11. Authority: `docs/storefront-redesign/UI-OVERHAUL-CLOSURE.md`. Final Storefront baseline tag: **`storefront-v0.9.33`**.
 
 ---
 
