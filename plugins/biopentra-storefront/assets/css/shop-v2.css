@@ -85,7 +85,7 @@ body.bp-shop-m9 .bp-shop-m9-filter-row > .e-con-inner {
 	padding-bottom: 0 !important;
 }
 
-/* Search sits in discovery (below hero), compact, left-rail — not full-bleed hero chrome */
+/* Search sits in discovery (below hero) — mobile/tablet keep compact width cap */
 body.bp-shop-m9 .bp-shop-m9-search {
 	/* Match products surface so search + chips read as one discovery band (no card chrome). */
 	background: var(--bp-shop-surface) !important;
@@ -115,6 +115,39 @@ body.bp-shop-m9 .bp-shop-search-section .biopentra-shop-search input[type="searc
 	color: var(--bp-m3-teal);
 	box-shadow: none;
 	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/*
+ * b2srch0 has no .e-con-inner (widget sits on the container). Rail the container
+ * on desktop so search lines up with category chips inside the products band.
+ * Must follow base rules — later mobile-first caps were overriding this block.
+ */
+@media (min-width: 1025px) {
+	body.bp-shop-m9 .bp-shop-m9-search {
+		width: 100%;
+		max-width: 1240px;
+		margin-inline: auto !important;
+		/* Match e56029b (16px) + filter-row (16px) inset so input aligns with chips. */
+		padding-left: 32px !important;
+		padding-right: 32px !important;
+		box-sizing: border-box;
+	}
+
+	body.bp-shop-m9 .elementor-element-e56029b {
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+	}
+
+	body.bp-shop-m9 .biopentra-shop-search {
+		max-width: none;
+		width: 100%;
+	}
+
+	body.bp-shop-m9 .bp-shop-search-section .bp-shop-search__input,
+	body.bp-shop-m9 .bp-shop-search-section .biopentra-shop-search input[type="search"] {
+		max-width: none;
+		width: 100%;
+	}
 }
 
 /* Magnifier affordance (visual only; keeps existing Shop search stack) */

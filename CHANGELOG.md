@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.30] — 2026-08-22
+
+### Fixed
+
+- **M9 Shop desktop search alignment:** `b2srch0` has no `.e-con-inner`, so the 1240px rail never applied and search hugged the viewport left edge. Desktop now rails the search container to the same centered 1240 band as category chips; search spans that rail width. Mobile unchanged (PO-approved).
+
+### Notes
+
+- Awaiting PO visual review — does not freeze M9.
+
+---
+
 ## [0.9.29] — 2026-08-22
 
 ### Fixed
