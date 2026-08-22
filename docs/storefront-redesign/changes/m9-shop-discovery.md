@@ -1,11 +1,22 @@
 # M9 — Shop Discovery Consolidation — change record
 
 **Status:** Implemented on DEV — **awaiting PO visual review** (does not freeze).
-**Storefront:** `0.9.28` (untagged)
-**Loop-card:** `1.6.4` (untagged companion)
+**Storefront:** `0.9.29` (untagged corrective over `0.9.28`)
+**Loop-card:** `1.6.4` (untagged companion; unchanged in corrective)
 **Plan:** [MILESTONE_M9_SHOP_DISCOVERY.md](../plans/MILESTONE_M9_SHOP_DISCOVERY.md)
 **Plan-freeze commit:** `3d8486a`
 **Backup:** [backups/shop-pre-M9.json](backups/shop-pre-M9.json)
+
+## Visual corrective (`0.9.29`)
+
+PO review findings (panel chrome, search-in-hero feel, vertical dead space, hero over-crop). CSS-only in `shop-v2.css` under `body.bp-shop-m9` / `bp-shop-v2`. Path A filter architecture, cards, and Elementor hero image asset unchanged.
+
+| Finding | Cause | Correction |
+|---|---|---|
+| Category grey box | M9 `--bp-m3-paper` on `.bp-shop-m9-filter-row` / search | Transparent backgrounds; no border/shadow chrome |
+| Search reads as hero | Full-bleed paper band + large padding under hero | Compact left-rail field (`max-width: 520px`), discovery padding, magnifier CSS affordance |
+| Vertical rhythm | Elementor filter `margin-bottom: 28` + paper padding | Override margins/padding; filter→grid ~8px |
+| Hero magnification | Pre-M9 Elementor `cover` + `ypos -241` on short `max-height: 24vh` band (M9 did not change Elementor BG) | Desktop: `min-height: 280px`, `max-height: min(40vh,360px)`, `background-position: center right` |
 
 ## WP3 architecture decision
 
@@ -38,7 +49,7 @@ Separate DEV ops: `woocommerce_coming_soon=no`, `blog_public=0`. Not part of thi
 
 ## Acceptance
 
-`tools/run-dev.sh --m9-only` → **44 passed / 0 failed**.
+`tools/run-dev.sh --m9-only` → **44 passed / 0 failed** (re-run after `0.9.29` corrective).
 
 ## Screenshots
 

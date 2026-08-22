@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.29] — 2026-08-22
+
+### Fixed
+
+- **M9 Shop discovery visual corrective (dev, untagged):** remove pale/grey discovery panel backgrounds around search + category rail; tighten hero→search→chips→grid vertical rhythm (including Elementor products wrapper `e56029b` padding/gap overrides); constrain search to a compact left-rail field with magnifier affordance and stronger focus/hover; desktop shop hero framing softened (`min-height` 280px + `center right` cover) so `cover` + Elementor `ypos -241` no longer over-magnifies glassware. Elementor taxonomy-filter `b3a2918` / Path A architecture unchanged. No product-card / loop-card / M1–M8 homepage changes.
+
+### Notes
+
+- Acceptance: `tools/run-dev.sh --m9-only`. Awaiting PO visual review — does not freeze M9.
+
+---
+
 ## [0.9.28] — 2026-08-22
 
 ### Added

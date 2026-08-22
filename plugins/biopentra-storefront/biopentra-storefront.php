@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Biopentra Storefront
  * Description: Consolidated storefront modules: mega-menu, footer contact, variation stock selector, header auth, technical SEO, product stock display. Deactivate duplicate legacy plugins when active.
- * Version: 0.9.28
+ * Version: 0.9.29
  * Author: Biopentra
  * Text Domain: biopentra-storefront
  * Requires at least: 6.0
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BIOPENTRA_STOREFRONT_VERSION', '0.9.28' );
+define( 'BIOPENTRA_STOREFRONT_VERSION', '0.9.29' );
 define( 'BIOPENTRA_STOREFRONT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BIOPENTRA_STOREFRONT_URL', plugin_dir_url( __FILE__ ) );
 define( 'BIOPENTRA_STOREFRONT_FILE', __FILE__ );

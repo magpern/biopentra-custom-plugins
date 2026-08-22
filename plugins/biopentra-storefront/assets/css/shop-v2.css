@@ -1,6 +1,7 @@
 /**
  * Milestone B — commercial shop page layout overrides.
  * M9 — Shop Discovery Consolidation (Path A: restyle Elementor taxonomy-filter).
+ * M9 corrective — remove discovery panels, tighten rhythm, restore hero framing.
  */
 
 body.bp-shop-v2 .bp-shop-hero {
@@ -39,39 +40,108 @@ body.home .elementor-widget-icon-box .elementor-icon-box-img img {
 	}
 }
 
-/* ── M9 discovery tokens (match homepage M3 language) ── */
+/* ── M9 discovery tokens ── */
 body.bp-shop-m9 {
-	--bp-m3-paper: #f3f2f2;
 	--bp-m3-teal: #0a303e;
 	--bp-m3-cyan: #0088b0;
 	--bp-m3-cyan-tint: #e9f8ff;
 	--bp-m3-chip-radius: 5px;
+	--bp-shop-surface: #f6f9fc;
 }
 
+/*
+ * Hero framing corrective (desktop):
+ * Elementor settings match pre-M9 (cover + ypos -241). Apparent magnification
+ * comes from a short ~24vh band + cover scaling. Give the hero more vertical
+ * room and a calmer center-right position so glassware is less over-cropped.
+ * Shop-scoped only — does not touch homepage M2 hero.
+ */
+@media (min-width: 1025px) {
+	body.bp-shop-m9 .bp-shop-hero {
+		min-height: 280px !important;
+		background-position: center right !important;
+		background-size: cover !important;
+	}
+
+	body.bp-shop-m9 .bp-shop-hero > .e-con-inner {
+		min-height: 280px !important;
+		max-height: min(40vh, 360px) !important;
+	}
+}
+
+/* ── Discovery: NO paper/panel/box chrome ── */
 body.bp-shop-m9 .bp-shop-m9-search,
 body.bp-shop-m9 .bp-shop-m9-filter-row {
-	background: var(--bp-m3-paper);
+	background: transparent !important;
+	box-shadow: none !important;
+	border: 0 !important;
 }
 
 body.bp-shop-m9 .bp-shop-m9-search > .e-con-inner,
 body.bp-shop-m9 .bp-shop-m9-filter-row > .e-con-inner {
 	max-width: 1240px;
 	margin-inline: auto;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
 }
 
-/* Search — compact discovery field */
+/* Search sits in discovery (below hero), compact, left-rail — not full-bleed hero chrome */
+body.bp-shop-m9 .bp-shop-m9-search {
+	/* Match products surface so search + chips read as one discovery band (no card chrome). */
+	background: var(--bp-shop-surface) !important;
+	padding-top: 10px !important;
+	padding-bottom: 4px !important;
+	margin: 0 !important;
+}
+
+body.bp-shop-m9 .biopentra-shop-search {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 520px;
+	margin: 0;
+}
+
 body.bp-shop-m9 .bp-shop-search-section .bp-shop-search__input,
 body.bp-shop-m9 .bp-shop-search-section .biopentra-shop-search input[type="search"] {
 	width: 100%;
-	max-width: 1240px;
+	max-width: 520px;
 	min-height: 44px;
 	font-size: 0.9375rem;
-	padding: 10px 14px;
-	border-radius: var(--bp-m3-chip-radius);
-	border: 1px solid color-mix(in srgb, var(--bp-m3-teal) 18%, transparent);
+	padding: 10px 14px 10px 40px;
+	border-radius: 8px;
+	border: 1px solid color-mix(in srgb, var(--bp-m3-teal) 16%, transparent);
 	background: #ffffff;
 	color: var(--bp-m3-teal);
 	box-shadow: none;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Magnifier affordance (visual only; keeps existing Shop search stack) */
+body.bp-shop-m9 .biopentra-shop-search::before {
+	content: "";
+	position: absolute;
+	left: 14px;
+	top: 50%;
+	width: 16px;
+	height: 16px;
+	transform: translateY(-50%);
+	pointer-events: none;
+	z-index: 1;
+	opacity: 0.55;
+	background: no-repeat center / contain;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a303e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E");
+}
+
+/* Live-suggest panel should not center the icon vertically over suggestions */
+body.bp-shop-m9 .biopentra-shop-search:has(.biopentra-shop-live:not([hidden]))::before {
+	top: 22px;
+	transform: none;
+}
+
+body.bp-shop-m9 .bp-shop-search-section .bp-shop-search__input:hover,
+body.bp-shop-m9 .bp-shop-search-section .biopentra-shop-search input[type="search"]:hover {
+	border-color: color-mix(in srgb, var(--bp-m3-cyan) 45%, transparent);
 }
 
 body.bp-shop-m9 .bp-shop-search-section .bp-shop-search__input:focus,
@@ -79,14 +149,16 @@ body.bp-shop-m9 .bp-shop-search-section .biopentra-shop-search input[type="searc
 	outline: 2px solid var(--bp-m3-cyan);
 	outline-offset: 2px;
 	border-color: var(--bp-m3-cyan);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--bp-m3-cyan) 18%, transparent);
 }
 
-body.bp-shop-m9 .biopentra-shop-search {
-	max-width: 1240px;
-	margin: 0 auto;
+/* Category chip rail — Elementor taxonomy-filter (WP3 Path A), no outer panel */
+body.bp-shop-m9 .bp-shop-m9-filter-row {
+	margin: 0 !important;
+	padding-top: 2px !important;
+	padding-bottom: 4px !important;
 }
 
-/* Category chip rail — Elementor taxonomy-filter restyled (WP3 Path A) */
 body.bp-shop-m9 .bp-shop-m9-cats {
 	width: 100%;
 	max-width: 1240px;
@@ -94,13 +166,19 @@ body.bp-shop-m9 .bp-shop-m9-cats {
 }
 
 body.bp-shop-m9 .bp-shop-m9-cats__label {
-	margin: 0 0 5px;
+	margin: 0 0 4px;
 	padding: 0;
 	font-size: 0.75rem;
 	font-weight: 500;
 	letter-spacing: 0.01em;
 	line-height: 1.3;
 	color: #486077;
+}
+
+body.bp-shop-m9 .elementor-element-b3a2918 {
+	margin: 0 !important;
+	padding: 0 !important;
+	background: transparent !important;
 }
 
 body.bp-shop-m9 .elementor-element-b3a2918 .e-filter {
@@ -110,14 +188,14 @@ body.bp-shop-m9 .elementor-element-b3a2918 .e-filter {
 	gap: 8px;
 	max-width: 1240px;
 	margin: 0;
-	padding: 2px 2px 4px;
+	padding: 2px 0 4px;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
 	scrollbar-width: none;
 	overscroll-behavior-x: contain;
-	/* Override Elementor CSS vars when horizontal_scroll enable sets scroll */
 	--e-filter-wrap: nowrap;
 	--e-filter-overflow-x: auto;
+	background: transparent !important;
 }
 
 body.bp-shop-m9 .elementor-element-b3a2918 .e-filter::-webkit-scrollbar {
@@ -146,12 +224,10 @@ body.bp-shop-m9 .elementor-element-b3a2918 .e-filter-item {
 	transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
 }
 
-/* All first */
 body.bp-shop-m9 .elementor-element-b3a2918 .e-filter-item[data-filter="__all"] {
 	order: -1;
 }
 
-/* Belt-and-suspenders if server-side strip missed */
 body.bp-shop-m9 .elementor-element-b3a2918 .e-filter-item[data-filter="uncategorized"] {
 	display: none !important;
 }
@@ -174,7 +250,7 @@ body.bp-shop-m9 .elementor-element-b3a2918 .e-filter-item[aria-pressed="true"] {
 	color: var(--bp-m3-teal) !important;
 }
 
-/* Soft trailing fade when rail can scroll (≤1024) */
+/* Soft trailing fade on scrollable rail (match products surface, not a panel) */
 @media (max-width: 1024px) {
 	body.bp-shop-m9 .bp-shop-m9-filter-row {
 		position: relative;
@@ -183,15 +259,15 @@ body.bp-shop-m9 .elementor-element-b3a2918 .e-filter-item[aria-pressed="true"] {
 	body.bp-shop-m9 .bp-shop-m9-filter-row::after {
 		content: "";
 		position: absolute;
-		top: 1.5rem;
+		top: 1.25rem;
 		right: 0;
-		bottom: 8px;
+		bottom: 4px;
 		width: 1.75rem;
 		pointer-events: none;
 		background: linear-gradient(
 			90deg,
-			color-mix(in srgb, var(--bp-m3-paper) 0%, transparent),
-			var(--bp-m3-paper)
+			color-mix(in srgb, var(--bp-shop-surface) 0%, transparent),
+			var(--bp-shop-surface)
 		);
 		z-index: 1;
 	}
@@ -202,7 +278,6 @@ body.bp-shop-m9 .elementor-element-b3a2918 .e-filter-item[aria-pressed="true"] {
 	}
 }
 
-/* Desktop ≥1025: prefer single compact row; scroll only if overflow */
 @media (min-width: 1025px) {
 	body.bp-shop-m9 .bp-shop-m9-filter-row::after {
 		display: none;
@@ -215,13 +290,38 @@ body.bp-shop-m9 .elementor-element-b3a2918 .e-filter-item[aria-pressed="true"] {
 	}
 }
 
-/* Products sit tightly under discovery */
+/* Products: compact handoff from discovery; kill Elementor spacer padding/gap */
 body.bp-shop-m9 .bp-shop-products-section {
-	margin-top: 0;
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
+
+body.bp-shop-m9 .bp-shop-products-section > .e-con-inner {
+	padding-top: 0 !important;
+	padding-bottom: 10px !important;
+	gap: 0 !important;
+	row-gap: 0 !important;
+}
+
+/* e56029b wraps filter + loop; Elementor default pt/gap was ~40+20 dead space */
+body.bp-shop-m9 .elementor-element-e56029b {
+	padding-top: 4px !important;
+	padding-bottom: 0 !important;
+	gap: 8px !important;
+	row-gap: 8px !important;
+}
+
+body.bp-shop-m9 .bp-shop-m9-filter-row.elementor-element,
+body.bp-shop-m9 .elementor-element-c4b3a91 {
+	margin-bottom: 0 !important;
 }
 
 body.bp-shop-m9 .bp-shop-products-section .elementor-widget-taxonomy-filter {
-	margin-bottom: 8px;
+	margin-bottom: 0 !important;
+}
+
+body.bp-shop-m9 .elementor-element-ed52b7f {
+	margin-top: 0 !important;
 }
 
 body.bp-shop-m9 .mp-category-description {
