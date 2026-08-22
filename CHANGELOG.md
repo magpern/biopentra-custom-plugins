@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Planned
 
+- **M8 Global Footer Redesign — PLANNED / FROZEN PLAN — READY FOR IMPLEMENTATION AUTHORIZATION.** Direction B (dark/structured endpoint) PO-selected for desktop and mobile; email removed from footer information architecture entirely (Contact form primary, Telegram secondary); canonical logo (`theme-site-logo` widget, CSS-filtered white) and existing real payment SVGs reused, no new assets. Frozen spec: [docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md](docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md). No implementation performed; M1–M7 remain frozen; Motion & Interaction Polish remains deferred; production untouched.
 - Future improvements only after production soak; see `docs/legacy-plugin-retirement-plan.md`.
 
 ---
