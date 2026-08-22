@@ -16,7 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- **Desktop Information mega-menu regression:** M1 drawer CSS used `position: revert` on `.e-n-menu-content` at ≥1025, which resolved to UA `static` instead of Elementor's `absolute` overlay — panel opened in document flow and pushed the header/page. Restored absolute overlay in `bp-header-m1.css`, centered the panel under the Information nav item (instead of Elementor stretch anchoring it too far right), and reset header mega-menu `open_on` to `hover` via `setup-header-mega-menu-desktop-restore-cli.php`. Mobile drawer behaviour unchanged.
+- **Desktop Information mega-menu regression:** M1 drawer CSS used `position: revert` on `.e-n-menu-content` at ≥1025, which resolved to UA `static` instead of Elementor's `absolute` overlay — panel opened in document flow and pushed the header/page. Restored absolute overlay in `bp-header-m1.css`, centered the panel under the Information nav item (instead of Elementor stretch anchoring it too far right), and reset header mega-menu `open_on` to `hover` via `setup-header-mega-menu-desktop-restore-cli.php`. Added desktop-only E1.2 hover-handoff patch (`bp-header-mega-hover.js` + CSS bridge) so moving from Information into the panel no longer closes on sibling titles or the title→panel gap. Mobile drawer behaviour unchanged.
 
 ### Notes
 

@@ -649,12 +649,19 @@ html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
 		min-height: 0 !important;
 		max-height: none !important;
 		overflow: visible !important;
-		display: block !important;
+		display: none !important;
 		flex-direction: column !important;
 		box-shadow: none !important;
 		background: transparent !important;
 		padding: 0 !important;
 		margin: 0 !important;
+		pointer-events: none !important;
+	}
+
+	.elementor-location-header .e-n-menu-content.e-active,
+	.elementor-location-header .e-n-menu-content[aria-hidden='false'] {
+		display: block !important;
+		pointer-events: auto !important;
 	}
 
 	.elementor-location-header .e-n-menu-item:has(.biopentra-information-mega) {
@@ -667,6 +674,39 @@ html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
 		width: min(1180px, calc(100vw - 64px)) !important;
 		max-width: 1180px !important;
 		transform: translateX(-50%) !important;
+	}
+
+	/*
+	 * E1.2 hover handoff: sibling titles must not steal pointer events while the
+	 * Information panel is open; bridge the title→panel gap so Elementor treats
+	 * the pointer as still over menu content during the downward move.
+	 */
+	.elementor-location-header
+		.e-n-menu:has(.e-n-menu-content.e-active .biopentra-information-mega)
+		.e-n-menu-item:not(:has(.biopentra-information-mega))
+		> .e-n-menu-title,
+	.elementor-location-header
+		.e-n-menu:has(.e-n-menu-content.e-active .biopentra-information-mega)
+		.e-n-menu-item:not(:has(.biopentra-information-mega))
+		> .e-n-menu-title
+		* {
+		pointer-events: none !important;
+	}
+
+	.elementor-location-header
+		.e-n-menu-item:has(.biopentra-information-mega)
+		> .e-n-menu-content.e-active::before,
+	.elementor-location-header
+		.e-n-menu-item:has(.biopentra-information-mega)
+		> .e-n-menu-content[aria-hidden='false']::before {
+		content: '' !important;
+		display: block !important;
+		position: absolute !important;
+		left: 0 !important;
+		right: 0 !important;
+		bottom: 100% !important;
+		height: max(32px, calc(var(--n-menu-title-distance-from-content, 0px) + 20px)) !important;
+		pointer-events: auto !important;
 	}
 
 	.elementor-location-header .e-n-menu:not([data-layout='dropdown']):not(.content-above) .e-n-menu-content.e-active,
