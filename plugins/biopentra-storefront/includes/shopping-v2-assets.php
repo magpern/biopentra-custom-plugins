@@ -76,6 +76,9 @@ add_action( 'wp_enqueue_scripts', 'biopentra_storefront_seo_category_v2_enqueue_
 function biopentra_storefront_shopping_v2_body_classes( $classes ) {
 	if ( function_exists( 'wc_get_page_id' ) && is_page( (int) wc_get_page_id( 'shop' ) ) && get_post_meta( (int) wc_get_page_id( 'shop' ), 'bp_shop_v2_applied', true ) ) {
 		$classes[] = 'bp-shop-v2';
+		if ( get_post_meta( (int) wc_get_page_id( 'shop' ), 'bp_shop_m9_applied', true ) ) {
+			$classes[] = 'bp-shop-m9';
+		}
 	}
 
 	if ( is_page() ) {

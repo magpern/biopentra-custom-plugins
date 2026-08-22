@@ -8,8 +8,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Planned
 
-- **M9 — Shop Discovery Consolidation** (plan freeze): consolidate Shop search + category discovery into one homepage/M3-aligned band; WP3 filter-architecture decision gate (preserve Elementor/loop-card contract; do not remove `b3a2918` until proven). Spec: [docs/storefront-redesign/plans/MILESTONE_M9_SHOP_DISCOVERY.md](docs/storefront-redesign/plans/MILESTONE_M9_SHOP_DISCOVERY.md). Ops A (Coming Soon disable) is a separate DEV ops prerequisite. Production not in scope.
 - Future improvements only after production soak; see `docs/legacy-plugin-retirement-plan.md`.
+
+---
+
+## [0.9.28] — 2026-08-22
+
+### Added
+
+- **M9 — Shop Discovery Consolidation (dev, untagged):** one Shop discovery band — search + M3-styled category chips that filter loop `ed52b7f` in place. WP3 Path A: keep Elementor taxonomy-filter `b3a2918` as the supported filter engine; remove duplicate archive-chip section `b2cats0`; hide Uncategorized from customer-facing chips; keep All; inject “Shop by category” label. Idempotent CLI `scripts/setup-m9-shop-discovery-cli.php`. Backup: `docs/storefront-redesign/changes/backups/shop-pre-M9.json`. Spec: [docs/storefront-redesign/plans/MILESTONE_M9_SHOP_DISCOVERY.md](docs/storefront-redesign/plans/MILESTONE_M9_SHOP_DISCOVERY.md).
+
+### Changed
+
+- Shop search keeps `[biopentra_shop_search]` / `#biopentra-shop-s` / live-search; adopts M3 discovery visual language only (`shop-v2.css` under `body.bp-shop-m9`).
+- Responsive: ≥1025 single compact chip row; ≤1024 horizontal scroll; 360–390 partial next-chip affordance.
+
+### Notes
+
+- Requires companion **`biopentra-loop-card` 1.6.4** (shop `?s=` keeps Elementor singular so search filters the grid in place).
+- Ops A (Coming Soon disable) is a separate DEV ops prerequisite — not part of this release artifact.
+- Acceptance: `storefront-acceptance` `tests/m9-shop-discovery.spec.ts` via `tools/run-dev.sh --m9-only` (44 passed / 0 failed).
+- **Untagged development version — awaiting PO visual review.** Does not freeze M9. Production replay not performed.
 
 ---
 

@@ -139,6 +139,11 @@ class Biopentra_Storefront {
 			require_once $shopping_v2_assets;
 		}
 
+		$shopping_m9_helpers = BIOPENTRA_STOREFRONT_PATH . 'includes/shopping-m9-helpers.php';
+		if ( is_readable( $shopping_m9_helpers ) ) {
+			require_once $shopping_m9_helpers;
+		}
+
 		$footer_v2_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/footer-v2-assets.php';
 		if ( is_readable( $footer_v2_assets ) ) {
 			require_once $footer_v2_assets;
