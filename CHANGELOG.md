@@ -20,7 +20,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Notes
 
-- Awaiting PO visual review — does not freeze M9.
+- Acceptance: `storefront-acceptance` `tests/m9-shop-discovery.spec.ts` via `tools/run-dev.sh --m9-only` (44 passed / 0 failed).
+
+### Release
+
+- **M9 Shop Discovery Consolidation — PO-approved / frozen on DEV** (Path A filter architecture + visual correctives through `0.9.30`). Git tag: **`storefront-v0.9.30`**. Companion: **`biopentra-loop-card` `v1.6.4`**. Spec: [docs/storefront-redesign/plans/MILESTONE_M9_SHOP_DISCOVERY.md](docs/storefront-redesign/plans/MILESTONE_M9_SHOP_DISCOVERY.md). Production replay not performed — DEV only until a separate, explicit PO GO.
 
 ---
 
@@ -32,7 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Notes
 
-- Acceptance: `tools/run-dev.sh --m9-only`. Awaiting PO visual review — does not freeze M9.
+- Acceptance: `tools/run-dev.sh --m9-only`. Visual correctives continued in `0.9.29` / `0.9.30`; freeze recorded on `0.9.30`.
 
 ---
 
@@ -49,10 +53,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Notes
 
-- Requires companion **`biopentra-loop-card` 1.6.4** (shop `?s=` keeps Elementor singular so search filters the grid in place).
-- Ops A (Coming Soon disable) is a separate DEV ops prerequisite — not part of this release artifact.
 - Acceptance: `storefront-acceptance` `tests/m9-shop-discovery.spec.ts` via `tools/run-dev.sh --m9-only` (44 passed / 0 failed).
-- **Untagged development version — awaiting PO visual review.** Does not freeze M9. Production replay not performed.
+- Requires companion **`biopentra-loop-card` 1.6.4**. Ops A (Coming Soon disable) remains a separate DEV ops prerequisite.
+- Freeze / PO approval recorded on **`0.9.30`** / **`storefront-v0.9.30`**.
 
 ---
 

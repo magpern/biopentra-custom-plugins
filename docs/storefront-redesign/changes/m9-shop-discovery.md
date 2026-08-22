@@ -1,22 +1,21 @@
 # M9 — Shop Discovery Consolidation — change record
 
-**Status:** Implemented on DEV — **awaiting PO visual review** (does not freeze).
-**Storefront:** `0.9.29` (untagged corrective over `0.9.28`)
-**Loop-card:** `1.6.4` (untagged companion; unchanged in corrective)
+**Status:** **PO-approved / frozen on DEV**
+**Storefront:** `0.9.30` / tag **`storefront-v0.9.30`**
+**Loop-card:** `1.6.4` / tag **`v1.6.4`**
 **Plan:** [MILESTONE_M9_SHOP_DISCOVERY.md](../plans/MILESTONE_M9_SHOP_DISCOVERY.md)
 **Plan-freeze commit:** `3d8486a`
+**Impl:** `8f7122b` (`0.9.28`) → correctives `902dfb9` (`0.9.29`) → `deecd2c` (`0.9.30`)
 **Backup:** [backups/shop-pre-M9.json](backups/shop-pre-M9.json)
 
-## Visual corrective (`0.9.29`)
+## Visual correctives (folded into freeze)
 
-PO review findings (panel chrome, search-in-hero feel, vertical dead space, hero over-crop). CSS-only in `shop-v2.css` under `body.bp-shop-m9` / `bp-shop-v2`. Path A filter architecture, cards, and Elementor hero image asset unchanged.
+| Version | Scope |
+|---|---|
+| `0.9.29` | Remove discovery panel chrome; tighten rhythm; desktop hero framing; magnifier affordance |
+| `0.9.30` | Desktop search rails to same centered 1240 band as category chips (mobile already approved) |
 
-| Finding | Cause | Correction |
-|---|---|---|
-| Category grey box | M9 `--bp-m3-paper` on `.bp-shop-m9-filter-row` / search | Transparent backgrounds; no border/shadow chrome |
-| Search reads as hero | Full-bleed paper band + large padding under hero | Compact left-rail field (`max-width: 520px`), discovery padding, magnifier CSS affordance |
-| Vertical rhythm | Elementor filter `margin-bottom: 28` + paper padding | Override margins/padding; filter→grid ~8px |
-| Hero magnification | Pre-M9 Elementor `cover` + `ypos -241` on short `max-height: 24vh` band (M9 did not change Elementor BG) | Desktop: `min-height: 280px`, `max-height: min(40vh,360px)`, `background-position: center right` |
+Path A filter architecture, cards, and Elementor hero image asset unchanged across correctives.
 
 ## WP3 architecture decision
 
@@ -49,7 +48,7 @@ Separate DEV ops: `woocommerce_coming_soon=no`, `blog_public=0`. Not part of thi
 
 ## Acceptance
 
-`tools/run-dev.sh --m9-only` → **44 passed / 0 failed** (re-run after `0.9.29` corrective).
+`tools/run-dev.sh --m9-only` → **44 passed / 0 failed**.
 
 ## Screenshots
 
