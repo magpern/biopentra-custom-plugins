@@ -12,6 +12,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.27] — 2026-08-22
+
+### Fixed
+
+- **M8 mobile density corrective (dev, untagged):** removed excessive vertical whitespace between the Telegram row and the Information/Legal navigation grid, mobile-only. Root cause: two leftover Elementor per-post custom-CSS rules from the pre-M8 light-background design — `flex-direction: column` on `.bp-ft-v2-contact-group` and a direct dark `color: #0f1f33` on `.bp-ft-v2-contact-line` — were stacking "Telegram" above an invisible "@biopentra" handle on two lines, inflating that widget from ~44px to ~64px and pushing the nav grid down. Fixed with an explicit mobile-only `flex-direction: row` + visible colors. Also fixed the same class of defect on the "Information"/"Legal" section labels, which were rendering fully invisible (dark-on-dark) via a leftover per-widget `title_color` setting — mobile-only fix again.
+- Telegram widget height: 64px → 44px (label + handle now sit in one row instead of two stacked lines). Gap between Telegram and the navigation grid: a deliberate ~32px section break (was visually reading as a much larger dead block due to the 2-line stack pushing content down). Total mobile footer height is materially unchanged (~834px) — this was a qualitative fix (removing broken/invisible layout, not adding new whitespace budget), not a further height-reduction pass.
+- **Desktop is confirmed byte-for-byte unchanged**: both fixes are scoped inside `@media (max-width: 1024px)` only; the same two defects (stacked/invisible Telegram handle, invisible nav labels) remain present on desktop exactly as PO reviewed and approved it, flagged here for a separate PO decision rather than silently fixed.
+
+### Notes
+
+- Acceptance: `storefront-acceptance` `tests/m8-footer.spec.ts` via `tools/run-dev.sh --m8-only` (19 passed / 0 failed). Still dev-only, still untagged — M8 remains not frozen.
+
+---
+
 ## [0.9.26] — 2026-08-22
 
 ### Added

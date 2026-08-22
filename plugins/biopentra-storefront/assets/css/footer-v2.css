@@ -99,6 +99,14 @@
 	font-size: 13px;
 	color: #93a4ba;
 }
+/* NOTE (found during the M8 mobile density corrective): Elementor's own
+ * per-post custom CSS (post-3823.css, predating M8) leaves two rules from
+ * the original light-background design live on this markup — flex-
+ * direction:column on .bp-ft-v2-contact-group, and a direct dark color
+ * (#0f1f33) on .bp-ft-v2-contact-line — which together stack "Telegram"
+ * above an invisible "@biopentra" on BOTH breakpoints today. Desktop must
+ * stay pixel-for-pixel unchanged per PO's approval, so the fix below is
+ * mobile-only; flagged for PO decision on a desktop fix. */
 .elementor-location-footer .bp-ft2-telegram .bp-ft-v2-contact-group {
 	display: flex;
 	align-items: center;
@@ -128,6 +136,13 @@
 	display: none;
 }
 .elementor-location-footer .bp-ft2-navcol .elementor-heading-title {
+	/* NOTE (found during the M8 mobile density corrective): Elementor's own
+	 * per-widget title_color setting (#0F1F33 — dark text from the original
+	 * light design) ties this rule's specificity and wins on cascade order,
+	 * making "Information"/"Legal" invisible against the dark ground on
+	 * BOTH breakpoints today. Left as-is here (desktop must stay pixel-for-
+	 * pixel unchanged per PO's approval); !important override applied
+	 * mobile-only below. Flagged for PO decision on a desktop fix. */
 	font-family: "Barlow Condensed", sans-serif;
 	font-weight: 600;
 	font-size: 12px;
@@ -250,14 +265,29 @@
 		min-height: 48px;
 		font-size: 16px;
 	}
+	/* Mobile-density corrective (root cause): Elementor's own leftover
+	 * per-post CSS set flex-direction:column on .bp-ft-v2-contact-group and
+	 * a direct dark color on .bp-ft-v2-contact-line, both left over from the
+	 * original light-background design (see the base-rule note above). That
+	 * stacked "Telegram" above an invisible "@biopentra" on two lines,
+	 * inflating this widget from ~44px to ~64px and producing the large gap
+	 * before the navigation grid the PO flagged. Fixed mobile-only: row
+	 * direction + centered, plus explicit visible colors. Desktop is left
+	 * exactly as approved (flagged separately for a desktop fix decision). */
 	.elementor-location-footer .bp-ft2-telegram {
 		width: 100%;
-		justify-content: center;
-		text-align: center;
+		color: #93a4ba !important;
 	}
-	.elementor-location-footer .bp-ft2-telegram a {
+	.elementor-location-footer .bp-ft2-telegram .bp-ft-v2-contact-group {
+		flex-direction: row;
 		justify-content: center;
-		width: 100%;
+	}
+	.elementor-location-footer .bp-ft2-telegram .bp-ft-v2-contact-label {
+		color: #93a4ba !important;
+	}
+	.elementor-location-footer .bp-ft2-telegram .bp-ft-v2-contact-line,
+	.elementor-location-footer .bp-ft2-telegram a {
+		color: #c3ceda !important;
 	}
 
 	/* 2-column grouped grid, NOT an accordion. */
@@ -272,6 +302,11 @@
 	}
 	.elementor-location-footer .bp-ft2-navcol {
 		width: 100% !important;
+	}
+	/* Mobile-only fix for the invisible "Information"/"Legal" labels (see
+	 * the base rule's note above) — scoped here, not touched on desktop. */
+	.elementor-location-footer .bp-ft2-navcol .elementor-heading-title {
+		color: #7488a1 !important;
 	}
 	.elementor-location-footer .bp-ft2-navcol .bp-ft-v2-nav {
 		gap: 0;
