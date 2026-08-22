@@ -1,0 +1,298 @@
+/**
+ * M8 — Global footer redesign (Direction B: dark / structured endpoint).
+ *
+ * Owns: dark treatment, desktop two-zone composition, purpose-built mobile
+ * composition, logo reversal, payment chips, CTA styling, focus states.
+ * Breakpoint convention: 1024/1025 (matches bp-tokens.css --bp-bp-lg and the
+ * M1-M7 home-v2.css / bp-header-m1.css convention) — NOT chrome-v1.css's
+ * legacy 767px footer rule, which M8 supersedes (see chrome-v1.css note).
+ *
+ * Spec: docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md
+ */
+
+.elementor-location-footer .bp-ft2-root {
+	color: #c3ceda;
+}
+
+/* Elementor adds a default bottom margin between sibling widgets
+ * (--widgets-spacing) — footer-v2's own flex/grid gaps already own that
+ * rhythm, so neutralize it everywhere in the footer (carried over from the
+ * equivalent reset in the retired chrome-v1.css E3 block). */
+.elementor-location-footer .elementor-widget {
+	margin-bottom: 0 !important;
+}
+
+.elementor-location-footer .bp-ft2-root a {
+	color: inherit;
+}
+.elementor-location-footer .bp-ft2-root a:hover {
+	color: #ffffff;
+}
+
+/* ── Focus visibility on the dark ground ── */
+.elementor-location-footer .bp-ft2-root a:focus-visible,
+.elementor-location-footer .bp-ft2-root button:focus-visible {
+	outline: 2px solid #ffffff;
+	outline-offset: 2px;
+}
+
+/* ── Brand zone: logo, copy, CTA, Telegram ── */
+.elementor-location-footer .bp-ft2-brand {
+	gap: var(--bp-space-3, 12px) !important;
+	padding: 0 !important;
+}
+.elementor-location-footer .bp-ft2-navzone {
+	padding: 0 !important;
+}
+
+.elementor-location-footer .bp-ft2-logo img {
+	filter: brightness(0) invert(1);
+	height: 26px;
+	width: auto;
+}
+
+.elementor-location-footer .bp-ft2-copy {
+	max-width: 52ch;
+	font-size: 14.5px;
+	line-height: 1.6;
+}
+.elementor-location-footer .bp-ft2-copy p {
+	margin: 0 0 4px;
+	color: #9fb0c4;
+}
+.elementor-location-footer .bp-ft2-copy p:last-child {
+	margin-bottom: 0;
+}
+.elementor-location-footer .bp-ft2-copy em {
+	/* #6c7f97 measured ~4.1:1 on #0f1f33 — fails WCAG AA (4.5:1) for
+	 * normal-size text. #7f92a8 measures ~5.1:1. */
+	font-style: italic;
+	font-size: 12px;
+	color: #7f92a8;
+}
+
+/* Contact-form CTA — Elementor button widget, restyled here (no Elementor
+ * color settings used, so this is the only source of its appearance). */
+.elementor-location-footer .bp-ft2-cta a.elementor-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 9px;
+	min-height: var(--bp-touch-min, 44px);
+	padding: 10px 20px;
+	background: #1f5fae;
+	border-radius: var(--bp-radius-button, 8px);
+	color: #ffffff;
+	font-family: "Barlow Condensed", sans-serif;
+	font-weight: 600;
+	font-size: 15.5px;
+	letter-spacing: 0.01em;
+	text-decoration: none;
+	border: none;
+}
+.elementor-location-footer .bp-ft2-cta a.elementor-button:hover {
+	background: #2a6cc2;
+	color: #ffffff;
+}
+
+.elementor-location-footer .bp-ft2-telegram {
+	font-size: 13px;
+	color: #93a4ba;
+}
+.elementor-location-footer .bp-ft2-telegram .bp-ft-v2-contact-group {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	min-height: var(--bp-touch-min, 44px);
+}
+.elementor-location-footer .bp-ft2-telegram .bp-ft-v2-contact-label,
+.elementor-location-footer .bp-ft2-telegram .bp-ft-v2-contact-line {
+	margin: 0;
+}
+.elementor-location-footer .bp-ft2-telegram a {
+	display: inline-flex;
+	align-items: center;
+	min-height: var(--bp-touch-min, 44px);
+}
+.elementor-location-footer .bp-ft2-telegram b,
+.elementor-location-footer .bp-ft2-telegram strong {
+	color: #c3ceda;
+	font-weight: 600;
+}
+
+/* ── Navigation zone: Information + Legal grouped, icons dropped (Direction
+ * B drops the dashboard-style icon+heading rows in favor of quiet small-caps
+ * labels — see MILESTONE_M8 §11 WP2 note on this minor adjustment). ── */
+.elementor-location-footer .bp-ft2-navzone .elementor-element-7ce7254,
+.elementor-location-footer .bp-ft2-navzone .elementor-element-07dab42 {
+	display: none;
+}
+.elementor-location-footer .bp-ft2-navcol .elementor-heading-title {
+	font-family: "Barlow Condensed", sans-serif;
+	font-weight: 600;
+	font-size: 12px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #7488a1;
+	margin: 0 0 4px;
+}
+.elementor-location-footer .bp-ft2-navcol {
+	/* Elementor's own .e-con default (--container-default-padding-*:10px)
+	 * otherwise adds unwanted padding since these containers never had an
+	 * explicit padding setting. */
+	padding: 0 !important;
+}
+.elementor-location-footer .bp-ft2-navcol .bp-ft-v2-nav {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+.elementor-location-footer .bp-ft2-navcol .bp-ft-v2-nav li {
+	margin: 0;
+}
+.elementor-location-footer .bp-ft2-navcol .bp-ft-v2-nav a {
+	font-size: 14px;
+	color: #c3ceda;
+	text-decoration: none;
+}
+.elementor-location-footer .bp-ft2-navcol .bp-ft-v2-nav a:hover {
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+/* ── Utility/bottom band ── */
+.elementor-location-footer .bp-ft2-utility {
+	border-top-color: #23324a !important;
+}
+.elementor-location-footer .bp-ft2-payrow {
+	border-top: none !important;
+}
+.elementor-location-footer .bp-ft2-paylabel {
+	/* Approved Direction B mockup omits this label for a more restrained
+	 * utility close; content widget kept (not deleted) so it can be
+	 * re-enabled by removing this rule if PO prefers it visible. */
+	display: none;
+}
+.elementor-location-footer .bp-ft2-paylogos {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+.elementor-location-footer .bp-ft2-paylogos img {
+	display: block;
+	height: 16px;
+	width: auto;
+	background: #eef2f6;
+	padding: 6px 8px;
+	box-sizing: content-box;
+}
+.elementor-location-footer .bp-ft2-legalbar {
+	color: #7e8fa1 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+ * DESKTOP — ≥1025 — two-zone Direction B composition
+ * ══════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1025px) {
+	.elementor-location-footer .bp-ft2-band {
+		align-items: flex-start !important;
+	}
+	.elementor-location-footer .bp-ft2-brand {
+		flex-direction: column !important;
+		/* Elementor's own container "width" setting is not honored for
+		 * flex-row children on this Elementor version (confirmed both
+		 * zones render equal-width regardless of the CLI's width patch) —
+		 * footer-v2.css owns the desktop split explicitly instead. */
+		flex: 0 0 54% !important;
+		max-width: 54%;
+	}
+	.elementor-location-footer .bp-ft2-navzone {
+		flex: 1 1 auto !important;
+		max-width: none !important;
+	}
+	.elementor-location-footer .bp-ft2-cta {
+		align-self: flex-start;
+	}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+ * MOBILE / TABLET — ≤1024 — purpose-built composition (not stacked
+ * desktop zones): full-width CTA, secondary Telegram, 2-column
+ * Information/Legal grid, no accordion.
+ * ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+	.elementor-location-footer .bp-ft2-root {
+		padding-block: 28px 16px !important;
+	}
+	.elementor-location-footer .bp-ft2-band {
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: 0 !important;
+	}
+	.elementor-location-footer .bp-ft2-brand {
+		width: 100% !important;
+		gap: var(--bp-space-3, 12px) !important;
+	}
+	.elementor-location-footer .bp-ft2-copy {
+		max-width: none;
+		font-size: 13.5px;
+	}
+
+	.elementor-location-footer .bp-ft2-cta {
+		width: 100%;
+	}
+	.elementor-location-footer .bp-ft2-cta a.elementor-button {
+		width: 100%;
+		min-height: 48px;
+		font-size: 16px;
+	}
+	.elementor-location-footer .bp-ft2-telegram {
+		width: 100%;
+		justify-content: center;
+		text-align: center;
+	}
+	.elementor-location-footer .bp-ft2-telegram a {
+		justify-content: center;
+		width: 100%;
+	}
+
+	/* 2-column grouped grid, NOT an accordion. */
+	.elementor-location-footer .bp-ft2-navzone {
+		width: 100% !important;
+		display: grid !important;
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		gap: 0 20px !important;
+		margin-top: 20px;
+		padding-top: 18px !important;
+		border-top: 1px solid #23324a;
+	}
+	.elementor-location-footer .bp-ft2-navcol {
+		width: 100% !important;
+	}
+	.elementor-location-footer .bp-ft2-navcol .bp-ft-v2-nav {
+		gap: 0;
+	}
+	/* ≥44px hit area per link row via padding, not a fixed oversized box —
+	 * corrects the design-review mockup's ~38px rows (flagged during M8
+	 * planning) without inflating the compact mobile footprint. */
+	.elementor-location-footer .bp-ft2-navcol .bp-ft-v2-nav li a {
+		display: flex;
+		align-items: center;
+		min-height: var(--bp-touch-min, 44px);
+	}
+
+	.elementor-location-footer .bp-ft2-utility {
+		padding-block: 16px !important;
+	}
+	.elementor-location-footer .bp-ft2-paylogos img {
+		height: 15px;
+	}
+	.elementor-location-footer .bp-ft2-legalbar {
+		font-size: 11.5px !important;
+		text-align: center;
+	}
+}

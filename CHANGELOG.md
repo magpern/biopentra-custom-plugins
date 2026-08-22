@@ -8,8 +8,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Planned
 
-- **M8 Global Footer Redesign — PLANNED / FROZEN PLAN — READY FOR IMPLEMENTATION AUTHORIZATION.** Direction B (dark/structured endpoint) PO-selected for desktop and mobile; email removed from footer information architecture entirely (Contact form primary, Telegram secondary); canonical logo (`theme-site-logo` widget, CSS-filtered white) and existing real payment SVGs reused, no new assets. Frozen spec: [docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md](docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md). No implementation performed; M1–M7 remain frozen; Motion & Interaction Polish remains deferred; production untouched.
 - Future improvements only after production soak; see `docs/legacy-plugin-retirement-plan.md`.
+
+---
+
+## [0.9.26] — 2026-08-22
+
+### Added
+
+- **M8 Global Footer Redesign (dev, untagged):** implemented Direction B (dark/structured endpoint) on Elementor footer template 3823 via idempotent `setup-m8-global-footer-cli.php`. Desktop: two-zone composition (brand+CTA left ~54%, grouped Information/Legal nav zone right). Mobile (≤1024): purpose-built composition — full-width Contact-form CTA, secondary Telegram, 2-column Information/Legal grid (no accordion), ≥44px hit areas. New `assets/css/footer-v2.css` + `includes/footer-v2-assets.php` own the visual system; `chrome-v1.css`'s legacy 767px footer block is retired/superseded.
+
+### Removed
+
+- **Footer email machinery removed architecturally** (not hidden): `modules/footer-contact/class-footer-contact-module.php`, `assets/footer-contact/footer-contact-email.js`, `assets/footer-contact/bp-e1.png`, the `[biopentra_footer_email]` shortcode registration, and the dead footer-email CSS selectors in `chrome-v1.css`. Verified footer-only/single-plugin-owned before deletion (see MILESTONE_M8 plan §2.2); zero other callers, zero DB usage of `_biopentra_placeholder_page`.
+
+### Fixed
+
+- **Elementor `content_width`/default-padding leak on new containers:** the brand zone, nav zone, and nav columns created/repurposed for M8 fell back to Elementor's default 10px container padding and per-`<li>` margin (never explicitly zeroed on the original nodes), and new containers defaulted to Elementor's "boxed" mode (an extra `.e-con-inner` wrapper) which silently defeated the CSS-driven 54/42 desktop split and the mobile 2-column grid. Fixed via `content_width: full` on the affected nodes plus explicit padding/margin resets in `footer-v2.css`. Result: desktop footer height 654px → 465px, mobile 1293px → 834px, with no loss of content.
+- **Stale Cloudflare edge cache during iteration:** `footer-v2.css` had no cache-busting beyond the static plugin version, so edits weren't visible until `includes/footer-v2-assets.php` started appending the file's `filemtime()` to the enqueued version (pattern already used by `home-v2-assets.php`).
+- **Telegram mobile hit area:** the secondary Telegram link measured ~20px tall (only the `@handle` text, not the full contact block); `min-height: 44px` added directly to the anchor.
+
+### Notes
+
+- **Untagged development version — awaiting PO visual review.** Does not freeze M8. Spec: [docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md](docs/storefront-redesign/plans/MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md). Elementor pre-change backup: `docs/storefront-redesign/changes/backups/footer-pre-M8.json`. Acceptance: `storefront-acceptance` `tests/m8-footer.spec.ts` via `tools/run-dev.sh --m8-only` (19 passed / 0 failed). `--m7-only` and the E3 footer regression check remain green.
 
 ---
 

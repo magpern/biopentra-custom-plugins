@@ -38,13 +38,8 @@ class Biopentra_Storefront {
 			}
 		}
 
-		$footer_module = BIOPENTRA_STOREFRONT_PATH . 'modules/footer-contact/class-footer-contact-module.php';
-		if ( is_readable( $footer_module ) ) {
-			require_once $footer_module;
-			if ( class_exists( 'Biopentra_Storefront_Footer_Contact_Module' ) ) {
-				Biopentra_Storefront_Footer_Contact_Module::init();
-			}
-		}
+		// M8: footer-contact module (email shortcode) removed — see modules/footer-contact/ removal
+		// in MILESTONE_M8_GLOBAL_FOOTER_REDESIGN.md. Contact form + Telegram replace it in template 3823.
 
 		$cvss_module = BIOPENTRA_STOREFRONT_PATH . 'modules/variation-stock-selector/class-variation-stock-selector-module.php';
 		if ( is_readable( $cvss_module ) ) {
@@ -142,6 +137,11 @@ class Biopentra_Storefront {
 		$shopping_v2_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/shopping-v2-assets.php';
 		if ( is_readable( $shopping_v2_assets ) ) {
 			require_once $shopping_v2_assets;
+		}
+
+		$footer_v2_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/footer-v2-assets.php';
+		if ( is_readable( $footer_v2_assets ) ) {
+			require_once $footer_v2_assets;
 		}
 	}
 }
