@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Planned
 
+- **M9 — Shop Discovery Consolidation** (plan freeze): consolidate Shop search + category discovery into one homepage/M3-aligned band; WP3 filter-architecture decision gate (preserve Elementor/loop-card contract; do not remove `b3a2918` until proven). Spec: [docs/storefront-redesign/plans/MILESTONE_M9_SHOP_DISCOVERY.md](docs/storefront-redesign/plans/MILESTONE_M9_SHOP_DISCOVERY.md). Ops A (Coming Soon disable) is a separate DEV ops prerequisite. Production not in scope.
 - Future improvements only after production soak; see `docs/legacy-plugin-retirement-plan.md`.
 
 ---
