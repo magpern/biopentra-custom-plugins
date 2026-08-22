@@ -12,6 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.32] — 2026-08-22
+
+### Fixed
+
+- **Information mega-menu hover handoff on non-home pages:** Header template 3782 includes a second container row (`f38da8b`, ~20px) below the nav on non-home pages (collapsed on home). Pointer entry on that row dropped `.e-n-menu-content:hover` and closed the panel. Disable pointer events on non-menu header rows while the Information mega is open.
+
+---
+
 ## [0.9.31] — 2026-08-22
 
 ### Fixed

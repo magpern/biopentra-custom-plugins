@@ -693,6 +693,18 @@ html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
 		pointer-events: none !important;
 	}
 
+	/*
+	 * Non-home templates add a second header container row (e.g. f38da8b, 20px
+	 * tall at y≈131–151). Crossing it drops :hover from .e-n-menu-content and
+	 * Elementor closes the panel — home keeps that row collapsed (0 height).
+	 */
+	.elementor-location-header:has(.e-n-menu-content.e-active .biopentra-information-mega)
+		> .e-con:not(:has(.e-n-menu)),
+	.elementor-location-header:has(.e-n-menu-content.e-active .biopentra-information-mega)
+		> .elementor-widget:not(:has(.e-n-menu)) {
+		pointer-events: none !important;
+	}
+
 	.elementor-location-header
 		.e-n-menu-item:has(.biopentra-information-mega)
 		> .e-n-menu-content.e-active::before,

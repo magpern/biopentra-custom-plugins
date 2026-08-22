@@ -14,9 +14,12 @@
 		return window.matchMedia(DESKTOP_MQ).matches;
 	}
 
-	function getInformationItem() {
-		var mega = document.querySelector('.elementor-location-header .biopentra-information-mega');
-		return mega ? mega.closest('.e-n-menu-item') : null;
+	function getInformationItems() {
+		return Array.prototype.slice.call(
+			document.querySelectorAll('.elementor-location-header .e-n-menu-item .biopentra-information-mega')
+		).map(function (mega) {
+			return mega.closest('.e-n-menu-item');
+		}).filter(Boolean);
 	}
 
 	function getContent(item) {
@@ -70,15 +73,14 @@
 	}
 
 	function init() {
-		var item = getInformationItem();
-		if (!item) {
+		var items = getInformationItems();
+		if (!items.length) {
 			return;
 		}
-		var menu = item.closest('.e-n-menu');
-		if (!menu) {
-			return;
-		}
-		bindMenu(menu, item);
+		items.forEach(function (item) {
+			var menu = item.closest('.e-n-menu');
+			bindMenu(menu, item);
+		});
 	}
 
 	if (document.readyState === 'loading') {
