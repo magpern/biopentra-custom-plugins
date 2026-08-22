@@ -632,11 +632,15 @@ html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
 		 * Restore Elementor Pro desktop overlay contract.
 		 * `revert` resolves to UA `static`, not Elementor's `absolute`, so the
 		 * mega panel stayed in document flow and expanded the header (M1 regression).
+		 *
+		 * Do NOT reuse Elementor stretch vars here: they anchor from the item's
+		 * left edge with a wide stretch width, which centers the inner mega panel
+		 * far to the right instead of under "Information".
 		 */
 		position: absolute !important;
-		left: var(--stretch-left) !important;
-		right: var(--stretch-right) !important;
-		width: var(--stretch-width) !important;
+		left: auto !important;
+		right: auto !important;
+		width: auto !important;
 		top: auto !important;
 		bottom: auto !important;
 		inset: auto !important;
@@ -651,6 +655,18 @@ html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
 		background: transparent !important;
 		padding: 0 !important;
 		margin: 0 !important;
+	}
+
+	.elementor-location-header .e-n-menu-item:has(.biopentra-information-mega) {
+		position: relative !important;
+	}
+
+	.elementor-location-header .e-n-menu-item:has(.biopentra-information-mega) > .e-n-menu-content {
+		left: 50% !important;
+		right: auto !important;
+		width: min(1180px, calc(100vw - 64px)) !important;
+		max-width: 1180px !important;
+		transform: translateX(-50%) !important;
 	}
 
 	.elementor-location-header .e-n-menu:not([data-layout='dropdown']):not(.content-above) .e-n-menu-content.e-active,
@@ -679,9 +695,9 @@ html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
 
 	.elementor-location-header .e-n-menu-content .biopentra-information-mega {
 		position: static !important;
-		width: min(1180px, calc(100vw - 64px)) !important;
-		max-width: 1180px !important;
-		margin-inline: auto !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-inline: 0 !important;
 		padding: 28px 32px 30px !important;
 		display: block !important;
 	}
