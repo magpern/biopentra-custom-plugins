@@ -628,13 +628,62 @@ html.bp-nav-drawer-open .bp-nav-drawer-backdrop:not([hidden]) {
 	}
 
 	.elementor-location-header .e-n-menu-content {
-		/* Restore Elementor desktop mega positioning — do not keep drawer in-flow rules */
-		width: auto !important;
-		max-width: none !important;
-		display: revert !important;
-		position: revert !important;
-		height: revert !important;
-		padding: revert !important;
+		/*
+		 * Restore Elementor Pro desktop overlay contract.
+		 * `revert` resolves to UA `static`, not Elementor's `absolute`, so the
+		 * mega panel stayed in document flow and expanded the header (M1 regression).
+		 */
+		position: absolute !important;
+		left: var(--stretch-left) !important;
+		right: var(--stretch-right) !important;
+		width: var(--stretch-width) !important;
+		top: auto !important;
+		bottom: auto !important;
+		inset: auto !important;
+		transform: none !important;
+		height: auto !important;
+		min-height: 0 !important;
+		max-height: none !important;
+		overflow: visible !important;
+		display: block !important;
+		flex-direction: column !important;
+		box-shadow: none !important;
+		background: transparent !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.elementor-location-header .e-n-menu:not([data-layout='dropdown']):not(.content-above) .e-n-menu-content.e-active,
+	.elementor-location-header
+		.e-n-menu:not([data-layout='dropdown']):not(.content-above)
+		.e-n-menu-item
+		.e-n-menu-content[aria-hidden='false'] {
+		padding-block-start: var(--n-menu-title-distance-from-content, 0px) !important;
+		top: 100% !important;
+	}
+
+	.elementor-location-header .e-n-menu-content > .e-con {
+		display: flex !important;
+		flex-direction: column !important;
+		width: 100% !important;
+		max-width: calc(
+			100% - var(--margin-inline-start, var(--margin-left, 0px)) -
+				var(--margin-inline-end, var(--margin-right, 0px))
+		) !important;
+		height: auto !important;
+	}
+
+	.elementor-location-header .e-n-menu-content > .e-con:not(.e-active) {
+		display: none !important;
+	}
+
+	.elementor-location-header .e-n-menu-content .biopentra-information-mega {
+		position: static !important;
+		width: min(1180px, calc(100vw - 64px)) !important;
+		max-width: 1180px !important;
+		margin-inline: auto !important;
+		padding: 28px 32px 30px !important;
+		display: block !important;
 	}
 
 	.bp-nav-drawer-backdrop,

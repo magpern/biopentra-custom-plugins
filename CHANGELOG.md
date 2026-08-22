@@ -12,6 +12,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.31] — 2026-08-22
+
+### Fixed
+
+- **Desktop Information mega-menu regression:** M1 drawer CSS used `position: revert` on `.e-n-menu-content` at ≥1025, which resolved to UA `static` instead of Elementor's `absolute` overlay — panel opened in document flow and pushed the header/page. Restored Elementor overlay contract in `bp-header-m1.css` and reset header mega-menu `open_on` to `hover` via `setup-header-mega-menu-desktop-restore-cli.php`. Mobile drawer behaviour unchanged.
+
+### Notes
+
+- Corrective only — header visual design/content unchanged. Awaiting PO review; does not re-freeze header milestone.
+
+---
+
 ## [0.9.30] — 2026-08-22
 
 ### Fixed

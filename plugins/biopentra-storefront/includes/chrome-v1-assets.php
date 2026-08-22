@@ -21,11 +21,17 @@ function biopentra_storefront_enqueue_chrome_v1() {
 	);
 	wp_enqueue_style( 'biopentra-chrome-v1' );
 
+	$header_m1_ver = BIOPENTRA_STOREFRONT_VERSION;
+	$header_m1_path = BIOPENTRA_STOREFRONT_PATH . 'assets/css/bp-header-m1.css';
+	if ( is_readable( $header_m1_path ) ) {
+		$header_m1_ver .= '.' . (string) filemtime( $header_m1_path );
+	}
+
 	wp_register_style(
 		'biopentra-header-m1',
 		BIOPENTRA_STOREFRONT_URL . 'assets/css/bp-header-m1.css',
 		array( 'biopentra-chrome-v1' ),
-		BIOPENTRA_STOREFRONT_VERSION
+		$header_m1_ver
 	);
 	wp_enqueue_style( 'biopentra-header-m1' );
 
