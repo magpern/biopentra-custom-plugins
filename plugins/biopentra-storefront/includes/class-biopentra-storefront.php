@@ -148,5 +148,15 @@ class Biopentra_Storefront {
 		if ( is_readable( $footer_v2_assets ) ) {
 			require_once $footer_v2_assets;
 		}
+
+		$contact_v2_helpers = BIOPENTRA_STOREFRONT_PATH . 'includes/contact-v2-helpers.php';
+		if ( is_readable( $contact_v2_helpers ) ) {
+			require_once $contact_v2_helpers;
+		}
+
+		$contact_v2_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/contact-v2-assets.php';
+		if ( is_readable( $contact_v2_assets ) ) {
+			require_once $contact_v2_assets;
+		}
 	}
 }

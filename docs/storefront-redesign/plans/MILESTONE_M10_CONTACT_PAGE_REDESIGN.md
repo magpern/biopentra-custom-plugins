@@ -1,7 +1,7 @@
 # M10 — Contact Page Experience Redesign (Frozen Plan)
 
-**Status:** **FROZEN** — definitive implementation specification (PO-approved). **Do not implement** until separate explicit implementation authorization.
-**Milestone identifier:** **M10** (confirmed: M-track ends at frozen M9 / `storefront-v0.9.30`).
+**Status:** **PO-approved / frozen on DEV** (implementation complete; closure `storefront-v0.9.33`).
+**Milestone identifier:** **M10** (M-track continues after frozen M9 / `storefront-v0.9.30`).
 **Baseline:** M9 PO-approved / frozen on DEV (`CHANGELOG.md` `[0.9.30]`, tag `storefront-v0.9.30`). Repo at freeze: `main` at `4042877`. Storefront baseline tag: **`storefront-v0.9.32`**. Companion chat baseline: **`universal-telegram` `0.8.0`** (bind-mounted on DEV).
 **PO final clarification (2026-08-22):** Contact-page Chat visibility depends **only** on site-level chat enabled state; all architectural PO decisions locked in §16.
 **Convention of record (same as M8/M9):** plan at `docs/storefront-redesign/plans/MILESTONE_M10_*.md`; closure via `CHANGELOG.md` + tag `storefront-v{ver}`; acceptance `tests/m10-*.spec.ts`. Do **not** treat stale redesign-repo `STATUS.md`/`ROADMAP.md` as authority.

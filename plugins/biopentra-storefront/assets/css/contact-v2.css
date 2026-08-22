@@ -1,0 +1,290 @@
+/**
+ * M10 — Contact page experience (page 3410 only via body.bp-contact-m10).
+ *
+ * Breakpoint: 1024/1025 (M-track). Scoped to Fluent Form #5 inside #contact-form.
+ */
+
+body.bp-contact-m10 .bp-m10-body {
+	gap: 28px;
+}
+
+/* ── Subordinate channels rail (not a competing card) ── */
+body.bp-contact-m10 .bp-m10-rail {
+	flex-shrink: 0;
+}
+
+body.bp-contact-m10 .bp-m10-channels {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+
+body.bp-contact-m10 .bp-m10-channels__label {
+	margin: 0;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: #5a6b7f;
+}
+
+body.bp-contact-m10 .bp-m10-channels__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+body.bp-contact-m10 .bp-m10-channels__item {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #e3eaf2;
+}
+
+body.bp-contact-m10 .bp-m10-channels__item:last-child {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+body.bp-contact-m10 .bp-m10-channels__row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 12px;
+}
+
+body.bp-contact-m10 .bp-m10-channels__name {
+	font-size: 15px;
+	font-weight: 600;
+	color: #0f1f33;
+}
+
+body.bp-contact-m10 .bp-m10-channels__meta {
+	font-size: 13px;
+	color: #5a6b7f;
+}
+
+body.bp-contact-m10 .bp-m10-channels__action {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	padding: 10px 16px;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.2;
+	color: #1f5fae;
+	background: #fff;
+	border: 1px solid #1f5fae;
+	border-radius: 8px;
+	cursor: pointer;
+	text-decoration: none;
+	transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+body.bp-contact-m10 .bp-m10-channels__action:hover,
+body.bp-contact-m10 .bp-m10-channels__action:focus-visible {
+	color: #fff;
+	background: #1f5fae;
+	border-color: #1f5fae;
+}
+
+body.bp-contact-m10 .bp-m10-channels__action--link {
+	align-self: flex-start;
+}
+
+body.bp-contact-m10 .bp-m10-channels__context {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.55;
+	color: #3d4f66;
+}
+
+body.bp-contact-m10 .bp-m10-channels__context p {
+	margin: 0 0 8px;
+}
+
+body.bp-contact-m10 .bp-m10-channels__context p:last-child {
+	margin-bottom: 0;
+}
+
+/* ── Dominant form surface ── */
+body.bp-contact-m10 #contact-form.bp-m10-form-col {
+	flex-grow: 1;
+	min-width: 0;
+}
+
+body.bp-contact-m10 .bp-m10-form-surface {
+	background: #fff;
+	border: 1px solid #e3eaf2;
+	border-radius: 16px;
+	padding: 24px;
+	box-shadow: 0 1px 2px rgba(15, 31, 51, 0.04);
+}
+
+body.bp-contact-m10 .bp-m10-form-surface .elementor-heading-title {
+	color: #0f1f33;
+	font-weight: 600;
+}
+
+body.bp-contact-m10 .bp-m10-form-intro {
+	color: #3d4f66;
+	font-size: 15px;
+	line-height: 1.55;
+}
+
+body.bp-contact-m10 .bp-m10-form-intro p {
+	margin: 0;
+}
+
+body.bp-contact-m10 .bp-m10-privacy {
+	font-size: 13px;
+	color: #5a6b7f;
+	line-height: 1.5;
+}
+
+/* Fluent form field system */
+body.bp-contact-m10 #contact-form .fluentform-widget-wrapper,
+body.bp-contact-m10 #contact-form .ff-el-group {
+	margin-bottom: 16px;
+}
+
+body.bp-contact-m10 #contact-form .ff-el-input--label label {
+	font-size: 14px;
+	font-weight: 600;
+	color: #0f1f33;
+	margin-bottom: 6px;
+}
+
+body.bp-contact-m10 #contact-form .ff-el-form-control,
+body.bp-contact-m10 #contact-form select.ff-el-form-control,
+body.bp-contact-m10 #contact-form textarea.ff-el-form-control {
+	min-height: 44px;
+	padding: 10px 12px;
+	font-size: 15px;
+	line-height: 1.4;
+	color: #0f1f33;
+	background: #fff;
+	border: 1px solid #c5d3e0;
+	border-radius: 8px;
+	box-shadow: none;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+body.bp-contact-m10 #contact-form textarea.ff-el-form-control {
+	min-height: 120px;
+	resize: vertical;
+}
+
+body.bp-contact-m10 #contact-form .ff-el-form-control:focus,
+body.bp-contact-m10 #contact-form select.ff-el-form-control:focus,
+body.bp-contact-m10 #contact-form textarea.ff-el-form-control:focus {
+	outline: none;
+	border-color: #1f5fae;
+	box-shadow: 0 0 0 3px rgba(31, 95, 174, 0.18);
+}
+
+body.bp-contact-m10 #contact-form select[name="reason_for_contact"] {
+	font-weight: 600;
+	color: #0f1f33;
+}
+
+body.bp-contact-m10 #contact-form .ff-btn-submit {
+	min-height: 48px;
+	padding: 12px 20px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #fff !important;
+	background: #1f5fae !important;
+	border: 1px solid #1f5fae !important;
+	border-radius: 8px !important;
+	cursor: pointer;
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+body.bp-contact-m10 #contact-form .ff-btn-submit:hover,
+body.bp-contact-m10 #contact-form .ff-btn-submit:focus-visible {
+	background: #174a87 !important;
+	border-color: #174a87 !important;
+}
+
+body.bp-contact-m10 #contact-form .ff-message-success {
+	border-radius: 8px;
+	padding: 12px 14px;
+	background: #f6f9fc;
+	border: 1px solid #e3eaf2;
+	color: #0f1f33;
+}
+
+body.bp-contact-m10 #contact-form .ff-el-is-error .ff-el-form-control {
+	border-color: #c0392b;
+}
+
+body.bp-contact-m10 #contact-form .text-danger,
+body.bp-contact-m10 #contact-form .error text {
+	color: #c0392b;
+	font-size: 13px;
+}
+
+/* Hide removed legacy widgets if stale Elementor CSS still references them */
+body.bp-contact-m10 .elementor-element-fff6430,
+body.bp-contact-m10 .elementor-element-123d679,
+body.bp-contact-m10 .elementor-element-d3307cf,
+body.bp-contact-m10 .elementor-element-a8f3c21 {
+	display: none !important;
+}
+
+/* ── Desktop asymmetric layout ── */
+@media (min-width: 1025px) {
+	body.bp-contact-m10 .bp-m10-body {
+		flex-direction: row !important;
+		align-items: flex-start !important;
+		gap: 32px !important;
+	}
+
+	body.bp-contact-m10 .bp-m10-rail {
+		width: 34% !important;
+		max-width: 34% !important;
+	}
+
+	body.bp-contact-m10 #contact-form.bp-m10-form-col {
+		width: 66% !important;
+		max-width: 66% !important;
+	}
+}
+
+/* ── Mobile: compact channels, form-first ── */
+@media (max-width: 1024px) {
+	body.bp-contact-m10 .bp-m10-body {
+		flex-direction: column !important;
+		gap: 20px !important;
+	}
+
+	body.bp-contact-m10 .bp-m10-channels__list {
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	body.bp-contact-m10 .bp-m10-channels__item {
+		flex: 1 1 auto;
+		min-width: min(100%, 200px);
+		border-bottom: 0;
+		padding-bottom: 0;
+		padding: 12px;
+		background: #f6f9fc;
+		border: 1px solid #e3eaf2;
+		border-radius: 12px;
+	}
+
+	body.bp-contact-m10 .bp-m10-form-surface {
+		padding: 20px 16px;
+	}
+}

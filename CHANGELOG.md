@@ -8,8 +8,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Planned
 
-- **M10 — Contact Page Experience Redesign** — PO-approved frozen plan at [`docs/storefront-redesign/plans/MILESTONE_M10_CONTACT_PAGE_REDESIGN.md`](docs/storefront-redesign/plans/MILESTONE_M10_CONTACT_PAGE_REDESIGN.md). Baseline: `storefront-v0.9.32`; companion `universal-telegram` `0.8.0`. Documentation-only freeze — **implementation not started**. Motion & Interaction Polish remains deferred.
 - Future improvements only after production soak; see `docs/legacy-plugin-retirement-plan.md`.
+
+---
+
+## [0.9.33] — 2026-08-23
+
+### Added
+
+- **M10 — Contact Page Experience Redesign:** asymmetric Contact body (subordinate channels rail ~34% + dominant Fluent Form #5 ~66%); `[biopentra_contact_channels]` shortcode with site-level Chat row (`universal_telegram_chat_is_enabled()` only) and Telegram @biopentra; `contact-v2.css` / `contact-v2.js` (scoped to page 3410, `?prefill=product_request`, Open Chat via `UniversalTelegramChat.open` / `universal-telegram:open-chat`); submit-time `wc_related_order` ownership validation; idempotent CLI `scripts/setup-m10-contact-page-cli.php`. Removed mode cards, bottom Request Product band, self-referential `#contact-form` CTA, and Elementor prefill widget. Hero `ef97090` preserved. Backup: `docs/storefront-redesign/changes/backups/contact-pre-M10.json`. Spec: [docs/storefront-redesign/plans/MILESTONE_M10_CONTACT_PAGE_REDESIGN.md](docs/storefront-redesign/plans/MILESTONE_M10_CONTACT_PAGE_REDESIGN.md).
+
+### Notes
+
+- Acceptance: `storefront-acceptance` `tests/m10-contact.spec.ts` via `tools/run-dev.sh --m10-only` (59 passed; chat-enabled run on DEV).
+- Companion: **`universal-telegram` `0.8.1`** (`universal_telegram_chat_is_enabled()` public PHP seam; Open Chat JS API already on `0.8.0` line).
+- Production replay not performed — DEV PO-approved; deploy via Release ZIP when separately authorized.
+
+### Release
+
+- **M10 Contact Page Experience Redesign — PO-approved / frozen on DEV** (`0.9.33`). Git tag: **`storefront-v0.9.33`**.
 
 ---
 
