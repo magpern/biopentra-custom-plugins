@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Planned
 
+- **M10 — Contact Page Experience Redesign** — PO-approved frozen plan at [`docs/storefront-redesign/plans/MILESTONE_M10_CONTACT_PAGE_REDESIGN.md`](docs/storefront-redesign/plans/MILESTONE_M10_CONTACT_PAGE_REDESIGN.md). Baseline: `storefront-v0.9.32`; companion `universal-telegram` `0.8.0`. Documentation-only freeze — **implementation not started**. Motion & Interaction Polish remains deferred.
 - Future improvements only after production soak; see `docs/legacy-plugin-retirement-plan.md`.
 
 ---
