@@ -44,6 +44,19 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 		add_filter( 'blocksy:woocommerce:product-single:layout', array( __CLASS__, 'suppress_blocksy_simple_price_layer' ) );
 		add_action( 'woocommerce_before_add_to_cart_form', array( __CLASS__, 'maybe_render_simple_price' ), 5 );
 
+		// WP4 polish (PO decision, 2026-08-24): relocate the simple-product
+		// stock line into the panel too, matching the variable-product
+		// treatment (bundled availability directly under price). Unlike
+		// variable's atomic price+availability JS blob (§2.2, cannot be
+		// split without new JS), simple.php's stock is a plain, unhooked
+		// `echo wc_get_stock_html( $product )` before the form even opens —
+		// no template override needed, just WooCommerce's own public
+		// `woocommerce_get_stock_html` filter: suppress the native call,
+		// then call the same function again, unsuppressed, once inside the
+		// panel. Single source of truth, no duplication, no new JS.
+		add_filter( 'woocommerce_get_stock_html', array( __CLASS__, 'suppress_native_simple_stock' ), 10, 2 );
+		add_action( 'woocommerce_before_add_to_cart_form', array( __CLASS__, 'maybe_render_simple_stock' ), 6 );
+
 		// WP4 polish: Blocksy's default layout renders its own divider
 		// ('divider_2') between the add-to-cart layer and product_meta —
 		// redundant with layout.css's existing .product_meta top border
@@ -235,6 +248,49 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 		}
 
 		woocommerce_template_single_price();
+	}
+
+	/**
+	 * WP4 (PO decision) — suppress the native, pre-form stock line for
+	 * simple products only. Called at its original position, before the
+	 * panel-relocated re-render below runs.
+	 *
+	 * Guarded on is_in_stock(): simple.php echoes stock unconditionally,
+	 * but the whole form (and this panel) only renders when the product IS
+	 * in stock — suppressing unconditionally would leave out-of-stock
+	 * simple products with no stock message at all, since the panel-side
+	 * re-render never fires in that case.
+	 *
+	 * @param string     $html    Rendered stock HTML.
+	 * @param WC_Product $product Product being rendered.
+	 * @return string
+	 */
+	public static function suppress_native_simple_stock( $html, $product ) {
+		if ( $product instanceof WC_Product && $product->is_type( 'simple' ) && $product->is_in_stock() ) {
+			return '';
+		}
+
+		return $html;
+	}
+
+	/**
+	 * WP4 (PO decision) — render the simple-product stock line exactly once,
+	 * inside the purchase panel, directly under the relocated price. Bypasses
+	 * the suppressing filter above for this one call only, so the native
+	 * `wc_get_stock_html()` output (unmodified logic/markup, including the
+	 * existing product-stock-display module's label overrides) is what
+	 * actually renders — no duplicated or custom-maintained stock text.
+	 */
+	public static function maybe_render_simple_stock() {
+		global $product;
+
+		if ( ! $product instanceof WC_Product || ! $product->is_type( 'simple' ) ) {
+			return;
+		}
+
+		remove_filter( 'woocommerce_get_stock_html', array( __CLASS__, 'suppress_native_simple_stock' ), 10 );
+		echo wc_get_stock_html( $product ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		add_filter( 'woocommerce_get_stock_html', array( __CLASS__, 'suppress_native_simple_stock' ), 10, 2 );
 	}
 
 	/**
