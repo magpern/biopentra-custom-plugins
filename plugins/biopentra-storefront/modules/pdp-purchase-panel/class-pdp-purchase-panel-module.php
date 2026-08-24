@@ -8,6 +8,7 @@
  *
  * Spec: docs/storefront-redesign/plans/PDP-1_PURCHASE_SUMMARY_REDESIGN.md
  * Freeze commit: 4ae5ee798b26ceecd5d758f81d0cb7a194ed1a4d
+ * Blocksy-ownership amendment: see plan Addendum A (dated 2026-08-24).
  *
  * @package Biopentra_Storefront
  */
@@ -36,8 +37,12 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 		// Eyebrow (WP1) — before the title, native product summary hook.
 		add_action( 'woocommerce_single_product_summary', array( __CLASS__, 'render_eyebrow' ), 4 );
 
-		// Simple-product price relocation (WP0, §3) — type-scoped, never touches variable products.
-		add_action( 'woocommerce_single_product_summary', array( __CLASS__, 'maybe_relocate_simple_price' ), 1 );
+		// Simple-product price relocation (WP0, §3, Addendum A) — suppress
+		// Blocksy's own outer price layer via its supported layout filter
+		// (Blocksy owns woocommerce_single_product_summary's title/price/
+		// excerpt rendering; there is no WooCommerce hook left to remove).
+		add_filter( 'blocksy:woocommerce:product-single:layout', array( __CLASS__, 'suppress_blocksy_simple_price_layer' ) );
+		add_action( 'woocommerce_before_add_to_cart_form', array( __CLASS__, 'maybe_render_simple_price' ), 5 );
 
 		// Simple-product panel open/close — always balanced (simple.php has no empty-state skip).
 		add_action( 'woocommerce_before_add_to_cart_form', array( __CLASS__, 'open_panel_simple' ), 1 );
@@ -53,31 +58,56 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 	}
 
 	/**
-	 * §3 — relocate the native single price for simple products only.
+	 * §3 / Addendum A — suppress Blocksy's own outer 'product_price' layer
+	 * for simple products only, for the current render only.
 	 *
-	 * Gated on product type both at attach-time and inside the callback so
-	 * variable/grouped/external products never have their priority-10 price
-	 * hook touched. Hook removal/re-add is per-request, not persistent.
+	 * This is Blocksy's own supported extension seam
+	 * (`blocksy:woocommerce:product-single:layout`, applied in
+	 * `render_layout()` in themes/blocksy/inc/components/woocommerce/single/single.php)
+	 * — it filters the in-memory layout array for this request only, never
+	 * touching the persisted `woo_single_layout` theme mod, and only ever
+	 * runs inside the single-product summary render (default-gallery /
+	 * stacked-gallery view types), so it cannot affect shop/loop cards.
+	 * Variable products are explicitly excluded — their top-level price
+	 * range layer is left untouched.
+	 *
+	 * @param array $layout Ordered list of layer definitions, each with
+	 *                       'id' and 'enabled' keys.
+	 * @return array
 	 */
-	public static function maybe_relocate_simple_price() {
+	public static function suppress_blocksy_simple_price_layer( $layout ) {
+		global $product;
+
+		if ( ! is_product() || ! $product instanceof WC_Product || ! $product->is_type( 'simple' ) ) {
+			return $layout;
+		}
+
+		if ( ! is_array( $layout ) ) {
+			return $layout;
+		}
+
+		foreach ( $layout as $index => $layer ) {
+			if ( isset( $layer['id'] ) && 'product_price' === $layer['id'] ) {
+				$layout[ $index ]['enabled'] = false;
+			}
+		}
+
+		return $layout;
+	}
+
+	/**
+	 * §3 / Addendum A — render the native single price exactly once, inside
+	 * the simple-product purchase panel. WooCommerce remains the sole price
+	 * authority; this only changes where its own renderer is invoked.
+	 */
+	public static function maybe_render_simple_price() {
 		global $product;
 
 		if ( ! $product instanceof WC_Product || ! $product->is_type( 'simple' ) ) {
 			return;
 		}
 
-		// DISABLED — WP0 structural proof found that Blocksy's theme
-		// (inc/components/woocommerce/single/single-modifications.php)
-		// already unhooks 'woocommerce_template_single_price' from this
-		// action at 'wp' priority 9000000000 and instead renders it via its
-		// own render_layout() ordering system. remove_action() here is a
-		// no-op (nothing left to remove), so the add_action() below caused a
-		// second, duplicate .price element instead of a relocation. See the
-		// WP0 stop-report for the required plan/PO decision before this can
-		// be re-enabled with a different mechanism.
-		//
-		// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-		// add_action( 'woocommerce_before_add_to_cart_form', 'woocommerce_template_single_price', 5 );
+		woocommerce_template_single_price();
 	}
 
 	/**
