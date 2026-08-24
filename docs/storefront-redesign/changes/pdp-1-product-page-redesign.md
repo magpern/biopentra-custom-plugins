@@ -1,13 +1,19 @@
 # PDP-1 — Expanded Product Page Redesign — change record
 
-**Status:** **PO-approved / frozen on DEV**
+**Status:** **PO-approved / VERIFIED / frozen on DEV / CLOSED**
 **Formerly named:** "Purchase Summary Redesign" — superseded by this expanded scope.
 **Storefront:** `0.9.35` / tag **`storefront-v0.9.35`**
-**Blocksy Child:** `1.2.9` / tag **`v1.2.9`**
+**Blocksy Child:** `1.2.10` / tag **`v1.2.10`** (final, corrected — see "Accessibility corrective" below; `v1.2.9` is an immutable historical pre-corrective tag)
 **Plan:** [plans/PDP-1_PURCHASE_SUMMARY_REDESIGN.md](../plans/PDP-1_PURCHASE_SUMMARY_REDESIGN.md) (incl. Addendum A — Blocksy price-ownership correction; Addendum B — WP3/WP4 visual PO decisions)
 **Plan-freeze commit:** `4ae5ee7`
-**Impl range:** `4ae5ee7`..`466d0c0` (`biopentra-custom-plugins`), `v1.1.0`..`1c8ff83` (`biopentra-blocksy-child`)
+**Impl range:** `4ae5ee7`..`466d0c0` (`biopentra-custom-plugins`), `v1.1.0`..`4512cca` (`biopentra-blocksy-child`)
 **Rollback baseline:** Storefront `storefront-v0.9.33` / Blocksy Child `1.1.0`
+
+**Verification history:** initial closure pass (code/docs/tags) completed without a working
+Playwright runtime; a follow-up post-tag verification pass ran the real acceptance suite via
+Docker and found one real, confirmed accessibility defect (`.bp-pdp-meta-label` contrast) —
+see "Accessibility corrective" below. All other gates passed live. The corrective is now
+merged, retested, and tagged (`v1.2.10`); PDP-1 is fully verified and closed as of that tag.
 
 ## Scope inventory
 
@@ -43,7 +49,12 @@ Two-column split at Blocksy's native `min-width: 1000px` boundary (D2A, unchange
 | Repo | Version | Tag |
 |---|---|---|
 | `biopentra-custom-plugins` (storefront) | `0.9.35` | `storefront-v0.9.35` |
-| `biopentra-blocksy-child` | `1.2.9` | `v1.2.9` |
+| `biopentra-blocksy-child` | `1.2.10` (final, corrected) | `v1.2.10` |
+
+`v1.2.9` remains an immutable historical tag — it is the pre-accessibility-corrective
+PDP-1 state and **did not pass final accessibility verification** (see below). `v1.2.10`
+is the authoritative final PDP-1 theme baseline. Neither `v1.2.9` nor `storefront-v0.9.35`
+were moved or retagged.
 
 ## Final validation (this closure, 2026-08-24)
 
@@ -53,10 +64,52 @@ Two-column split at Blocksy's native `min-width: 1000px` boundary (D2A, unchange
   - Zero-variations fixture: `bp-pdp-purchase-panel` count is **0** (panel correctly never opened — render-state flag working, no orphaned closing tag); native `out-of-stock`/"unavailable" messaging renders correctly.
   - Gallery (`woocommerce-product-gallery` classes) and tabs (`woocommerce-Tabs-panel`) present on the simple-product page.
   - D2B sticky-bar markup present and unmodified.
-- **Automated Playwright acceptance suite, D2A/D2B regression specs, and screenshot capture: NOT executed as part of this closure.** No Node.js/npx runtime is present in this environment (`node`, `npx`: command not found), even though `storefront-acceptance/node_modules/.bin/playwright` and Chromium/Firefox browser binaries are installed under `~/.cache/ms-playwright`. This is an environment limitation of the session that ran this closure, not a defect in PDP-1 or in the acceptance harness. **The plan's own WP0/Addendum-A structural proof and the WP2/B1–B4 visual validation were run live via Playwright during implementation** (per the plan document's own verification sections) — this closure could not independently re-run that suite and relied on WP-CLI + `curl`-based DOM inspection instead. This is reported honestly as a gap, not claimed as a pass.
-- **Accessibility:** not independently re-verified at closure (no browser tooling available); relies on the plan's own accessibility section (§13 — eyebrow is `<p>` not a heading, H1 remains sole heading, plain `<div>`/`<ul>` markup, no `aria-hidden` misuse) and the implementation-time Playwright/axe checks referenced in the plan and Addendum B evidence notes.
-- **Cache:** DEV full-page cache (`biopentra-cache-infrastructure/tests/http/dev-clear-cache.sh`) cleared successfully before this validation pass.
-- **Multicurrency (UMC):** not independently re-tested at closure (would require a browser session to exercise `?currency=`); relies on the plan's WP0/Addendum-A verification notes, which record a live spot-check as part of implementation.
+- **Superseded — see "Post-tag verification" below.** The gap noted in the original closure pass (no Node/Playwright runtime available at that time) was closed in a follow-up session using the repository's established Dockerized Playwright pattern (`storefront-acceptance/tools/run-dev.sh` conventions — `mcr.microsoft.com/playwright:v1.51.0-jammy`, no `docker.sock` mount, Coming-Soon bypass toggled on the host via `tools/wp-coming-soon.sh`).
+
+## Post-tag verification (real Playwright/axe-core run, 2026-08-24)
+
+Run against `storefront-v0.9.35` / `v1.2.9` (pre-corrective):
+
+- **PDP-1 acceptance suite** (`pdp-purchase-panel.spec.ts`, `pdp-layout.spec.ts`, `pdp-sticky.spec.ts`): 12 passed, 0 failed (84 skipped — viewport-filtered by design, not failures).
+- **Simple/variable Add to cart:** live-exercised — single native price inside panel, Blocksy's fetch-based AJAX (`added_to_cart` event, no page reload) confirmed on both product types.
+- **Variation switching / SKU / availability:** live-exercised on `tirzepatide` — table stays outside panel, bundled price+availability+SKU update inside panel on variation change.
+- **Zero-purchasable-variations fixture (`m21-postrelease-variable`):** no orphaned panel markup, correct native out-of-stock/unavailable messaging.
+- **UMC:** `?currency=SEK` smoke-checked — simple relocated price, variable top-range, and selected-variation price all convert correctly; single price element preserved.
+- **D2B sticky bar:** confirmed unaffected by the panel wrapper (regression assertion + full `pdp-sticky.spec.ts` suite, both passed).
+- **Responsive matrix:** all 8 required viewports (360/390/430/768/1024/1025/1440/1680) exercised via the suite's configured projects — 0 PDP-file failures at any width.
+- **Accessibility (axe-core, real Chromium):** **found a real, confirmed defect** — see "Accessibility corrective" below. Also noted (pre-existing, out of PDP-1 scope, not introduced or touched by any PDP-1 CSS file): `.elementor-menu-cart__container` `aria-hidden-focus` (Elementor mini-cart), generic footer/breadcrumb contrast items, and native WooCommerce/Blocksy contrast on `.sku` value text (2.97:1), `a[rel="tag"]` links (3.74:1), strikethrough sale-price `del` (2.43:1), and `.single_add_to_cart_button` (4.3:1, borderline) — none of these selectors have a color rule in any `biopentra-blocksy-child/assets/pdp/*.css` file (confirmed via grep), so they predate and are independent of PDP-1.
+- **Targeted/broader regression sweep:** 50 failures surfaced in `baseline.spec.ts`, `card-interaction.spec.ts`, `home-ia.spec.ts` — **zero in any PDP file**. Pre-existing, unrelated to PDP-1, not investigated or fixed per the M1–M10 regression-boundary rule (do not reopen unrelated defects).
+- **Screenshots:** `storefront-acceptance/artifacts/pdp1-verify-closure/` (16 files — simple/variable × 390/1440, full page + purchase-summary/gallery/tabs crops).
+- **Cache:** DEV full-page cache cleared before and after this verification pass.
+
+## Accessibility corrective (v1.2.9 → v1.2.10)
+
+**Defect (blocking, confirmed via axe-core on real Chromium):** `.bp-pdp-meta-label`
+(the SKU/Category/Tags label wrapper `purchase-panel.css` introduces) measured
+**2.97:1** effective contrast against a required **4.5:1**, on both `bacteriostatic-water`
+(simple) and `tirzepatide` (variable).
+
+**Root cause:** Blocksy's native `.product_meta > span > *` rule (in the parent theme's
+compiled `woocommerce.min.css`, not a PDP-1 file) applies `opacity: .7` to every direct
+child of a `.product_meta > span`, including the label span PDP-1 introduces.
+`var(--bp-color-text-muted, #666)` measures ~5.5:1 at full opacity (comfortably AA) but
+drops to 2.97:1 once that inherited 0.7 opacity is applied — a CSS interaction bug, not
+an architectural or color-token problem.
+
+**Fix (`purchase-panel.css`, commit `4512cca`):** scoped `opacity: 1` reset added to the
+existing `.bp-pdp-meta-label` rule. Only the label span is affected — the adjacent value
+text (SKU code, category/tag links) keeps Blocksy's native muted treatment untouched, and
+no other metadata/typography/layout rule was changed.
+
+**Retest (real axe-core/Playwright, both fixtures, post-fix):** `.bp-pdp-meta-label`
+shows **zero color-contrast violations** — confirmed resolved. Computed style verified
+`opacity: 1`, `color: rgb(102, 102, 102)` on both "SKU:"/"Category:"/"Categories:"/"Tags:"
+labels. Narrow PDP-1 acceptance suite re-run post-fix: 12 passed, 0 failed (unchanged).
+
+**Version/tag:** `biopentra-blocksy-child` bumped `1.2.9` → `1.2.10`, commit `4512cca`,
+tag `v1.2.10` (pushed). `v1.2.9` left immutable as the historical pre-corrective tag.
+`biopentra-custom-plugins`/`storefront-v0.9.35` unchanged — no PHP/storefront code was
+touched by this corrective (CSS-only fix, in the theme repo).
 
 ## Known non-blocking issues
 
@@ -75,4 +128,4 @@ No plugin reactivation, no theme-mod reset, no database rollback required — Wo
 
 ## Production replay requirements (not performed by this closure)
 
-A later production rollout would require, in order: (1) deploy `biopentra-custom-plugins` at `storefront-v0.9.35` to production plugin directory; (2) deploy `biopentra-blocksy-child` at `v1.2.9` to production theme directory; (3) confirm production's `has_ajax_add_to_cart` / `woocommerce_cart_redirect_after_add` / `blocksy_get_product_view_type()` settings match DEV's (the plan's mechanisms are gated on these); (4) clear production full-page cache; (5) explicit separate PO GO per repository conventions (this closure does not authorize or perform any production action).
+A later production rollout would require, in order: (1) deploy `biopentra-custom-plugins` at `storefront-v0.9.35` to production plugin directory; (2) deploy `biopentra-blocksy-child` at `v1.2.10` (the corrected, final tag — not `v1.2.9`) to production theme directory; (3) confirm production's `has_ajax_add_to_cart` / `woocommerce_cart_redirect_after_add` / `blocksy_get_product_view_type()` settings match DEV's (the plan's mechanisms are gated on these); (4) clear production full-page cache; (5) explicit separate PO GO per repository conventions (this closure does not authorize or perform any production action).
