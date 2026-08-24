@@ -13,6 +13,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.36] — 2026-08-24
+
+### Fixed
+
+- **Empty Terms & Conditions page / Peptide Guide mega-menu `#` link:** published T&C page had empty `post_content` and empty `_elementor_data`; the May 2026 copy was stranded on revision 4093. Learn-column **Peptide Guide** pointed at `href="#"` because the page was still `draft`. Idempotent CLI `scripts/fix-terms-and-peptide-guide-links.php` restores T&C HTML (revision first, baked fallback for production), publishes Peptide Guide, and rewrites the mega-menu href. Mega-menu rebuild CLI now includes Peptide Guide and `what-are-peptides-v2`.
+
+### Notes
+
+- Content restore is a WordPress DB write; replay on production with the same `wp eval-file` after this tag is on the server (scripts are git-only, excluded from the production ZIP). Then clear the full-page cache.
+- Git tag: **`storefront-v0.9.36`**.
+
+---
+
 ## [0.9.35] — 2026-08-24
 
 ### Added

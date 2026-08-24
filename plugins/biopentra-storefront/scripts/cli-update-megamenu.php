@@ -692,14 +692,23 @@ $u_storage    = ( $storage_page && 'publish' === $storage_page->post_status )
 	? get_permalink( $storage_page )
 	: $hash;
 
-$peptides_page = get_page_by_path( 'what-are-peptides', OBJECT, 'page' );
-$u_peptides    = ( $peptides_page && 'publish' === $peptides_page->post_status )
+$peptides_page = get_page_by_path( 'what-are-peptides-v2', OBJECT, 'page' );
+if ( ! $peptides_page ) {
+	$peptides_page = get_page_by_path( 'what-are-peptides', OBJECT, 'page' );
+}
+$u_peptides = ( $peptides_page && 'publish' === $peptides_page->post_status )
 	? get_permalink( $peptides_page )
+	: $hash;
+
+$peptide_guide_page = get_page_by_path( 'peptide-guide', OBJECT, 'page' );
+$u_peptide_guide    = ( $peptide_guide_page && 'publish' === $peptide_guide_page->post_status )
+	? get_permalink( $peptide_guide_page )
 	: $hash;
 
 $col1_editor = biopentra_megamenu_ul(
 	array(
 		array( 'What Are Peptides?', $u_peptides ),
+		array( 'Peptide Guide', $u_peptide_guide ),
 		array( 'Research & Intended Use', $u_disclaim ),
 		array( 'Storage & Handling', $u_storage ),
 		array( 'FAQ', $u_faq ),
