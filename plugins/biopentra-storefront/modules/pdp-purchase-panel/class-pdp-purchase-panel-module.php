@@ -44,6 +44,15 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 		add_filter( 'blocksy:woocommerce:product-single:layout', array( __CLASS__, 'suppress_blocksy_simple_price_layer' ) );
 		add_action( 'woocommerce_before_add_to_cart_form', array( __CLASS__, 'maybe_render_simple_price' ), 5 );
 
+		// WP4 polish: Blocksy's default layout renders its own divider
+		// ('divider_2') between the add-to-cart layer and product_meta —
+		// redundant with layout.css's existing .product_meta top border
+		// (D2A), producing two visible lines with excessive gap between
+		// them. Same supported layout filter as the price suppression;
+		// applies to both product types (the panel/meta transition looks
+		// the same regardless of product type).
+		add_filter( 'blocksy:woocommerce:product-single:layout', array( __CLASS__, 'suppress_redundant_meta_divider' ) );
+
 		// Simple-product panel open/close — always balanced (simple.php has no empty-state skip).
 		add_action( 'woocommerce_before_add_to_cart_form', array( __CLASS__, 'open_panel_simple' ), 1 );
 		add_action( 'woocommerce_after_add_to_cart_form', array( __CLASS__, 'close_panel_simple' ), 99 );
@@ -67,6 +76,46 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 		// translatable label strings it echoes are wrapped.
 		add_filter( 'gettext', array( __CLASS__, 'wrap_meta_label_gettext' ), 10, 3 );
 		add_filter( 'ngettext', array( __CLASS__, 'wrap_meta_label_ngettext' ), 10, 5 );
+
+		// SKU's label can't go through the gettext filter above (meta.php
+		// echoes it via esc_html_e(), which would re-escape an injected
+		// <span> into literal visible text — see the gettext callback's
+		// docblock). Instead, buffer the native product_meta output and
+		// string-replace the already-escaped "SKU:" text in the rendered
+		// HTML — same visual result, no double-escaping, no template
+		// override (meta.php's own markup/logic are still untouched).
+		add_action( 'woocommerce_single_product_summary', array( __CLASS__, 'start_meta_buffer' ), 39 );
+		add_action( 'woocommerce_single_product_summary', array( __CLASS__, 'end_meta_buffer' ), 41 );
+	}
+
+	/**
+	 * @var string
+	 */
+	private static $sku_label_needle = '';
+
+	/**
+	 * Start buffering just before woocommerce_template_single_meta() (priority 40).
+	 */
+	public static function start_meta_buffer() {
+		self::$sku_label_needle = '<span class="sku_wrapper">' . esc_html__( 'SKU:', 'woocommerce' );
+		ob_start();
+	}
+
+	/**
+	 * Wrap the already-rendered "SKU:" label text and echo the buffered output.
+	 */
+	public static function end_meta_buffer() {
+		$html = ob_get_clean();
+
+		if ( '' !== self::$sku_label_needle && false !== strpos( $html, self::$sku_label_needle ) ) {
+			$html = str_replace(
+				self::$sku_label_needle,
+				'<span class="sku_wrapper"><span class="bp-pdp-meta-label">' . esc_html__( 'SKU:', 'woocommerce' ) . '</span>',
+				$html
+			);
+		}
+
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -144,6 +193,28 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 
 		foreach ( $layout as $index => $layer ) {
 			if ( isset( $layer['id'] ) && 'product_price' === $layer['id'] ) {
+				$layout[ $index ]['enabled'] = false;
+			}
+		}
+
+		return $layout;
+	}
+
+	/**
+	 * WP4 — remove Blocksy's own 'divider_2' layer (between add-to-cart and
+	 * product_meta) for the current render only. In-memory only, no
+	 * persisted theme-mod change; applies to both product types.
+	 *
+	 * @param array $layout Ordered list of layer definitions.
+	 * @return array
+	 */
+	public static function suppress_redundant_meta_divider( $layout ) {
+		if ( ! is_product() || ! is_array( $layout ) ) {
+			return $layout;
+		}
+
+		foreach ( $layout as $index => $layer ) {
+			if ( isset( $layer['__id'] ) && 'divider_2' === $layer['__id'] ) {
 				$layout[ $index ]['enabled'] = false;
 			}
 		}
