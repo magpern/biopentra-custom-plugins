@@ -13,6 +13,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.35] — 2026-08-24
+
+### Added
+
+- **PDP-1 — Expanded Product Page Redesign (supersedes "Purchase Summary Redesign"):** purchase panel (`plugins/biopentra-storefront/modules/pdp-purchase-panel/class-pdp-purchase-panel-module.php`) wrapping native price/stock/variation/quantity/Add-to-cart controls via additive WooCommerce hooks only (no template override); category eyebrow with non-"Uncategorized" fallback; icon + two-line trust row (PO override, Addendum B); simple-product price + stock relocation into the panel via Blocksy's own `blocksy:woocommerce:product-single:layout` filter (Addendum A — corrects the original `remove_action` assumption after a live duplicate-price finding); metadata (SKU/Category/Tags) label alignment; variation "Clear" link removed. WP0 render-state flag prevents orphaned panel markup on the zero-purchasable-variations fixture (`m21-postrelease-variable`). Companion CSS/gallery work in `biopentra-blocksy-child` 1.2.9 (see that repo's CHANGELOG): trust-row/eyebrow/panel visual treatment, tabs styling, gallery hover-zoom removal, thumbnail-strip clipping root-cause fix. Spec: [docs/storefront-redesign/plans/PDP-1_PURCHASE_SUMMARY_REDESIGN.md](docs/storefront-redesign/plans/PDP-1_PURCHASE_SUMMARY_REDESIGN.md) (incl. Addenda A/B). Change record: [docs/storefront-redesign/changes/pdp-1-product-page-redesign.md](docs/storefront-redesign/changes/pdp-1-product-page-redesign.md).
+
+### Notes
+
+- Commit range: `4ae5ee7` (plan freeze) .. `466d0c0`. This release (`0.9.35`) folds in the two final unversioned fixes (`d351e5f` SKU/divider, `466d0c0` simple-stock relocation) that landed after the in-flight `0.9.34` bump.
+- Structural/behavioral proof (WP0) and the WP0 Addendum-A rerun were validated live via Playwright during implementation, per the plan; this closure's own DEV verification used WP-CLI + `curl` DOM inspection because no Node/Playwright runtime was available in the environment performing closure (see change record for details) — automated re-execution of `tests/pdp-purchase-panel.spec.ts` etc. was not possible at closure time.
+- Rollback baseline: `storefront-v0.9.33`.
+
+### Release
+
+- **PDP-1 Expanded Product Page Redesign — PO-approved / frozen on DEV** (`0.9.35`). Git tag: **`storefront-v0.9.35`**.
+
+---
+
 ## [0.9.33] — 2026-08-23
 
 ### Added

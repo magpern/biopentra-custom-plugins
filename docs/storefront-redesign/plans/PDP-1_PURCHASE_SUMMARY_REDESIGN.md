@@ -877,3 +877,26 @@ full viewport matrix) after these changes landed. `biopentra-storefront`
 bumped to 0.9.34; `biopentra-blocksy-child` bumped to 1.1.4 (four
 consecutive patch bumps during this session, each solely to cache-bust the
 enqueued `purchase-panel.css`/`functions.php` after a fix).
+
+---
+
+## Closure addendum (2026-08-24) — PO-APPROVED / FROZEN ON DEV
+
+**Status: CLOSED.** This milestone is retitled at closure, reflecting its
+final delivered scope: **"Expanded Product Page Redesign"**, superseding the
+name "Purchase Summary Redesign" used above. Nothing in the plan body or
+Addenda A/B above is rewritten; this section only records what closed.
+
+Beyond WP0–WP5 as planned, PO additionally authorized during implementation:
+simple-product stock relocation into the panel (matching variable's bundled
+treatment, final commit `466d0c0`), the full gallery/thumbnail feature and
+its `flexy.js` thumbnail-clipping root-cause fix, and tabs
+(Description/Additional Information) styling — all landed in
+`biopentra-blocksy-child` through `1.2.9`. Full inventory, final
+versions/tags, validation results, and rollback procedure:
+[`docs/storefront-redesign/changes/pdp-1-product-page-redesign.md`](../changes/pdp-1-product-page-redesign.md).
+
+**Final baseline:** `biopentra-custom-plugins` `storefront-v0.9.35` /
+`biopentra-blocksy-child` `v1.2.9`. **Rollback baseline:**
+`storefront-v0.9.33` / `1.1.0`. No M11/PDP-2/Motion & Interaction Polish
+work is opened by this closure.
