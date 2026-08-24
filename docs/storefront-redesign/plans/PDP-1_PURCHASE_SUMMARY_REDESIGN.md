@@ -695,3 +695,110 @@ SKU-swap forensics §6 · DOM-order rule §7 · Target composition §8 ·
 Implementation architecture §9 · Responsive strategy §10 · Description/trust
 §11 · PO decisions (none remaining) §12 · Accessibility §13 · Work packages
 §14 · Risks §15 · Rollback §16 · Final recommendation §1.
+
+---
+
+## Addendum A — Blocksy price-ownership correction (2026-08-24, during WP0)
+
+**Status: approved and implemented.** This amends §3's mechanism only.
+Nothing else in this plan changes.
+
+**Original assumption (§3, as frozen):** the native single price on
+`woocommerce_single_product_summary` could be relocated with a plain
+`remove_action( 'woocommerce_single_product_summary',
+'woocommerce_template_single_price', 10 )` followed by re-adding it on
+`woocommerce_before_add_to_cart_form`.
+
+**Live contradiction, found during WP0's structural proof:** on real DEV
+(`bacteriostatic-water`), `remove_action()` returned `false` and the price
+rendered **twice** — once at its original position, once inside the new
+panel. Root cause, read directly from
+`themes/blocksy/inc/components/woocommerce/single/single-modifications.php:150-177`:
+Blocksy itself hooks `wp` at priority `9000000000` (i.e. after everything
+else) and removes `woocommerce_template_single_price` (and title/rating/
+excerpt/add_to_cart/meta/sharing) from `woocommerce_single_product_summary`
+first, then re-renders all of them itself via
+`blocksy_manager()->woocommerce->single->render_layout()` — a theme-owned,
+ordered-layer renderer, driven by `blocksy_get_woo_single_layout_defaults()`
+and the (unset, defaulted) `woo_single_layout` theme mod. By the time PDP-1's
+own `woocommerce_single_product_summary` callback runs, WooCommerce's native
+price hook is already gone; there is nothing left to remove, so the
+`add_action()` produced a pure duplicate instead of a relocation.
+
+**Blocksy ownership discovered:** for the *outer* single-product summary
+(title/price-range/excerpt), Blocksy — not WooCommerce's classic hook
+chain — is the actual rendering authority on this theme, active whenever
+`blocksy_get_product_view_type()` is `default-gallery` or `stacked-gallery`
+(confirmed live: DEV is `default-gallery`). The *inner* add-to-cart form
+(`templates/single-product/add-to-cart/{simple,variable}.php`, including all
+of §2's panel-wrapping hooks) is unaffected — Blocksy still calls
+`woocommerce_template_single_add_to_cart()` directly as one of its own
+layers, and that function still executes the native template file with all
+its native `do_action()` calls intact. §2's architecture, and the entire
+variable-product mechanism, needed no changes.
+
+**Approved corrected mechanism:** `render_layout()` applies a genuine,
+theme-provided extension seam before iterating its layers:
+```php
+$args['layout'] = apply_filters(
+    'blocksy:woocommerce:product-single:layout',
+    $args['layout']
+);
+```
+Each layer is `[ 'id' => ..., 'enabled' => bool, ... ]`; the price layer's
+id is `product_price` (confirmed via
+`inc/components/woocommerce/common/layer-defaults.php`). PDP-1 hooks this
+filter and, only when `is_product()` and the current `$product` is
+`is_type('simple')`, sets that one layer's `enabled` to `false` for the
+current render's in-memory array — the persisted `woo_single_layout` theme
+mod is never written to, so nothing is changed for any other visitor,
+render, or product type. Variable products are explicitly excluded in the
+same conditional, so their top-level price range is untouched. Because the
+filter only ever fires inside `render_layout()`'s single-product-summary
+call path, it structurally cannot reach shop/archive/loop cards (those use
+a separate `blocksy_woo_card_options_layers:defaults` layer set and a
+different render path entirely).
+
+With the outer layer suppressed, PDP-1 calls WooCommerce's own
+`woocommerce_template_single_price()` exactly once, on
+`woocommerce_before_add_to_cart_form` (inside the already-open purchase
+panel). WooCommerce remains the sole price authority — PDP-1 changes only
+*where* that one native call happens, holds no price value/state of its own,
+and performs no CSS-hiding of a duplicate.
+
+**Why this seam is treated as reasonably stable, not a private internal:**
+`blocksy:woocommerce:product-single:layout` is a plain `apply_filters()`
+call in the theme's own primary single-product render path (not a
+prefixed/underscore "private" name, not reached via reflection or a
+non-public method) that exists specifically so the returned layer array can
+be altered before rendering — the same pattern (`enabled` toggles on an
+ordered layer list) is also how Blocksy's own Customizer options and
+`blocksy:woocommerce:product:custom:layer` extension point work, i.e. this
+*is* the theme's intended mechanism for this exact kind of change, not an
+incidental hook this plan is leaning on opportunistically.
+
+**Verification (WP0 rerun after the amendment):**
+- Simple (`bacteriostatic-water`): exactly one native `.price` in the
+  summary, located inside `.bp-pdp-purchase-panel`; no outer Blocksy price
+  duplicate. Live Add to cart confirmed via Playwright — Blocksy's
+  fetch-based AJAX (`added_to_cart` event) fires, no page navigation, zero
+  console errors.
+- Variable (`tirzepatide`): top-level price range renders exactly once,
+  natively, outside the panel (unchanged — never touched by this
+  mechanism, since it's gated on `is_type('simple')`); variations table
+  renders before the panel opens; live variation switching confirmed via
+  Playwright — bundled price/availability update inside the panel,
+  `.product_meta .sku` updates, Add to cart via AJAX succeeds, no console
+  errors.
+- Zero-purchasable-variations (`m21-postrelease-variable`): no orphaned
+  panel markup (render-state flag, §2.4, unaffected by this amendment).
+- D2B sticky bar (`[data-bp-sticky-bar]`): present and unmodified on both
+  product types.
+- Shop archive (`/shop/`): loop-card prices unaffected (12 prices rendered
+  normally) — confirms the filter does not leak into archive/loop rendering.
+
+**Evidence / commit reference:** implemented in
+`plugins/biopentra-storefront/modules/pdp-purchase-panel/class-pdp-purchase-panel-module.php`
+(`suppress_blocksy_simple_price_layer()` / `maybe_render_simple_price()`),
+commit to follow this addendum in the same push. WP0 behavioral proof
+automated in `storefront-acceptance/tests/pdp-purchase-panel.spec.ts`.
