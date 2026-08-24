@@ -55,6 +55,62 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 		// Trust row (WP2) — appended just before panel-close, both product types.
 		add_action( 'woocommerce_after_add_to_cart_form', array( __CLASS__, 'render_trust_row_simple' ), 90 );
 		add_action( 'woocommerce_after_variations_form', array( __CLASS__, 'render_trust_row_variable' ), 90 );
+
+		// WP4 polish: remove the variation "Clear" link (PO decision, 2026-08-24).
+		add_filter( 'woocommerce_reset_variations_link', '__return_empty_string' );
+
+		// WP4 polish: wrap native product_meta labels (SKU:/Category:/Tags:) in
+		// their own <span> so CSS can align them into a label/value layout —
+		// filters WordPress's own translation pipeline for these three exact
+		// strings, scoped to single-product pages only. No template override:
+		// meta.php's own markup and logic are untouched, only the already-
+		// translatable label strings it echoes are wrapped.
+		add_filter( 'gettext', array( __CLASS__, 'wrap_meta_label_gettext' ), 10, 3 );
+		add_filter( 'ngettext', array( __CLASS__, 'wrap_meta_label_ngettext' ), 10, 5 );
+	}
+
+	/**
+	 * WP4 — the exact native label strings from templates/single-product/meta.php
+	 * that should be wrapped for grid alignment.
+	 *
+	 * "SKU:" is deliberately excluded: meta.php echoes it via esc_html_e(),
+	 * which re-escapes whatever this filter returns, turning an injected
+	 * <span> into literal visible "&lt;span&gt;" text. "Category:"/"Categories:"/
+	 * "Tag:"/"Tags:" are safe to wrap because wc_get_product_category_list()/
+	 * wc_get_product_tag_list() use the translated string raw, as the $before
+	 * HTML parameter, with no further escaping. SKU gets a CSS-only treatment
+	 * instead (see purchase-panel.css) using its existing nested .sku span.
+	 */
+	private static $meta_labels = array( 'Category:', 'Categories:', 'Tag:', 'Tags:' );
+
+	/**
+	 * @param string $translation Translated string.
+	 * @param string $text        Original (untranslated) string.
+	 * @param string $domain      Text domain.
+	 * @return string
+	 */
+	public static function wrap_meta_label_gettext( $translation, $text, $domain ) {
+		if ( 'woocommerce' !== $domain || ! is_product() || ! in_array( $text, self::$meta_labels, true ) ) {
+			return $translation;
+		}
+
+		return '<span class="bp-pdp-meta-label">' . esc_html( $translation ) . '</span>';
+	}
+
+	/**
+	 * @param string $translation Translated plural string.
+	 * @param string $single      Singular form.
+	 * @param string $plural      Plural form.
+	 * @param int    $number      Count.
+	 * @param string $domain      Text domain.
+	 * @return string
+	 */
+	public static function wrap_meta_label_ngettext( $translation, $single, $plural, $number, $domain ) {
+		if ( 'woocommerce' !== $domain || ! is_product() || ! in_array( $single, self::$meta_labels, true ) ) {
+			return $translation;
+		}
+
+		return '<span class="bp-pdp-meta-label">' . esc_html( $translation ) . '</span>';
 	}
 
 	/**
@@ -161,18 +217,38 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 	}
 
 	/**
-	 * §11 — locked trust row copy, both product types.
+	 * §11 amendment (PO decision, 2026-08-24) — icon + two-line trust row.
+	 * Copy replaces the plan's originally locked single-line text per
+	 * explicit PO override; both product types share this markup.
 	 */
 	private static function trust_row_html() {
 		$items = array(
-			__( 'EU fulfillment', 'biopentra-storefront' ),
-			__( 'Secure checkout', 'biopentra-storefront' ),
-			__( 'COA-backed quality', 'biopentra-storefront' ),
+			array(
+				'title'    => __( 'EU Warehouse', 'biopentra-storefront' ),
+				'subtitle' => __( 'Fast delivery', 'biopentra-storefront' ),
+				'icon'     => '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="11"></rect><path d="M14 9h4l4 4v4h-8z"></path><circle cx="6" cy="19" r="2"></circle><circle cx="17" cy="19" r="2"></circle></svg>',
+			),
+			array(
+				'title'    => __( 'Secure Payment', 'biopentra-storefront' ),
+				'subtitle' => __( 'SSL encrypted', 'biopentra-storefront' ),
+				'icon'     => '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>',
+			),
+			array(
+				'title'    => __( 'Lab Quality', 'biopentra-storefront' ),
+				'subtitle' => __( 'Purity verified', 'biopentra-storefront' ),
+				'icon'     => '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 3v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V5z"></path></svg>',
+			),
 		);
 
 		$html = '<ul class="bp-pdp-trust-row">';
 		foreach ( $items as $item ) {
-			$html .= '<li class="bp-pdp-trust-row__item">' . esc_html( $item ) . '</li>';
+			$html .= '<li class="bp-pdp-trust-row__item">'
+				. '<span class="bp-pdp-trust-row__icon" aria-hidden="true">' . $item['icon'] . '</span>'
+				. '<span class="bp-pdp-trust-row__text">'
+				. '<span class="bp-pdp-trust-row__title">' . esc_html( $item['title'] ) . '</span>'
+				. '<span class="bp-pdp-trust-row__subtitle">' . esc_html( $item['subtitle'] ) . '</span>'
+				. '</span>'
+				. '</li>';
 		}
 		$html .= '</ul>';
 
