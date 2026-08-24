@@ -802,3 +802,78 @@ incidental hook this plan is leaning on opportunistically.
 (`suppress_blocksy_simple_price_layer()` / `maybe_render_simple_price()`),
 commit to follow this addendum in the same push. WP0 behavioral proof
 automated in `storefront-acceptance/tests/pdp-purchase-panel.spec.ts`.
+
+---
+
+## Addendum B — WP3/WP4 visual-implementation PO decisions (2026-08-24)
+
+Four PO decisions made during live visual review of WP3/WP4, each recorded
+here because it either overrides earlier-locked plan language or is a
+deliberate exception to a stated boundary. None reopen the WP0 architecture.
+
+**B1 — Trust row copy overridden.** §11's originally locked single-line
+copy ("EU fulfillment" / "Secure checkout" / "COA-backed quality") is
+replaced, by explicit PO direction during visual review, with an icon +
+two-line format: "EU Warehouse / Fast delivery", "Secure Payment / SSL
+encrypted", "Lab Quality / Purity verified" (truck/lock/shield-check inline
+SVG icons, no new icon system — three one-off inline SVGs in the trust-row
+partial only). This is a deliberate, explicit override of §11/§12's "locked"
+status for this one item; nothing else in §11 changes (still text+icon only,
+still subordinate to price/qty/ATC).
+
+**B2 — Gallery hover-zoom removed.** Explicit PO direction: disable the
+desktop hover-to-zoom effect on the product gallery image. Forensics: Blocksy's
+`static/js/frontend/woocommerce/single-product-gallery.js` initializes
+`jquery.zoom` with `isZoomEnabled` hardcoded `true` on regular page loads —
+the `has_product_single_zoom` theme mod is only read inside the Customizer
+preview (`wp.customize(...)`), never on the live front-end, so there is no
+runtime PHP/theme-mod toggle to flip. Implemented as a scoped CSS suppression
+of the plugin's injected `.zoomImg` overlay
+(`biopentra-blocksy-child/assets/pdp/purchase-panel.css`) — no new JS, no
+Blocksy core edit, the separate click-to-lightbox feature (gated by
+`has_product_single_lightbox`, off by default) is untouched. This is a
+deliberate, explicit exception to this plan's "gallery stays frozen"
+boundary (§1, and the WP1-continuation task's own boundary list), scoped to
+exactly this one hover behavior — no other gallery change was made.
+
+**B3 — Variation availability restyled in place, not relocated.** PO
+initially asked for variable-product availability ("In stock") to render
+outside/above the purchase panel, matching a reference screenshot. Confirmed
+this would require new JS: WooCommerce's `add-to-cart-variation.js` renders
+price_html and availability_html together as one atomic blob per §2.2 — the
+only way to physically separate them in the DOM is to intercept
+`found_variation`/`show_variation` and move the rendered node after each
+variation change, which is new custom variation-state JS, explicitly
+prohibited by this task's WP0-preservation rules. **PO accepted the
+technical constraint** and chose the CSS-only alternative: availability
+stays bundled inside the panel (per §2.2's original, unchanged asymmetry)
+but is restyled with a green filled-circle checkmark and accent color so it
+visually reads as a confirmation, without any DOM relocation. §2.2's
+documented asymmetry stands exactly as originally specified.
+
+**B4 — Metadata (SKU/Category/Tags) label alignment.** WP4 polish: native
+`product_meta` labels ("Category:"/"Categories:"/"Tag:"/"Tags:") are wrapped
+in a `<span class="bp-pdp-meta-label">` via a `gettext`/`ngettext` filter
+scoped to `is_product()`, matching only those four exact strings — not a
+template override (`templates/single-product/meta.php` is unmodified; only
+the already-translatable label strings it echoes are filtered) and not DOM
+surgery JS (pure PHP string filter + CSS). **"SKU:" is deliberately excluded**
+from this filter: `meta.php` echoes it via `esc_html_e()`, which re-escapes
+whatever the filter returns, turning an injected `<span>` into literal
+visible `&lt;span&gt;` text (caught and reverted during this same
+implementation pass — see commit history). SKU gets a CSS-only label
+treatment instead, styling `.sku_wrapper`'s own (unwrapped) leading text via
+inheritance, with its existing nested `.sku` value span restyled back to
+normal value treatment — visually consistent with the other two rows though
+not pinned to the identical fixed-width column.
+
+**Evidence:** `biopentra-blocksy-child/assets/pdp/purchase-panel.css`
+(trust row, zoom suppression, availability checkmark, metadata alignment,
+bold variation attribute label, Clear-link removal via
+`woocommerce_reset_variations_link` filter). Verified via the same WP0
+Playwright suite (all 4 tests green) plus the existing D2A/`pdp-layout.spec.ts`
+and D2B/`pdp-sticky.spec.ts` suites (12/12 applicable tests green across the
+full viewport matrix) after these changes landed. `biopentra-storefront`
+bumped to 0.9.34; `biopentra-blocksy-child` bumped to 1.1.4 (four
+consecutive patch bumps during this session, each solely to cache-bust the
+enqueued `purchase-panel.css`/`functions.php` after a fix).
