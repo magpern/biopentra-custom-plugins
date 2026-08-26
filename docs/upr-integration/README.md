@@ -10,7 +10,8 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m1-dev-replay.md`](m1-dev-replay.md) | Executed M1 DEV replay record (Phase 2 implementation) |
 | [`M3-host-integration.md`](M3-host-integration.md) | **Authoritative** M3 host integration freeze (UPR v0.2.0) |
 | [`m3-dev-replay.md`](m3-dev-replay.md) | M3 DEV replay checklist / evidence |
-| [`m3-wp6-discontinued-verification.md`](m3-wp6-discontinued-verification.md) | WP6 discontinued verification evidence |
+| [`m3-dev-upr-v0.2.1-pin.md`](m3-dev-upr-v0.2.1-pin.md) | DEV UPR v0.2.1 bind-mount pin + preflight |
+| [`m3-wp6-discontinued-verification.md`](m3-wp6-discontinued-verification.md) | WP6 discontinued verification evidence (v0.2.0 baseline) |
 | [`upr-core-catalogue-hidden-correction.md`](upr-core-catalogue-hidden-correction.md) | Separate UPR-core correction proposal (pilot blocker) |
 | [`m3-closure.md`](m3-closure.md) | M3 execution closure report |
 
