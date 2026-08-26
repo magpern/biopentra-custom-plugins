@@ -80,6 +80,10 @@ final class Biopentra_Upr_Host_Support_Adapter {
 			return null;
 		}
 
+		if ( apply_filters( 'biopentra_upr_host_dev_force_support_lookup_failure', false, $order_id ) ) {
+			return null;
+		}
+
 		$order_key = (string) $order_id;
 		$details   = $wpdb->prefix . 'fluentform_entry_details';
 		$tickets   = $wpdb->prefix . 'biopentra_inbox_tickets';

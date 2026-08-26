@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Biopentra UPR Host
  * Description: Biopentra host adapters for Universal Product Reviews (delivery, support, DEV mail safety).
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: Biopentra
  * Requires at least: 6.5
  * Requires PHP: 8.1
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BIOPENTRA_UPR_HOST_VERSION', '0.1.1' );
+define( 'BIOPENTRA_UPR_HOST_VERSION', '0.1.2' );
 define( 'BIOPENTRA_UPR_HOST_FILE', __FILE__ );
 define( 'BIOPENTRA_UPR_HOST_PATH', plugin_dir_path( __FILE__ ) );
 
@@ -42,7 +42,13 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require_once BIOPENTRA_UPR_HOST_PATH . 'cli/class-verify-dev-mail-command.php';
 	require_once BIOPENTRA_UPR_HOST_PATH . 'cli/class-verify-pilot-preflight-command.php';
 	require_once BIOPENTRA_UPR_HOST_PATH . 'cli/class-verify-wp6-dev-command.php';
+	require_once BIOPENTRA_UPR_HOST_PATH . 'cli/class-verify-support-dev-command.php';
+	require_once BIOPENTRA_UPR_HOST_PATH . 'cli/class-verify-as-drain-dev-command.php';
+	require_once BIOPENTRA_UPR_HOST_PATH . 'cli/class-verify-token-redaction-dev-command.php';
 	WP_CLI::add_command( 'biopentra-upr-host verify-dev-mail', 'Biopentra_Upr_Host_Verify_Dev_Mail_Command' );
 	WP_CLI::add_command( 'biopentra-upr-host verify-pilot-preflight', 'Biopentra_Upr_Host_Verify_Pilot_Preflight_Command' );
 	WP_CLI::add_command( 'biopentra-upr-host verify-wp6-dev', 'Biopentra_Upr_Host_Verify_Wp6_Dev_Command' );
+	WP_CLI::add_command( 'biopentra-upr-host verify-support-dev', 'Biopentra_Upr_Host_Verify_Support_Dev_Command' );
+	WP_CLI::add_command( 'biopentra-upr-host verify-as-drain-dev', 'Biopentra_Upr_Host_Verify_As_Drain_Dev_Command' );
+	WP_CLI::add_command( 'biopentra-upr-host verify-token-redaction-dev', 'Biopentra_Upr_Host_Verify_Token_Redaction_Dev_Command' );
 }
