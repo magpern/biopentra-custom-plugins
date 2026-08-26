@@ -2,7 +2,7 @@
 
 **Status:** Checklist template at freeze; fill evidence during Phase 3 execution.  
 **Site:** `https://dev.biopentra.eu`  
-**UPR pin:** `v0.2.0` @ `4eb1f965d5ab87d8d1e1479257fbb8721f25ce41`
+**UPR pin:** annotated tag `v0.2.1` @ `e5b9636a42db7aaf0837c7b6034a24b062fd4275` — see [`m3-dev-upr-v0.2.1-pin.md`](m3-dev-upr-v0.2.1-pin.md)
 
 **Boundary:** DEV only. No production host, database, deployment, or configuration changes.
 
@@ -35,7 +35,7 @@
 | Check | Pass criteria | Evidence |
 |-------|---------------|----------|
 | No production change | Only DEV stack touched | |
-| UPR unchanged | Still `v0.2.0` @ `4eb1f96…` | |
+| UPR unchanged | Pinned `v0.2.1` @ `e5b9636…` (preflight CLI) | |
 | MPCF UPR-unaware | No `upr_*` in MPCF | |
 | Lifecycle emit | After full success only | |
 | Path matrix | Admin, REST, CLI (if any), recovery/refund → `WorkflowService::transition()` | |
@@ -44,7 +44,7 @@
 | Support | Delay/suppress allowlists; free text ignored; lookup failure → `delay` | |
 | DEV mail | CLI refuses when env ≠ `development`; LoggingMailTransport proven | |
 | Token redaction | Raw token absent from all URI-bearing access/cache logs; no external raw URI | |
-| Discontinued | Catalogue-hidden **mandatory** + draft/private/trash | Pass **or** UPR-core blocker recorded |
+| Discontinued | Catalogue-hidden **mandatory** + draft/private/trash | Pass after UPR v0.2.1 + `verify-wp6-dev` |
 | PDP UX | Summary + availability hooks; sticky unchanged | |
 | Cards | Flag off; ≥3 threshold when enabled | |
 | Schema | Exactly one Product; no AggregateRating without approved reviews | |
