@@ -32,3 +32,6 @@ coverage/
 *.log
 *.sql
 *.sqlite
+
+# Local DEV replay rollback state (must not ship)
+docs/upr-integration/.dev-replay-state/

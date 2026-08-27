@@ -14,6 +14,7 @@
 - [ ] UPR remains generic (no host commits in UPR tree)
 - [ ] `WP_ENVIRONMENT_TYPE=development` set for WordPress **and** WP-CLI containers
 - [ ] External cron `scripts/wp-cron.sh` active (`DISABLE_WP_CRON`)
+- [ ] Blocksy product tabs disabled on DEV: `woo_has_product_tabs=no` via [`dev-replay-blocksy-product-tabs.md`](dev-replay-blocksy-product-tabs.md) / `bin/dev-replay-blocksy-product-tabs.sh apply` (frozen B4 baseline; corrects default/`yes` drift)
 
 ---
 
@@ -24,9 +25,10 @@
 3. [ ] Compose env update (`WP_ENVIRONMENT_TYPE=development`)
 4. [ ] Nginx / SWAG token redaction reload (DEV only)
 5. [ ] Storefront / blocksy-child / loop-card updates
-6. [ ] Controlled DEV mail verification CLI
-7. [ ] Action Scheduler `upr` group drain via external cron
-8. [ ] Schema + sticky regression acceptance
+6. [ ] **Blocksy `woo_has_product_tabs=no` DEV replay** ([`dev-replay-blocksy-product-tabs.md`](dev-replay-blocksy-product-tabs.md))
+7. [ ] Controlled DEV mail verification CLI
+8. [ ] Action Scheduler `upr` group drain via external cron
+9. [ ] Schema + sticky regression acceptance
 
 ---
 
