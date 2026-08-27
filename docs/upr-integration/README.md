@@ -16,5 +16,7 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m3-closure.md`](m3-closure.md) | M3 execution closure report |
 | [`m3-dev-pilot-revalidation.md`](m3-dev-pilot-revalidation.md) | DEV pilot revalidation addendum (UPR v0.2.1 pin evidence) |
 | [`m3-pdp-reviews-section.md`](m3-pdp-reviews-section.md) | **Authoritative** M3 PDP `#reviews` section freeze (tabs remain off; A1–A20) |
+| [`b2-upr-v0.2.2-host-integration.md`](b2-upr-v0.2.2-host-integration.md) | B2 host pin to UPR v0.2.2 — display helper + UX only; core owns native enforcement |
+| [`b2-dev-upr-v0.2.2-pin.md`](b2-dev-upr-v0.2.2-pin.md) | DEV bind-mount pin ops for UPR v0.2.2 (operator step; not in B2 PR deploy) |
 
 **No production changes** are authorised from these documents without separate production replay approval.

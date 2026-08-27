@@ -9,11 +9,11 @@ defined( 'ABSPATH' ) || exit;
 
 final class Biopentra_Upr_Host_Upr_Pin {
 
-	public const REQUIRED_VERSION = '0.2.1';
+	public const REQUIRED_VERSION = '0.2.2';
 
-	public const REQUIRED_COMMIT = 'e5b9636a42db7aaf0837c7b6034a24b062fd4275';
+	public const REQUIRED_COMMIT = '43c9989291a4c7eab7f9fd57603c851486da287a';
 
-	public const REQUIRED_TAG = 'v0.2.1';
+	public const REQUIRED_TAG = 'v0.2.2';
 
 	/**
 	 * @return array{ok:bool,version:string,commit:?string,errors:list<string>}
@@ -41,12 +41,28 @@ final class Biopentra_Upr_Host_Upr_Pin {
 			);
 		}
 
+		if ( ! class_exists( \UniversalProductReviews\Submission\NativePdpForm::class ) ) {
+			$errors[] = 'UPR NativePdpForm API is unavailable (required for host display helper).';
+		}
+		if ( ! class_exists( \UniversalProductReviews\Submission\NativeSubmissionGuard::class ) ) {
+			$errors[] = 'UPR NativeSubmissionGuard API is unavailable (required for native enforcement).';
+		}
+
 		return array(
 			'ok'      => empty( $errors ),
 			'version' => $version,
 			'commit'  => $commit,
 			'errors'  => $errors,
 		);
+	}
+
+	/**
+	 * Fail-closed readiness for native-PDP display decisions.
+	 */
+	public static function display_api_ready(): bool {
+		return class_exists( \UniversalProductReviews\Submission\NativePdpForm::class )
+			&& defined( 'UPR_VERSION' )
+			&& self::REQUIRED_VERSION === (string) UPR_VERSION;
 	}
 
 	public static function resolve_installed_commit(): ?string {
