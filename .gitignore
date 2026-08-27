@@ -35,3 +35,5 @@ coverage/
 
 # Local DEV replay rollback state (must not ship)
 docs/upr-integration/.dev-replay-state/
+
+builds/zips/*.SHA256SUMS

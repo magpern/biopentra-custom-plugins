@@ -1,0 +1,42 @@
+# Private host package artifact (workflow_dispatch)
+
+# Builds biopentra-upr-host from an immutable tag and uploads a private
+# Actions artifact. Does NOT create a GitHub Release.
+
+name: Package upr-host (private artifact)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Immutable Git tag (e.g. 0.1.5)
+        required: true
+        default: '0.1.5'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Ensure package ref is present
+        run: git fetch --tags origin && git rev-parse "${{ github.event.inputs.ref }}^{commit}"
+
+      - name: Build host package
+        run: bash scripts/build-upr-host-package.sh "${{ github.event.inputs.ref }}"
+
+      - name: Upload private artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: biopentra-upr-host-${{ github.event.inputs.ref }}
+          path: |
+            builds/zips/biopentra-upr-host-*.zip
+            builds/zips/biopentra-upr-host-*.SHA256SUMS
+          if-no-files-found: error
+          retention-days: 30
