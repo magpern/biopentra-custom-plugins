@@ -1,4 +1,4 @@
-> **Update:** Host packaging target is now `magpern/upr-host-adapter` `v0.1.0` (not embedded `0.1.5`).
+> **Update:** Host packaging target is now `magpern/upr-host-adapter` `v0.1.1` (not embedded `0.1.5`).
 
 # M3 private package build (UPR v0.3.0 + host 0.1.0)
 

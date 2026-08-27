@@ -1,4 +1,4 @@
-> **SUPERSEDED (2026-08-27):** Host identity moved to `upr-host-adapter` `v0.1.0`. See [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addendum.md).
+> **SUPERSEDED (2026-08-27):** Host identity moved to `upr-host-adapter` `v0.1.1`. See [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addendum.md).
 
 # Host UPR package pin (biopentra-upr-host 0.1.5)
 
