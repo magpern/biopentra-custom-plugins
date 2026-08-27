@@ -33,5 +33,7 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m3-approval-ledger.template.md`](m3-approval-ledger.template.md) | Restricted approval-ledger **template** (no live PII) |
 | [`m3-production-invitation-prerequisites-closure.md`](m3-production-invitation-prerequisites-closure.md) | Prerequisites closure — **PRODUCTION STILL NO-GO** |
 | [`upr-host-adapter-extraction.md`](upr-host-adapter-extraction.md) | **Authoritative** extraction of host adapter to `magpern/upr-host-adapter` (supersedes embedded `0.1.5`) |
+| [`upr-host-adapter.md`](upr-host-adapter.md) | Private-host pointer to standalone `upr-host-adapter` |
+| [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addendum.md) | Ownership correction addendum (does not rewrite historical closures) |
 
 **No production changes** are authorised from these documents without separate production replay approval.
