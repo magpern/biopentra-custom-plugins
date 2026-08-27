@@ -23,5 +23,6 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`b2-dev-upr-v0.2.2-pin.md`](b2-dev-upr-v0.2.2-pin.md) | DEV bind-mount pin ops for UPR v0.2.2 (operator step; not in B2 PR deploy) |
 | [`m3-invitation-email-controls-host-policy.md`](m3-invitation-email-controls-host-policy.md) | **Authoritative** host pilot send-policy freeze (order-ID allowlist; depends on UPR invitation-email controls) |
 | [`m3-dev-preproduction-rehearsal.md`](m3-dev-preproduction-rehearsal.md) | **Authoritative** DEV pre-production invitation-email rehearsal freeze (UPR `v0.3.0`; no production) |
+| [`m3-dev-preproduction-rehearsal-acceptance.md`](m3-dev-preproduction-rehearsal-acceptance.md) | DEV pre-production rehearsal closure (**PASS**) |
 
 **No production changes** are authorised from these documents without separate production replay approval.
