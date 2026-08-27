@@ -140,6 +140,7 @@ Prefer focused PHPUnit or shell policy checks consistent with `scripts/b2-policy
 - Branch: `feat/m3-upr-pilot-send-policy`
 - PR depends on UPR annotated tag **`v0.3.0`** / commit `b2abc2defc30fc023601593aa1720cbfdd0a4f3c` (PR #18 merge).
 - Host pin constants must match that release (`REQUIRED_VERSION` / `REQUIRED_TAG` / `REQUIRED_COMMIT` + `InvitationAuthorisation` API check).
+- From host **0.1.5**, pin resolution uses packaged `release.meta.json` only (not `.git`). Host **0.1.4** is not a production package target.
 - Do not bind-mount, activate, or deploy the host plugin as part of this package.
 - No production configuration.
 

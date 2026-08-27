@@ -6,8 +6,8 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 fail() { echo "M3 PILOT POLICY FAILED: $*" >&2; exit 1; }
 
 echo "==> Host version"
-grep -q "Version: 0.1.4" "$ROOT/biopentra-upr-host.php" || fail "plugin header version"
-grep -q "BIOPENTRA_UPR_HOST_VERSION', '0.1.4'" "$ROOT/biopentra-upr-host.php" || fail "host version constant"
+grep -q "Version: 0.1.5" "$ROOT/biopentra-upr-host.php" || fail "plugin header version"
+grep -q "BIOPENTRA_UPR_HOST_VERSION', '0.1.5'" "$ROOT/biopentra-upr-host.php" || fail "host version constant"
 
 echo "==> Pilot policy class wired"
 test -f "$ROOT/includes/class-invitation-send-policy.php" || fail "missing invitation send policy"
@@ -47,7 +47,7 @@ if command -v php >/dev/null 2>&1; then
     php -l "$f" >/dev/null
   done
 else
-  docker run --rm -v "$ROOT":/src -w /src php:8.4-cli bash -c 'find . -name "*.php" -print0 | xargs -0 -n1 php -l >/dev/null'
+  docker run --rm -v "$ROOT":/src -w /src php:8.4-cli bash -c 'find . -name "*.php" -print0 | xargs -0 -n1 php -l >/dev/null' || fail "php -l failed"
 fi
 
 echo "==> All M3 pilot host policy checks passed"

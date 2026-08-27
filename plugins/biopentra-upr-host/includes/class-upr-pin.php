@@ -1,6 +1,11 @@
 <?php
 /**
- * Required UPR release pin for DEV pilot (bind-mount checkout).
+ * Required UPR release pin (packaged install + DEV).
+ *
+ * Production packages have no `.git`. The host verifies generic
+ * `release.meta.json` beside the UPR plugin bootstrap (see UPR package-meta docs).
+ * DEV checkouts must use the same metadata file (write from a verified Git HEAD
+ * via the documented development helper — this class does not read `.git`).
  *
  * @package Biopentra_Upr_Host
  */
@@ -15,8 +20,14 @@ final class Biopentra_Upr_Host_Upr_Pin {
 
 	public const REQUIRED_TAG = 'v0.3.0';
 
+	/** Generic package metadata filename (no host/brand names). */
+	public const PACKAGE_META_BASENAME = 'release.meta.json';
+
+	/** Expected schema id inside release.meta.json. */
+	public const PACKAGE_META_SCHEMA = 'universal-product-reviews.package-meta/v1';
+
 	/**
-	 * @return array{ok:bool,version:string,commit:?string,errors:list<string>}
+	 * @return array{ok:bool,version:string,commit:?string,tag:?string,errors:list<string>}
 	 */
 	public static function verify(): array {
 		$errors  = array();
@@ -30,15 +41,38 @@ final class Biopentra_Upr_Host_Upr_Pin {
 			);
 		}
 
-		$commit = self::resolve_installed_commit();
-		if ( null === $commit ) {
-			$errors[] = 'Could not resolve universal-product-reviews Git commit from bind-mount.';
-		} elseif ( 0 !== strcasecmp( self::REQUIRED_COMMIT, $commit ) ) {
-			$errors[] = sprintf(
-				'UPR Git commit is "%s"; required "%s".',
-				$commit,
-				self::REQUIRED_COMMIT
-			);
+		$meta   = self::load_package_meta();
+		$commit = null;
+		$tag    = null;
+
+		if ( ! $meta['ok'] ) {
+			$errors[] = $meta['error'];
+		} else {
+			$tag    = $meta['tag'];
+			$commit = $meta['commit'];
+			$meta_v = $meta['version'];
+
+			if ( self::REQUIRED_VERSION !== $meta_v ) {
+				$errors[] = sprintf(
+					'UPR package metadata version is "%s"; required "%s".',
+					$meta_v,
+					self::REQUIRED_VERSION
+				);
+			}
+			if ( self::REQUIRED_TAG !== $tag ) {
+				$errors[] = sprintf(
+					'UPR package metadata tag is "%s"; required "%s".',
+					$tag,
+					self::REQUIRED_TAG
+				);
+			}
+			if ( 0 !== strcasecmp( self::REQUIRED_COMMIT, $commit ) ) {
+				$errors[] = sprintf(
+					'UPR package metadata commit is "%s"; required "%s".',
+					$commit,
+					self::REQUIRED_COMMIT
+				);
+			}
 		}
 
 		if ( ! class_exists( \UniversalProductReviews\Submission\NativePdpForm::class ) ) {
@@ -55,6 +89,7 @@ final class Biopentra_Upr_Host_Upr_Pin {
 			'ok'      => empty( $errors ),
 			'version' => $version,
 			'commit'  => $commit,
+			'tag'     => $tag,
 			'errors'  => $errors,
 		);
 	}
@@ -68,46 +103,100 @@ final class Biopentra_Upr_Host_Upr_Pin {
 			&& self::REQUIRED_VERSION === (string) UPR_VERSION;
 	}
 
-	public static function resolve_installed_commit(): ?string {
+	/**
+	 * Absolute path to UPR release.meta.json, or null if UPR_PLUGIN_DIR unset.
+	 */
+	public static function package_meta_path(): ?string {
 		if ( ! defined( 'UPR_PLUGIN_DIR' ) ) {
 			return null;
 		}
-		$plugin_dir = rtrim( (string) UPR_PLUGIN_DIR, '/' );
-		$git_dir    = $plugin_dir . '/.git';
-		if ( ! is_dir( $git_dir ) ) {
-			return null;
+		return rtrim( (string) UPR_PLUGIN_DIR, '/' ) . '/' . self::PACKAGE_META_BASENAME;
+	}
+
+	/**
+	 * Load and structurally validate package metadata (fail-closed).
+	 *
+	 * @return array{
+	 *   ok:bool,
+	 *   error:string,
+	 *   schema?:string,
+	 *   version?:string,
+	 *   tag?:string,
+	 *   commit?:string
+	 * }
+	 */
+	public static function load_package_meta(): array {
+		$path = self::package_meta_path();
+		if ( null === $path || ! is_readable( $path ) ) {
+			return array(
+				'ok'    => false,
+				'error' => 'UPR package metadata missing or unreadable (release.meta.json).',
+			);
 		}
 
-		$head_file = $git_dir . '/HEAD';
-		if ( ! is_readable( $head_file ) ) {
-			return null;
+		$raw = file_get_contents( $path );
+		if ( false === $raw || '' === trim( $raw ) ) {
+			return array(
+				'ok'    => false,
+				'error' => 'UPR package metadata is empty or unreadable.',
+			);
 		}
 
-		$head = trim( (string) file_get_contents( $head_file ) );
-		if ( str_starts_with( $head, 'ref: ' ) ) {
-			$ref = trim( substr( $head, 5 ) );
-			$ref_file = $git_dir . '/' . $ref;
-			if ( is_readable( $ref_file ) ) {
-				return strtolower( substr( trim( (string) file_get_contents( $ref_file ) ), 0, 40 ) );
+		$data = json_decode( $raw, true );
+		if ( ! is_array( $data ) ) {
+			return array(
+				'ok'    => false,
+				'error' => 'UPR package metadata is not valid JSON object.',
+			);
+		}
+
+		$schema = isset( $data['schema'] ) ? (string) $data['schema'] : '';
+		if ( self::PACKAGE_META_SCHEMA !== $schema ) {
+			return array(
+				'ok'    => false,
+				'error' => sprintf(
+					'UPR package metadata schema is "%s"; required "%s".',
+					$schema,
+					self::PACKAGE_META_SCHEMA
+				),
+			);
+		}
+
+		foreach ( array( 'version', 'tag', 'commit' ) as $key ) {
+			if ( ! isset( $data[ $key ] ) || ! is_string( $data[ $key ] ) || '' === $data[ $key ] ) {
+				return array(
+					'ok'    => false,
+					'error' => sprintf( 'UPR package metadata missing string field "%s".', $key ),
+				);
 			}
-			$packed = $git_dir . '/packed-refs';
-			if ( is_readable( $packed ) ) {
-				$lines = file( $packed, FILE_IGNORE_NEW_LINES );
-				if ( is_array( $lines ) ) {
-					foreach ( $lines as $line ) {
-						if ( str_starts_with( $line, '#' ) ) {
-							continue;
-						}
-						$parts = preg_split( '/\s+/', trim( $line ), 2 );
-						if ( is_array( $parts ) && 2 === count( $parts ) && $parts[1] === $ref ) {
-							return strtolower( substr( $parts[0], 0, 40 ) );
-						}
-					}
-				}
-			}
-			return null;
 		}
 
-		return strtolower( substr( $head, 0, 40 ) );
+		$commit = strtolower( (string) $data['commit'] );
+		if ( ! preg_match( '/^[0-9a-f]{40}$/', $commit ) ) {
+			return array(
+				'ok'    => false,
+				'error' => 'UPR package metadata commit must be a 40-char hex SHA.',
+			);
+		}
+
+		return array(
+			'ok'      => true,
+			'error'   => '',
+			'schema'  => $schema,
+			'version' => (string) $data['version'],
+			'tag'     => (string) $data['tag'],
+			'commit'  => $commit,
+		);
+	}
+
+	/**
+	 * Commit from package metadata only (no `.git`).
+	 */
+	public static function resolve_installed_commit(): ?string {
+		$meta = self::load_package_meta();
+		if ( ! $meta['ok'] ) {
+			return null;
+		}
+		return $meta['commit'];
 	}
 }
