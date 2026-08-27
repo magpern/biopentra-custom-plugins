@@ -2,11 +2,12 @@
 
 **Verdict:** `PREREQUISITE DESIGN AND TOOLING COMPLETE — PRODUCTION STILL NO-GO`  
 **Date:** 2026-08-27  
-**Freeze tag:** `m3-production-operational-prerequisites-freeze` (annotated; peels to this documentation/tooling merge).  
+**Freeze tag:** `m3-production-operational-prerequisites-freeze` (annotated; peels to the WP-DOC tooling merge).  
+**P8 amendment:** post-freeze correction — P8 uses ordinary synthetic mail + test mailbox; **no** UPR mint-without-email API (this amendment does not move the freeze tag).  
 **Authority:** [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md)  
 **Related:** [`m3-production-invitation-prerequisites-closure.md`](m3-production-invitation-prerequisites-closure.md)
 
-This addendum records the corrected package pair, activation/rollback order, offline package SHAs, and P8 testability result. **Does not authorise** production deploy, email enablement, allowlist, fixture drill, redaction probe, backup, cron stop, or customer contact. **No production access or change occurred** for this freeze.
+This addendum records the corrected package pair, activation/rollback order, offline package SHAs, and P8 testability (amended: ordinary synthetic-mail path; no UPR mint API). **Does not authorise** production deploy, email enablement, allowlist, fixture drill, redaction probe, backup, cron stop, or customer contact. **No production access or change occurred** for this freeze.
 
 ## Exact target packages
 
@@ -56,20 +57,25 @@ Disposable validate PASS: `scripts/validate-m3-pair-packages.sh`. Disposable pai
 
 Do not describe host-first activation as valid. Do not claim a two-plugin atomic switch. Mail-worker is omitted from the mandatory UPR suspend list.
 
-## P8 public-interface finding
+## P8 testability (amended)
 
-Inspected UPR `v0.3.0` and `upr-host-adapter` `v0.1.1` source/docs.
+**Do not** add a public “mint without email” API to generic UPR. That would mint review invitations outside the normal controlled workflow and weaken the product boundary.
 
-| Surface | Result |
-|---------|--------|
-| Public UPR WP-CLI | `wp upr reconcile-invitations`, `wp upr db-upgrade`, `wp upr invitation-controls` only |
-| Public mint of outstanding invite token/session without email | **None** |
-| `TokenService::issue_invite` | **Internal** (InvitationMailer + tests) — not a documented public production API |
-| Host `verify-*-dev` CLIs | DEV-gated; refuse non-development; use internals — **not** a production public path |
+P8 uses the **ordinary post-boundary invitation path** later:
 
-**Conclusion:** No supported, production-safe public API/CLI exists to create an outstanding synthetic invitation token/session without sending email. P8 **cannot** be frozen or executed by inventing internal/SQL paths.
+1. One isolated synthetic order (no impact on real customers, fulfilment, or reporting).
+2. A dedicated **operator-controlled test mailbox**, recorded only in the restricted approval ledger (never in public Git).
+3. Explicit approval for that synthetic send (ledger row; not P7 real-customer contact).
+4. Normal sequence: host allowlist → master-enable → delivery event → token creation → emergency pause → revoke + pending cancel → unpause no retro-send → deterministic cleanup.
 
-**Development dependency:** A separately planned **generic UPR developer/test-fixture capability** is required before the production pause drill can be frozen or executed. P8 remains **OPEN** with this dependency recorded.
+`@example.invalid` remains fine for **non-mail** fixtures, but it **may be rejected before UPR creates a token** and **cannot be relied on** for this proof.
+
+| Incorrect earlier finding | Corrected |
+|---------------------------|-----------|
+| P8 blocked on new UPR-core fixture/mint capability | **Rejected** — do not add such an API |
+| P8 dependency | **Operational:** synthetic-mail decision + approved test mailbox + ledger approval |
+
+P8 remains **OPEN**, blocked on that operational decision — not on UPR product development.
 
 ## Remaining production gates
 
@@ -81,9 +87,9 @@ Inspected UPR `v0.3.0` and `upr-host-adapter` `v0.1.1` source/docs.
 | P4 | **OPEN** — production token-redaction / sink proof not run |
 | P5 | **OPEN** — ledger template only; no approved live location/operators |
 | P6 | **OPEN** — production DB backup + restore-time note not done |
-| P7 | **OPEN** — Product Owner customer-contact approval not issued (entirely separate) |
-| P8 | **OPEN** — blocked on UPR generic fixture capability |
+| P7 | **OPEN** — Product Owner **real** customer-contact approval not issued (separate from synthetic-mail) |
+| P8 | **OPEN** — blocked on operational synthetic-mail decision + test mailbox |
 
 ## Exact next step
 
-Plan and ship a **generic UPR developer/test-fixture capability** (separate initiative) so P8 has a supported public path. Do **not** treat a dry checklist, DEV results, or internal `TokenService::issue_invite` as production P8 proof. After that capability exists, seek a **separately approved** production operational rehearsal (still no customer contact without P7).
+**Park production work.** Return to product development. Resume production operational gates only under a separate execute order after the synthetic-mail / test-mailbox decision is recorded for P8 (and P1/P4–P6 as required). Do not invent UPR invite-mint APIs or use internal/SQL token creation for production proof.

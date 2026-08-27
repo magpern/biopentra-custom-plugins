@@ -31,7 +31,7 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m3-production-readonly-inventory.md`](m3-production-readonly-inventory.md) | Read-only production inventory (2026-08-27) |
 | [`m3-production-readonly-inventory-procedure.md`](m3-production-readonly-inventory-procedure.md) | Safe read-only inventory procedure (forbid unredacted `docker compose config`) |
 | [`m3-approval-ledger.template.md`](m3-approval-ledger.template.md) | Restricted approval-ledger **template** (no live PII) |
-| [`m3-production-invitation-prerequisites-closure.md`](m3-production-invitation-prerequisites-closure.md) | Prerequisites closure — **PRODUCTION STILL NO-GO** (corrected `v0.1.1` pair; P8 fixture dependency) |
+| [`m3-production-invitation-prerequisites-closure.md`](m3-production-invitation-prerequisites-closure.md) | Prerequisites closure — **PRODUCTION STILL NO-GO** (corrected `v0.1.1` pair; P8 synthetic-mail dependency) |
 | [`m3-production-operational-prerequisites-closure.md`](m3-production-operational-prerequisites-closure.md) | Operational prerequisites WP-DOC freeze addendum — package SHAs + gates; **PRODUCTION STILL NO-GO** |
 | [`upr-host-adapter-extraction.md`](upr-host-adapter-extraction.md) | **Authoritative** extraction of host adapter to `magpern/upr-host-adapter` (supersedes embedded `0.1.5`) |
 | [`upr-host-adapter.md`](upr-host-adapter.md) | Private-host pointer to standalone `upr-host-adapter` |

@@ -32,7 +32,7 @@ See [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addend
 | P5 | Restricted approval ledger outside public Git | **OPEN** |
 | P6 | DB backup + restore-time note | **OPEN** |
 | P7 | Product Owner final customer-contact approval | **OPEN** (separate) |
-| P8 | Operational synthetic `@example.invalid` emergency-pause drill | **OPEN** — blocked on missing UPR public test-fixture capability |
+| P8 | Operational emergency-pause drill via ordinary post-boundary synthetic mail to an approved test mailbox | **OPEN** — blocked on operational synthetic-mail decision + test mailbox (not a UPR-core mint API) |
 
 Until P1–P8: emails disabled, no allowlist, no production contact.
 
@@ -48,7 +48,7 @@ Until P1–P8: emails disabled, no allowlist, no production contact.
 | Mail worker | `biopentra-mail-worker` = support IMAP — **omit** from UPR suspend list |
 | Host Requires Plugins | `universal-product-reviews` — activate UPR before host |
 | UPR public CLI | `wp upr reconcile-invitations`, `wp upr db-upgrade`, `wp upr invitation-controls` only |
-| Invite mint without email | **No public API/CLI** (`TokenService::issue_invite` is internal) |
+| P8 invite creation | Ordinary post-boundary path only; **no** new UPR public mint-without-email API |
 
 ---
 
@@ -74,7 +74,7 @@ Prior UPR zip `e7f02bc5…` (0.1.5-era) superseded for this freeze; meta SHA unc
 
 **In scope (after GO):** Deploy the target pair via §6; emails disabled through deploy; later pilot gates only after P1–P8.
 
-**Non-goals:** Deploying **0.1.5**; host-first activation; atomic two-plugin flip; optional worker suspend; DEV CLIs on production; inventing invite mint via internals/SQL; customer contact without P7; dry-checklist P8 “proof”.
+**Non-goals:** Deploying **0.1.5**; host-first activation; atomic two-plugin flip; optional worker suspend; DEV CLIs on production; inventing invite mint via internals/SQL; adding a UPR public mint-without-email API; treating `@example.invalid` as sufficient for P8 token proof; real customer contact without P7; dry-checklist P8 “proof”.
 
 ---
 
@@ -122,12 +122,12 @@ Tooling: [`m3-coordinated-pair-transition.md`](m3-coordinated-pair-transition.md
 |------|--------|
 | G-A | Phase A deploy accepted (pins exact; emails off) |
 | G-B | Ledger one real order + contact authorisation + expiry |
-| G-C | P8 operational pause drill — **blocked** until UPR generic developer/test-fixture capability exists |
-| G-D–G-H | Allowlist / enable / one send / transport proof / expansion — only after G-C and P7 as applicable |
+| G-C | P8 operational pause drill via ordinary post-boundary path: isolated synthetic order + approved test mailbox (ledger-only) + explicit synthetic-send approval → allowlist → master-enable → delivery → token → pause → revoke/cancel → cleanup. **Blocked** until operational synthetic-mail decision + mailbox exist. **Do not** add a UPR mint-without-email API. `@example.invalid` is not reliable for this proof. |
+| G-D–G-H | Allowlist / enable / one **real-customer** send / transport proof / expansion — only after G-C and **P7** as applicable (P7 ≠ synthetic-mail approval) |
 
-### P8 public-interface result
+### P8 path (amended)
 
-No supported production-safe public API/CLI exists to create an outstanding synthetic invitation token/session without sending email. P8 cannot be frozen or executed until a **separate generic UPR developer/test-fixture capability** is planned and shipped. Do not invent or use internal classes, direct SQL, or undocumented option/table manipulation.
+Use the ordinary controlled invitation workflow later — not a new UPR-core capability. Requirements: (1) one isolated synthetic order; (2) dedicated operator-controlled test mailbox recorded only in the restricted ledger; (3) explicit approval for that synthetic send; (4) normal host allowlist, master-enable, delivery event, token creation, pause, revoke, and cleanup. Do not invent internal/SQL mint paths. Do not rely on `@example.invalid` for token-creating mail proof.
 
 ---
 
@@ -146,7 +146,7 @@ Former WP-C embedded **0.1.5** pin is historical/superseded.
 
 ## 8. Recommendation
 
-Approve this corrected plan for **documentation/tooling freeze**. **Do not execute** production until P1/P4–P8 and a separate Product Owner execute order. Keep P7 customer-contact approval entirely separate. Exact next development dependency: **generic UPR fixture capability for P8**.
+Approve this corrected plan for **documentation/tooling freeze**. **Park production work** and return to product development. Resume production only under a separate execute order after P1/P4–P6 and the P8 synthetic-mail/test-mailbox decision. Keep **P7 real customer-contact** approval entirely separate from synthetic-mail approval. **Do not** add a UPR public mint-without-email API.
 
 ## Amendment log
 
@@ -157,4 +157,4 @@ Approve this corrected plan for **documentation/tooling freeze**. **Do not execu
 | 3 | Rollback-to-absent: deactivate host → UPR → remove pointers |
 | 4 | Worker = compose `cron` only; mail-worker omitted |
 | 5 | P2 COMPLETE for offline-validated `v0.1.1` pair SHAs |
-| 6 | P8 OPEN — no public invite-mint path; UPR fixture capability required |
+| 6 | P8 OPEN — ordinary synthetic-mail path; blocked on operational test mailbox decision; **no** UPR mint-without-email API |

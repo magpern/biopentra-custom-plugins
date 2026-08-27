@@ -21,5 +21,6 @@ Use one row per authorised synthetic or pilot send attempt. All times **UTC**.
 
 1. Empty `Final-send approval` means **do not send**.
 2. Ledger rows are not a substitute for UPR master enable, emergency pause, or host allowlist controls.
-3. Synthetic `@example.invalid` fixture drills use the same columns; mark reason `synthetic-fixture`.
-4. Never commit filled rows with real customer identifiers to this repository.
+3. Synthetic **non-mail** fixtures may use `@example.invalid`; mark reason `synthetic-fixture`.
+4. **P8 synthetic-mail** rows: use a dedicated operator-controlled **test mailbox** (address stored only in this restricted ledger — never in Git); mark reason `synthetic-mail-p8`; `Recipient-contact authorisation` applies to that mailbox only and is **not** P7 real-customer contact.
+5. Never commit filled rows with real customer identifiers or live mailbox addresses to this repository.
