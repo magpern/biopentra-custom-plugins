@@ -26,6 +26,31 @@ class Biopentra_Storefront_Pdp_Reviews_Section_Module {
 
 		add_action( 'woocommerce_after_single_product_summary', array( __CLASS__, 'render_section' ), self::ACTION_PRIORITY );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ), 40 );
+		/*
+		 * After WC default tabs (~10) and Blocksy empty-tabs @99: drop only the
+		 * Reviews tab so stock comments_template() cannot emit a second global
+		 * #reviews alongside the dedicated section (B4 single-anchor contract).
+		 */
+		add_filter( 'woocommerce_product_tabs', array( __CLASS__, 'remove_reviews_tab' ), 100 );
+	}
+
+	/**
+	 * Prevent duplicate global id="reviews" when the dedicated section renders.
+	 *
+	 * @param array<string, mixed> $tabs Product tabs.
+	 * @return array<string, mixed>
+	 */
+	public static function remove_reviews_tab( $tabs ) {
+		if ( ! is_array( $tabs ) ) {
+			return $tabs;
+		}
+
+		if ( ! self::should_render_section() ) {
+			return $tabs;
+		}
+
+		unset( $tabs['reviews'] );
+		return $tabs;
 	}
 
 	/**

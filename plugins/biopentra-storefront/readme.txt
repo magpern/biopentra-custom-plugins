@@ -44,6 +44,9 @@ No. Stock display only changes frontend availability text via `woocommerce_get_a
 
 == Changelog ==
 
+= 0.9.39 =
+* M3 B4 corrective: remove the WooCommerce/Blocksy Reviews product tab whenever the dedicated PDP reviews section renders, so the page emits exactly one global `id="reviews"` (dedicated section only).
+
 = 0.9.38 =
 * M3 B4: dedicated PDP reviews section module (`woocommerce_after_single_product_summary` @12) with direct-loaded WooCommerce reviews template fork (no `comments_open` early return; form gated by UPR `NativePdpForm::should_render()`).
 * Hash/focus helper for `#reviews` (A11). Elementor product documents skipped (Phase 1 Blocksy only).
