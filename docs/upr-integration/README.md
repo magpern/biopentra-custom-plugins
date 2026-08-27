@@ -27,5 +27,9 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md) | **Authoritative** production invitation-email rollout plan (**NO-GO / BLOCKED**; freeze only) |
 | [`m3-host-0.1.5-package-pin.md`](m3-host-0.1.5-package-pin.md) | Host **0.1.5** packaged UPR pin (`release.meta.json`; no `.git`) |
 | [`m3-private-package-build.md`](m3-private-package-build.md) | Private SHA-verified UPR `v0.3.0` + host `0.1.5` package build (no public Release) |
+| [`m3-coordinated-pair-transition.md`](m3-coordinated-pair-transition.md) | WP-A coordinated pair transition tooling + disposable rehearsal |
+| [`m3-production-readonly-inventory.md`](m3-production-readonly-inventory.md) | Read-only production inventory (2026-08-27; no mutations) |
+| [`m3-approval-ledger.template.md`](m3-approval-ledger.template.md) | Restricted approval-ledger **template** (no live PII) |
+| [`m3-production-invitation-prerequisites-closure.md`](m3-production-invitation-prerequisites-closure.md) | Prerequisites closure — **PRODUCTION STILL NO-GO** |
 
 **No production changes** are authorised from these documents without separate production replay approval.
