@@ -21,5 +21,6 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m3-pdp-reviews-section-b3-ownership-amendment.md`](m3-pdp-reviews-section-b3-ownership-amendment.md) | B3 ownership amendment record (UPR v0.2.2 + B2 host; PR #10 superseded) |
 | [`b2-upr-v0.2.2-host-integration.md`](b2-upr-v0.2.2-host-integration.md) | B2 host pin to UPR v0.2.2 — display helper + UX only; core owns native enforcement |
 | [`b2-dev-upr-v0.2.2-pin.md`](b2-dev-upr-v0.2.2-pin.md) | DEV bind-mount pin ops for UPR v0.2.2 (operator step; not in B2 PR deploy) |
+| [`m3-invitation-email-controls-host-policy.md`](m3-invitation-email-controls-host-policy.md) | **Authoritative** host pilot send-policy freeze (order-ID allowlist; depends on UPR invitation-email controls) |
 
 **No production changes** are authorised from these documents without separate production replay approval.
