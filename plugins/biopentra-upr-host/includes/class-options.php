@@ -16,14 +16,16 @@ final class Biopentra_Upr_Host_Options {
 	 */
 	public static function defaults(): array {
 		return array(
-			'confirm_on_shipped'       => true,
-			'support_delay_days'       => 14,
-			'support_delay_tags'       => array( 'order_issue', 'review_delay' ),
-			'support_suppress_tags'    => array( 'chargeback', 'compliance', 'safety' ),
-			'support_open_statuses'    => array( 'open', 'pending' ),
-			'enable_pdp_summary'       => true,
-			'enable_card_ratings'      => false,
-			'card_ratings_min_count'   => 3,
+			'confirm_on_shipped'                 => true,
+			'support_delay_days'                 => 14,
+			'support_delay_tags'                 => array( 'order_issue', 'review_delay' ),
+			'support_suppress_tags'              => array( 'chargeback', 'compliance', 'safety' ),
+			'support_open_statuses'              => array( 'open', 'pending' ),
+			'enable_pdp_summary'                 => true,
+			'enable_card_ratings'                => false,
+			'card_ratings_min_count'             => 3,
+			'pilot_invitation_sending_authorised' => false,
+			'pilot_order_id_allowlist'           => array(),
 		);
 	}
 
@@ -75,6 +77,31 @@ final class Biopentra_Upr_Host_Options {
 	 */
 	public static function support_open_statuses(): array {
 		return self::string_list( self::get( 'support_open_statuses', array( 'open', 'pending' ) ) );
+	}
+
+	public static function pilot_invitation_sending_authorised(): bool {
+		return (bool) self::get( 'pilot_invitation_sending_authorised', false );
+	}
+
+	/**
+	 * @return list<int>
+	 */
+	public static function pilot_order_id_allowlist(): array {
+		$raw = self::get( 'pilot_order_id_allowlist', array() );
+		if ( is_string( $raw ) ) {
+			$raw = preg_split( '/[\s,]+/', $raw ) ?: array();
+		}
+		if ( ! is_array( $raw ) ) {
+			return array();
+		}
+		$out = array();
+		foreach ( $raw as $id ) {
+			$id = (int) $id;
+			if ( $id > 0 ) {
+				$out[] = $id;
+			}
+		}
+		return array_values( array_unique( $out ) );
 	}
 
 	/**

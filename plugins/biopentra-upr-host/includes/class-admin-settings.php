@@ -53,6 +53,9 @@ final class Biopentra_Upr_Host_Admin_Settings {
 		$out['enable_pdp_summary']    = ! empty( $input['enable_pdp_summary'] );
 		$out['enable_card_ratings']   = ! empty( $input['enable_card_ratings'] );
 		$out['card_ratings_min_count'] = max( 1, (int) ( $input['card_ratings_min_count'] ?? 3 ) );
+		// Allowlist changes must never auto-enable pilot authorisation.
+		$out['pilot_invitation_sending_authorised'] = ! empty( $input['pilot_invitation_sending_authorised'] );
+		$out['pilot_order_id_allowlist']            = self::sanitize_order_id_list( $input['pilot_order_id_allowlist'] ?? array() );
 
 		foreach ( array( 'support_delay_tags', 'support_suppress_tags', 'support_open_statuses' ) as $list_key ) {
 			$raw = $input[ $list_key ] ?? $defaults[ $list_key ];
@@ -74,14 +77,50 @@ final class Biopentra_Upr_Host_Admin_Settings {
 		return $out;
 	}
 
+	/**
+	 * @param mixed $raw Raw allowlist.
+	 * @return list<int>
+	 */
+	private static function sanitize_order_id_list( $raw ): array {
+		if ( is_string( $raw ) ) {
+			$raw = preg_split( '/[\s,]+/', $raw ) ?: array();
+		}
+		if ( ! is_array( $raw ) ) {
+			return array();
+		}
+		$out = array();
+		foreach ( $raw as $id ) {
+			$id = (int) $id;
+			if ( $id > 0 ) {
+				$out[] = $id;
+			}
+		}
+		return array_values( array_unique( $out ) );
+	}
+
 	public static function render_page(): void {
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			return;
 		}
 		$settings = Biopentra_Upr_Host_Options::all();
+		$contract = class_exists( 'Biopentra_Upr_Host_Invitation_Send_Policy' )
+			? Biopentra_Upr_Host_Invitation_Send_Policy::contract_available()
+			: false;
 		?>
 		<div class="wrap">
 			<h1><?php echo esc_html__( 'Biopentra UPR Host', 'biopentra-upr-host' ); ?></h1>
+			<?php if ( ! $contract ) : ?>
+				<div class="notice notice-warning">
+					<p>
+						<?php
+						echo esc_html__(
+							'UPR invitation send-authorisation contract is unavailable. Pilot send policy is fail-closed until Universal Product Reviews exposes InvitationAuthorisation (v0.3.0+). Master enable and emergency pause remain UPR-core settings.',
+							'biopentra-upr-host'
+						);
+						?>
+					</p>
+				</div>
+			<?php endif; ?>
 			<form method="post" action="options.php">
 				<?php settings_fields( 'biopentra_upr_host' ); ?>
 				<table class="form-table" role="presentation">
@@ -133,6 +172,27 @@ final class Biopentra_Upr_Host_Admin_Settings {
 									<?php echo esc_html__( 'Minimum approved reviews', 'biopentra-upr-host' ); ?>
 									<input type="number" min="1" name="<?php echo esc_attr( Biopentra_Upr_Host_Options::OPTION_KEY ); ?>[card_ratings_min_count]" value="<?php echo esc_attr( (string) $settings['card_ratings_min_count'] ); ?>" />
 								</label>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php echo esc_html__( 'Pilot invitation sending authorised', 'biopentra-upr-host' ); ?></th>
+						<td>
+							<label>
+								<input type="checkbox" name="<?php echo esc_attr( Biopentra_Upr_Host_Options::OPTION_KEY ); ?>[pilot_invitation_sending_authorised]" value="1" <?php checked( ! empty( $settings['pilot_invitation_sending_authorised'] ) ); ?> />
+								<?php echo esc_html__( 'Authorise pilot invitation sending for allowlisted order IDs only', 'biopentra-upr-host' ); ?>
+							</label>
+							<p class="description">
+								<?php echo esc_html__( 'Temporary limited-rollout control. Does not replace UPR “Enable review invitation emails” or “Emergency pause invitations”. Changing the allowlist does not turn this on.', 'biopentra-upr-host' ); ?>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php echo esc_html__( 'Pilot order-ID allowlist', 'biopentra-upr-host' ); ?></th>
+						<td>
+							<input type="text" class="large-text" name="<?php echo esc_attr( Biopentra_Upr_Host_Options::OPTION_KEY ); ?>[pilot_order_id_allowlist]" value="<?php echo esc_attr( implode( ', ', array_map( 'strval', (array) ( $settings['pilot_order_id_allowlist'] ?? array() ) ) ) ); ?>" />
+							<p class="description">
+								<?php echo esc_html__( 'Comma-separated WooCommerce order IDs. Empty deny. Order IDs only — do not store email addresses here.', 'biopentra-upr-host' ); ?>
 							</p>
 						</td>
 					</tr>

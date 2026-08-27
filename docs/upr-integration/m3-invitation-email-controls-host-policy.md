@@ -138,10 +138,10 @@ Prefer focused PHPUnit or shell policy checks consistent with `scripts/b2-policy
 ## 7. Branch / PR rules
 
 - Branch: `feat/m3-upr-pilot-send-policy`
-- PR must **explicitly depend** on the UPR implementation PR / future `v0.3.0` contract.
-- **Do not merge** the host PR until the required UPR release is available.
+- PR depends on UPR annotated tag **`v0.3.0`** / commit `b2abc2defc30fc023601593aa1720cbfdd0a4f3c` (PR #18 merge).
+- Host pin constants must match that release (`REQUIRED_VERSION` / `REQUIRED_TAG` / `REQUIRED_COMMIT` + `InvitationAuthorisation` API check).
 - Do not bind-mount, activate, or deploy the host plugin as part of this package.
-- Do not bump UPR pin to `v0.3.0` in the same PR unless that release already exists; if pin update is deferred, document the dependency clearly in the PR body.
+- No production configuration.
 
 ---
 

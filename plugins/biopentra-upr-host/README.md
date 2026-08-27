@@ -6,6 +6,7 @@ Host adapters for [Universal Product Reviews](https://github.com/magpern/univers
 
 - Hybrid delivery bridge: `mpcf_fulfillment_state_changed` → `upr_order_delivery_confirmed` (`delivered` / `shipped_fallback`)
 - Support invitation actions from structured Fluent `wc_related_order` + allowlisted tags (no free-text)
+- Temporary pilot invitation send policy (`upr_invitation_send_authorisation`) — order-ID allowlist only
 - Branded PDP review availability messaging (display only)
 - Fail-closed DEV pilot preflight and verification CLIs
 - UPR dependency pin
@@ -17,14 +18,16 @@ Host adapters for [Universal Product Reviews](https://github.com/magpern/univers
 | Native product-comment enforcement | **UPR core** (`NativeSubmissionGuard`) |
 | Native PDP form eligibility | **UPR core** (`NativePdpForm::should_render()`) |
 | Branded unavailable copy / form chrome | **This host** |
+| Master invitation-email enable / emergency pause | **UPR core** |
+| Pilot order-ID allowlist send policy | **This host** (requires UPR `v0.3.0` contract) |
 | `comments_open` as availability gate | **Forbidden** (neither core nor host) |
 
-See [`docs/upr-integration/b2-upr-v0.2.2-host-integration.md`](../../docs/upr-integration/b2-upr-v0.2.2-host-integration.md).
+See [`docs/upr-integration/b2-upr-v0.2.2-host-integration.md`](../../docs/upr-integration/b2-upr-v0.2.2-host-integration.md) and [`docs/upr-integration/m3-invitation-email-controls-host-policy.md`](../../docs/upr-integration/m3-invitation-email-controls-host-policy.md).
 
 ## Requirements
 
 - WooCommerce
-- universal-product-reviews **0.2.2** @ `43c9989…` (DEV pilot pin — see B2 doc)
+- universal-product-reviews **0.3.0** @ `b2abc2d…` (annotated tag `v0.3.0`) — includes `InvitationAuthorisation`
 - mp-commerce-fulfillment with `mpcf_fulfillment_state_changed` (for delivery)
 
 ## DEV verification CLIs
@@ -42,6 +45,7 @@ Static policy (no site):
 
 ```bash
 bash scripts/b2-policy-check.sh
+bash scripts/m3-pilot-policy-check.sh
 ```
 
 ## WP6 note
