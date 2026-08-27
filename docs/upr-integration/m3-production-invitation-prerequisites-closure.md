@@ -43,9 +43,11 @@ No public GitHub Release / public ZIP. Private artifact workflows added (`workfl
 
 | Item | Value |
 |------|--------|
-| Branch / PR | `feat/m3-upr-coordinated-pair-transition` (this change set) |
+| PR | https://github.com/magpern/biopentra-custom-plugins/pull/25 |
+| Merge | `05317069bd3a9b63d1f9cbca05425700a8a044f6` |
 | Scripts | `scripts/upr-pair-transition/*` |
 | Disposable rehearsal | `rehearse-disposable.sh` — PASS (transition + rollback + suspend-fail abort) |
+
 
 ## 3. Production-ready target pair (packages only — not deployed)
 
