@@ -97,6 +97,14 @@ class Biopentra_Storefront {
 			}
 		}
 
+		$pdp_reviews_section_module = BIOPENTRA_STOREFRONT_PATH . 'modules/pdp-reviews-section/class-pdp-reviews-section-module.php';
+		if ( is_readable( $pdp_reviews_section_module ) ) {
+			require_once $pdp_reviews_section_module;
+			if ( class_exists( 'Biopentra_Storefront_Pdp_Reviews_Section_Module' ) ) {
+				Biopentra_Storefront_Pdp_Reviews_Section_Module::init();
+			}
+		}
+
 		$checkout_pause_module = BIOPENTRA_STOREFRONT_PATH . 'modules/checkout-pause/class-checkout-pause-module.php';
 		if ( is_readable( $checkout_pause_module ) ) {
 			require_once $checkout_pause_module;
