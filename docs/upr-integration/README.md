@@ -26,5 +26,6 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m3-dev-preproduction-rehearsal-acceptance.md`](m3-dev-preproduction-rehearsal-acceptance.md) | DEV pre-production rehearsal closure (**PASS**) |
 | [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md) | **Authoritative** production invitation-email rollout plan (**NO-GO / BLOCKED**; freeze only) |
 | [`m3-host-0.1.5-package-pin.md`](m3-host-0.1.5-package-pin.md) | Host **0.1.5** packaged UPR pin (`release.meta.json`; no `.git`) |
+| [`m3-private-package-build.md`](m3-private-package-build.md) | Private SHA-verified UPR `v0.3.0` + host `0.1.5` package build (no public Release) |
 
 **No production changes** are authorised from these documents without separate production replay approval.
