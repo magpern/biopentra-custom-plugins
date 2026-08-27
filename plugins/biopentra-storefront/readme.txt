@@ -44,6 +44,10 @@ No. Stock display only changes frontend availability text via `woocommerce_get_a
 
 == Changelog ==
 
+= 0.9.38 =
+* M3 B4: dedicated PDP reviews section module (`woocommerce_after_single_product_summary` @12) with direct-loaded WooCommerce reviews template fork (no `comments_open` early return; form gated by UPR `NativePdpForm::should_render()`).
+* Hash/focus helper for `#reviews` (A11). Elementor product documents skipped (Phase 1 Blocksy only).
+
 = 0.9.0 =
 * Milestone E — global chrome: SDS z-index coordination (CookieYes, mini-cart, header), UMC manual header switcher, 44×44 header touch targets, frozen header search control, compact mobile footer.
 * New assets: `chrome-v1.css` / `chrome-v1.js`; CLIs `setup-milestone-e-chrome-cli.php`, `setup-milestone-e-footer-cli.php`.
