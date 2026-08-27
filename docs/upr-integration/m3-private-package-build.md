@@ -1,4 +1,6 @@
-# M3 private package build (UPR v0.3.0 + host 0.1.5)
+> **Update:** Host packaging target is now `magpern/upr-host-adapter` `v0.1.0` (not embedded `0.1.5`).
+
+# M3 private package build (UPR v0.3.0 + host 0.1.0)
 
 **Status:** Repository prerequisite (WP-B). **NO-GO** for production install.  
 **Does not:** create a public GitHub Release, publish a public ZIP, or change DEV/production WordPress.
@@ -8,7 +10,7 @@
 | Package | Immutable ref | Peel commit |
 |---------|---------------|-------------|
 | UPR | annotated tag `v0.3.0` | `b2abc2defc30fc023601593aa1720cbfdd0a4f3c` |
-| Host | annotated tag `0.1.5` | recorded at tag peel on `biopentra-custom-plugins` |
+| Host | annotated tag `0.1.0` | recorded at tag peel on `biopentra-custom-plugins` |
 
 ## Build
 
@@ -35,21 +37,21 @@ Private CI: workflow **Package release (private artifact)** (`workflow_dispatch`
 ```bash
 cd /path/to/biopentra-custom-plugins
 git fetch --tags origin
-bash scripts/build-upr-host-package.sh 0.1.5
+bash scripts/build-upr-host-package.sh 0.1.0
 ```
 
 Outputs under `builds/zips/`:
 
-- `biopentra-upr-host-0.1.5.zip`
-- `biopentra-upr-host-0.1.5.SHA256SUMS`
+- `upr-host-adapter-0.1.0.zip`
+- `upr-host-adapter-0.1.0.SHA256SUMS`
 
 ## Verify (disposable tree)
 
 ```bash
 export UPR_ZIP=/path/to/universal-product-reviews-0.3.0.zip
 export UPR_SUMS=/path/to/universal-product-reviews-0.3.0.SHA256SUMS
-export HOST_ZIP=/path/to/biopentra-upr-host-0.1.5.zip
-export HOST_SUMS=/path/to/biopentra-upr-host-0.1.5.SHA256SUMS
+export HOST_ZIP=/path/to/upr-host-adapter-0.1.0.zip
+export HOST_SUMS=/path/to/upr-host-adapter-0.1.0.SHA256SUMS
 bash scripts/validate-m3-pair-packages.sh
 ```
 
