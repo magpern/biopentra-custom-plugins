@@ -2,6 +2,10 @@
 /**
  * PDP review availability UX via named WooCommerce hooks.
  *
+ * Branded messaging + form chrome only. Native submission enforcement and
+ * native-PDP form eligibility live in UPR core (v0.2.2+).
+ * Does not close comments_open and does not register preprocess_comment.
+ *
  * @package Biopentra_Upr_Host
  */
 
@@ -10,26 +14,28 @@ defined( 'ABSPATH' ) || exit;
 final class Biopentra_Upr_Host_Review_Availability_Ux {
 
 	public static function register(): void {
-		add_filter( 'comments_open', array( __CLASS__, 'maybe_close_product_reviews' ), 20, 2 );
 		add_action( 'woocommerce_before_single_product_reviews', array( __CLASS__, 'render_unavailable_message' ), 5 );
 		add_filter( 'woocommerce_product_review_comment_form_args', array( __CLASS__, 'filter_comment_form_args' ) );
 	}
 
 	/**
-	 * @param bool $open    Whether comments are open.
-	 * @param int  $post_id Post ID.
+	 * Display-only: whether the native PDP review form may be rendered.
+	 *
+	 * Delegates entirely to UPR `NativePdpForm::should_render()`. Fail-closed when
+	 * the required UPR API is unavailable. Does not authorize submission.
+	 *
+	 * @param int $product_id Product ID.
 	 */
-	public static function maybe_close_product_reviews( $open, $post_id ): bool {
-		$post_id = (int) $post_id;
-		if ( ! $open || $post_id <= 0 || 'product' !== get_post_type( $post_id ) ) {
-			return (bool) $open;
-		}
-
-		$availability = self::availability_for( $post_id );
-		if ( empty( $availability['can_submit'] ) ) {
+	public static function can_submit_for_product( int $product_id ): bool {
+		if ( $product_id <= 0 ) {
 			return false;
 		}
-		return (bool) $open;
+
+		if ( ! class_exists( \UniversalProductReviews\Submission\NativePdpForm::class ) ) {
+			return false;
+		}
+
+		return \UniversalProductReviews\Submission\NativePdpForm::should_render( $product_id );
 	}
 
 	public static function render_unavailable_message(): void {
@@ -41,16 +47,19 @@ final class Biopentra_Upr_Host_Review_Availability_Ux {
 			return;
 		}
 
-		$availability = self::availability_for( (int) $product->get_id() );
-		if ( ! empty( $availability['can_submit'] ) ) {
+		$product_id = (int) $product->get_id();
+		if ( self::can_submit_for_product( $product_id ) ) {
 			return;
 		}
+
+		$user_id      = get_current_user_id();
+		$availability = self::availability_for( $product_id, $user_id );
 
 		$message = apply_filters(
 			'upr_product_review_unavailable_message',
 			null,
-			(int) $product->get_id(),
-			get_current_user_id(),
+			$product_id,
+			$user_id,
 			$availability
 		);
 
@@ -60,6 +69,8 @@ final class Biopentra_Upr_Host_Review_Availability_Ux {
 				$message = __( 'Product reviews are available by invitation after delivery.', 'biopentra-upr-host' );
 			} elseif ( 'not_verified_purchaser' === $code ) {
 				$message = __( 'Only verified purchasers can leave a review for this product.', 'biopentra-upr-host' );
+			} elseif ( 'product_not_reviewable' === $code ) {
+				$message = __( 'This product is no longer accepting new reviews.', 'biopentra-upr-host' );
 			} elseif ( 'reviews_disabled' === $code ) {
 				$message = __( 'Reviews are currently disabled for this product.', 'biopentra-upr-host' );
 			} else {
@@ -78,9 +89,8 @@ final class Biopentra_Upr_Host_Review_Availability_Ux {
 		if ( ! is_product() ) {
 			return $args;
 		}
-		$product_id   = (int) get_the_ID();
-		$availability = self::availability_for( $product_id );
-		if ( empty( $availability['can_submit'] ) ) {
+		$product_id = (int) get_the_ID();
+		if ( ! self::can_submit_for_product( $product_id ) ) {
 			$args['title_reply'] = '';
 		}
 		return $args;
@@ -88,15 +98,16 @@ final class Biopentra_Upr_Host_Review_Availability_Ux {
 
 	/**
 	 * @param int $product_id Product ID.
+	 * @param int $user_id    User ID (0 = guest).
 	 * @return array{can_submit?:bool,reason_code?:?string,context?:array}
 	 */
-	private static function availability_for( int $product_id ): array {
+	private static function availability_for( int $product_id, int $user_id ): array {
 		$default = array(
-			'can_submit'  => true,
+			'can_submit'  => false,
 			'reason_code' => null,
 			'context'     => array(),
 		);
-		$result  = apply_filters( 'upr_product_review_availability', $default, $product_id, get_current_user_id() );
+		$result  = apply_filters( 'upr_product_review_availability', $default, $product_id, $user_id );
 		return is_array( $result ) ? $result : $default;
 	}
 }
