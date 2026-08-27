@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 final class Biopentra_Upr_Host_Verify_Pilot_Preflight_Command {
 
 	/**
-	 * Verify DEV environment, UPR v0.2.2 pin, and host adapter readiness.
+	 * Verify DEV environment, UPR v0.3.0 pin, and host adapter readiness.
 	 *
 	 * ## EXAMPLES
 	 *

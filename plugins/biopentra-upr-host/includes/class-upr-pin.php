@@ -9,11 +9,11 @@ defined( 'ABSPATH' ) || exit;
 
 final class Biopentra_Upr_Host_Upr_Pin {
 
-	public const REQUIRED_VERSION = '0.2.2';
+	public const REQUIRED_VERSION = '0.3.0';
 
-	public const REQUIRED_COMMIT = '43c9989291a4c7eab7f9fd57603c851486da287a';
+	public const REQUIRED_COMMIT = 'b2abc2defc30fc023601593aa1720cbfdd0a4f3c';
 
-	public const REQUIRED_TAG = 'v0.2.2';
+	public const REQUIRED_TAG = 'v0.3.0';
 
 	/**
 	 * @return array{ok:bool,version:string,commit:?string,errors:list<string>}
@@ -46,6 +46,9 @@ final class Biopentra_Upr_Host_Upr_Pin {
 		}
 		if ( ! class_exists( \UniversalProductReviews\Submission\NativeSubmissionGuard::class ) ) {
 			$errors[] = 'UPR NativeSubmissionGuard API is unavailable (required for native enforcement).';
+		}
+		if ( ! class_exists( \UniversalProductReviews\Invitations\InvitationAuthorisation::class ) ) {
+			$errors[] = 'UPR InvitationAuthorisation API is unavailable (required for invitation send policy).';
 		}
 
 		return array(

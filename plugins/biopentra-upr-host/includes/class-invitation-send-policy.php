@@ -33,8 +33,9 @@ final class Biopentra_Upr_Host_Invitation_Send_Policy {
 	public static function filter_authorisation( array $decision, array $context ): array {
 		$incoming = isset( $decision['decision'] ) ? (string) $decision['decision'] : 'allow';
 
-		// Never upgrade core denies (UPR should not call us in these cases).
-		if ( in_array( $incoming, array( 'paused', 'email_disabled' ), true ) ) {
+		// Restrictive only: never upgrade a core denial into allow (including
+		// email_disabled, paused, not_authorised, outside_scheduling_boundary).
+		if ( 'allow' !== $incoming ) {
 			return $decision;
 		}
 

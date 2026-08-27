@@ -106,23 +106,28 @@ assert_case(
 	'not_authorised'
 );
 
-// H6/H8: filter must not upgrade paused / email_disabled.
-$paused = Biopentra_Upr_Host_Invitation_Send_Policy::filter_authorisation(
-	array( 'decision' => 'paused' ),
-	array( 'order_id' => 100 )
+// H6/H8: filter must not upgrade any core denial (incl. boundary).
+Biopentra_Upr_Host_Options::$state = array(
+	'pilot_invitation_sending_authorised' => true,
+	'pilot_order_id_allowlist'            => array( 100 ),
 );
-if ( ( $paused['decision'] ?? '' ) !== 'paused' ) {
-	fwrite( STDERR, "FAIL H8 paused upgrade\n" );
-	exit( 1 );
+foreach (
+	array(
+		'paused'                      => 'paused',
+		'email_disabled'              => 'email_disabled',
+		'not_authorised'              => 'not_authorised',
+		'outside_scheduling_boundary' => 'outside_scheduling_boundary',
+	) as $label => $decision
+) {
+	$got = Biopentra_Upr_Host_Invitation_Send_Policy::filter_authorisation(
+		array( 'decision' => $decision, 'reason_code' => $label ),
+		array( 'order_id' => 100 )
+	);
+	if ( ( $got['decision'] ?? '' ) !== $decision ) {
+		fwrite( STDERR, "FAIL H8 cannot upgrade {$label}\n" );
+		exit( 1 );
+	}
 }
-$disabled = Biopentra_Upr_Host_Invitation_Send_Policy::filter_authorisation(
-	array( 'decision' => 'email_disabled' ),
-	array( 'order_id' => 100 )
-);
-if ( ( $disabled['decision'] ?? '' ) !== 'email_disabled' ) {
-	fwrite( STDERR, "FAIL H8 email_disabled upgrade\n" );
-	exit( 1 );
-}
-echo "OK H8 cannot upgrade paused/email_disabled\n";
+echo "OK H8 cannot upgrade core denials\n";
 
 echo "All pilot decision checks passed\n";

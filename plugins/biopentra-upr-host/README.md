@@ -27,8 +27,7 @@ See [`docs/upr-integration/b2-upr-v0.2.2-host-integration.md`](../../docs/upr-in
 ## Requirements
 
 - WooCommerce
-- universal-product-reviews **0.2.2** @ `43c9989…` (current DEV pilot pin — see B2 doc)
-- For pilot send policy: UPR **≥ 0.3.0** with `InvitationAuthorisation` (do not activate until that release is pinned)
+- universal-product-reviews **0.3.0** @ `b2abc2d…` (annotated tag `v0.3.0`) — includes `InvitationAuthorisation`
 - mp-commerce-fulfillment with `mpcf_fulfillment_state_changed` (for delivery)
 
 ## DEV verification CLIs
