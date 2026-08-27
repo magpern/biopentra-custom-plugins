@@ -14,6 +14,7 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m3-wp6-discontinued-verification.md`](m3-wp6-discontinued-verification.md) | WP6 discontinued verification evidence (v0.2.0 baseline) |
 | [`upr-core-catalogue-hidden-correction.md`](upr-core-catalogue-hidden-correction.md) | Separate UPR-core correction proposal (pilot blocker) |
 | [`m3-closure.md`](m3-closure.md) | M3 execution closure report |
-| [`m3-dev-pilot-revalidation.md`](m3-dev-pilot-revalidation.md) | **DEV pilot accepted** — UPR v0.2.1 revalidation addendum |
+| [`m3-dev-pilot-revalidation.md`](m3-dev-pilot-revalidation.md) | DEV pilot revalidation addendum (UPR v0.2.1 pin evidence) |
+| [`m3-pdp-reviews-section.md`](m3-pdp-reviews-section.md) | **Authoritative** M3 PDP `#reviews` section freeze (tabs remain off; A1–A20) |
 
 **No production changes** are authorised from these documents without separate production replay approval.
