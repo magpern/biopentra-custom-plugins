@@ -18,12 +18,12 @@
 - Repository prerequisites for the **embedded** `0.1.5` path are obsolete for production packaging.
 - Corrected freeze + package SHAs: [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md), [`m3-production-operational-prerequisites-closure.md`](m3-production-operational-prerequisites-closure.md).
 - P2 **COMPLETE** for the `v0.1.1` pair (offline validate); P1 and P4–P8 remain open.
-- **P8 note:** No public UPR CLI/API to mint outstanding invite token/session without email; P8 remains **OPEN** until a generic UPR developer/test-fixture capability is planned and shipped.
+- **P8 note:** Use ordinary post-boundary synthetic mail to an approved test mailbox (ledger-only). **Do not** add a UPR mint-without-email API. P8 remains **OPEN** until that operational synthetic-mail decision exists.
 - No production package/deployment of either host identity has occurred.
 
 ## Next step
 
-Continue only with **separately approved** work: plan/ship the UPR generic fixture capability required for P8, then a production operational rehearsal under explicit authorisation. Do not enable emails or contact customers.
+**Park production work** and return to product development. When production gates resume: record the P8 synthetic-mail/test-mailbox decision; do not enable real customer contact without P7.
 
 Authority for extraction: freeze tag `upr-host-adapter-extraction-freeze` → `a19cb41e92966e0d387ae0c33d2fb4d260815df6`.
 

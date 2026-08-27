@@ -17,7 +17,7 @@ This closure records repository prerequisites and gate status. It does **not** a
 | Production host target | **`upr-host-adapter` `v0.1.1`** / `5bc67c7dd7946178b75e1b7d91d32d1e2074296e` |
 | UPR core | Unchanged: `v0.3.0` / `b2abc2defc30fc023601593aa1720cbfdd0a4f3c` |
 | P2 | **COMPLETE** for offline-validated `v0.1.1` pair (new ZIP SHAs; meta SHA unchanged) |
-| P8 | **OPEN** — blocked on missing UPR public developer/test-fixture invite-mint capability |
+| P8 | **OPEN** — blocked on operational synthetic-mail decision + test mailbox (no UPR mint API) |
 | Activation order | Stage ≠ activate; **UPR first**, host second; rollback host→UPR→absent |
 
 Freeze tag for this correction: `m3-production-operational-prerequisites-freeze`.
@@ -91,7 +91,7 @@ See [`m3-production-readonly-inventory.md`](m3-production-readonly-inventory.md)
 | **P5** | **OPEN** — template only |
 | **P6** | **OPEN** |
 | **P7** | **OPEN** — separate customer-contact approval |
-| **P8** | **OPEN** — no public UPR invite-mint without email; requires generic UPR developer/test-fixture capability |
+| **P8** | **OPEN** — ordinary post-boundary synthetic mail to approved test mailbox; blocked on operational mailbox/approval decision; **do not** add UPR mint-without-email API |
 
 ## 7. Runtime change proof
 
@@ -106,5 +106,6 @@ Unauthorised prior exception (API_TOKEN rotation during inventory) remains recor
 ## 8. Exact next action
 
 1. Keep production **NO-GO**.  
-2. Plan/ship **generic UPR developer/test-fixture capability** required for P8.  
-3. Separately approved production operational rehearsal only under explicit production-change authorisation — still no customer contact without P7.
+2. **Park production work** and return to product development.  
+3. When resuming: decide/record the **operational synthetic-mail test mailbox** (ledger-only) required for P8; do **not** add a UPR public mint-without-email API.  
+4. Separately approved production operational rehearsal only under explicit production-change authorisation — real customer contact still requires P7 (distinct from synthetic-mail approval).
