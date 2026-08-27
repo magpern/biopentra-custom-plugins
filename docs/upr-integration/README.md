@@ -15,7 +15,8 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`upr-core-catalogue-hidden-correction.md`](upr-core-catalogue-hidden-correction.md) | Separate UPR-core correction proposal (pilot blocker) |
 | [`m3-closure.md`](m3-closure.md) | M3 execution closure report |
 | [`m3-dev-pilot-revalidation.md`](m3-dev-pilot-revalidation.md) | DEV pilot revalidation addendum (UPR v0.2.1 pin evidence) |
-| [`m3-pdp-reviews-section.md`](m3-pdp-reviews-section.md) | **Authoritative** M3 PDP `#reviews` section freeze (tabs remain off; A1–A20) |
+| [`m3-pdp-reviews-section.md`](m3-pdp-reviews-section.md) | **Authoritative** M3 PDP `#reviews` section freeze (tabs remain off; A1–A20; **B3 ownership amended**) |
+| [`m3-pdp-reviews-section-b3-ownership-amendment.md`](m3-pdp-reviews-section-b3-ownership-amendment.md) | B3 ownership amendment record (UPR v0.2.2 + B2 host; PR #10 superseded) |
 | [`b2-upr-v0.2.2-host-integration.md`](b2-upr-v0.2.2-host-integration.md) | B2 host pin to UPR v0.2.2 — display helper + UX only; core owns native enforcement |
 | [`b2-dev-upr-v0.2.2-pin.md`](b2-dev-upr-v0.2.2-pin.md) | DEV bind-mount pin ops for UPR v0.2.2 (operator step; not in B2 PR deploy) |
 

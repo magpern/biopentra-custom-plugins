@@ -1,13 +1,16 @@
 # M3 PDP Reviews Section — freeze specification
 
-**Status:** Frozen for implementation (documentation only at this freeze).  
-**Freeze tag:** `m3-pdp-reviews-section-freeze`  
+**Status:** Frozen for implementation (documentation only at original freeze). **Ownership amended by B3** — see [`m3-pdp-reviews-section-b3-ownership-amendment.md`](m3-pdp-reviews-section-b3-ownership-amendment.md); amendment freeze tag `m3-pdp-reviews-section-freeze-b3`.  
+**Original freeze tag:** `m3-pdp-reviews-section-freeze` (unchanged; not moved)  
 **Baseline host commit (preserved, unaltered):** `18d0b3d69391a087270d70d532e265406d07ed73`  
-**UPR pin (unchanged):** annotated tag `v0.2.1` / commit `e5b9636a42db7aaf0837c7b6034a24b062fd4275`  
+**UPR pin (B3 amended):** annotated tag `v0.2.2` / commit `43c9989291a4c7eab7f9fd57603c851486da287a`  
+**Host pin (B2 merged):** `biopentra-upr-host` **0.1.3** on main (`8a14ba1ebed69492a7690249fe762c38bc453707`)  
 **Scope:** Standard Blocksy product pages on DEV. Elementor product documents are **out of scope** for Phase 1.  
 **Production:** No production change, release, or ZIP authorised by this freeze.
 
-This document is the **authoritative** host specification for restoring a real PDP `#reviews` experience while Blocksy product tabs remain disabled. Implementation must satisfy the A1–A20 matrix below. Do not re-litigate architecture here after freeze.
+This document is the **authoritative** host specification for restoring a real PDP `#reviews` experience while Blocksy product tabs remain disabled. Implementation must satisfy the A1–A20 matrix below. Do not re-litigate architecture here after freeze. **B3 amends ownership/dependency only** — rendering architecture, template exception, sticky-bar lock, Blocksy-only scope, and A1–A20 remain unchanged.
+
+**B4 gate:** PDP section implementation may begin only after both **UPR `v0.2.2`** and **merged B2 host integration** are present (satisfied on main after PR #11). No DEV bind-mount/deploy is implied by this amendment.
 
 ---
 
@@ -46,9 +49,9 @@ Filter priority **99 is not** an `after_single_product_summary` priority. Action
 - Add a **dedicated** PDP reviews section for standard Blocksy PDPs.
 - Hook: `woocommerce_after_single_product_summary` at **action priority 12**.
 - Render **native WooCommerce review markup** (`#reviews.woocommerce-Reviews`, `.commentlist`, `.woocommerce-Reviews-title`) via a **narrow plugin-owned template exception** (see §4).
-- Remove host UX use of `comments_open=false` for submission gating.
-- Gate the native PDP form with display-only `can_submit_for_product()` (§5).
-- Enforce logged-in native POST rejection when UPR availability says `can_submit=false` (§5).
+- Remove host UX use of `comments_open=false` for submission gating (**done in B2** — host must not reintroduce it).
+- Gate the native PDP form with UPR display-only `NativePdpForm::should_render()` (host may thin-wrap as `can_submit_for_product()` for storefront callers; no second rule engine) (§5).
+- Enforce logged-in native POST rejection in **UPR core** (`NativeSubmissionGuard`) when availability `can_submit=false` (§5). Host must not register a competing `preprocess_comment` guard.
 
 ### 3.2 Markup contract
 
@@ -60,7 +63,7 @@ Filter priority **99 is not** an `after_single_product_summary` priority. Action
       <ol class="commentlist">…</ol>
       <!-- or .woocommerce-noreviews when empty -->
     </div>
-    <!-- #review_form_wrapper ONLY when can_submit_for_product() is true -->
+    <!-- #review_form_wrapper ONLY when NativePdpForm::should_render() / host thin wrapper is true -->
     <p class="biopentra-upr-host-review-unavailable" role="status">…</p>
     <!-- when submission is unavailable -->
   </div>
@@ -107,7 +110,7 @@ Filter priority **99 is not** an `after_single_product_summary` priority. Action
 ### 4.3 Upstream version and rebase policy
 
 - File header must record: `Based on WooCommerce templates/single-product-reviews.php @version <exact DEV WC template version at implement time>` (known stock reference at freeze planning: **9.7.0**; confirm against live DEV WooCommerce at implementation).
-- Surgical deltas only: remove `comments_open` early-return; gate form with host `can_submit_for_product()`; keep native list / title / hooks (`woocommerce_before_single_product_reviews`, `woocommerce_product_review_list_args`, etc.).
+- Surgical deltas only: remove `comments_open` early-return; gate form with UPR `NativePdpForm::should_render()` (via host thin wrapper if desired); keep native list / title / hooks (`woocommerce_before_single_product_reviews`, `woocommerce_product_review_list_args`, etc.).
 - On WooCommerce upgrades: **diff** core template vs fork; re-apply only those deltas. No silent drift.
 - Changelog entry required whenever the fork is rebased.
 
@@ -115,22 +118,23 @@ Filter priority **99 is not** an `after_single_product_summary` priority. Action
 
 ## 5. Native PDP display and submission security contract
 
-**M2 guest submission remains only on `/upr-review/form/`.** Native PDP must never become the guest invitation submit path.
+**M2 guest submission remains exclusively on `/upr-review/form/`.** Native PDP must never become the guest invitation submit path.
 
-### 5.1 Display helper — `can_submit_for_product()` (host)
+### 5.1 Display helper — UPR `NativePdpForm::should_render()` (B3 amended)
 
+**Owner:** UPR core (`v0.2.2+`).  
 **Purpose:** decide whether native PDP `#review_form_wrapper` is rendered.  
 **Not** an authorization oracle. **Not** a new authorization rule set.
 
-**Frozen definition:**
+Host storefront/template code must call:
 
-1. Call existing `upr_product_review_availability` for `(product_id, current_user_id)`.
-2. If `can_submit` is false → return false (covers `product_not_reviewable`, `not_verified_purchaser`, `guest_requires_invitation`, `reviews_disabled`, etc.).
-3. If `user_id <= 0` → return false (guests never get the native PDP form, even when UPR reports `can_submit=true` with `context.authorization = form_session`).
-4. If `context.authorization === 'form_session'` → return false.
-5. Otherwise return true (logged-in, UPR says submit allowed, product reviewable).
+```php
+\UniversalProductReviews\Submission\NativePdpForm::should_render( $product_id );
+```
 
-Must **delegate** purchase / reviewability / guest eligibility to UPR. Must not invent weaker checks.
+or the host thin fail-closed wrapper `Biopentra_Upr_Host_Review_Availability_Ux::can_submit_for_product()` which **only** delegates to that API (no second rule engine).
+
+Behaviour (owned by UPR): guests always false (including M2 form sessions); availability `can_submit=false` → false; logged-in allowed only when UPR availability permits.
 
 ### 5.2 Actor matrix
 
@@ -138,36 +142,36 @@ Must **delegate** purchase / reviewability / guest eligibility to UPR. Must not 
 |-------|-----------------|-----------------|--------------------|-------------------------|
 | Guest, no session | Visible (approved / empty state) | Absent; unavailable message | Rejected — UPR `GuestSubmissionGuard` 403 | N/A without invite |
 | Guest, M2 session | Visible | **Absent** (display forces false) | Rejected unless UPR session **and** request-local `GuestSubmitAuthorization::arm()` (M2 handler only) | **Only** allowed guest submit path |
-| Logged-in non-purchaser (verification required) | Visible | Absent | Rejected — **host `preprocess_comment`** when availability `can_submit=false` | N/A |
+| Logged-in non-purchaser (verification required) | Visible | Absent | Rejected — **UPR `NativeSubmissionGuard`** when availability `can_submit=false` | N/A |
 | Logged-in verified purchaser, product reviewable | Visible | Present | Allowed (UPR moderation hold still applies) | N/A |
-| Catalog-hidden / discontinued (`product_not_reviewable`) | **Approved reviews remain visible** | Absent for **all** identities | Rejected — host preprocess (logged-in); UPR guest guard (guest); M2 submit already checks `ProductReviewability` | Must not accept for non-reviewable product |
+| Catalog-hidden / discontinued (`product_not_reviewable`) | **Approved reviews remain visible** | Absent for **all** identities | Rejected — UPR `NativeSubmissionGuard` (logged-in) / UPR guest guard (guest); M2 submit already checks `ProductReviewability` | Must not accept for non-reviewable product |
 
-### 5.3 Host `preprocess_comment` (approved)
+### 5.3 Native submission enforcement (B3 amended — UPR core)
 
-- Scope: product reviews only.
-- When `upr_product_review_availability` reports `can_submit=false` for the current user/product → `wp_die` 403.
-- Closes the logged-in gap: UPR `GuestSubmissionGuard` intentionally passes logged-in users; WooCommerce template verification is display-only.
+- **Owner:** UPR `NativeSubmissionGuard` (`preprocess_comment` @15) on UPR **`v0.2.2`**.
+- When `upr_product_review_availability` reports `can_submit=false` → `wp_die` 403 for in-scope product reviews (all identities that reach the filter after guest guard).
+- Host **must not** register a competing `preprocess_comment` submission guard.
 - Must not weaken or bypass M2 armed guest submit (M2 does not use native PDP POST).
 
-### 5.4 Host UX change (approved)
+### 5.4 Host UX (B3 amended)
 
-- **Remove** setting `comments_open` to false for UX gating.
-- Keep unavailable messaging on `woocommerce_before_single_product_reviews` (including `product_not_reviewable` copy).
-
+- Host **must not** set `comments_open` to false for availability/submission gating.
+- Host owns branded unavailable messaging on `woocommerce_before_single_product_reviews` (including `product_not_reviewable` copy).
+- Host owns UPR pin / preflight / DEV integration verification CLIs.
 ---
 
 ## 6. Repository ownership and branches
 
-| Concern | Repository | Branch (implementation) | Primary files |
-|---------|------------|-------------------------|---------------|
-| Host availability + logged-in native-post boundary | `biopentra-custom-plugins` (`biopentra-upr-host`) | `fix/m3-pdp-reviews-availability-host` | `plugins/biopentra-upr-host/includes/class-review-availability-ux.php` (host 0.1.2 → 0.1.3) |
-| Dedicated section + template fork | `biopentra-custom-plugins` (`biopentra-storefront`) | `fix/m3-pdp-reviews-section-storefront` | `modules/pdp-reviews-section/…`, `templates/woocommerce/single-product-reviews.php` |
-| CSS / focus styles | `biopentra-blocksy-child` | `fix/m3-pdp-reviews-section-css` | `assets/pdp/reviews.css` (preserve contrast fix), `functions.php` version bump |
-| Acceptance tests | `storefront-acceptance` | `test/m3-pdp-reviews-section` | `tests/upr-pdp-reviews-section.spec.ts`, extend `upr-pdp-mobile-a11y.spec.ts`, schema fixture path |
+| Concern | Repository | Branch / status | Primary files |
+|---------|------------|-----------------|---------------|
+| UPR native enforcement + display helper | `universal-product-reviews` | **Shipped** `v0.2.2` @ `43c9989…` | `NativeSubmissionGuard`, `NativePdpForm` |
+| Host pin, branded UX, DEV verification (no `comments_open` / no host `preprocess_comment`) | `biopentra-custom-plugins` (`biopentra-upr-host`) | **Merged B2** PR #11 → main `8a14ba1…` (host 0.1.3) | `class-review-availability-ux.php`, `class-upr-pin.php`, `verify-native-submit-dev` |
+| Dedicated section + template fork | `biopentra-custom-plugins` (`biopentra-storefront`) | `fix/m3-pdp-reviews-section-storefront` (**B4**) | `modules/pdp-reviews-section/…`, `templates/woocommerce/single-product-reviews.php` |
+| CSS / focus styles | `biopentra-blocksy-child` | `fix/m3-pdp-reviews-section-css` (**B4**) | `assets/pdp/reviews.css` (preserve contrast fix), `functions.php` version bump |
+| Acceptance tests | `storefront-acceptance` | `test/m3-pdp-reviews-section` (**B4**) | `tests/upr-pdp-reviews-section.spec.ts`, extend `upr-pdp-mobile-a11y.spec.ts`, schema fixture path |
 | Closure evidence | `biopentra-custom-plugins` | follow-up docs | `docs/upr-integration/m3-dev-pilot-revalidation.md` |
-| UPR generic core | `universal-product-reviews` | **no change** | remain `v0.2.1` / `e5b9636…` |
 
-**Freeze baseline:** implementation branches must start from host baseline `18d0b3d` (or a later main that contains it) without rewriting that commit.
+**Freeze baseline:** implementation branches must start from host baseline `18d0b3d` (or a later main that contains it) without rewriting that commit. B4 must start from a main that includes B2 (`8a14ba1…`) and pins UPR `v0.2.2`.
 
 **Phase 1 PDP scope:** standard Blocksy product templates that fire `woocommerce_after_single_product_summary`. Elementor product documents are explicitly out of scope.
 
@@ -185,10 +189,10 @@ Fixture policy: `@example.invalid` only; controlled fixtures; primary Blocksy PD
 | A4 | Approved reviews for exact product | Playwright + fixture | fixture with 1 approved review | storefront-acceptance | `.commentlist > li.review` count = 1; matches fixture |
 | A5 | Empty state | Playwright | zero-review product | storefront-acceptance | `#reviews` present; `.woocommerce-noreviews` visible |
 | A6 | M2 guest form path | HTTP / existing UPR coverage | fixture invite → `/upr-review/form/` | UPR (no core change) | Form GET OK; native PDP has no guest form |
-| A7a | Guest direct native POST rejected | WP-CLI / integration | guest `preprocess_comment` without arm | host / UPR | 403; no comment |
-| A7b | Logged-in non-purchaser: no form + POST rejected | Playwright + WP-CLI | non-buyer fixture | host + acceptance | `#review_form_wrapper` absent; unavailable message; POST rejected; no comment |
+| A7a | Guest direct native POST rejected | WP-CLI / integration | guest `preprocess_comment` without arm | UPR (+ host verify CLI) | 403; no comment |
+| A7b | Logged-in non-purchaser: no form + POST rejected | Playwright + WP-CLI | non-buyer fixture | UPR + host + acceptance | `#review_form_wrapper` absent; unavailable message; POST rejected; no comment |
 | A7c | Logged-in verified purchaser: form only if reviewable | Playwright | verified buyer on reviewable product | acceptance | `#review_form_wrapper` present iff product reviewable |
-| A7d | Catalog-hidden: no form for guest **or** logged-in (incl. verified) | Playwright + WP-CLI | hidden fixture with approved review | acceptance + host | List visible; form absent for both identities; POST rejected for both |
+| A7d | Catalog-hidden: no form for guest **or** logged-in (incl. verified) | Playwright + WP-CLI | hidden fixture with approved review | acceptance + UPR/host | List visible; form absent for both identities; POST rejected for both |
 | A8 | Hidden: approved reviews visible, submit closed | WP6 + A7d | `verify-wp6-dev` + Playwright | host + acceptance | A7d + WP6 **8/8** |
 | A9 | Mobile 360px | Playwright | `mobile-360` project | acceptance | A1–A5 pass |
 | A10 | Desktop 1440px | Playwright | `desktop-1440` project | acceptance | A1–A5 pass |
@@ -201,18 +205,18 @@ Fixture policy: `@example.invalid` only; controlled fixtures; primary Blocksy PD
 | A17 | Schema review/rating parity | Playwright JSON-LD | same | acceptance | DOM approved count ↔ `aggregateRating`; no orphan reviews when count 0 |
 | A18 | No global product-tab regression | Playwright DOM | same PDP | acceptance | No Description/Additional tab panels; `data-bp-reviews-section` present |
 | A19 | WP6 catalogue-hidden lifecycle | WP-CLI | `wp biopentra-upr-host verify-wp6-dev` | host | 8/8 |
-| A20 | UPR pin preflight | WP-CLI | `wp biopentra-upr-host verify-pilot-preflight` | host | PASS on UPR **v0.2.1** @ `e5b9636…` |
+| A20 | UPR pin preflight | WP-CLI | `wp biopentra-upr-host verify-pilot-preflight` | host | PASS on UPR **v0.2.2** @ `43c9989…` |
 
 ### Targeted validation only
 
 Do **not** run the full storefront-acceptance suite for this change. Use only:
 
 ```bash
-# Host (DEV)
+# Host (DEV) — requires bind-mount to UPR v0.2.2 (operator step; not this amendment)
 cd /opt/biopentra/apps/wordpress
 docker compose run --rm wpcli wp biopentra-upr-host verify-wp6-dev
 docker compose run --rm wpcli wp biopentra-upr-host verify-pilot-preflight
-# plus host CLI covering A7a–A7d if added in WP-1
+docker compose run --rm wpcli wp biopentra-upr-host verify-native-submit-dev
 
 # Playwright (targeted)
 bash tools/run-dev-playwright.sh --project=mobile-360 \
@@ -225,8 +229,8 @@ bash tools/run-dev-playwright.sh --project=desktop-1440 \
 
 ## 8. Implementation sequence
 
-1. **Host availability and logged-in native-post boundary** — branch `fix/m3-pdp-reviews-availability-host`: remove `comments_open=false` UX; implement `can_submit_for_product()`; add host `preprocess_comment` reject; bump host to 0.1.3; targeted A7*/A19/A20.
-2. **Storefront reviews section / template** — branch `fix/m3-pdp-reviews-section-storefront`: module @ action priority 12; direct-load template fork; hash-focus behaviour; targeted A1–A5, A11, A18.
+1. **~~Host availability / native-post boundary~~** — **Done via B1 (UPR `v0.2.2`) + B2 (host PR #11).** Former branch `fix/m3-pdp-reviews-availability-host` (PR #10) was **superseded** (not merged).
+2. **Storefront reviews section / template (B4)** — branch `fix/m3-pdp-reviews-section-storefront`: module @ action priority 12; direct-load template fork; hash-focus behaviour; targeted A1–A5, A11, A18. **Blocked until UPR `v0.2.2` and merged B2** (both satisfied on docs main after B2 merge; DEV bind-mount still operator-controlled).
 3. **Blocksy child CSS** — branch `fix/m3-pdp-reviews-section-css`: section spacing + `#reviews` focus styles; preserve rating-summary contrast fix; no sticky-bar changes; targeted A12–A13.
 4. **Acceptance tests** — branch `test/m3-pdp-reviews-section`: implement A1–A18 matrix in Playwright / helpers.
 5. **DEV validation and closure evidence** — run targeted matrix only; update `m3-dev-pilot-revalidation.md`; do not mark pilot accepted until A1–A20 pass.
@@ -235,7 +239,7 @@ bash tools/run-dev-playwright.sh --project=desktop-1440 \
 
 ## 9. Explicit non-goals
 
-- No UPR generic-core changes (remain **v0.2.1** / `e5b9636a42db7aaf0837c7b6034a24b062fd4275`)
+- No further UPR generic-core changes required for B4 display (remain on **`v0.2.2`** / `43c9989…` unless a new defect appears)
 - No production deployment, configuration, database, release, or ZIP
 - No re-enabling Blocksy Description / Additional Information tabs
 - No sticky-buy-bar DOM, selectors, JavaScript, or CSS contract changes
@@ -244,6 +248,7 @@ bash tools/run-dev-playwright.sh --project=desktop-1440 \
 - No Elementor product-document support in Phase 1
 - No full storefront-acceptance suite as part of this change
 - No customer PII in fixtures, logs, or evidence
+- No host `comments_open` availability gate; no host competing `preprocess_comment` submission guard
 
 ---
 
@@ -251,12 +256,12 @@ bash tools/run-dev-playwright.sh --project=desktop-1440 \
 
 | Layer | Rollback |
 |-------|----------|
-| Host (WP-1) | Revert `class-review-availability-ux.php` / host 0.1.3; display may regress to dead `#reviews` / closed comments behaviour |
-| Storefront section (WP-2) | Unregister module / remove action priority 12 hook; summary links become dead again; no tab chrome returns |
+| Host (B2) | Revert host 0.1.3 pin/UX; do **not** restore host `comments_open` / host preprocess as security |
+| Storefront section (B4) | Unregister module / remove action priority 12 hook; summary links become dead again; no tab chrome returns |
 | Template fork | Delete plugin template; section stops rendering native list/form |
-| Child CSS (WP-3) | Revert `reviews.css` / version bump |
-| Acceptance (WP-4) | Revert specs |
-| UPR | No change to roll back; pin stays `v0.2.1` |
+| Child CSS | Revert `reviews.css` / version bump |
+| Acceptance | Revert specs |
+| UPR | Pin back only with deliberate host pin change; security lives in `v0.2.2` |
 | Production | Untouched — nothing to roll back from this freeze |
 
 ---
@@ -266,9 +271,11 @@ bash tools/run-dev-playwright.sh --project=desktop-1440 \
 | Item | Value |
 |------|--------|
 | Document | `docs/upr-integration/m3-pdp-reviews-section.md` |
-| Freeze branch | `docs/m3-pdp-reviews-section-freeze` |
-| Annotated tag | `m3-pdp-reviews-section-freeze` |
+| Original freeze branch | `docs/m3-pdp-reviews-section-freeze` |
+| Original annotated tag | `m3-pdp-reviews-section-freeze` (unchanged) |
+| B3 ownership amendment | [`m3-pdp-reviews-section-b3-ownership-amendment.md`](m3-pdp-reviews-section-b3-ownership-amendment.md) |
+| B3 amendment freeze tag | `m3-pdp-reviews-section-freeze-b3` |
 | Host baseline preserved | `18d0b3d69391a087270d70d532e265406d07ed73` |
-| UPR pin | `v0.2.1` / `e5b9636a42db7aaf0837c7b6034a24b062fd4275` |
+| UPR pin (amended) | `v0.2.2` / `43c9989291a4c7eab7f9fd57603c851486da287a` |
 
-**Next step after freeze:** implement against this document’s A1–A20 matrix, starting with sequence step 1 (host availability and logged-in native-post boundary).
+**Next step after B3:** B4 PDP section implementation against this document’s A1–A20 matrix (storefront template fork + CSS + acceptance), after controlled DEV UPR bind-mount to `v0.2.2` when replaying.
