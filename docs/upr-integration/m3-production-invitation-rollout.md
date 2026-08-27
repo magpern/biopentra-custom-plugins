@@ -1,6 +1,6 @@
 # M3 production invitation-email rollout (authoritative freeze)
 
-> **Ownership correction (2026-08-27):** Production host package target is no longer `biopentra-upr-host` **0.1.5**. Future target is standalone [`upr-host-adapter`](https://github.com/magpern/upr-host-adapter) **`v0.1.0`**. See [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addendum.md). Production remains **NO-GO**; no production deploy has occurred.
+> **Ownership correction (2026-08-27):** Production host package target is no longer `biopentra-upr-host` **0.1.5**. Future target is standalone [`upr-host-adapter`](https://github.com/magpern/upr-host-adapter) **`v0.1.1`**. See [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addendum.md). Production remains **NO-GO**; no production deploy has occurred.
 
 **Status:** **NO-GO / BLOCKED** — planning freeze only.  
 **Freeze tag:** `m3-production-invitation-rollout-freeze` (annotated; peels to this documentation merge).  
