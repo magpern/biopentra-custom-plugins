@@ -24,14 +24,15 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`m3-invitation-email-controls-host-policy.md`](m3-invitation-email-controls-host-policy.md) | **Authoritative** host pilot send-policy freeze (order-ID allowlist; depends on UPR invitation-email controls) |
 | [`m3-dev-preproduction-rehearsal.md`](m3-dev-preproduction-rehearsal.md) | **Authoritative** DEV pre-production invitation-email rehearsal freeze (UPR `v0.3.0`; no production) |
 | [`m3-dev-preproduction-rehearsal-acceptance.md`](m3-dev-preproduction-rehearsal-acceptance.md) | DEV pre-production rehearsal closure (**PASS**) |
-| [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md) | **Authoritative** production invitation-email rollout plan (**NO-GO / BLOCKED**; freeze only) |
-| [`m3-host-0.1.5-package-pin.md`](m3-host-0.1.5-package-pin.md) | Host **0.1.5** packaged UPR pin (`release.meta.json`; no `.git`) |
-| [`m3-private-package-build.md`](m3-private-package-build.md) | Private SHA-verified UPR `v0.3.0` + host `0.1.5` package build (no public Release) |
-| [`m3-coordinated-pair-transition.md`](m3-coordinated-pair-transition.md) | WP-A coordinated pair transition tooling + disposable rehearsal |
+| [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md) | **Authoritative** production invitation-email rollout plan (**NO-GO / BLOCKED**; UPR `v0.3.0` + `upr-host-adapter` `v0.1.1`; `0.1.5` superseded) |
+| [`m3-host-0.1.5-package-pin.md`](m3-host-0.1.5-package-pin.md) | Host **0.1.5** packaged UPR pin — **SUPERSEDED** (use `upr-host-adapter` `v0.1.1`) |
+| [`m3-private-package-build.md`](m3-private-package-build.md) | Private SHA-verified UPR `v0.3.0` + `upr-host-adapter` `v0.1.1` package build (no public Release) |
+| [`m3-coordinated-pair-transition.md`](m3-coordinated-pair-transition.md) | WP-A pair transition (stage≠activate; UPR then host; rollback-to-absent) + disposable rehearsal |
 | [`m3-production-readonly-inventory.md`](m3-production-readonly-inventory.md) | Read-only production inventory (2026-08-27) |
 | [`m3-production-readonly-inventory-procedure.md`](m3-production-readonly-inventory-procedure.md) | Safe read-only inventory procedure (forbid unredacted `docker compose config`) |
 | [`m3-approval-ledger.template.md`](m3-approval-ledger.template.md) | Restricted approval-ledger **template** (no live PII) |
-| [`m3-production-invitation-prerequisites-closure.md`](m3-production-invitation-prerequisites-closure.md) | Prerequisites closure — **PRODUCTION STILL NO-GO** |
+| [`m3-production-invitation-prerequisites-closure.md`](m3-production-invitation-prerequisites-closure.md) | Prerequisites closure — **PRODUCTION STILL NO-GO** (corrected `v0.1.1` pair; P8 fixture dependency) |
+| [`m3-production-operational-prerequisites-closure.md`](m3-production-operational-prerequisites-closure.md) | Operational prerequisites WP-DOC freeze addendum — package SHAs + gates; **PRODUCTION STILL NO-GO** |
 | [`upr-host-adapter-extraction.md`](upr-host-adapter-extraction.md) | **Authoritative** extraction of host adapter to `magpern/upr-host-adapter` (supersedes embedded `0.1.5`) |
 | [`upr-host-adapter.md`](upr-host-adapter.md) | Private-host pointer to standalone `upr-host-adapter` |
 | [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addendum.md) | Ownership correction addendum (does not rewrite historical closures) |

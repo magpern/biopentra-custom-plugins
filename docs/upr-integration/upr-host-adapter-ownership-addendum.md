@@ -1,8 +1,8 @@
 # Addendum — UPR host adapter ownership correction
 
 **Date:** 2026-08-27  
-**Does not rewrite** historical M3 closure / rehearsal / prerequisites documents.  
-**Production:** Untouched by this ownership correction.
+**Does not rewrite** historical M3 closure / rehearsal / prerequisites documents in place; see corrected freeze + operational addendum for current production packaging truth.  
+**Production:** Untouched by this ownership correction. **PRODUCTION STILL NO-GO.**
 
 ## Correction
 
@@ -10,15 +10,20 @@
 |--------|---------|
 | Embedded `biopentra-custom-plugins/plugins/biopentra-upr-host` | Standalone https://github.com/magpern/upr-host-adapter |
 | Production package candidate host **0.1.5** | **Superseded** — not a production candidate |
-| Future production host target | **`upr-host-adapter` `v0.1.1`** / merge `5bc67c7dd7946178b75e1b7d91d32d1e2074296e` |
+| Production host target | **`upr-host-adapter` `v0.1.1`** / merge `5bc67c7dd7946178b75e1b7d91d32d1e2074296e` |
 | UPR core | Unchanged: `v0.3.0` / `b2abc2defc30fc023601593aa1720cbfdd0a4f3c` |
 
 ## Status
 
 - Repository prerequisites for the **embedded** `0.1.5` path are obsolete for production packaging.
-- Production invitation rollout remains **NO-GO**.
+- Corrected freeze + package SHAs: [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md), [`m3-production-operational-prerequisites-closure.md`](m3-production-operational-prerequisites-closure.md).
+- P2 **COMPLETE** for the `v0.1.1` pair (offline validate); P1 and P4–P8 remain open.
+- **P8 note:** No public UPR CLI/API to mint outstanding invite token/session without email; P8 remains **OPEN** until a generic UPR developer/test-fixture capability is planned and shipped.
 - No production package/deployment of either host identity has occurred.
-- Next: revise the frozen production prerequisite plan to use `upr-host-adapter v0.1.1`, then continue only with separately approved production operational prerequisites.
+
+## Next step
+
+Continue only with **separately approved** work: plan/ship the UPR generic fixture capability required for P8, then a production operational rehearsal under explicit authorisation. Do not enable emails or contact customers.
 
 Authority for extraction: freeze tag `upr-host-adapter-extraction-freeze` → `a19cb41e92966e0d387ae0c33d2fb4d260815df6`.
 

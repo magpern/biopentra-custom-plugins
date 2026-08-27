@@ -1,14 +1,28 @@
 # M3 production-invitation prerequisites — closure
 
-**Verdict:** `PREREQUISITES IMPLEMENTED — PRODUCTION STILL NO-GO`  
-**Date:** 2026-08-27 (corrected P1–P8 mapping)  
-**Authority:** [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md) (freeze tag below)
+**Verdict:** `PREREQUISITE DESIGN AND TOOLING COMPLETE — PRODUCTION STILL NO-GO`  
+**Date:** 2026-08-27 (corrected target pair + P1–P8 mapping)  
+**Authority:** [`m3-production-invitation-rollout.md`](m3-production-invitation-rollout.md)  
+**Operational addendum:** [`m3-production-operational-prerequisites-closure.md`](m3-production-operational-prerequisites-closure.md)
 
-This closure records repository prerequisites and the corrected gate status. It does **not** authorise production fixture drills, token redaction probes, deployment, email enablement, allowlist population, or customer contact.
+This closure records repository prerequisites and gate status. It does **not** authorise production fixture drills, token redaction probes, deployment, email enablement, allowlist population, or customer contact.
 
 **Standing rule:** Production must not be mutated unless explicitly authorised for that action. See §7 for an unauthorised exception that already occurred and must not be repeated.
 
-## 1. Documentation freeze
+## Correction (2026-08-27 WP-DOC freeze)
+
+| Former | Corrected |
+|--------|-----------|
+| Production host package `biopentra-upr-host` **0.1.5** | **SUPERSEDED** |
+| Production host target | **`upr-host-adapter` `v0.1.1`** / `5bc67c7dd7946178b75e1b7d91d32d1e2074296e` |
+| UPR core | Unchanged: `v0.3.0` / `b2abc2defc30fc023601593aa1720cbfdd0a4f3c` |
+| P2 | **COMPLETE** for offline-validated `v0.1.1` pair (new ZIP SHAs; meta SHA unchanged) |
+| P8 | **OPEN** — blocked on missing UPR public developer/test-fixture invite-mint capability |
+| Activation order | Stage ≠ activate; **UPR first**, host second; rollback host→UPR→absent |
+
+Freeze tag for this correction: `m3-production-operational-prerequisites-freeze`.
+
+## 1. Documentation freeze (original invitation plan)
 
 | Item | Value |
 |------|--------|
@@ -16,86 +30,81 @@ This closure records repository prerequisites and the corrected gate status. It 
 | Peel / merge | `c3904787747a4962e0e4acd7cd3cc57a91494e18` |
 | PR | https://github.com/magpern/biopentra-custom-plugins/pull/22 |
 
-## 2. Work packages
+## 2. Historical work packages (embedded 0.1.5 path — superseded for prod packaging)
 
-### WP-C — host 0.1.5 package pin
+### WP-C — host 0.1.5 package pin (historical)
 
 | Item | Value |
 |------|--------|
 | PR | https://github.com/magpern/biopentra-custom-plugins/pull/23 |
 | Merge | `0efaae61862061d3b674a63a9f26e327cb205d63` |
-| Annotated tag | `0.1.5` → same peel |
+| Annotated tag | `0.1.5` |
+| Production status | **SUPERSEDED** by `upr-host-adapter` `v0.1.1` |
 
-### WP-B — private packages
+### WP-B — private packages (historical 0.1.5-era build)
 
 | Item | Value |
 |------|--------|
 | UPR PR | https://github.com/magpern/universal-product-reviews/pull/19 |
-| UPR merge | `fa84dec9c52a2d26f600be7fa3fc023619a97e5a` |
-| Host build PR | https://github.com/magpern/biopentra-custom-plugins/pull/24 |
-| Host build merge | `7701eac1954fdf9e2f97075062bcde6a368caec1` |
-| UPR ZIP SHA-256 | `e7f02bc5bc69c1c7cca2aa20d4dc834d08938515675d4e8658759e246b54d0fa` |
-| UPR meta SHA-256 | `0af6348642c30648377204e7eb423b8364ecd7898870d282c8b329631be3adc2` |
-| Host ZIP SHA-256 | `2fc1c5130a8fd9d4ad4e106949eab051fad1a39c38f2a71e975aacdeb45f9b8d` |
-| Disposable validate | `scripts/validate-m3-pair-packages.sh` — PASS (pin accept + tamper deny; DEV WP untouched) |
+| UPR ZIP SHA-256 (0.1.5-era) | `e7f02bc5bc69c1c7cca2aa20d4dc834d08938515675d4e8658759e246b54d0fa` — **superseded** by 2026-08-27 rebuild |
+| UPR meta SHA-256 | `0af6348642c30648377204e7eb423b8364ecd7898870d282c8b329631be3adc2` — **unchanged** |
+| Host ZIP SHA-256 (0.1.5) | `2fc1c5130a8fd9d4ad4e106949eab051fad1a39c38f2a71e975aacdeb45f9b8d` — **not** a production candidate |
 
-No public GitHub Release / public ZIP. Private artifact workflows added (`workflow_dispatch` + `upload-artifact`).
+### WP-B — corrected pair (offline validate 2026-08-27)
+
+| Artifact | SHA-256 |
+|----------|---------|
+| `upr-host-adapter-0.1.1.zip` | `654328c1f8e5605e14b00c4f973bd22ef1a31c86fdbda63bb1a19111b94b16d9` |
+| `universal-product-reviews-0.3.0.zip` | `43beb998579743caf0b2b32dc5fe26470804cd21131ed678b983d19d06e9b8c6` |
+| `universal-product-reviews-0.3.0.release.meta.json` | `0af6348642c30648377204e7eb423b8364ecd7898870d282c8b329631be3adc2` |
+
+Disposable validate: `scripts/validate-m3-pair-packages.sh` — PASS. Host builder: `upr-host-adapter` `scripts/build-release-package.sh v0.1.1`. No public GitHub Release.
 
 ### WP-A — pair transition
 
-| Item | Value |
-|------|--------|
-| PR | https://github.com/magpern/biopentra-custom-plugins/pull/25 |
-| Merge | `05317069bd3a9b63d1f9cbca05425700a8a044f6` |
-| Scripts | `scripts/upr-pair-transition/*` |
-| Disposable rehearsal | `rehearse-disposable.sh` — PASS (transition + rollback + suspend-fail abort) |
+Scripts under `scripts/upr-pair-transition/` updated for stage≠activate, UPR-then-host activation, host-then-UPR deactivation, rollback-to-absent, and refuse superseded identity. Disposable rehearsal PASS.
 
 ## 3. Production-ready target pair (packages only — not deployed)
 
 | Component | Ref |
 |-----------|-----|
 | UPR | `v0.3.0` / `b2abc2defc30fc023601593aa1720cbfdd0a4f3c` |
-| Host | `0.1.5` / `0efaae61862061d3b674a63a9f26e327cb205d63` |
+| Host | `upr-host-adapter` `v0.1.1` / `5bc67c7dd7946178b75e1b7d91d32d1e2074296e` |
+| Former | `biopentra-upr-host` `0.1.5` — **SUPERSEDED** |
 
 ## 4. Read-only production inventory
 
-See [`m3-production-readonly-inventory.md`](m3-production-readonly-inventory.md) and safe procedure [`m3-production-readonly-inventory-procedure.md`](m3-production-readonly-inventory-procedure.md).
-
-Summary: production had **no** UPR/host installed at inventory time; `DISABLE_WP_CRON=true`; compose service **`cron`** is the enforceable suspend target; `woo_has_product_tabs` missing; no token probe / fixtures / customer mail performed as part of M3 invitation gates.
+See [`m3-production-readonly-inventory.md`](m3-production-readonly-inventory.md). P3 COMPLETE. No UPR/host installed at inventory; `cron` is suspend target; mail-worker omitted.
 
 ## 5. Worker suspension
 
-**Concretely implementable:** `docker compose stop cron` / `start cron` at `/home/magpern/woocommerce`.  
-Disposable tooling rehearsed; **production** transition not rehearsed → **P1 open**.
+**Concretely implementable:** `docker compose stop cron` / `start cron` at `/home/magpern/woocommerce`. Production transition not rehearsed → **P1 OPEN**.
 
-## 6. P1–P8 status (frozen-plan mapping)
+## 6. P1–P8 status
 
-| ID | Frozen-plan meaning | Status |
-|----|---------------------|--------|
-| **P1** | Staged SHA-verified release dirs + coordinated pair transition with mandatory worker suspend/proof/resume (production) | **OPEN** — repo tooling + disposable rehearsal exist; **production** transition not rehearsed |
-| **P2** | SHA-verified packages for UPR `v0.3.0` and host `0.1.5` | **COMPLETE** (private builds + checksums + disposable validate) |
-| **P3** | Read-only live production inventory (no PII) | **COMPLETE** (see inventory doc; procedure hardened after compose-config exposure) |
-| **P4** | Live production token-redaction proof on URI-bearing logs + external sink confirmation | **OPEN** — not run (forbidden in prerequisites initiative) |
-| **P5** | Restricted approval ledger (order ID + required fields) outside public Git | **OPEN** — **template only**; no approved live ledger location / named operators |
-| **P6** | DB backup + restore-time note | **OPEN** — not performed |
-| **P7** | Product Owner final customer-contact approval after documentation freeze | **OPEN** — not issued |
-| **P8** | Operational production emergency-pause drill on synthetic `@example.invalid` fixture | **OPEN** — not run |
+| ID | Status |
+|----|--------|
+| **P1** | **OPEN** — production transition not rehearsed |
+| **P2** | **COMPLETE** — `v0.1.1` pair offline-validated |
+| **P3** | **COMPLETE** |
+| **P4** | **OPEN** |
+| **P5** | **OPEN** — template only |
+| **P6** | **OPEN** |
+| **P7** | **OPEN** — separate customer-contact approval |
+| **P8** | **OPEN** — no public UPR invite-mint without email; requires generic UPR developer/test-fixture capability |
 
 ## 7. Runtime change proof
 
-| System | Changed by this initiative? |
+| System | Changed by this WP-DOC freeze? |
 |--------|------------------------------|
-| DEV WordPress runtime / bind-mounts / options | **No** |
+| DEV WordPress invitation controls | **No** (emails remain disabled; pause off) |
 | Public GitHub Releases | **No** |
-| Production (authorised M3 invitation gates) | **No** deploy / UPR install / email enable / allowlist / fixture / redaction probe / customer contact |
-| Production (unauthorised exception — 2026-08-27) | **Yes — do not repeat.** After inventory printed expanded compose secrets into an agent terminal log, an agent rotated `API_TOKEN` (WP worker-token hash + `.env.worker`) and briefly stopped/restarted `proton-bridge` / `biopentra-mail-worker` **without** an explicit production-change authorisation for that step. `IMAP_PASS` was **not** changed. Operator later forbade all further production mutation. Post-restart worker status check was HTTP 200. |
+| Production | **No** |
 
-Secret-presence audit (docs repo / PR bodies): leaked plaintext values were **not** found in Git `HEAD` or listed PR bodies. Agent terminal logs are outside Git.
+Unauthorised prior exception (API_TOKEN rotation during inventory) remains recorded historically and must not be repeated.
 
-## 8. Explicit non-performance statement (M3 invitation gates)
+## 8. Exact next action
 
-Production fixture drill (P8), HTTP token-redaction / sink proof (P4), UPR/host deployment, email enablement, allowlist population, historical reconciliation backfill, DB backup/restore-time note (P6), live approval ledger (P5), PO customer-contact approval (P7), and customer contact were **not** performed as authorised M3 invitation work.
-
-## 9. Exact next action
-
-A **separately approved** production operational rehearsal, beginning with synthetic `@example.invalid` fixture and redaction proof — **not** customer email — and only under **explicit** production-change authorisation.
+1. Keep production **NO-GO**.  
+2. Plan/ship **generic UPR developer/test-fixture capability** required for P8.  
+3. Separately approved production operational rehearsal only under explicit production-change authorisation — still no customer contact without P7.
