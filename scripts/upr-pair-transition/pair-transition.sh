@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# Coordinated pair transition: host then UPR (fixed order).
+# Coordinated pair transition: place both release trees, then activate UPR then host.
+# Staging/placement is not WordPress activation. Host Requires Plugins: UPR.
 # Never enables emails, allowlist, or reconciliation.
 #
 # Requires config env (see config.example.env). Fail-closed.
@@ -20,8 +21,10 @@ UPR_TREE="$(pair_release_dir "${UPR_SLUG}" "${UPR_VERSION}")"
 pair_verify_tree_manifest "${HOST_TREE}" "${HOST_TREE}.SHA256SUMS"
 pair_verify_tree_manifest "${UPR_TREE}" "${UPR_TREE}.SHA256SUMS"
 
-# UPR package meta must exist (host 0.1.5 pin)
 [[ -f "${UPR_TREE}/release.meta.json" ]] || pair_die "staged UPR missing release.meta.json"
+
+[[ -n "${ACTIVATE_UPR_CMD:-}" ]] || pair_die "ACTIVATE_UPR_CMD unset (activate UPR after placement)"
+[[ -n "${ACTIVATE_HOST_CMD:-}" ]] || pair_die "ACTIVATE_HOST_CMD unset (activate host after UPR)"
 
 pair_preflight_safety
 pair_suspend_workers
@@ -31,17 +34,23 @@ if [[ -n "${MAINTENANCE_ON_CMD:-}" ]]; then
 	pair_run "${MAINTENANCE_ON_CMD}"
 fi
 
-echo "==> Switch host ${HOST_VERSION}"
-pair_switch_slug "${HOST_SLUG}" "${HOST_VERSION}"
-
-echo "==> Switch UPR ${UPR_VERSION}"
+# Place both trees under the plugins link root before any activation.
+echo "==> Place UPR ${UPR_VERSION} (filesystem only)"
 pair_switch_slug "${UPR_SLUG}" "${UPR_VERSION}"
 
-echo "==> Post-switch verify"
+echo "==> Place host ${HOST_VERSION} (filesystem only)"
+pair_switch_slug "${HOST_SLUG}" "${HOST_VERSION}"
+
+echo "==> Activate UPR first (Requires Plugins / migrations)"
+pair_run "${ACTIVATE_UPR_CMD}"
+
+echo "==> Activate host second"
+pair_run "${ACTIVATE_HOST_CMD}"
+
+echo "==> Post-activate verify"
 [[ -n "${POST_VERIFY_CMD:-}" ]] || pair_die "POST_VERIFY_CMD unset"
 pair_run "${POST_VERIFY_CMD}"
 
-# Emails must still be disabled
 [[ -n "${CONFIRM_EMAILS_DISABLED_CMD:-}" ]] || pair_die "CONFIRM_EMAILS_DISABLED_CMD unset"
 pair_run "${CONFIRM_EMAILS_DISABLED_CMD}"
 

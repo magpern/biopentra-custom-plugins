@@ -1,9 +1,10 @@
-> **SUPERSEDED (2026-08-27):** Host identity moved to `upr-host-adapter` `v0.1.1`. See [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addendum.md).
+> **SUPERSEDED (2026-08-27):** Host identity moved to `upr-host-adapter` `v0.1.1`. See [`upr-host-adapter-ownership-addendum.md`](upr-host-adapter-ownership-addendum.md). Do **not** use this document as a production packaging target.
 
-# Host UPR package pin (biopentra-upr-host 0.1.5)
+# Host UPR package pin (biopentra-upr-host 0.1.5) — historical
 
-**Status:** Repository prerequisite for production packaging (WP-C).  
-**Production target:** host **0.1.5** + UPR **v0.3.0** / `b2abc2defc30fc023601593aa1720cbfdd0a4f3c`.  
+**Status:** **SUPERSEDED** historical WP-C record.  
+**Former production target (obsolete):** host **0.1.5** + UPR **v0.3.0** / `b2abc2defc30fc023601593aa1720cbfdd0a4f3c`.  
+**Current production host target:** `upr-host-adapter` **`v0.1.1`**.  
 **Not authorised:** production deploy, email enablement, or customer contact.
 
 ## Mechanism

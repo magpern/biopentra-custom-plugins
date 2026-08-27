@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# Fixed pair rollback: UPR previous, then host previous (reverse of deploy).
-# Emails remain disabled; workers suspended throughout switches.
+# Fixed pair rollback: deactivate host then UPR, then restore previous/absent pointers.
+# Emails remain disabled; workers suspended throughout.
 #
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -9,6 +9,9 @@ ROOT="$(cd "$(dirname "$0")" && pwd)"
 source "${ROOT}/lib.sh"
 
 pair_require_config
+
+[[ -n "${DEACTIVATE_HOST_CMD:-}" ]] || pair_die "DEACTIVATE_HOST_CMD unset"
+[[ -n "${DEACTIVATE_UPR_CMD:-}" ]] || pair_die "DEACTIVATE_UPR_CMD unset"
 
 pair_preflight_safety
 pair_suspend_workers
@@ -18,10 +21,16 @@ if [[ -n "${MAINTENANCE_ON_CMD:-}" ]]; then
 	pair_run "${MAINTENANCE_ON_CMD}"
 fi
 
-echo "==> Restore UPR previous (fixed order step 1)"
+echo "==> Deactivate host first"
+pair_run "${DEACTIVATE_HOST_CMD}"
+
+echo "==> Deactivate UPR second"
+pair_run "${DEACTIVATE_UPR_CMD}"
+
+echo "==> Restore UPR previous/absent (filesystem)"
 pair_restore_previous "${UPR_SLUG}"
 
-echo "==> Restore host previous (fixed order step 2)"
+echo "==> Restore host previous/absent (filesystem)"
 pair_restore_previous "${HOST_SLUG}"
 
 echo "==> Post-rollback verify"

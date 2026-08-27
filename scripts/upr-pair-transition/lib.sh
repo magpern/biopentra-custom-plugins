@@ -11,10 +11,35 @@ pair_require_config() {
 	[[ -n "${WORKER_SUSPEND_CMD:-}" ]] || pair_die "WORKER_SUSPEND_CMD unset (mandatory)"
 	[[ -n "${WORKER_RESUME_CMD:-}" ]] || pair_die "WORKER_RESUME_CMD unset (mandatory)"
 	[[ -n "${WORKER_PROOF_CMD:-}" ]] || pair_die "WORKER_PROOF_CMD unset (mandatory)"
-	[[ -n "${HOST_VERSION:-}" ]] || HOST_VERSION="0.1.5"
+
+	# Defaults only for the current production host identity. Superseded identity refused.
+	[[ -n "${HOST_VERSION:-}" ]] || HOST_VERSION="0.1.1"
 	[[ -n "${UPR_VERSION:-}" ]] || UPR_VERSION="0.3.0"
-	[[ -n "${HOST_SLUG:-}" ]] || HOST_SLUG="biopentra-upr-host"
+	[[ -n "${HOST_SLUG:-}" ]] || HOST_SLUG="upr-host-adapter"
 	[[ -n "${UPR_SLUG:-}" ]] || UPR_SLUG="universal-product-reviews"
+
+	if [[ "${HOST_SLUG}" == "biopentra-upr-host" || "${HOST_VERSION}" == "0.1.5" ]]; then
+		pair_die "superseded host identity refused (HOST_SLUG=${HOST_SLUG} HOST_VERSION=${HOST_VERSION}); use upr-host-adapter / 0.1.1"
+	fi
+	if [[ "${HOST_SLUG}" != "upr-host-adapter" ]]; then
+		pair_die "HOST_SLUG must be upr-host-adapter (got ${HOST_SLUG})"
+	fi
+	if [[ "${HOST_VERSION}" != "0.1.1" ]]; then
+		pair_die "HOST_VERSION must be 0.1.1 (got ${HOST_VERSION})"
+	fi
+	if [[ "${UPR_SLUG}" != "universal-product-reviews" ]]; then
+		pair_die "UPR_SLUG must be universal-product-reviews (got ${UPR_SLUG})"
+	fi
+	if [[ "${UPR_VERSION}" != "0.3.0" ]]; then
+		pair_die "UPR_VERSION must be 0.3.0 (got ${UPR_VERSION})"
+	fi
+
+	# previous = restore prior tree; absent = remove live link (first-install rollback).
+	[[ -n "${PAIR_PREVIOUS_MODE:-}" ]] || PAIR_PREVIOUS_MODE="previous"
+	case "${PAIR_PREVIOUS_MODE}" in
+		previous|absent) ;;
+		*) pair_die "PAIR_PREVIOUS_MODE must be previous|absent (got ${PAIR_PREVIOUS_MODE})" ;;
+	esac
 }
 
 pair_release_dir() {
@@ -40,7 +65,6 @@ pair_verify_tree_manifest() {
 	local tree="$1" manifest="$2"
 	[[ -f "${manifest}" ]] || pair_die "missing manifest ${manifest}"
 	[[ -d "${tree}" ]] || pair_die "missing tree ${tree}"
-	# Manifest format: "<sha256>  <relative-path>" per file under tree (or single zip line handled by caller).
 	while read -r sum rel; do
 		[[ -n "${sum}" ]] || continue
 		[[ "${rel}" == *"*"* ]] && continue
@@ -79,7 +103,7 @@ pair_proof_no_upr_send() {
 }
 
 pair_preflight_safety() {
-	echo "==> Preflight safety (emails off, pause recorded, pilot deny, manifests)"
+	echo "==> Preflight safety (emails off, pilot deny, manifests)"
 	[[ -n "${PREFLIGHT_CMD:-}" ]] || pair_die "PREFLIGHT_CMD unset"
 	# shellcheck disable=SC2086
 	pair_run "${PREFLIGHT_CMD}"
@@ -101,13 +125,16 @@ pair_switch_slug() {
 		if [[ -n "${old}" ]]; then
 			ln -sfn "${old}" "${pointer_previous}"
 		fi
+	else
+		# First install: mark previous as absent so rollback can remove the link.
+		rm -f "${pointer_previous}"
+		: > "${pointer_previous}.absent"
 	fi
 	ln -sfn "${tree}" "${pointer_current}"
-	# Atomic-ish switch: symlink via temp then rename
 	local tmp="${link}.pair-new.$$"
 	ln -sfn "${tree}" "${tmp}"
 	mv -Tf "${tmp}" "${link}"
-	echo "switched ${slug} -> ${tree}"
+	echo "placed ${slug} -> ${tree}"
 }
 
 pair_restore_previous() {
@@ -116,6 +143,13 @@ pair_restore_previous() {
 	pointer_previous="$(pair_pointer "${slug}" previous)"
 	pointer_current="$(pair_pointer "${slug}" current)"
 	link="${PLUGINS_LINK_ROOT}/${slug}"
+
+	if [[ "${PAIR_PREVIOUS_MODE}" == "absent" || -f "${pointer_previous}.absent" ]]; then
+		echo "removing ${slug} to absent (first-install rollback)"
+		rm -f "${link}" "${pointer_current}" "${pointer_previous}" "${pointer_previous}.absent"
+		return 0
+	fi
+
 	[[ -L "${pointer_previous}" || -e "${pointer_previous}" ]] || pair_die "no previous pointer for ${slug}"
 	prev="$(readlink -f "${pointer_previous}")"
 	[[ -d "${prev}" ]] || pair_die "previous tree missing for ${slug}: ${prev}"
