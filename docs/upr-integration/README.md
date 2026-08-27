@@ -11,6 +11,7 @@ Host-side documentation for [Universal Product Reviews](https://github.com/magpe
 | [`M3-host-integration.md`](M3-host-integration.md) | **Authoritative** M3 host integration freeze (UPR v0.2.0) |
 | [`m3-dev-replay.md`](m3-dev-replay.md) | M3 DEV replay checklist / evidence |
 | [`dev-replay-blocksy-product-tabs.md`](dev-replay-blocksy-product-tabs.md) | DEV-only Blocksy `woo_has_product_tabs=no` replay (B4 tabs-off baseline) |
+| [`m3-b4-dev-pilot-acceptance.md`](m3-b4-dev-pilot-acceptance.md) | B4 DEV pilot acceptance closure (**PASS — DEV PILOT ACCEPTED**) |
 | [`m3-dev-upr-v0.2.1-pin.md`](m3-dev-upr-v0.2.1-pin.md) | DEV UPR v0.2.1 bind-mount pin + preflight |
 | [`m3-wp6-discontinued-verification.md`](m3-wp6-discontinued-verification.md) | WP6 discontinued verification evidence (v0.2.0 baseline) |
 | [`upr-core-catalogue-hidden-correction.md`](upr-core-catalogue-hidden-correction.md) | Separate UPR-core correction proposal (pilot blocker) |
