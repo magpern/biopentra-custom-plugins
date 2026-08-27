@@ -20,18 +20,18 @@ trap cleanup EXIT
 echo "==> Disposable rehearsal root: ${DISPOSABLE}"
 
 UPR_ZIP="${UPR_ZIP:-${ROOT}/../universal-product-reviews/builds/universal-product-reviews-0.3.0.zip}"
-HOST_ZIP="${HOST_ZIP:-${ROOT}/builds/zips/upr-host-adapter-0.1.0.zip}"
+HOST_ZIP="${HOST_ZIP:-${ROOT}/builds/zips/upr-host-adapter-0.1.1.zip}"
 UPR_SUMS="${UPR_SUMS:-${ROOT}/../universal-product-reviews/builds/universal-product-reviews-0.3.0.SHA256SUMS}"
-HOST_SUMS="${HOST_SUMS:-${ROOT}/builds/zips/upr-host-adapter-0.1.0.SHA256SUMS}"
+HOST_SUMS="${HOST_SUMS:-${ROOT}/builds/zips/upr-host-adapter-0.1.1.SHA256SUMS}"
 
 # Fallback: locate relative to monorepo sibling
 if [[ ! -f "${UPR_ZIP}" && -f /opt/biopentra/dev/universal-product-reviews/builds/universal-product-reviews-0.3.0.zip ]]; then
 	UPR_ZIP=/opt/biopentra/dev/universal-product-reviews/builds/universal-product-reviews-0.3.0.zip
 	UPR_SUMS=/opt/biopentra/dev/universal-product-reviews/builds/universal-product-reviews-0.3.0.SHA256SUMS
 fi
-if [[ ! -f "${HOST_ZIP}" && -f /opt/biopentra/dev/biopentra-custom-plugins/builds/zips/upr-host-adapter-0.1.0.zip ]]; then
-	HOST_ZIP=/opt/biopentra/dev/biopentra-custom-plugins/builds/zips/upr-host-adapter-0.1.0.zip
-	HOST_SUMS=/opt/biopentra/dev/biopentra-custom-plugins/builds/zips/upr-host-adapter-0.1.0.SHA256SUMS
+if [[ ! -f "${HOST_ZIP}" && -f /opt/biopentra/dev/biopentra-custom-plugins/builds/zips/upr-host-adapter-0.1.1.zip ]]; then
+	HOST_ZIP=/opt/biopentra/dev/biopentra-custom-plugins/builds/zips/upr-host-adapter-0.1.1.zip
+	HOST_SUMS=/opt/biopentra/dev/biopentra-custom-plugins/builds/zips/upr-host-adapter-0.1.1.SHA256SUMS
 fi
 
 [[ -f "${UPR_ZIP}" && -f "${HOST_ZIP}" ]] || {
@@ -66,7 +66,7 @@ EOF
 export PAIR_ROOT="${DISPOSABLE}"
 export PLUGINS_LINK_ROOT="${DISPOSABLE}/plugins"
 export HOST_SLUG=upr-host-adapter
-export HOST_VERSION=0.1.0
+export HOST_VERSION=0.1.1
 export UPR_SLUG=universal-product-reviews
 export UPR_VERSION=0.3.0
 
@@ -76,20 +76,20 @@ export WORKER_PROOF_CMD="test -f '${STATE}/suspended' && test ! -f '${STATE}/run
 
 export PREFLIGHT_CMD="grep -qx 'invitation_emails_enabled=false' '${DISPOSABLE}/safety/state.env' && grep -qx 'pilot_invitation_sending_authorised=false' '${DISPOSABLE}/safety/state.env' && grep -qx 'pilot_order_id_allowlist_empty=true' '${DISPOSABLE}/safety/state.env' && grep -qx 'emergency_pause_recorded=true' '${DISPOSABLE}/safety/state.env' && echo PREFLIGHT_OK"
 export CONFIRM_EMAILS_DISABLED_CMD="grep -qx 'invitation_emails_enabled=false' '${DISPOSABLE}/safety/state.env' && echo EMAILS_DISABLED_OK"
-export POST_VERIFY_CMD="test -f '${DISPOSABLE}/plugins/universal-product-reviews/release.meta.json' && test -f '${DISPOSABLE}/plugins/upr-host-adapter/upr-host-adapter.php' && grep -q \"Version: 0.1.0\" '${DISPOSABLE}/plugins/upr-host-adapter/upr-host-adapter.php' && echo POST_VERIFY_OK"
+export POST_VERIFY_CMD="test -f '${DISPOSABLE}/plugins/universal-product-reviews/release.meta.json' && test -f '${DISPOSABLE}/plugins/upr-host-adapter/upr-host-adapter.php' && grep -q \"Version: 0.1.1\" '${DISPOSABLE}/plugins/upr-host-adapter/upr-host-adapter.php' && echo POST_VERIFY_OK"
 export ROLLBACK_VERIFY_CMD="test -f '${DISPOSABLE}/plugins/upr-host-adapter/marker.txt' && test -f '${DISPOSABLE}/plugins/universal-product-reviews/marker.txt' && echo ROLLBACK_VERIFY_OK"
 export MAINTENANCE_ON_CMD="touch '${DISPOSABLE}/safety/maintenance'"
 export MAINTENANCE_OFF_CMD="rm -f '${DISPOSABLE}/safety/maintenance'"
 
 echo "==> Stage packages"
-bash "${PAIR_SCRIPTS}/stage-release.sh" upr-host-adapter 0.1.0 "${HOST_ZIP}" "${HOST_SUMS}"
+bash "${PAIR_SCRIPTS}/stage-release.sh" upr-host-adapter 0.1.1 "${HOST_ZIP}" "${HOST_SUMS}"
 bash "${PAIR_SCRIPTS}/stage-release.sh" universal-product-reviews 0.3.0 "${UPR_ZIP}" "${UPR_SUMS}"
 
 echo "==> Transition"
 bash "${PAIR_SCRIPTS}/pair-transition.sh"
 
 # Assert pointers
-readlink -f "${DISPOSABLE}/plugins/upr-host-adapter" | grep -q '/0.1.0$'
+readlink -f "${DISPOSABLE}/plugins/upr-host-adapter" | grep -q '/0.1.1$'
 readlink -f "${DISPOSABLE}/plugins/universal-product-reviews" | grep -q '/0.3.0$'
 test ! -f "${STATE}/suspended"  # resumed
 test -f "${DISPOSABLE}/plugins/universal-product-reviews/release.meta.json"
