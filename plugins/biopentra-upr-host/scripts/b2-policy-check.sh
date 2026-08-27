@@ -6,8 +6,8 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 fail() { echo "B2 POLICY FAILED: $*" >&2; exit 1; }
 
 echo "==> Host version / pin constants"
-grep -q "Version: 0.1.3" "$ROOT/biopentra-upr-host.php" || fail "plugin header version"
-grep -q "BIOPENTRA_UPR_HOST_VERSION', '0.1.3'" "$ROOT/biopentra-upr-host.php" || fail "host version constant"
+grep -q "Version: 0.1.4" "$ROOT/biopentra-upr-host.php" || fail "plugin header version"
+grep -q "BIOPENTRA_UPR_HOST_VERSION', '0.1.4'" "$ROOT/biopentra-upr-host.php" || fail "host version constant"
 grep -q "REQUIRED_VERSION = '0.2.2'" "$ROOT/includes/class-upr-pin.php" || fail "UPR pin version"
 grep -q "REQUIRED_COMMIT = '43c9989291a4c7eab7f9fd57603c851486da287a'" "$ROOT/includes/class-upr-pin.php" || fail "UPR pin commit"
 grep -q "REQUIRED_TAG = 'v0.2.2'" "$ROOT/includes/class-upr-pin.php" || fail "UPR pin tag"
