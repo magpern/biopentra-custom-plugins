@@ -1,0 +1,122 @@
+/**
+ * MOTION-1 — homepage reveal + storefront-owned interaction feedback.
+ * Hide only [data-bp-motion-state="pending"] while html.bp-motion is present.
+ */
+
+html.bp-motion [data-bp-motion-state="pending"] {
+	opacity: 0;
+	transform: translateY(var(--bp-motion-distance, 14px));
+	will-change: opacity, transform;
+}
+
+html.bp-motion [data-bp-motion-state="in"] {
+	opacity: 1;
+	transform: none;
+	transition:
+		opacity var(--bp-motion-duration, 360ms) var(--bp-motion-ease, cubic-bezier(0.22, 0.72, 0.2, 1)),
+		transform var(--bp-motion-duration, 360ms) var(--bp-motion-ease, cubic-bezier(0.22, 0.72, 0.2, 1));
+}
+
+html.bp-motion [data-bp-motion-state="in"][data-bp-motion="reveal"] {
+	transition-delay: 0ms;
+}
+
+/* Stagger delays apply only while a curated grid is revealing pending → in. */
+html.bp-motion .bp-home-products-section.bp-motion-staggering .elementor-loop-container > .e-loop-item[data-bp-motion-state="in"]:nth-child(1) {
+	transition-delay: 0ms;
+}
+
+html.bp-motion .bp-home-products-section.bp-motion-staggering .elementor-loop-container > .e-loop-item[data-bp-motion-state="in"]:nth-child(2) {
+	transition-delay: 50ms;
+}
+
+html.bp-motion .bp-home-products-section.bp-motion-staggering .elementor-loop-container > .e-loop-item[data-bp-motion-state="in"]:nth-child(3) {
+	transition-delay: 100ms;
+}
+
+html.bp-motion .bp-home-products-section.bp-motion-staggering .elementor-loop-container > .e-loop-item[data-bp-motion-state="in"]:nth-child(4) {
+	transition-delay: 150ms;
+}
+
+html.bp-motion .bp-home-products-section.bp-motion-staggering .elementor-loop-container > .e-loop-item[data-bp-motion-state="in"]:nth-child(5) {
+	transition-delay: 200ms;
+}
+
+html.bp-motion .bp-home-products-section.bp-motion-staggering .elementor-loop-container > .e-loop-item[data-bp-motion-state="in"]:nth-child(6) {
+	transition-delay: 250ms;
+}
+
+html.bp-motion .bp-home-products-section.bp-motion-staggering .elementor-loop-container > .e-loop-item[data-bp-motion-state="in"]:nth-child(n + 7) {
+	transition-delay: 250ms;
+}
+
+html.bp-motion-failsafe [data-bp-motion-state="pending"] {
+	opacity: 1;
+	transform: none;
+	transition: none;
+	will-change: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	html.bp-motion body.home .bp-home-cat-chip {
+		transition:
+			border-color 0.15s ease,
+			background-color 0.15s ease,
+			color 0.15s ease,
+			transform 0.15s ease;
+	}
+
+	html.bp-motion body.home .bp-home-cat-chip:hover {
+		transform: translateY(-1px);
+	}
+
+	html.bp-motion body.home .bp-home-cat-chip:active {
+		transform: scale(0.98);
+	}
+
+	html.bp-motion body.home .bp-home-products-section .elementor-button,
+	html.bp-motion body.home .bp-m7-guidance .elementor-button {
+		transition: transform 0.15s ease;
+	}
+
+	html.bp-motion body.home .bp-home-products-section .elementor-button:hover,
+	html.bp-motion body.home .bp-m7-guidance .elementor-button:hover {
+		transform: translateY(-1px);
+	}
+
+	html.bp-motion body.home .bp-home-products-section .elementor-button:active,
+	html.bp-motion body.home .bp-m7-guidance .elementor-button:active {
+		transform: scale(0.98);
+	}
+}
+
+html.bp-motion body.home .bp-home-cat-chip:focus-visible,
+html.bp-motion body.home .bp-home-products-section .elementor-button:focus-visible,
+html.bp-motion body.home .bp-m7-guidance .elementor-button:focus-visible {
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html.bp-motion [data-bp-motion-state="pending"],
+	html.bp-motion [data-bp-motion-state="in"],
+	html.bp-motion .bp-home-products-section.bp-motion-staggering .elementor-loop-container > .e-loop-item[data-bp-motion-state="in"] {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+		transition-delay: 0ms !important;
+		will-change: auto !important;
+	}
+
+	html.bp-motion body.home .bp-home-cat-chip,
+	html.bp-motion body.home .bp-home-cat-chip:hover,
+	html.bp-motion body.home .bp-home-cat-chip:active,
+	html.bp-motion body.home .bp-home-products-section .elementor-button,
+	html.bp-motion body.home .bp-home-products-section .elementor-button:hover,
+	html.bp-motion body.home .bp-home-products-section .elementor-button:active,
+	html.bp-motion body.home .bp-m7-guidance .elementor-button,
+	html.bp-motion body.home .bp-m7-guidance .elementor-button:hover,
+	html.bp-motion body.home .bp-m7-guidance .elementor-button:active {
+		transform: none !important;
+		transition: none !important;
+	}
+}
