@@ -22,7 +22,9 @@ Homepage-first CSS-first motion: section reveal, curated-grid card stagger, stor
 - `plugins/biopentra-storefront/assets/css/bp-tokens.css`
 - `plugins/biopentra-storefront/assets/css/bp-motion.css` (new)
 - `plugins/biopentra-storefront/assets/js/bp-motion.js` (new)
-- `docs/storefront-redesign/validation/motion-1/motion-1.spec.ts` (new; copy onto `storefront-acceptance/tests/` for a run)
+- `plugins/biopentra-storefront/scripts/verify-motion-1-enqueue-cli.php` (WP printed-output enqueue proof)
+- `scripts/run-motion-1-acceptance.sh` (canonical runner)
+- `docs/storefront-redesign/validation/motion-1/` (spec + apply helper; Playwright owner is this repo)
 
 ## Selectors / CSS
 
@@ -37,36 +39,31 @@ None.
 
 ## Acceptance
 
-Harness: sibling `/opt/biopentra/dev/storefront-acceptance`. No new runner flag. Spec is copied onto `tests/motion-1.spec.ts` for the run; CSS/JS copied to `tmp-motion/` because live DEV still bind-mounts `main`.
+**Owner:** `biopentra-custom-plugins` (`docs/storefront-redesign/validation/motion-1/`).  
+**Runner:** `scripts/run-motion-1-acceptance.sh` copies the spec into sibling `storefront-acceptance`, runs it, and deletes the copies. No storefront-acceptance branch/PR. No new Playwright runner flag.
 
 ```
-cd /opt/biopentra/dev/storefront-acceptance
-mkdir -p tmp-motion
-cp <worktree>/plugins/biopentra-storefront/assets/css/bp-motion.css tmp-motion/
-cp <worktree>/plugins/biopentra-storefront/assets/js/bp-motion.js tmp-motion/
-cp <worktree>/docs/storefront-redesign/validation/motion-1/motion-1.spec.ts tests/motion-1.spec.ts
-bash tools/run-dev-playwright.sh tests/motion-1.spec.ts \
-  --project=mobile-360 --project=mobile-390 --project=mobile-430 \
-  --project=tablet-768 --project=desktop-1440
+cd /home/magpern/worktrees/biopentra-custom-plugins-motion-1
+bash scripts/run-motion-1-acceptance.sh --php-lint-only
+bash scripts/run-motion-1-acceptance.sh --enqueue-only
+bash scripts/run-motion-1-acceptance.sh --playwright-only
+bash scripts/run-motion-1-acceptance.sh --m4-only
 ```
 
-**MOTION-1 spec (2026-08-30):** 17 passed, 8 skipped (desktop-only cases on other projects). Exit 0.
+**PHP syntax (2026-08-31):** `php -l` clean on `motion-assets.php`, `class-biopentra-storefront.php`, `verify-motion-1-enqueue-cli.php`.
 
-Coverage: hero never pending; no horizontal overflow; in-view cards not pending; Popular still pending after 2.5s at hero then reveals once (no repeat on scroll-back); shop unstamped with injected controller; gate-without-controller failsafe; `prefers-reduced-motion: reduce`; JS disabled; chip `:focus-visible` transform none.
+**Enqueue proof (2026-08-31):** disposable `wpcli` with extra read-only mount of this worktree’s storefront plugin to `/motion-1-storefront`. Captured real `wp_head()` / `wp_footer()` HTML. Transcript: [runs/enqueue-proof.txt](../validation/motion-1/runs/enqueue-proof.txt). RESULT: PASS.
 
-Screenshots: [validation/motion-1/screenshots/](../validation/motion-1/screenshots/) (`motion-1-mobile-360.png`, `motion-1-mobile-390.png`, `motion-1-mobile-430.png`, `motion-1-tablet-768.png`, `motion-1-desktop-1440.png`).
+- Front page (`is_front_page=1`): src-less `biopentra-motion-gate` group 0 in head with inline `classList.add("bp-motion")`; `bp-motion.js` group 1 in footer only; `bp-motion.css` depends on `biopentra-bp-tokens`; noscript pending-visible rule in head.
+- Cart (`is_cart=1`), checkout (`is_checkout=1`), shop (`is_shop=1`), admin (`is_admin=1`): MOTION-1 handles absent from enqueue and printed HTML.
 
-**M9 shop filter + search (served `main`, 2026-08-30):**
+**MOTION-1 Playwright (2026-08-31):** 17 passed, 8 skipped, exit 0. Skips documented in [runs/skipped.txt](../validation/motion-1/runs/skipped.txt) — not an acceptance gap.
 
-```
-bash tools/run-dev-playwright.sh tests/m9-shop-discovery.spec.ts \
-  --project=mobile-360 --project=desktop-1440 \
-  --grep "category filter|search remains"
-```
+**M4 parity (2026-08-31):** same five viewports, served `ac60df4` vs injected feature assets. 6 failures each, 0 only-baseline, 0 only-feature, identical error signatures. [runs/m4-parity.txt](../validation/motion-1/runs/m4-parity.txt). Homepage `objectFit` cover vs `""` and desktop overlay not reaching `is-overlay-quick` exist on served main and with MOTION-1 injected.
 
-4 passed (filter in-place + search on 360 and 1440). Exit 0.
+**M9 shop filter + search (served `main`, 2026-08-30):** 4 passed on 360 and 1440.
 
-**M4 cards (served `main`, 2026-08-30):** `tests/m4-cards.spec.ts` on the five MOTION-1 viewports — homepage `objectFit` expected `"cover"` received `""`; desktop overlay click navigated to PDP instead of `is-overlay-quick`. These run against bind-mounted `main` and `biopentra-loop-card`, which MOTION-1 did not modify. Not treated as a MOTION-1 regression.
+Screenshots: [validation/motion-1/screenshots/](../validation/motion-1/screenshots/).
 
 ## Production replay
 

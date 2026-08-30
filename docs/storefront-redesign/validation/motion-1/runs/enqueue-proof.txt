@@ -1,0 +1,65 @@
+served checkout: main ac60df4574642dba983d1327dd5d756445719c7b (clean, untouched)
+== PHP syntax ==
+No syntax errors detected in /plugin/includes/motion-assets.php
+No syntax errors detected in /plugin/includes/class-biopentra-storefront.php
+No syntax errors detected in /plugin/scripts/verify-motion-1-enqueue-cli.php
+== WP-CLI enqueue output capture (feature-branch plugin, extra ro mount) ==
+mount: /home/magpern/worktrees/biopentra-custom-plugins-motion-1/plugins/biopentra-storefront -> /motion-1-storefront
+served bind-mount remains /opt/biopentra/dev/biopentra-custom-plugins/plugins/biopentra-storefront
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-7cd2ec584cb2 Creating 
+ Container wordpress-wpcli-run-7cd2ec584cb2 Created 
+MOTION-1 enqueue output capture
+motion_assets_file: /motion-1-storefront/includes/motion-assets.php
+served_storefront_path: /var/www/html/wp-content/plugins/biopentra-storefront/
+feature_css_readable: yes
+show_on_front: page
+page_on_front: 4444
+
+=== surface: front_page ===
+is_front_page=1 is_admin=0 is_cart=0 is_checkout=0
+should_load=1
+enqueued gate=1 controller=1 css=1
+gate_src=false gate_group=0
+controller_src=http://dev.biopentra.eu/wp-content/plugins/biopentra-storefront/assets/js/bp-motion.js controller_group=1
+css_deps=biopentra-bp-tokens
+PASS  front: biopentra-motion-gate enqueued
+PASS  front: gate is src-less
+PASS  front: gate group 0 (head)
+PASS  front: gate inline extra attached to gate handle
+PASS  front: wp_head prints biopentra-motion-gate
+PASS  front: wp_head prints gate inline script body
+PASS  front: controller absent from wp_head
+PASS  front: biopentra-motion controller enqueued
+PASS  front: controller group 1 (footer)
+PASS  front: controller src is bp-motion.js
+PASS  front: wp_footer prints bp-motion.js
+PASS  front: gate absent from wp_footer
+PASS  front: biopentra-motion CSS enqueued
+PASS  front: CSS depends on biopentra-bp-tokens
+PASS  front: wp_head prints bp-motion.css
+PASS  front: wp_head prints noscript pending-visible rule
+
+=== surface: cart ===
+is_front_page=0 is_cart=1
+should_load=0
+PASS  cart: MOTION-1 assets absent from enqueue and printed HTML
+
+=== surface: checkout ===
+is_front_page=0 is_checkout=1
+should_load=0
+PASS  checkout: MOTION-1 assets absent from enqueue and printed HTML
+
+=== surface: shop ===
+is_front_page=0 is_shop=1
+should_load=0
+PASS  shop: MOTION-1 assets absent from enqueue and printed HTML
+
+=== surface: admin ===
+is_admin=1 is_front_page=0
+should_load=0
+PASS  admin: MOTION-1 assets absent from enqueue and printed HTML
+
+RESULT: PASS

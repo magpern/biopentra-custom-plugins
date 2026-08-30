@@ -1,17 +1,20 @@
 /**
  * MOTION-1 acceptance — homepage motion against live DEV DOM.
  *
- * Assets are injected from /work/tmp-motion (copied from the feature worktree
- * for the run). Live DEV bind-mounts main and does not serve this branch, so
- * this spec applies the gate + CSS + controller after navigation (delayed-JS
- * path). Head-gate-before-footer order is covered by the gate-without-controller
- * failsafe case.
+ * Canonical owner: biopentra-custom-plugins
+ *   docs/storefront-redesign/validation/motion-1/
+ * Run via: scripts/run-motion-1-acceptance.sh (copies this spec into the
+ * sibling storefront-acceptance harness, then removes it).
+ *
+ * Live DEV bind-mounts main, so this spec injects gate/CSS/controller after
+ * navigation (delayed-JS path). The WP enqueue head-vs-footer contract is
+ * proven by plugins/biopentra-storefront/scripts/verify-motion-1-enqueue-cli.php
+ * — not by this spec.
  */
 import { test, expect } from '@playwright/test';
-import fs from 'fs';
-import path from 'path';
 import { dismissOverlays } from '../helpers/dismiss';
 import { gotoWithComingSoonBypass } from '../helpers/coming-soon';
+import { applyMotion } from './motion-1-apply';
 
 const VIEWPORTS = new Set([
   'mobile-360',
@@ -20,34 +23,6 @@ const VIEWPORTS = new Set([
   'tablet-768',
   'desktop-1440',
 ]);
-
-const GATE_JS = `(function(){var m=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;var io="IntersectionObserver"in window;window.bpMotion=window.bpMotion||{};if(m||!io){window.bpMotion.allowed=false;return;}document.documentElement.classList.add("bp-motion");window.bpMotion.allowed=true;window.bpMotion.failsafeId=window.setTimeout(function(){var h=document.documentElement;h.classList.remove("bp-motion");h.classList.add("bp-motion-failsafe");if(typeof window.bpMotionCleanup==="function"){window.bpMotionCleanup("failsafe");}},2000);})();`;
-
-const ASSET_DIR = '/work/tmp-motion';
-
-function asset(name: string) {
-  return path.join(ASSET_DIR, name);
-}
-
-function motionCss() {
-  return fs.readFileSync(asset('bp-motion.css'), 'utf8');
-}
-
-function motionJs() {
-  return fs.readFileSync(asset('bp-motion.js'), 'utf8');
-}
-
-async function applyMotion(
-  page: import('@playwright/test').Page,
-  opts: { controller?: boolean } = {}
-) {
-  const withController = opts.controller !== false;
-  await page.evaluate(GATE_JS);
-  await page.addStyleTag({ content: motionCss() });
-  if (withController) {
-    await page.evaluate(motionJs());
-  }
-}
 
 test.describe('MOTION-1 storefront motion', () => {
   test('homepage: gate, in-view never pending, hero clean, overflow', async ({ page, context }, testInfo) => {
