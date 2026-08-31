@@ -122,7 +122,7 @@ Later work should **not** casually reopen these sections for visual tweaking. De
 
 ## H. Motion & Interaction Polish
 
-Specified as a **separate initiative** — **[MOTION-1: Storefront Motion System](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md)**. Plan frozen 2026-08-30; implementation is on `feature/motion-1-storefront-motion-system` (plugin header remains `0.9.39`). Not M11. Not a reopen of M1–M10. Not part of this program’s original closure scope. Version bump, tag, DEV bind-mount switch, and production replay remain after PO visual review.
+Specified as a **separate initiative** — **[MOTION-1: Storefront Motion System](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md)**. Plan frozen 2026-08-30; **amended 2026-08-31** so `/shop` `ed52b7f` cards are in scope ([decision record](plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md)). Implementation is on `feature/motion-1-storefront-motion-system` (plugin header remains `0.9.39`). Not M11. Not a reopen of M1–M10. Not part of this program’s original closure scope. Version bump, tag, DEV bind-mount switch, and production replay remain after PO visual review.
 
 ---
 
@@ -203,7 +203,7 @@ Do not conflate **design/program closure** with **production deployment completi
 | Frozen baselines | **M1–M10** are frozen design baselines on DEV |
 | Defects / regressions | Narrow corrective fixes allowed |
 | New functionality or visual redesign | Open as a **new project/milestone** — do not silently modify a frozen milestone |
-| Motion work | Separate initiative **MOTION-1** — plan frozen; implementation on `feature/motion-1-storefront-motion-system` (no version/tag): [plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md) |
+| Motion work | Separate initiative **MOTION-1** — plan frozen 2026-08-30, amended 2026-08-31 (`/shop` cards): [plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md) · [amendment](plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md) |
 | Production | Separate from redesign development; requires explicit PO GO |
 | Authority | This document + root `CHANGELOG.md` + per-milestone plans/changes — not stale `biopentra-storefront-redesign/STATUS.md` |
 
