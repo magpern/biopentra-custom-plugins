@@ -1,6 +1,9 @@
 /**
  * MOTION-1 footer controller — classify, observe, recover.
  * Does not host the head gate (see biopentra-motion-gate inline script).
+ *
+ * Homepage: observe section bands + curated-grid containers (stagger cards).
+ * Shop (2026-08-31): per-card observe of /shop ed52b7f loop items only.
  */
 (function () {
 	'use strict';
@@ -11,6 +14,8 @@
 		'body.home .bp-home-cats-section, body.home .bp-m5-trust, body.home .bp-m6-confidence, body.home .bp-m6-why, body.home .bp-m6-faq, body.home .bp-m7-guidance';
 	var GRID_SELECTOR = 'body.home .bp-home-products-section';
 	var CARD_SELECTOR = '.elementor-loop-container > .e-loop-item';
+	var SHOP_WIDGET_ID = 'ed52b7f';
+	var SHOP_WIDGET_SELECTOR = 'body.woocommerce-shop .elementor-element-' + SHOP_WIDGET_ID;
 
 	var observer = null;
 	var pendingNodes = [];
@@ -28,6 +33,14 @@
 			window.bpMotion.allowed === true &&
 			htmlEl().classList.contains('bp-motion')
 		);
+	}
+
+	function isShopSurface() {
+		if (document.body && document.body.classList.contains('woocommerce-shop')) {
+			return true;
+		}
+		var path = (window.location.pathname || '').replace(/\/+$/, '');
+		return path === '/shop' && !!document.querySelector('.elementor-element-' + SHOP_WIDGET_ID);
 	}
 
 	function isInView(el) {
@@ -71,6 +84,12 @@
 		}
 	}
 
+	function unobserveNode(el) {
+		if (observer && el) {
+			observer.unobserve(el);
+		}
+	}
+
 	function startNodeTimer(el) {
 		var id;
 		clearNodeTimer(el);
@@ -82,14 +101,14 @@
 			pendingNodes = pendingNodes.filter(function (node) {
 				return node !== el;
 			});
-			if (el.getAttribute('data-bp-motion-state') !== 'pending') {
+			if (!el.isConnected || el.getAttribute('data-bp-motion-state') !== 'pending') {
 				return;
 			}
 			setIn(el);
 			if (el.getAttribute('data-bp-motion') === 'reveal') {
-				if (observer) {
-					observer.unobserve(el);
-				}
+				unobserveNode(el);
+			} else if (el.getAttribute('data-bp-motion') === 'shop-card') {
+				unobserveNode(el);
 			} else {
 				maybeUnobserveAfterCard(el);
 			}
@@ -103,6 +122,16 @@
 		el.setAttribute('data-bp-motion-state', 'pending');
 		el.style.willChange = 'opacity, transform';
 		startNodeTimer(el);
+	}
+
+	function pruneDetachedPending() {
+		pendingNodes.slice().forEach(function (el) {
+			if (el && el.isConnected) {
+				return;
+			}
+			clearNodeTimer(el);
+			unobserveNode(el);
+		});
 	}
 
 	function clearAllTimers() {
@@ -140,9 +169,7 @@
 
 	function revealSection(section) {
 		setIn(section);
-		if (observer) {
-			observer.unobserve(section);
-		}
+		unobserveNode(section);
 	}
 
 	function revealGrid(grid) {
@@ -154,12 +181,15 @@
 				setIn(cards[i]);
 			}
 		}
-		if (observer) {
-			observer.unobserve(grid);
-		}
+		unobserveNode(grid);
 		window.setTimeout(function () {
 			grid.classList.remove('bp-motion-staggering');
 		}, STAGGER_CLEAR_MS);
+	}
+
+	function revealShopCard(card) {
+		setIn(card);
+		unobserveNode(card);
 	}
 
 	function onIntersect(entries) {
@@ -167,8 +197,11 @@
 			if (!entry.isIntersecting) {
 				return;
 			}
-			if (entry.target.getAttribute('data-bp-motion') === 'stagger') {
+			var kind = entry.target.getAttribute('data-bp-motion');
+			if (kind === 'stagger') {
 				revealGrid(entry.target);
+			} else if (kind === 'shop-card') {
+				revealShopCard(entry.target);
 			} else {
 				revealSection(entry.target);
 			}
@@ -216,6 +249,81 @@
 		});
 	}
 
+	function getShopWidget(scope) {
+		var node = scope;
+		if (node && node.jquery) {
+			node = node[0];
+		}
+		if (node && node.nodeType === 1) {
+			if (node.classList && node.classList.contains('elementor-element-' + SHOP_WIDGET_ID)) {
+				return node;
+			}
+			if (node.closest) {
+				var closest = node.closest('.elementor-element-' + SHOP_WIDGET_ID);
+				if (closest) {
+					return closest;
+				}
+			}
+			if (node.querySelector) {
+				var inner = node.querySelector('.elementor-element-' + SHOP_WIDGET_ID);
+				if (inner) {
+					return inner;
+				}
+			}
+		}
+		return document.querySelector(SHOP_WIDGET_SELECTOR);
+	}
+
+	function classifyShopCards(scope) {
+		var widget;
+		var cards;
+		var i;
+		var card;
+		var state;
+		if (!isShopSurface() || !observer) {
+			return;
+		}
+		pruneDetachedPending();
+		widget = getShopWidget(scope);
+		if (!widget) {
+			return;
+		}
+		cards = widget.querySelectorAll(CARD_SELECTOR);
+		for (i = 0; i < cards.length; i++) {
+			card = cards[i];
+			state = card.getAttribute('data-bp-motion-state');
+			if (state === 'in' || state === 'pending') {
+				continue;
+			}
+			card.setAttribute('data-bp-motion', 'shop-card');
+			if (isInView(card)) {
+				setIn(card);
+				continue;
+			}
+			setPending(card);
+			observer.observe(card);
+		}
+	}
+
+	function onLoopCardsInit(scope) {
+		if (!motionAllowed() || !inited) {
+			return;
+		}
+		classifyShopCards(scope);
+	}
+
+	function bindLoopCardsInit() {
+		document.addEventListener('biopentra-loop-cards-init', function (event) {
+			var detail = event && event.detail;
+			onLoopCardsInit(detail || (event && event.target));
+		});
+		if (window.jQuery && window.jQuery.fn && window.jQuery.fn.on) {
+			window.jQuery(document).on('biopentra-loop-cards-init', function (_event, scope) {
+				onLoopCardsInit(scope);
+			});
+		}
+	}
+
 	function init() {
 		if (inited) {
 			return;
@@ -232,6 +340,7 @@
 			});
 			classifySections();
 			classifyGrids();
+			classifyShopCards(null);
 			inited = true;
 			if (window.bpMotion && window.bpMotion.failsafeId) {
 				window.clearTimeout(window.bpMotion.failsafeId);
@@ -254,6 +363,8 @@
 		init();
 	}
 
+	bindLoopCardsInit();
+
 	if (reduceMq) {
 		if (reduceMq.addEventListener) {
 			reduceMq.addEventListener('change', onReduceChange);
@@ -268,9 +379,5 @@
 			window.bpMotion.failsafeId = null;
 		}
 		cleanup('pagehide');
-	});
-
-	document.addEventListener('biopentra-loop-cards-init', function () {
-		/* Shop/search replacement: never stamp those cards. Homepage loops are static. */
 	});
 })();

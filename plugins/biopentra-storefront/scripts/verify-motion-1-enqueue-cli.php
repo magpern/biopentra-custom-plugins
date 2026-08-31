@@ -144,6 +144,7 @@ function biopentra_motion_verify_inline_after( $handle ) {
  */
 function biopentra_motion_verify_capture() {
 	biopentra_motion_verify_reset_print_state();
+	biopentra_storefront_motion_enqueue_assets();
 
 	ob_start();
 	wp_head();
@@ -299,6 +300,75 @@ if ( ! biopentra_motion_verify_contains( $front['head'], 'data-bp-motion-state="
 }
 
 /**
+ * Positive surface: MOTION-1 head/footer contract must print.
+ *
+ * @param string $label   Surface name.
+ * @param array  $printed {head,footer}.
+ */
+function biopentra_motion_verify_present( $label, $printed ) {
+	$gate_enqueued = wp_script_is( 'biopentra-motion-gate', 'enqueued' );
+	$ctrl_enqueued = wp_script_is( 'biopentra-motion', 'enqueued' );
+	$css_enqueued  = wp_style_is( 'biopentra-motion', 'enqueued' );
+	$gate_src      = isset( wp_scripts()->registered['biopentra-motion-gate'] ) ? wp_scripts()->registered['biopentra-motion-gate']->src : 'UNREGISTERED';
+	$ctrl_src      = isset( wp_scripts()->registered['biopentra-motion'] ) ? (string) wp_scripts()->registered['biopentra-motion']->src : 'UNREGISTERED';
+	$gate_group    = biopentra_motion_verify_script_group( 'biopentra-motion-gate' );
+	$ctrl_group    = biopentra_motion_verify_script_group( 'biopentra-motion' );
+	$css_deps      = isset( wp_styles()->registered['biopentra-motion'] ) ? wp_styles()->registered['biopentra-motion']->deps : array();
+	$inline        = biopentra_motion_verify_inline_after( 'biopentra-motion-gate' );
+
+	if ( ! $gate_enqueued ) {
+		biopentra_motion_verify_fail( "{$label}: biopentra-motion-gate not enqueued" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: biopentra-motion-gate enqueued" );
+	}
+	if ( false !== $gate_src && '' !== $gate_src && null !== $gate_src ) {
+		biopentra_motion_verify_fail( "{$label}: gate src must be src-less, got " . var_export( $gate_src, true ) );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: gate is src-less" );
+	}
+	if ( 0 !== $gate_group ) {
+		biopentra_motion_verify_fail( "{$label}: gate group must be 0 (head), got {$gate_group}" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: gate group 0 (head)" );
+	}
+	if ( ! biopentra_motion_verify_contains( $inline, 'classList.add("bp-motion")' ) ) {
+		biopentra_motion_verify_fail( "{$label}: gate inline extra missing bp-motion class add" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: gate inline extra attached to gate handle" );
+	}
+	if ( ! biopentra_motion_verify_contains( $printed['head'], 'biopentra-motion-gate' ) ) {
+		biopentra_motion_verify_fail( "{$label}: wp_head HTML missing biopentra-motion-gate" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: wp_head prints biopentra-motion-gate" );
+	}
+	if ( biopentra_motion_verify_contains( $printed['head'], 'bp-motion.js' ) ) {
+		biopentra_motion_verify_fail( "{$label}: controller bp-motion.js printed in wp_head" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: controller absent from wp_head" );
+	}
+	if ( ! $ctrl_enqueued || 1 !== $ctrl_group || ! biopentra_motion_verify_contains( $ctrl_src, 'bp-motion.js' ) ) {
+		biopentra_motion_verify_fail( "{$label}: controller footer enqueue missing" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: controller group 1 src bp-motion.js" );
+	}
+	if ( ! biopentra_motion_verify_contains( $printed['footer'], 'bp-motion.js' ) ) {
+		biopentra_motion_verify_fail( "{$label}: wp_footer HTML missing bp-motion.js" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: wp_footer prints bp-motion.js" );
+	}
+	if ( ! $css_enqueued || ! in_array( 'biopentra-bp-tokens', $css_deps, true ) ) {
+		biopentra_motion_verify_fail( "{$label}: CSS missing or missing biopentra-bp-tokens dep" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: CSS depends on biopentra-bp-tokens" );
+	}
+	if ( ! biopentra_motion_verify_contains( $printed['head'], 'bp-motion.css' ) ) {
+		biopentra_motion_verify_fail( "{$label}: wp_head HTML missing bp-motion.css" );
+	} else {
+		biopentra_motion_verify_pass( "{$label}: wp_head prints bp-motion.css" );
+	}
+}
+
+/**
  * Negative surface: MOTION-1 must not print.
  *
  * @param string $label Surface name.
@@ -351,7 +421,7 @@ if ( $checkout_id < 1 ) {
 	biopentra_motion_verify_absent( 'checkout', $printed );
 }
 
-/* --- Shop (homepage-only policy) --- */
+/* --- Shop (2026-08-31: assets MUST print; same head/footer contract). --- */
 echo "\n=== surface: shop ===\n";
 if ( $shop_id < 1 ) {
 	biopentra_motion_verify_fail( 'shop page id missing' );
@@ -360,8 +430,14 @@ if ( $shop_id < 1 ) {
 	echo 'is_front_page=' . ( is_front_page() ? '1' : '0' );
 	echo ' is_shop=' . ( function_exists( 'is_shop' ) && is_shop() ? '1' : '0' ) . "\n";
 	echo 'should_load=' . ( biopentra_storefront_motion_should_load() ? '1' : '0' ) . "\n";
+	if ( function_exists( 'is_shop' ) && ! is_shop() ) {
+		biopentra_motion_verify_fail( 'shop query did not make is_shop() true' );
+	}
+	if ( ! biopentra_storefront_motion_should_load() ) {
+		biopentra_motion_verify_fail( 'should_load false on shop' );
+	}
 	$printed = biopentra_motion_verify_capture();
-	biopentra_motion_verify_absent( 'shop', $printed );
+	biopentra_motion_verify_present( 'shop', $printed );
 }
 
 /* --- Admin --- */

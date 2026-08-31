@@ -1,6 +1,7 @@
 /**
- * MOTION-1 — homepage reveal + storefront-owned interaction feedback.
+ * MOTION-1 — homepage reveal, curated-grid stagger, and /shop card reveal.
  * Hide only [data-bp-motion-state="pending"] while html.bp-motion is present.
+ * Shop cards use the same pending/in tokens; they do not use homepage :nth-child stagger.
  */
 
 html.bp-motion [data-bp-motion-state="pending"] {

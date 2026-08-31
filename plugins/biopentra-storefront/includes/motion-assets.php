@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Whether MOTION-1 assets should load (homepage frontend only).
+ * Whether MOTION-1 assets should load (homepage or WooCommerce shop).
  *
  * @return bool
  */
@@ -27,7 +27,11 @@ function biopentra_storefront_motion_should_load() {
 		return false;
 	}
 
-	return is_front_page();
+	if ( is_front_page() ) {
+		return true;
+	}
+
+	return function_exists( 'is_shop' ) && is_shop();
 }
 
 /**
@@ -83,7 +87,7 @@ function biopentra_storefront_motion_enqueue_assets() {
 	wp_enqueue_script(
 		'biopentra-motion',
 		BIOPENTRA_STOREFRONT_URL . 'assets/js/bp-motion.js',
-		array(),
+		array( 'jquery' ),
 		$js_ver,
 		true
 	);
