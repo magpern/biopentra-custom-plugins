@@ -98,6 +98,14 @@
   /* ── Section gaps ── */
   --bp-gap-commercial: var(--bp-space-4);
   --bp-gap-editorial: var(--bp-space-7);
+
+  /* ── MOTION-1 (homepage reveal; values frozen in docs/storefront-redesign/plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md) ── */
+  --bp-motion-distance: 14px;
+  --bp-motion-duration: 360ms;
+  --bp-motion-ease: cubic-bezier(0.22, 0.72, 0.2, 1);
+  --bp-motion-stagger: 50ms;
+  --bp-motion-init-failsafe-ms: 2000;
+  --bp-motion-node-failsafe-ms: 25000;
 }
 
 @media (min-width: 768px) {

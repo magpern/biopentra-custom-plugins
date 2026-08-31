@@ -6,7 +6,7 @@ Working docs for the mobile-first restructure of the Biopentra WooCommerce store
 
 **BIOPENTRA STOREFRONT UI OVERHAUL: CLOSED / PO-APPROVED ON DEV** (2026-08-23)
 
-The Premium Ecommerce numbered program **M1–M10** ended at **M10**. Final Storefront baseline: **`storefront-v0.9.33`**. There is **no M11** as continuation of this program. Motion & Interaction Polish remains a **separate deferred initiative**. Production rollout has **not** been performed and requires an explicit PO GO.
+The Premium Ecommerce numbered program **M1–M10** ended at **M10**. Final Storefront baseline: **`storefront-v0.9.33`**. There is **no M11** as continuation of this program. Motion & Interaction Polish is **[MOTION-1](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md)** — plan frozen 2026-08-30; **amended 2026-08-31** for `/shop` card reveal ([decision record](plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md)); **PO-approved / frozen on DEV** 2026-08-31 as **`storefront-v0.9.40`**. Not M11. Production rollout of the UI overhaul has **not** been performed and requires an explicit PO GO.
 
 **Read first:** [UI-OVERHAUL-CLOSURE.md](UI-OVERHAUL-CLOSURE.md) — verdict, milestone table, DEV baseline, production-replay index, governance.
 

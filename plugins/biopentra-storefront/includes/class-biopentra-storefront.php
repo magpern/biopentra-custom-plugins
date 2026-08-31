@@ -182,5 +182,10 @@ class Biopentra_Storefront {
 		if ( is_readable( $contact_v2_assets ) ) {
 			require_once $contact_v2_assets;
 		}
+
+		$motion_assets = BIOPENTRA_STOREFRONT_PATH . 'includes/motion-assets.php';
+		if ( is_readable( $motion_assets ) ) {
+			require_once $motion_assets;
+		}
 	}
 }

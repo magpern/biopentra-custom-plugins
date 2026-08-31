@@ -1,0 +1,11 @@
+baseline_failures=6
+feature_failures=6
+shared_failures=6
+only_baseline=0
+only_feature=0
+SHARED	same	desktop-1440	desktop: initial menu preserved; variable selector fully visible	Error: Timed out 10000ms waiting for expect(locator).toHaveClass(expected)
+SHARED	same	desktop-1440	homepage cards: soft shell, hierarchy, queries, M3 intact	Error: expect(received).toBe(expected) // Object.is equality
+SHARED	same	mobile-360	homepage cards: soft shell, hierarchy, queries, M3 intact	Error: expect(received).toBe(expected) // Object.is equality
+SHARED	same	mobile-390	homepage cards: soft shell, hierarchy, queries, M3 intact	Error: expect(received).toBe(expected) // Object.is equality
+SHARED	same	mobile-430	homepage cards: soft shell, hierarchy, queries, M3 intact	Error: expect(received).toBe(expected) // Object.is equality
+SHARED	same	tablet-768	homepage cards: soft shell, hierarchy, queries, M3 intact	Error: expect(received).toBe(expected) // Object.is equality

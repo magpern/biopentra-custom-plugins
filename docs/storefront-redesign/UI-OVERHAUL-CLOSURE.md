@@ -14,7 +14,7 @@ This document is the **authoritative closure record** for the Premium Ecommerce 
 
 The planned redesign program ended with **M10 — Contact Page Experience Redesign**. There is **no M11** planned as a continuation of this program.
 
-**Motion & Interaction Polish** was intentionally deferred. It is **not** unfinished M11 work. If pursued later, open it as a **separate initiative** with its own scope and acceptance criteria.
+**Motion & Interaction Polish** is now specified as a separate initiative ([MOTION-1](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md); plan frozen 2026-08-30). It is **not** unfinished M11 work and is **not** part of this program’s original closure scope.
 
 **Production:** The UI overhaul is closed on DEV. It has **not** been deployed to production by this closure. Production rollout requires a **separate explicit Product Owner GO**.
 
@@ -122,7 +122,7 @@ Later work should **not** casually reopen these sections for visual tweaking. De
 
 ## H. Motion & Interaction Polish
 
-**Intentionally deferred.** Not an unfinished M11 requirement. Not part of this program closure. Open as a separate initiative if authorized.
+Specified as a **separate initiative** — **[MOTION-1: Storefront Motion System](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md)**. Plan frozen 2026-08-30; **amended 2026-08-31** so `/shop` `ed52b7f` cards are in scope ([decision record](plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md)). **PO-approved / frozen on DEV** 2026-08-31 as **`biopentra-storefront` `0.9.40`** · **`storefront-v0.9.40`**. Not M11. Not a reopen of M1–M10. Production replay remains a separate PO GO.
 
 ---
 
@@ -203,7 +203,7 @@ Do not conflate **design/program closure** with **production deployment completi
 | Frozen baselines | **M1–M10** are frozen design baselines on DEV |
 | Defects / regressions | Narrow corrective fixes allowed |
 | New functionality or visual redesign | Open as a **new project/milestone** — do not silently modify a frozen milestone |
-| Motion work | Separate initiative if authorized |
+| Motion work | Separate initiative **MOTION-1** — plan frozen 2026-08-30, amended 2026-08-31 (`/shop` cards): [plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md) · [amendment](plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md) |
 | Production | Separate from redesign development; requires explicit PO GO |
 | Authority | This document + root `CHANGELOG.md` + per-milestone plans/changes — not stale `biopentra-storefront-redesign/STATUS.md` |
 
