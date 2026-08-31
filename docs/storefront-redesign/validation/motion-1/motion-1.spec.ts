@@ -122,17 +122,187 @@ test.describe('MOTION-1 storefront motion', () => {
     expect(await popular.locator('.e-loop-item[data-bp-motion-state="in"]').count()).toBe(inAfter);
   });
 
-  test('shop cards are unstamped (live and with injected controller)', async ({ page, context }, testInfo) => {
+  test('shop: first-viewport cards never pending; below-fold reveals once', async ({ page, context }, testInfo) => {
     test.skip(!VIEWPORTS.has(testInfo.project.name), 'MOTION-1 viewport set');
 
     await gotoWithComingSoonBypass(page, context, '/shop/');
     await dismissOverlays(page);
     await applyMotion(page);
 
-    await expect(page.locator('.biopentra-loop-card-root').first()).toBeVisible();
-    expect(await page.locator('.biopentra-loop-card-root[data-bp-motion-state]').count()).toBe(0);
-    expect(await page.locator('.biopentra-loop-card-root[data-bp-motion]').count()).toBe(0);
-    expect(await page.locator('[data-bp-motion-state]').count()).toBe(0);
+    const htmlClass = await page.evaluate(() => document.documentElement.className);
+    expect(htmlClass).toContain('bp-motion');
+    expect(htmlClass).not.toContain('bp-motion-failsafe');
+
+    const grid = page.locator('.elementor-element-ed52b7f .elementor-loop-container > .e-loop-item');
+    await expect(grid.first()).toBeVisible({ timeout: 15000 });
+    await page.waitForTimeout(150);
+
+    const snapshot = await page.evaluate(() => {
+      const cards = Array.from(
+        document.querySelectorAll(
+          '.elementor-element-ed52b7f .elementor-loop-container > .e-loop-item'
+        )
+      ) as HTMLElement[];
+      const vh = window.innerHeight;
+      const vw = window.innerWidth;
+      return cards.map((el) => {
+        const r = el.getBoundingClientRect();
+        const inView = r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < vh && r.right > 0 && r.left < vw;
+        return {
+          inView,
+          state: el.getAttribute('data-bp-motion-state'),
+          kind: el.getAttribute('data-bp-motion'),
+        };
+      });
+    });
+
+    expect(snapshot.length).toBeGreaterThan(0);
+    for (const card of snapshot) {
+      expect(card.kind).toBe('shop-card');
+      if (card.inView) {
+        expect(card.state).not.toBe('pending');
+      }
+    }
+
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth + 1
+    );
+    expect(overflow).toBe(false);
+
+    const targetIndex = await page.evaluate(() => {
+      const cards = Array.from(
+        document.querySelectorAll(
+          '.elementor-element-ed52b7f .elementor-loop-container > .e-loop-item'
+        )
+      ) as HTMLElement[];
+      return cards.findIndex((el) => el.getAttribute('data-bp-motion-state') === 'pending');
+    });
+    if (targetIndex < 0) {
+      test.info().annotations.push({ type: 'note', description: 'all shop cards in-view at init' });
+    } else {
+      const target = grid.nth(targetIndex);
+      await target.evaluate((el) => el.scrollIntoView({ block: 'center', inline: 'nearest' }));
+      await expect.poll(async () => target.getAttribute('data-bp-motion-state'), { timeout: 4000 }).toBe(
+        'in'
+      );
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(200);
+      await target.evaluate((el) => el.scrollIntoView({ block: 'center', inline: 'nearest' }));
+      await page.waitForTimeout(200);
+      expect(await target.getAttribute('data-bp-motion-state')).toBe('in');
+    }
+
+    await page.screenshot({
+      path: `artifacts/motion-1-shop-${testInfo.project.name}.png`,
+      fullPage: false,
+    });
+  });
+
+  test('shop: filter and search replacement initialise new cards without hiding visible ones', async ({
+    page,
+    context,
+  }, testInfo) => {
+    test.skip(!VIEWPORTS.has(testInfo.project.name), 'MOTION-1 viewport set');
+
+    await gotoWithComingSoonBypass(page, context, '/shop/');
+    await dismissOverlays(page);
+    await applyMotion(page);
+
+    const wellness = page.locator('.elementor-element-b3a2918 .e-filter-item[data-filter="wellness"]');
+    await expect(wellness).toBeVisible();
+    await wellness.click();
+    await expect(wellness).toHaveAttribute('aria-pressed', 'true', { timeout: 15000 });
+    await expect.poll(() => page.url()).toContain('e-filter-ed52b7f-product_cat');
+    await expect(page.locator('.elementor-element-ed52b7f .e-loop-item').first()).toBeVisible({
+      timeout: 15000,
+    });
+    await page.waitForTimeout(400);
+
+    const afterFilter = await page.evaluate(() => {
+      const cards = Array.from(
+        document.querySelectorAll('.elementor-element-ed52b7f .elementor-loop-container > .e-loop-item')
+      ) as HTMLElement[];
+      const vh = window.innerHeight;
+      return cards.map((el) => {
+        const r = el.getBoundingClientRect();
+        const inView = r.bottom > 0 && r.top < vh && r.right > 0 && r.left < window.innerWidth;
+        return { inView, state: el.getAttribute('data-bp-motion-state') };
+      });
+    });
+    expect(afterFilter.length).toBeGreaterThan(0);
+    for (const card of afterFilter) {
+      if (card.inView) {
+        expect(card.state).not.toBe('pending');
+      }
+    }
+
+    const search = page.locator('#biopentra-shop-s');
+    await expect(search).toBeVisible();
+    await search.fill('peptide');
+    await Promise.all([
+      page.waitForURL(/\/shop\/\?.*\bs=/, { timeout: 20000 }),
+      page.locator('form.biopentra-shop-search').evaluate((form: HTMLFormElement) => form.submit()),
+    ]);
+    await dismissOverlays(page);
+    await applyMotion(page);
+    await expect(page.locator('.elementor-element-ed52b7f .e-loop-item').first()).toBeVisible({
+      timeout: 15000,
+    });
+    const afterSearch = await page.evaluate(() => {
+      const first = document.querySelector(
+        '.elementor-element-ed52b7f .elementor-loop-container > .e-loop-item'
+      ) as HTMLElement | null;
+      if (!first) {
+        return { state: null, inView: false };
+      }
+      const r = first.getBoundingClientRect();
+      return {
+        state: first.getAttribute('data-bp-motion-state'),
+        inView: r.bottom > 0 && r.top < window.innerHeight,
+      };
+    });
+    if (afterSearch.inView) {
+      expect(afterSearch.state).not.toBe('pending');
+    }
+  });
+
+  test('shop: load-more appended cards initialise once when the control is present', async ({
+    page,
+    context,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'desktop-1440', 'single viewport for load-more');
+
+    await gotoWithComingSoonBypass(page, context, '/shop/');
+    await dismissOverlays(page);
+    await applyMotion(page);
+
+    const loadMore = page.locator('.elementor-element-ed52b7f .e-loop__load-more .elementor-button');
+    if ((await loadMore.count()) === 0 || !(await loadMore.isVisible())) {
+      test.skip(true, 'shop load-more control not active');
+      return;
+    }
+
+    const before = await page.locator(
+      '.elementor-element-ed52b7f .elementor-loop-container > .e-loop-item'
+    ).count();
+    await loadMore.evaluate((el: HTMLElement) => el.click());
+    await expect
+      .poll(
+        async () =>
+          page.locator('.elementor-element-ed52b7f .elementor-loop-container > .e-loop-item').count(),
+        { timeout: 20000 }
+      )
+      .toBeGreaterThan(before);
+    await page.waitForTimeout(400);
+
+    const states = await page.evaluate(() => {
+      const cards = Array.from(
+        document.querySelectorAll('.elementor-element-ed52b7f .elementor-loop-container > .e-loop-item')
+      ) as HTMLElement[];
+      return cards.map((el) => el.getAttribute('data-bp-motion-state'));
+    });
+    expect(states.every((s) => s === 'in' || s === 'pending')).toBeTruthy();
+    expect(states.filter((s) => s === 'in').length).toBeGreaterThan(0);
   });
 
   test('JS: gate without controller failsafe reveals; reduced-motion never pending-hides', async ({

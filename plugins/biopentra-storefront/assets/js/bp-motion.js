@@ -288,7 +288,7 @@
 		if (!widget) {
 			return;
 		}
-		cards = widget.querySelectorAll(CARD_SELECTOR);
+		cards = widget.querySelectorAll('.elementor-loop-container > .e-loop-item');
 		for (i = 0; i < cards.length; i++) {
 			card = cards[i];
 			state = card.getAttribute('data-bp-motion-state');

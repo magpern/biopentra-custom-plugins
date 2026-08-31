@@ -3,35 +3,38 @@
 **Status:** Implemented on `feature/motion-1-storefront-motion-system` (DEV bind-mount still serves `main`; no version bump, tag, or production replay)
 **Plan:** [MOTION-1_STOREFRONT_MOTION_SYSTEM.md](../plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md)
 **Plan-freeze commit:** `a824adad5922594be4e7497830caf84405f7f4d7`
-**Implementation commit:** `93fe25fb03c588749654600807d9c861ed452f0f`
+**Amendment commit (docs):** `314221347ed6362eaca29a26ac67570f5a5bbb2d` — 2026-08-31 `/shop` cards in scope
+**Implementation commit:** `93fe25fb03c588749654600807d9c861ed452f0f` (homepage) + `73a790573944c31a8aa5ce238f74b83fca3019a6` (`/shop` cards)
 **Component owner:** `biopentra-storefront` (plugin header remains `0.9.39` until PO visual freeze)
 
 ## Summary
 
-Homepage-first CSS-first motion: section reveal, curated-grid card stagger, storefront chip/button press. Two-handle WordPress enqueue (src-less head gate + footer IIFE). Runtime stamps only; no Elementor JSON mutation.
+CSS-first motion owned by `biopentra-storefront`: homepage section reveal + curated-grid stagger, plus **2026-08-31** per-card `/shop` `ed52b7f` reveal (initial SSR, filter/search replacement, load-more append). Two-handle WordPress enqueue (src-less head gate + footer IIFE). Runtime stamps only; no Elementor JSON mutation.
 
 ## URLs affected
 
-- `https://dev.biopentra.eu/` (when this branch is served)
-- Shop/search/SEO/PDP: no card motion stamps
+- `https://dev.biopentra.eu/` (when this branch is served) — homepage motion unchanged
+- `https://dev.biopentra.eu/shop/` — `ed52b7f` loop cards stamped `data-bp-motion="shop-card"`
+- Search templates, SEO landings, Woo category archives, cart, checkout, admin: no MOTION-1 enqueue / no shop-card stamps
 
 ## Files changed
 
 - `plugins/biopentra-storefront/includes/class-biopentra-storefront.php`
-- `plugins/biopentra-storefront/includes/motion-assets.php` (new)
+- `plugins/biopentra-storefront/includes/motion-assets.php`
 - `plugins/biopentra-storefront/assets/css/bp-tokens.css`
-- `plugins/biopentra-storefront/assets/css/bp-motion.css` (new)
-- `plugins/biopentra-storefront/assets/js/bp-motion.js` (new)
-- `plugins/biopentra-storefront/scripts/verify-motion-1-enqueue-cli.php` (WP printed-output enqueue proof)
-- `scripts/run-motion-1-acceptance.sh` (canonical runner)
-- `docs/storefront-redesign/validation/motion-1/` (spec + apply helper; Playwright owner is this repo)
+- `plugins/biopentra-storefront/assets/css/bp-motion.css`
+- `plugins/biopentra-storefront/assets/js/bp-motion.js`
+- `plugins/biopentra-storefront/scripts/verify-motion-1-enqueue-cli.php`
+- `scripts/run-motion-1-acceptance.sh`
+- `docs/storefront-redesign/validation/motion-1/`
 
 ## Selectors / CSS
 
 - Hide: `html.bp-motion [data-bp-motion-state="pending"]` only
-- Observe: `.bp-home-cats-section`, `.bp-m5-trust`, `.bp-m6-*`, `.bp-m7-guidance`, `.bp-home-products-section`
-- Cards: `.bp-home-products-section .elementor-loop-container > .e-loop-item`
-- Tokens: `--bp-motion-distance` 14px, duration 360ms, stagger 50ms, init failsafe 2000ms, node failsafe 25000ms
+- Homepage observe: section bands + `.bp-home-products-section` **containers**
+- Homepage cards: `.bp-home-products-section .elementor-loop-container > .e-loop-item`
+- Shop cards: `body.woocommerce-shop .elementor-element-ed52b7f .elementor-loop-container > .e-loop-item` (per-card IO; no `:nth-child` stagger)
+- Tokens: `--bp-motion-distance` 14px, duration 360ms, stagger 50ms (homepage only), init failsafe 2000ms, node failsafe 25000ms
 
 ## DB / Elementor
 
@@ -40,30 +43,33 @@ None.
 ## Acceptance
 
 **Owner:** `biopentra-custom-plugins` (`docs/storefront-redesign/validation/motion-1/`).  
-**Runner:** `scripts/run-motion-1-acceptance.sh` copies the spec into sibling `storefront-acceptance`, runs it, and deletes the copies. No storefront-acceptance branch/PR. No new Playwright runner flag.
+**Runner:** `scripts/run-motion-1-acceptance.sh`
 
 ```
 cd /home/magpern/worktrees/biopentra-custom-plugins-motion-1
 bash scripts/run-motion-1-acceptance.sh --php-lint-only
 bash scripts/run-motion-1-acceptance.sh --enqueue-only
 bash scripts/run-motion-1-acceptance.sh --playwright-only
+bash scripts/run-motion-1-acceptance.sh --m9-only
 bash scripts/run-motion-1-acceptance.sh --m4-only
 ```
 
 **PHP syntax (2026-08-31):** `php -l` clean on `motion-assets.php`, `class-biopentra-storefront.php`, `verify-motion-1-enqueue-cli.php`.
 
-**Enqueue proof (2026-08-31):** disposable `wpcli` with extra read-only mount of this worktree’s storefront plugin to `/motion-1-storefront`. Captured real `wp_head()` / `wp_footer()` HTML. Transcript: [runs/enqueue-proof.txt](../validation/motion-1/runs/enqueue-proof.txt). RESULT: PASS.
+**Enqueue proof (2026-08-31, after `/shop` amendment):** disposable `wpcli` extra read-only mount of this worktree. Transcript: [runs/enqueue-proof.txt](../validation/motion-1/runs/enqueue-proof.txt). RESULT: PASS.
 
-- Front page (`is_front_page=1`): src-less `biopentra-motion-gate` group 0 in head with inline `classList.add("bp-motion")`; `bp-motion.js` group 1 in footer only; `bp-motion.css` depends on `biopentra-bp-tokens`; noscript pending-visible rule in head.
-- Cart (`is_cart=1`), checkout (`is_checkout=1`), shop (`is_shop=1`), admin (`is_admin=1`): MOTION-1 handles absent from enqueue and printed HTML.
+- Front page and **shop** (`is_shop=1`): src-less `biopentra-motion-gate` in head; `bp-motion.js` in footer; `bp-motion.css` depends on `biopentra-bp-tokens`.
+- Cart, checkout, admin: MOTION-1 handles absent.
 
-**MOTION-1 Playwright (2026-08-31):** 17 passed, 8 skipped, exit 0. Skips documented in [runs/skipped.txt](../validation/motion-1/runs/skipped.txt) — not an acceptance gap.
+**Isolated preview HTML (2026-08-31):** `http://127.0.0.1:18080/` (basic auth). Home and `/shop/` print gate + CSS in `<head>` and `bp-motion.js` in the footer. Cart/checkout/admin do not. Note: preview `/shop/` currently falls back to the WooCommerce product archive (no `ed52b7f` loop); Elementor shop-card stamps are proven against live DEV DOM with injected branch assets and by WP enqueue on `is_shop()`.
 
-**M4 parity (2026-08-31):** same five viewports, served `ac60df4` vs injected feature assets. 6 failures each, 0 only-baseline, 0 only-feature, identical error signatures. [runs/m4-parity.txt](../validation/motion-1/runs/m4-parity.txt). Homepage `objectFit` cover vs `""` and desktop overlay not reaching `is-overlay-quick` exist on served main and with MOTION-1 injected.
+**MOTION-1 Playwright (2026-08-31, shop amendment):** 23 passed, 12 skipped, exit 0. Skips: [runs/skipped.txt](../validation/motion-1/runs/skipped.txt). Shop tests cover first-viewport / below-fold / scroll-back, filter+search replacement, and desktop load-more. Homepage tests unchanged and passing.
 
-**M9 shop filter + search (served `main`, 2026-08-30):** 4 passed on 360 and 1440.
+**M9 shop discovery (served `main`, five MOTION viewports, 2026-08-31):** 29 passed / 151 skipped (M9 spec gates extra viewports not in this run). Filter, search, chip rail still functional. [runs/m9-shop-discovery.json](../validation/motion-1/runs/m9-shop-discovery.json).
 
-Screenshots: [validation/motion-1/screenshots/](../validation/motion-1/screenshots/).
+**M4 parity (2026-08-31, after `/shop` amendment):** same five viewports, served `ac60df4` vs injected feature assets. 6 failures each, 0 only-baseline, 0 only-feature. [runs/m4-parity.txt](../validation/motion-1/runs/m4-parity.txt). Not a MOTION-1 delta.
+
+Screenshots: [validation/motion-1/screenshots/](../validation/motion-1/screenshots/) (includes `motion-1-shop-*.png`).
 
 ## Production replay
 
@@ -77,6 +83,6 @@ Revert feature-branch commits or dequeue `motion-assets.php`. No Elementor resto
 
 - `biopentra-loop-card` `prefers-reduced-motion` (hover/overlay/pulse)
 - PDP motion; ATC success pop
-- Contact/SEO section reveals
+- Contact/SEO section reveals; dedicated search / Woo archive card motion
 - Plugin version / `storefront-v*` tag after PO visual review
 - Serving this branch on DEV (bind-mount still `main`)

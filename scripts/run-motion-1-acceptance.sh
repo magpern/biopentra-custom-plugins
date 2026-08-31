@@ -14,6 +14,7 @@
 #   scripts/run-motion-1-acceptance.sh --enqueue-only
 #   scripts/run-motion-1-acceptance.sh --playwright-only
 #   scripts/run-motion-1-acceptance.sh --m4-only
+#   scripts/run-motion-1-acceptance.sh --m9-only
 #   scripts/run-motion-1-acceptance.sh --php-lint-only
 #
 set -euo pipefail
@@ -39,6 +40,7 @@ case "${1:-}" in
 	--enqueue-only) mode="enqueue"; shift || true ;;
 	--playwright-only) mode="playwright"; shift || true ;;
 	--m4-only) mode="m4"; shift || true ;;
+	--m9-only) mode="m9"; shift || true ;;
 	--php-lint-only) mode="php-lint"; shift || true ;;
 	-h|--help)
 		sed -n '2,20p' "$0"
@@ -178,6 +180,11 @@ case "$mode" in
 		echo "== M4 parity digest =="
 		python3 "$DIGEST" "${OUT_DIR}/m4-baseline.json" "${OUT_DIR}/m4-feature-injected.json" | tee "${OUT_DIR}/m4-parity.txt"
 		;;
+	m9)
+		echo "== M9 shop discovery (served ${EXPECTED_SERVED_SHA}) =="
+		run_playwright tests/m9-shop-discovery.spec.ts "${MOTION_PROJECTS[@]}"
+		copy_report "${OUT_DIR}/m9-shop-discovery.json"
+		;;
 	all)
 		php_lint
 		run_enqueue_proof
@@ -193,6 +200,9 @@ case "$mode" in
 		copy_report "${OUT_DIR}/m4-feature-injected.json"
 		echo "== M4 parity digest =="
 		python3 "$DIGEST" "${OUT_DIR}/m4-baseline.json" "${OUT_DIR}/m4-feature-injected.json" | tee "${OUT_DIR}/m4-parity.txt"
+		echo "== M9 shop discovery (served ${EXPECTED_SERVED_SHA}) =="
+		run_playwright tests/m9-shop-discovery.spec.ts "${MOTION_PROJECTS[@]}"
+		copy_report "${OUT_DIR}/m9-shop-discovery.json"
 		assert_served_untouched
 		echo "== MOTION-1 acceptance runner complete =="
 		;;

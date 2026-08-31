@@ -6,11 +6,6 @@ No syntax errors detected in /plugin/scripts/verify-motion-1-enqueue-cli.php
 == WP-CLI enqueue output capture (feature-branch plugin, extra ro mount) ==
 mount: /home/magpern/worktrees/biopentra-custom-plugins-motion-1/plugins/biopentra-storefront -> /motion-1-storefront
 served bind-mount remains /opt/biopentra/dev/biopentra-custom-plugins/plugins/biopentra-storefront
- Container wordpress-db Running 
- Container wordpress-db Waiting 
- Container wordpress-db Healthy 
- Container wordpress-wpcli-run-7cd2ec584cb2 Creating 
- Container wordpress-wpcli-run-7cd2ec584cb2 Created 
 MOTION-1 enqueue output capture
 motion_assets_file: /motion-1-storefront/includes/motion-assets.php
 served_storefront_path: /var/www/html/wp-content/plugins/biopentra-storefront/
@@ -54,8 +49,17 @@ PASS  checkout: MOTION-1 assets absent from enqueue and printed HTML
 
 === surface: shop ===
 is_front_page=0 is_shop=1
-should_load=0
-PASS  shop: MOTION-1 assets absent from enqueue and printed HTML
+should_load=1
+PASS  shop: biopentra-motion-gate enqueued
+PASS  shop: gate is src-less
+PASS  shop: gate group 0 (head)
+PASS  shop: gate inline extra attached to gate handle
+PASS  shop: wp_head prints biopentra-motion-gate
+PASS  shop: controller absent from wp_head
+PASS  shop: controller group 1 src bp-motion.js
+PASS  shop: wp_footer prints bp-motion.js
+PASS  shop: CSS depends on biopentra-bp-tokens
+PASS  shop: wp_head prints bp-motion.css
 
 === surface: admin ===
 is_admin=1 is_front_page=0

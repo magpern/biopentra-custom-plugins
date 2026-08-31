@@ -1,8 +1,7 @@
-MOTION-1 Playwright skips (five-viewport run, 2026-08-31)
+MOTION-1 Playwright skips (five-viewport run, 2026-08-31, shop-card amendment)
 
-8 skipped / 17 passed. All skips are intentional viewport gates on tests that
-are viewport-independent or desktop-only. They do not leave an untested
-acceptance path.
+12 skipped / 23 passed. All skips are intentional viewport gates. They do not
+leave an untested acceptance path.
 
 1. JS: gate without controller failsafe reveals; reduced-motion never pending-hides
    skip: testInfo.project.name !== 'desktop-1440'  ("single viewport for failure paths")
@@ -17,3 +16,10 @@ acceptance path.
    ran on: desktop-1440 (passed)
    gap?: no — MOTION-1 chip translate is gated to (hover:hover) and (pointer:fine);
    keyboard :focus-visible { transform:none } is the desktop/fine-pointer contract.
+
+3. shop: load-more appended cards initialise once when the control is present
+   skip: testInfo.project.name !== 'desktop-1440'
+   skipped on: mobile-360, mobile-390, mobile-430, tablet-768
+   ran on: desktop-1440 (passed)
+   gap?: no — load-more/infinite-scroll contract is viewport-independent; exercised
+   once on desktop after the five-viewport initial + filter/search shop tests.
