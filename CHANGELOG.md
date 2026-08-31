@@ -13,6 +13,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.40] — 2026-08-31
+
+### Added
+
+- **MOTION-1 — Storefront Motion System:** CSS-first homepage section reveal and curated product-card stagger, plus per-card `/shop` `ed52b7f` loop reveal (SSR, category filter, in-shop search, load-more). Two-handle enqueue (src-less head gate `biopentra-motion-gate` + footer `bp-motion.js`); cart, checkout, and admin excluded. Reduced-motion and no-JS paths stay static. Spec: [docs/storefront-redesign/plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md](docs/storefront-redesign/plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md). Amendment: [docs/storefront-redesign/plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md](docs/storefront-redesign/plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md). Change record: [docs/storefront-redesign/changes/motion-1-storefront-motion-system.md](docs/storefront-redesign/changes/motion-1-storefront-motion-system.md).
+
+### Notes
+
+- Commit range: `a824ada` (plan freeze) .. this tag. Plugin header was held at `0.9.39` until PO visual freeze on live DEV.
+- No Elementor JSON mutation, no database/schema change, no `biopentra-loop-card` / Blocksy child edits.
+- Production replay is **not** authorized by this freeze.
+
+### Release
+
+- **MOTION-1 Storefront Motion System — PO-approved / frozen on DEV** (`0.9.40`). Git tag: **`storefront-v0.9.40`**.
+
+---
+
 ## [0.9.36] — 2026-08-24
 
 ### Fixed

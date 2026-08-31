@@ -122,7 +122,7 @@ Later work should **not** casually reopen these sections for visual tweaking. De
 
 ## H. Motion & Interaction Polish
 
-Specified as a **separate initiative** — **[MOTION-1: Storefront Motion System](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md)**. Plan frozen 2026-08-30; **amended 2026-08-31** so `/shop` `ed52b7f` cards are in scope ([decision record](plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md)). Implementation is on `feature/motion-1-storefront-motion-system` (plugin header remains `0.9.39`). Not M11. Not a reopen of M1–M10. Not part of this program’s original closure scope. Version bump, tag, DEV bind-mount switch, and production replay remain after PO visual review.
+Specified as a **separate initiative** — **[MOTION-1: Storefront Motion System](plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md)**. Plan frozen 2026-08-30; **amended 2026-08-31** so `/shop` `ed52b7f` cards are in scope ([decision record](plans/MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md)). **PO-approved / frozen on DEV** 2026-08-31 as **`biopentra-storefront` `0.9.40`** · **`storefront-v0.9.40`**. Not M11. Not a reopen of M1–M10. Production replay remains a separate PO GO.
 
 ---
 

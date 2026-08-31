@@ -44,6 +44,9 @@ No. Stock display only changes frontend availability text via `woocommerce_get_a
 
 == Changelog ==
 
+= 0.9.40 =
+* MOTION-1: homepage section reveal + curated-grid stagger, and per-card `/shop` `ed52b7f` reveal (filter/search/load-more). Head gate + footer controller; cart/checkout/admin excluded.
+
 = 0.9.39 =
 * M3 B4 corrective: remove the WooCommerce/Blocksy Reviews product tab whenever the dedicated PDP reviews section renders, so the page emits exactly one global `id="reviews"` (dedicated section only).
 

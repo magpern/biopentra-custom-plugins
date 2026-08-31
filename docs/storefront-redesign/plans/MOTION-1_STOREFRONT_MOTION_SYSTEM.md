@@ -1,11 +1,11 @@
 # MOTION-1: Storefront Motion System
 
-**Status:** **Plan frozen for implementation authorization** (amended 2026-08-31; frozen again)
+**Status:** **PO-approved / frozen on DEV** (2026-08-31) — `biopentra-storefront` **0.9.40** · **`storefront-v0.9.40`**
 **Identifier:** **MOTION-1** (new initiative; not M11; not a reopen of M1–M10 or PDP-1)
 **Freeze date:** 2026-08-30
 **Amendment:** 2026-08-31 — `/shop` product cards in scope. Decision record: [`MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md`](MOTION-1_AMENDMENT_2026-08-31_SHOP_CARD_REVEAL.md). The 2026-08-30 “no shop card reveal” decision is **superseded**, not silently deleted.
 **Owner:** `biopentra-storefront` in `biopentra-custom-plugins`
-**Production:** not in scope. No replay, tag, or release from this milestone until a later explicit PO GO after visual review.
+**Production:** not in scope. Tag/ZIP from this freeze is for DEV source-of-truth; production replay still needs a later explicit PO GO.
 
 This document is the authoritative MOTION-1 specification. It supersedes the deferred “Motion & Interaction Polish” placeholder in [`UI-OVERHAUL-CLOSURE.md`](../UI-OVERHAUL-CLOSURE.md) §H for *planning* purposes. Frozen M1–M10 and PDP-1 visual baselines remain frozen.
 
@@ -37,7 +37,7 @@ Do not copy older planning notes for versions. Values below were read from the r
 - Loop items: `.biopentra-loop-card-root` **is also** `.e-loop-item` (same node), children of `.elementor-loop-container`. Stagger `:nth-child()` targets `.bp-home-products-section .elementor-loop-container > .e-loop-item`.
 - Editorial: `.bp-m5-trust` (`0b22897`), `.bp-m6-confidence` (`7fe474f`), `.bp-m6-why` (`why4444`), `.bp-m6-faq` (`faqPreview4444`), `.bp-m7-guidance` (`238bcc6`).
 
-Implementation must **not** bump plugin version or add a `storefront-v*` tag. Those remain after PO visual review.
+Implementation at freeze time was **not** to bump plugin version or add a `storefront-v*` tag. Those landed at PO visual freeze as **0.9.40** / **`storefront-v0.9.40`**.
 
 ---
 
@@ -352,8 +352,7 @@ Screenshots/recordings: `docs/storefront-redesign/validation/motion-1/` (created
 - `biopentra-loop-card` `prefers-reduced-motion` for hover translate/scale, overlay transform, and pulse keyframes.
 - PDP motion; ATC success pop.
 - Contact / SEO landing **section** reveals.
-- Plugin version bump + `storefront-v*` tag after PO visual freeze.
-- Production replay.
+- Production replay (separate PO GO). Plugin version bump + `storefront-v0.9.40` completed at PO visual freeze.
 
 ---
 

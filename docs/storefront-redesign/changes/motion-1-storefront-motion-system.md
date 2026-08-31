@@ -1,11 +1,11 @@
 # MOTION-1 — Storefront Motion System — change record
 
-**Status:** Implemented on `feature/motion-1-storefront-motion-system` (DEV bind-mount still serves `main`; no version bump, tag, or production replay)
+**Status:** PO-approved / frozen on DEV (`0.9.40`, tag `storefront-v0.9.40`). Production replay not authorized.
 **Plan:** [MOTION-1_STOREFRONT_MOTION_SYSTEM.md](../plans/MOTION-1_STOREFRONT_MOTION_SYSTEM.md)
 **Plan-freeze commit:** `a824adad5922594be4e7497830caf84405f7f4d7`
 **Amendment commit (docs):** `314221347ed6362eaca29a26ac67570f5a5bbb2d` — 2026-08-31 `/shop` cards in scope
 **Implementation commit:** `93fe25fb03c588749654600807d9c861ed452f0f` (homepage) + `73a790573944c31a8aa5ce238f74b83fca3019a6` (`/shop` cards)
-**Component owner:** `biopentra-storefront` (plugin header remains `0.9.39` until PO visual freeze)
+**Component owner:** `biopentra-storefront` `0.9.40`
 
 ## Summary
 
@@ -13,7 +13,7 @@ CSS-first motion owned by `biopentra-storefront`: homepage section reveal + cura
 
 ## URLs affected
 
-- `https://dev.biopentra.eu/` (when this branch is served) — homepage motion unchanged
+- `https://dev.biopentra.eu/` — homepage motion
 - `https://dev.biopentra.eu/shop/` — `ed52b7f` loop cards stamped `data-bp-motion="shop-card"`
 - Search templates, SEO landings, Woo category archives, cart, checkout, admin: no MOTION-1 enqueue / no shop-card stamps
 
@@ -77,12 +77,11 @@ Not performed. Not authorized.
 
 ## Rollback
 
-Revert feature-branch commits or dequeue `motion-assets.php`. No Elementor restore.
+Revert to `storefront-v0.9.36` (last prior tagged ZIP) or dequeue `motion-assets.php`. No Elementor restore.
 
 ## Deferred
 
 - `biopentra-loop-card` `prefers-reduced-motion` (hover/overlay/pulse)
 - PDP motion; ATC success pop
 - Contact/SEO section reveals; dedicated search / Woo archive card motion
-- Plugin version / `storefront-v*` tag after PO visual review
-- Serving this branch on DEV (bind-mount still `main`)
+- Production replay (separate PO GO)
