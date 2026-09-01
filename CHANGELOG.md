@@ -13,6 +13,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.41] — 2026-09-01
+
+### Fixed
+
+- **Header UMC switcher leaked past `BIOPENTRA_E_SKIP_UMC`:** `plugins/biopentra-storefront/scripts/setup-milestone-e-chrome-cli.php` honoured `BIOPENTRA_E_SKIP_UMC=1` for the `umc_settings` option write (and its hard `exit(1)`) but still unconditionally inserted an Elementor `shortcode` widget containing `[universal_multicurrency_switcher]` into the header. On hosts where the `universal-multicurrency` plugin is not installed (e.g. production before that cutover) this rendered a broken/empty shortcode in the site header. The switcher-widget insertion is now also skipped when `$skip_umc` is true (prints `Header {id}: UMC switcher widget skipped (SKIP_UMC)`). The `data-bp-chrome-search` control insertion stays unconditional and the function remains idempotent. New standalone test: `plugins/biopentra-storefront/tests/test-setup-milestone-e-chrome.php`.
+
+### Notes
+
+- Scripts and tests are git-only (excluded from the production ZIP); no runtime/plugin behaviour, database, or schema change.
+- Git tag: **`storefront-v0.9.41`**.
+
+---
+
 ## [0.9.40] — 2026-08-31
 
 ### Added

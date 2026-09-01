@@ -44,6 +44,9 @@ No. Stock display only changes frontend availability text via `woocommerce_get_a
 
 == Changelog ==
 
+= 0.9.41 =
+* Fixed: `scripts/setup-milestone-e-chrome-cli.php` no longer inserts the `[universal_multicurrency_switcher]` shortcode widget into the Elementor header when `BIOPENTRA_E_SKIP_UMC=1`. Previously that env var only skipped the `umc_settings` option write, so hosts without the universal-multicurrency plugin (e.g. production before cutover) got a broken/empty shortcode in the header. The compact header search control is still inserted unconditionally.
+
 = 0.9.40 =
 * MOTION-1: homepage section reveal + curated-grid stagger, and per-card `/shop` `ed52b7f` reveal (filter/search/load-more). Head gate + footer controller; cart/checkout/admin excluded.
 

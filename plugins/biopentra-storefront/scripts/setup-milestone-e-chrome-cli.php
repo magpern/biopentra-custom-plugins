@@ -12,7 +12,14 @@
  *
  * Env:
  *   BIOPENTRA_E_HEADER_POST_ID=3782
- *   BIOPENTRA_E_SKIP_UMC=1
+ *   BIOPENTRA_E_SKIP_UMC=1     Skips the umc_settings option write (and its hard
+ *                              exit) AND suppresses inserting the
+ *                              [universal_multicurrency_switcher] shortcode
+ *                              widget into the header. Use on hosts where the
+ *                              universal-multicurrency plugin is not installed
+ *                              (e.g. production before that cutover) so the
+ *                              header does not render an empty/broken shortcode.
+ *                              The compact search control is still inserted.
  *   BIOPENTRA_E_SKIP_HEADER=1
  *
  * @package Biopentra_Storefront
@@ -168,7 +175,9 @@ if ( ! is_array( $data ) ) {
 
 $changed = false;
 
-if ( ! biopentra_e_has_marker( $data, 'universal_multicurrency_switcher' ) && ! biopentra_e_has_marker( $data, 'umc_switcher' ) ) {
+if ( $skip_umc ) {
+	echo "Header {$header_id}: UMC switcher widget skipped (SKIP_UMC)\n";
+} elseif ( ! biopentra_e_has_marker( $data, 'universal_multicurrency_switcher' ) && ! biopentra_e_has_marker( $data, 'umc_switcher' ) ) {
 	$umc_widget = array(
 		'id'         => substr( md5( 'bp-e-umc-switcher' ), 0, 7 ),
 		'elType'     => 'widget',
