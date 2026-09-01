@@ -66,7 +66,7 @@ VERSION_CONST="$(release_read_version_constant "${PLUGIN_SLUG}" "${MAIN_FILE}")"
 	biopentra-storefront)
 		[[ -f "${PLUGIN_DIR}/readme.txt" ]] || fail "Missing plugins/${PLUGIN_SLUG}/readme.txt"
 		[[ -f "${PLUGIN_DIR}/LICENSE" ]] || fail "Missing plugins/${PLUGIN_SLUG}/LICENSE"
-		[[ -f "${PLUGIN_DIR}/includes/class-github-updater.php" ]] || fail "Missing includes/class-github-updater.php"
+		[[ -f "${PLUGIN_DIR}/lib/plugin-update-checker/plugin-update-checker.php" ]] || fail "Missing bundled plugin-update-checker"
 		[[ -d "${PLUGIN_DIR}/scripts" ]] && echo "    scripts/: present in repo (excluded from production ZIP)"
 		;;
 esac
@@ -152,10 +152,11 @@ with zipfile.ZipFile(zip_path) as zf:
         sys.exit(1)
 print("    OK: cli/, scripts/, docs/, .github/ absent from zip")
 updater = f"{slug}/includes/class-github-updater.php"
-if updater not in names:
-    print(f"ERROR: zip missing {updater}", file=sys.stderr)
+puc = f"{slug}/lib/plugin-update-checker/plugin-update-checker.php"
+if updater not in names and puc not in names:
+    print("ERROR: zip missing an update checker", file=sys.stderr)
     sys.exit(1)
-print("    OK: includes/class-github-updater.php present in zip")
+print("    OK: update checker present in zip")
 PY
 
 echo ""

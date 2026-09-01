@@ -4,7 +4,7 @@ Tags: woocommerce, storefront, elementor, header, mega menu, stock display, seo
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.9.0
+Stable tag: 0.9.42
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ WooCommerce → Stock display (requires manage_woocommerce). Thresholds, text, a
 No. Stock display only changes frontend availability text via `woocommerce_get_availability`.
 
 == Changelog ==
+
+= 0.9.42 =
+* Automatic updates now come from a private update server via the bundled Plugin Update Checker library; the previous direct GitHub-release updater has been removed. Update checks are inert unless the PRIVATE_UPDATE_SERVER constant is defined.
 
 = 0.9.41 =
 * Fixed: `scripts/setup-milestone-e-chrome-cli.php` no longer inserts the `[universal_multicurrency_switcher]` shortcode widget into the Elementor header when `BIOPENTRA_E_SKIP_UMC=1`. Previously that env var only skipped the `umc_settings` option write, so hosts without the universal-multicurrency plugin (e.g. production before cutover) got a broken/empty shortcode in the header. The compact header search control is still inserted unconditionally.
