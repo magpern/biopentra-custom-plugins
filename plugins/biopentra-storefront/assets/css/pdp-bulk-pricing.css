@@ -1,0 +1,94 @@
+/**
+ * PDP bulk pricing anchor selector.
+ */
+
+.bp-pdp-bulk-pricing {
+	margin: 1rem 0 1.25rem;
+}
+
+.bp-pdp-bulk-pricing__fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+}
+
+.bp-pdp-bulk-pricing__legend {
+	font-size: 0.875rem;
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+	padding: 0;
+}
+
+.bp-pdp-bulk-pricing__options {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+	gap: 0.75rem;
+}
+
+.bp-pdp-bulk-pricing__option {
+	display: block;
+	cursor: pointer;
+}
+
+.bp-pdp-bulk-pricing__radio {
+	position: absolute;
+	opacity: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.bp-pdp-bulk-pricing__card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	padding: 0.75rem;
+	border: 1px solid var(--theme-border-color, #d7dbe0);
+	border-radius: 0.5rem;
+	background: var(--theme-palette-color-8, #fff);
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bp-pdp-bulk-pricing__radio:focus-visible + .bp-pdp-bulk-pricing__card {
+	outline: 2px solid var(--theme-palette-color-1, #2271b1);
+	outline-offset: 2px;
+}
+
+.bp-pdp-bulk-pricing__radio:checked + .bp-pdp-bulk-pricing__card {
+	border-color: var(--theme-palette-color-1, #2271b1);
+	box-shadow: 0 0 0 1px var(--theme-palette-color-1, #2271b1);
+}
+
+.bp-pdp-bulk-pricing__qty {
+	font-size: 0.8125rem;
+	font-weight: 600;
+}
+
+.bp-pdp-bulk-pricing__unit,
+.bp-pdp-bulk-pricing__line {
+	font-size: 0.8125rem;
+}
+
+.bp-pdp-bulk-pricing__badge {
+	display: inline-block;
+	margin-top: 0.25rem;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--theme-text-color, #334155);
+}
+
+.bp-pdp-bulk-pricing__custom {
+	margin: 0.75rem 0 0;
+	font-size: 0.8125rem;
+}
+
+.bp-pdp-bulk-pricing__disclaimer {
+	margin: 0.5rem 0 0;
+	font-size: 0.75rem;
+	color: var(--theme-text-color, #64748b);
+}

@@ -89,6 +89,14 @@ class Biopentra_Storefront {
 			}
 		}
 
+		$pdp_bulk_pricing_module = BIOPENTRA_STOREFRONT_PATH . 'modules/pdp-bulk-pricing/class-pdp-bulk-pricing-module.php';
+		if ( is_readable( $pdp_bulk_pricing_module ) ) {
+			require_once $pdp_bulk_pricing_module;
+			if ( class_exists( 'Biopentra_Storefront_Pdp_Bulk_Pricing_Module' ) ) {
+				Biopentra_Storefront_Pdp_Bulk_Pricing_Module::init();
+			}
+		}
+
 		$pdp_rating_summary_module = BIOPENTRA_STOREFRONT_PATH . 'modules/pdp-rating-summary/class-pdp-rating-summary-module.php';
 		if ( is_readable( $pdp_rating_summary_module ) ) {
 			require_once $pdp_rating_summary_module;
