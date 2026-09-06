@@ -13,6 +13,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.45] — 2026-09-06
+
+### Fixed
+
+- **PDP "Be the first" review CTA when reviews are not available:** the rating summary always rendered `No reviews yet — Be the first` even when Universal Product Reviews was inactive, WooCommerce reviews were off, or the visitor could not submit (guest / invitation-only). Empty-state CTA now renders only when the native PDP form is actually allowed (`NativePdpForm::should_render()` via the reviews-section helper, fail-closed). Approved rating lines still show when review count is greater than zero. Host `enable_pdp_summary` is honoured on `Upr_Host_Adapter_Options` (legacy `Biopentra_Upr_Host_Options` still recognised).
+
+### Notes
+
+- Git tag: **`storefront-v0.9.45`**. Rollback baseline: **`storefront-v0.9.44`**.
+- Production install still requires an explicit GO.
+
+---
+
 ## [0.9.44] — 2026-09-06
 
 ### Fixed

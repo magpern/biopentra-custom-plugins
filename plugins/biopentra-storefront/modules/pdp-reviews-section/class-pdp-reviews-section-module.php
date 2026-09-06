@@ -127,6 +127,10 @@ class Biopentra_Storefront_Pdp_Reviews_Section_Module {
 			return \UniversalProductReviews\Submission\NativePdpForm::should_render( $product_id );
 		}
 
+		if ( class_exists( 'Upr_Host_Adapter_Review_Availability_Ux' ) ) {
+			return Upr_Host_Adapter_Review_Availability_Ux::can_submit_for_product( $product_id );
+		}
+
 		if ( class_exists( 'Biopentra_Upr_Host_Review_Availability_Ux' ) ) {
 			return Biopentra_Upr_Host_Review_Availability_Ux::can_submit_for_product( $product_id );
 		}

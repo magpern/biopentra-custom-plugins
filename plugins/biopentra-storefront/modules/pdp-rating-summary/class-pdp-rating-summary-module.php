@@ -24,13 +24,16 @@ class Biopentra_Storefront_Pdp_Rating_Summary_Module {
 
 	/**
 	 * Render compact rating summary linking to #reviews.
+	 *
+	 * Empty-state "Be the first" is only shown when the visitor can actually
+	 * submit a native review. Approved ratings still render when reviews exist.
 	 */
 	public static function render_summary() {
 		if ( ! is_product() ) {
 			return;
 		}
 
-		if ( class_exists( 'Biopentra_Upr_Host_Options' ) && ! Biopentra_Upr_Host_Options::get( 'enable_pdp_summary', true ) ) {
+		if ( ! self::is_pdp_summary_enabled() ) {
 			return;
 		}
 
@@ -39,9 +42,15 @@ class Biopentra_Storefront_Pdp_Rating_Summary_Module {
 			return;
 		}
 
-		$count   = (int) $product->get_review_count();
-		$average = (float) $product->get_average_rating();
-		$url     = get_permalink( $product->get_id() ) . '#reviews';
+		$count      = (int) $product->get_review_count();
+		$average    = (float) $product->get_average_rating();
+		$can_submit = self::can_invite_first_review( (int) $product->get_id() );
+
+		if ( $count <= 0 && ! $can_submit ) {
+			return;
+		}
+
+		$url = get_permalink( $product->get_id() ) . '#reviews';
 
 		echo '<div class="bp-pdp-rating-summary" data-bp-pdp-rating-summary>';
 		if ( $count <= 0 ) {
@@ -63,5 +72,43 @@ class Biopentra_Storefront_Pdp_Rating_Summary_Module {
 			echo '</a></p>';
 		}
 		echo '</div>';
+	}
+
+	/**
+	 * Host adapter can hide the whole summary (current + legacy class names).
+	 *
+	 * @return bool
+	 */
+	private static function is_pdp_summary_enabled() {
+		if ( class_exists( 'Upr_Host_Adapter_Options' ) && ! Upr_Host_Adapter_Options::get( 'enable_pdp_summary', true ) ) {
+			return false;
+		}
+
+		if ( class_exists( 'Biopentra_Upr_Host_Options' ) && ! Biopentra_Upr_Host_Options::get( 'enable_pdp_summary', true ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Whether the empty-state CTA would land on a usable native review form.
+	 *
+	 * Fail-closed when UPR/host display helpers are absent or WooCommerce
+	 * reviews are disabled.
+	 *
+	 * @param int $product_id Product ID.
+	 * @return bool
+	 */
+	private static function can_invite_first_review( $product_id ) {
+		if ( function_exists( 'wc_reviews_enabled' ) && ! wc_reviews_enabled() ) {
+			return false;
+		}
+
+		if ( class_exists( 'Biopentra_Storefront_Pdp_Reviews_Section_Module' ) ) {
+			return Biopentra_Storefront_Pdp_Reviews_Section_Module::should_render_native_form( $product_id );
+		}
+
+		return false;
 	}
 }
