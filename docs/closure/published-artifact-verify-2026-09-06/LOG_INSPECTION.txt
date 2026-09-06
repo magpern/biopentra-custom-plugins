@@ -1,0 +1,3 @@
+== wordpress logs (30m) interesting lines ==
+== debug.log ==
+no-debug-log

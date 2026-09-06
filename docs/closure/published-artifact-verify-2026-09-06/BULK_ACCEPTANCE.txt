@@ -1,0 +1,73 @@
+== bulk fixtures ==
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-cd8628ec540a Creating 
+ Container wordpress-wpcli-run-cd8628ec540a Created 
+Success: Bulk pricing fixture product ID 6902 at /product/bulk-pricing-fixture/
+== bulk promotion ==
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-00d626907371 Creating 
+ Container wordpress-wpcli-run-00d626907371 Created 
+QA runtime: {
+    "script": "bulk-pricing-promotion-acceptance",
+    "capabilities": [
+        "persistent"
+    ],
+    "environment": "development",
+    "is_production_like": false,
+    "site_url": "https:\/\/dev.biopentra.eu\/",
+    "allow_live_qa": false,
+    "allow_qa_emails": false,
+    "allow_persistent_setup": false,
+    "dry_run": false,
+    "cleanup_enabled": true
+}
+OK  fixture promotion persisted
+OK  promotion beats bulk 5% tier for qty 3 (unit below 95)
+OK  pricing source is promotion when promotion wins
+OK  order has product line
+OK  order line stores pricing source meta
+
+== bulk pricing promotion acceptance: 5 ok, 0 fail ==
+Success: Bulk pricing promotion acceptance passed.
+QA cleanup: {"run_id":"05eeb99e-02fe-4b3a-af4b-d036bb117eb2","products_removed":0,"orders_removed":0,"promotions_archived":0,"gift_cards_voided":0,"users_removed":0,"errors":[]}
+== bulk cart ==
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-8b18ec7c1881 Creating 
+ Container wordpress-wpcli-run-8b18ec7c1881 Created 
+QA runtime: {
+    "script": "bulk-pricing-cart-acceptance",
+    "capabilities": [
+        "persistent"
+    ],
+    "environment": "development",
+    "is_production_like": false,
+    "site_url": "https:\/\/dev.biopentra.eu\/",
+    "allow_live_qa": false,
+    "allow_qa_emails": false,
+    "allow_persistent_setup": false,
+    "dry_run": false,
+    "cleanup_enabled": true
+}
+OK  cart has a line
+OK  qty 4 unit price is 95 (3+ tier)
+OK  qty 4 line subtotal is 380
+OK  pricing source is bulk_tier
+OK  tier min quantity meta is 3
+OK  cart has a line
+OK  second totals pass matches first subtotal
+OK  second totals pass matches first unit price
+OK  cart has a line
+OK  mutated cart data price ignored; bulk tier still 95
+OK  WC percent coupon reduces cart total alongside bulk pricing
+OK  UMC cart second totals pass matches first (CLI session)
+SKIP UMC SEK subtotal range in CLI (storefront ?currency=SEK verified via Playwright)
+
+== bulk pricing cart acceptance: 12 ok, 0 fail ==
+Success: Bulk pricing cart acceptance passed.
+QA cleanup: {"run_id":"c8f88624-7cf0-48a1-b433-729dea25243a","products_removed":0,"orders_removed":0,"promotions_archived":0,"gift_cards_voided":0,"users_removed":0,"errors":[]}

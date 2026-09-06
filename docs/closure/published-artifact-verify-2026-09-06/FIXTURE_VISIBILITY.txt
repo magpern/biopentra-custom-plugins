@@ -1,0 +1,7 @@
+bulk-pricing-fixture id=6902 vis=hidden status=publish
+ucb-fixture-kit id=6918 vis=hidden status=publish
+ucb-fixture-kit-2 id=6921 vis=hidden status=publish
+ucb-fixture-component-a id=6915 vis=hidden status=publish
+kit id=6921 slug=ucb-fixture-kit-2 vis=hidden
+kit id=6918 slug=ucb-fixture-kit vis=hidden
+NO_REAL_VISIBLE_KITS

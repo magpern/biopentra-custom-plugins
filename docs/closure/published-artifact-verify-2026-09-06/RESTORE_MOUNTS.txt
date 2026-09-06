@@ -1,0 +1,4 @@
+703 698 8:1 /opt/biopentra/dev/_release-artifacts/mp-commerce-promotions /var/www/html/wp-content/plugins/mp-commerce-promotions rw,relatime - ext4 /dev/sda1 rw,discard,errors=remount-ro,commit=30
+712 698 8:1 /opt/biopentra/dev/_release-artifacts/universal-commerce-bundles /var/www/html/wp-content/plugins/universal-commerce-bundles rw,relatime - ext4 /dev/sda1 rw,discard,errors=remount-ro,commit=30
+713 698 8:1 /opt/biopentra/dev/_release-artifacts/universal-commerce-bundles-safety-guard.php /var/www/html/wp-content/mu-plugins/universal-commerce-bundles-safety-guard.php ro,relatime - ext4 /dev/sda1 rw,discard,errors=remount-ro,commit=30
+716 698 8:1 /opt/biopentra/dev/_release-artifacts/mp-commerce-fulfillment /var/www/html/wp-content/plugins/mp-commerce-fulfillment rw,relatime - ext4 /dev/sda1 rw,discard,errors=remount-ro,commit=30

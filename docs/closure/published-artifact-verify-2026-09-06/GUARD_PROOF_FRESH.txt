@@ -1,0 +1,48 @@
+== guard proof step1: deactivate UCB ==
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-76d59abfaa6e Creating 
+ Container wordpress-wpcli-run-76d59abfaa6e Created 
+Success: UCB deactivated
+== guard proof step2: fresh process — kit blocked, control ok ==
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-1bbd7989c7fd Creating 
+ Container wordpress-wpcli-run-1bbd7989c7fd Created 
+OK  UCB inactive in fresh process
+OK  MU guard present
+OK  ucb_runtime_ready not fired
+OK  kit blocked while UCB inactive
+OK  non-kit still purchasable
+== step2: 5 ok, 0 fail ==
+Success: step2 passed
+== guard proof step3: reactivate UCB ==
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-cf259041e1fc Creating 
+ Container wordpress-wpcli-run-cf259041e1fc Created 
+OK  UCB active
+Warning: FAIL ucb_runtime_ready fired after activate
+Warning: FAIL kit purchasable after reactivate
+Error: step3 failed
+== step3: 1 ok, 2 fail ==
+
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-34c3f440b5e5 Creating 
+ Container wordpress-wpcli-run-34c3f440b5e5 Created 
+Success: UCB activated (next process validates ready)
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-2bf091648ead Creating 
+ Container wordpress-wpcli-run-2bf091648ead Created 
+OK  UCB active in fresh process
+OK  ucb_runtime_ready fired
+OK  kit purchasable with UCB ready
+== step4: 3 ok, 0 fail ==
+Success: guard proof passed (fresh-process)

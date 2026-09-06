@@ -1,0 +1,17 @@
+
+Running 7 tests using 1 worker
+
+[1A[2K[1/7] [desktop-1440] › tests/pdp-bulk-pricing.spec.ts:49:7 › PDP bulk pricing › fixture: anchor selection sets quantity
+[1A[2K[2/7] [desktop-1440] › tests/pdp-bulk-pricing.spec.ts:60:7 › PDP bulk pricing › fixture: add-to-cart with anchor price (no competing promotion)
+[1A[2K[3/7] [desktop-1440] › tests/pdp-bulk-pricing.spec.ts:77:7 › PDP bulk pricing › fixture: custom quantity preview and cart bracket price
+[1A[2K[4/7] [desktop-1440] › tests/pdp-bulk-pricing.spec.ts:95:7 › PDP bulk pricing › fixture: sticky price synchronisation
+[1A[2K[5/7] [desktop-1440] › tests/pdp-bulk-pricing.spec.ts:108:7 › PDP bulk pricing › fixture: UMC non-base currency PDP and checkout totals
+[1A[2K[6/7] [desktop-1440] › tests/pdp-bulk-pricing.spec.ts:131:7 › PDP bulk pricing › control product: no bulk markup regression
+[1A[2K[7/7] [desktop-1440] › tests/pdp-bulk-pricing.spec.ts:141:7 › PDP bulk pricing › fixture: WCAG 2.2 AA axe scan
+[1A[2K  1 skipped
+  6 passed (56.1s)
+npm notice
+npm notice New major version of npm available! 10.9.2 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice

@@ -1,0 +1,6 @@
+universal-commerce-bundles scripts=absent
+universal-commerce-bundles tests=absent
+mp-commerce-fulfillment scripts=absent
+mp-commerce-fulfillment tests=absent
+mp-commerce-promotions scripts=absent
+mp-commerce-promotions tests=absent

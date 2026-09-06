@@ -1,0 +1,23 @@
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-fe02b8c5c02f Creating 
+ Container wordpress-wpcli-run-fe02b8c5c02f Created 
+== UCB refund / cron / idempotency supplement ==
+OK  fixture products present
+OK  kit purchasable before refund order
+OK  stock A -2 after 2 kits
+OK  stock B -4 after 2 kits
+OK  stock C -2 after 2 kits
+OK  MPCF intake idempotent: exactly 1 fulfillment row got 1
+OK  parent kit line item found for refund
+OK  wc_create_refund succeeded
+OK  stock A restored by 1 after partial refund got 198
+OK  stock B restored by 2 after partial refund got 196
+OK  stock C restored by 1 after partial refund got 198
+OK  scheduled recovery / revalidate hooks did not throw
+OK  kit still purchasable with UCB active
+OK  kit fixture remains hidden
+OK  bulk fixture remains hidden
+== refund/cron supplement: 15 ok, 0 fail ==
+Success: refund/cron supplement PASSED
