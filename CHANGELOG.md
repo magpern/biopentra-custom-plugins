@@ -13,6 +13,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.43] — 2026-09-05
+
+### Added
+
+- **PDP Bulk Pricing selector module:** consumes `mp_cp_bulk_pricing_storefront_v1` from `mp-commerce-promotions` (Bulk Pricing v1). Fieldset/radio tier cards, custom quantity preview, sticky price sync bridge, and purchase-panel placement after price/stock. Assets: `pdp-bulk-pricing.css`, `pdp-bulk-pricing.js`, `pdp-bulk-pricing-sticky-sync.js`; module `modules/pdp-bulk-pricing/class-pdp-bulk-pricing-module.php`.
+
+### Notes
+
+- Requires `mp-commerce-promotions` with Bulk Pricing v1 / contract `mp_cp_bulk_pricing_storefront_v1`.
+- Git tag: **`storefront-v0.9.43`**. Rollback baseline: **`storefront-v0.9.42`**.
+- Production install still requires an explicit GO.
+
+---
+
 ## [0.9.41] — 2026-09-01
 
 ### Fixed
