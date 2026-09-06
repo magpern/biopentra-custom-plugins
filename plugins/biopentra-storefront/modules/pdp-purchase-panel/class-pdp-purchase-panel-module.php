@@ -57,6 +57,11 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 		add_filter( 'woocommerce_get_stock_html', array( __CLASS__, 'suppress_native_simple_stock' ), 10, 2 );
 		add_action( 'woocommerce_before_add_to_cart_form', array( __CLASS__, 'maybe_render_simple_stock' ), 6 );
 
+		// Out-of-stock simple products skip the add-to-cart form, so the
+		// relocated panel price never renders. Restore native price next to
+		// the native stock line that still echoes from simple.php.
+		add_filter( 'woocommerce_get_stock_html', array( __CLASS__, 'render_simple_price_when_out_of_stock' ), 11, 2 );
+
 		// WP4 polish: Blocksy's default layout renders its own divider
 		// ('divider_2') between the add-to-cart layer and product_meta —
 		// redundant with layout.css's existing .product_meta top border
@@ -271,6 +276,48 @@ class Biopentra_Storefront_Pdp_Purchase_Panel_Module {
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Restore the native simple-product price when the purchase panel never
+	 * opens. Blocksy's outer `product_price` layer is suppressed for all
+	 * simple products, but `woocommerce_before_add_to_cart_form` only fires
+	 * while the product is in stock — without this, sold-out simples have
+	 * no price at all.
+	 *
+	 * Scoped to the queried PDP product so related/upsell loop cards on the
+	 * same page cannot pick up the wrapper.
+	 *
+	 * @param string     $html    Rendered stock HTML.
+	 * @param WC_Product $product Product being rendered.
+	 * @return string
+	 */
+	public static function render_simple_price_when_out_of_stock( $html, $product ) {
+		if ( ! self::is_simple_pdp_out_of_stock( $product ) ) {
+			return $html;
+		}
+
+		ob_start();
+		woocommerce_template_single_price();
+		$price_html = ob_get_clean();
+
+		return '<div class="bp-pdp-purchase-panel">' . $price_html . $html . '</div>';
+	}
+
+	/**
+	 * @param mixed $product Product candidate.
+	 * @return bool
+	 */
+	private static function is_simple_pdp_out_of_stock( $product ) {
+		if ( ! function_exists( 'is_product' ) || ! is_product() || ! $product instanceof WC_Product ) {
+			return false;
+		}
+
+		if ( ! $product->is_type( 'simple' ) || $product->is_in_stock() ) {
+			return false;
+		}
+
+		return (int) $product->get_id() === (int) get_queried_object_id();
 	}
 
 	/**

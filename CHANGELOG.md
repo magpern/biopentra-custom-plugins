@@ -13,6 +13,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ---
 
+## [0.9.44] — 2026-09-06
+
+### Fixed
+
+- **PDP out-of-stock simple products hid the price:** PDP-1 relocates the native simple-product price into the purchase panel via `woocommerce_before_add_to_cart_form`, and WooCommerce's `simple.php` skips that form (and hook) when the product is out of stock. Blocksy's outer `product_price` layer stayed suppressed, so sold-out simples showed stock status with no price. Native `woocommerce_template_single_price()` now renders next to the native stock line, wrapped in `.bp-pdp-purchase-panel`, scoped to the queried PDP product only.
+
+### Notes
+
+- Git tag: **`storefront-v0.9.44`**. Rollback baseline: **`storefront-v0.9.43`**.
+- Production install still requires an explicit GO.
+
+---
+
 ## [0.9.43] — 2026-09-05
 
 ### Added
