@@ -1,0 +1,79 @@
+== coord acceptance ==
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-e5750196c25b Creating 
+ Container wordpress-wpcli-run-e5750196c25b Created 
+== Coordinated DEV acceptance (UCB/MPCF/MPCP) ==
+UCB=0.1.0
+MPCF=1.1.0
+MPCP=0.6.0
+OK  UCB runtime version 0.1.0
+OK  MPCF runtime version 1.1.0
+OK  MPCP runtime version 0.6.0
+OK  MU guard file present
+OK  ucb_runtime_ready fired this request
+OK  HPOS enabled
+NOTE CompositionValidator class present
+OK  kit marked _ucb_is_kit
+OK  kit purchasable with UCB ready
+OK  bulk fixture 6902 present
+OK  bulk fixture remains hidden
+OK  bulk qty1 in cart
+OK  bulk qty1 unit ~100 got 100
+OK  bulk qty3 unit ~95 got 95
+OK  bulk qty5 unit ~90 got 90
+OK  bulk qty10 unit ~85 got 85
+OK  two consecutive totals identical for bulk
+OK  classic: kit parent line present
+OK  classic: exactly 3 component children
+OK  classic: parent priced > 0 (100)
+OK  classic: component children zero-priced
+OK  promotions context includes kit parent
+OK  promotions context excludes component A child
+OK  promotions context excludes component B child
+OK  promotions context excludes component C child
+OK  standalone component remains promotion-eligible in context
+OK  order has 1 kit parent meta line
+OK  order has 3 component meta lines
+OK  MPCF fulfillment row created for kit order
+OK  fulfillment has exactly 3 picking rows (no parent) got 3
+OK  kit parent product id absent from picking rows
+OK  component A stock -1
+OK  component B stock -2
+OK  component C stock -1
+OK  two kits share component A with distinct cart item keys
+OK  mixed: bulk tier applies only to fixture (~90) got 90
+OK  mixed: kit parent priced
+OK  mixed: standalone component keeps catalog price
+OK  mixed: hidden kit component A qty is 1 (not inflated by bulk/standalone)
+OK  mixed context includes bulk fixture
+OK  mixed context includes kit parent
+OK  mixed context includes standalone component A
+OK  mixed: component A eligibility qty is standalone 2 only
+OK  mixed: two consecutive classic totals identical
+OK  Store API cart totals present
+OK  mixed: Store API total ≈ classic total (570 vs 570)
+NOTE MU guard deactivate proof deferred to fresh-process check
+OK  kit purchasable while UCB active in this request
+OK  non-kit product purchasable
+NOTE Recent failed Action Scheduler actions counted: 20
+
+== result: 47 ok, 0 fail, 0 skip ==
+Success: Coordinated acceptance PASSED
+== guard proof ==
+ Container wordpress-db Running 
+ Container wordpress-db Waiting 
+ Container wordpress-db Healthy 
+ Container wordpress-wpcli-run-8f55f1fd7da2 Creating 
+ Container wordpress-wpcli-run-8f55f1fd7da2 Created 
+OK  guard file loaded in this runtime
+NOTE deactivating UCB for guard proof
+OK  UCB inactive
+Warning: FAIL ucb_runtime_ready not fired
+OK  control/non-kit still purchasable
+Warning: FAIL kit blocked while UCB inactive (MU guard)
+Error: guard proof failed
+OK  kit purchasable after UCB reactivation + unlock
+== guard proof: 4 ok, 2 fail ==
+

@@ -1,0 +1,222 @@
+# Biopentra dev WordPress stack — dev.biopentra.eu
+#
+# Pinned image versions (no :latest, per policy) — current stable as of 2026-07-17:
+#   wordpress:7.0.2-php8.4-apache   (WordPress 7.0.2, PHP 8.4)
+#   wordpress:cli-2.12.0-php8.4     (WP-CLI 2.12.0, matching PHP)
+#   mariadb:11.8.8                  (LTS, maintained until 2030)
+#   redis:8.8.0
+# Upgrade deliberately: bump tag, `docker compose up -d`.
+#
+# Network security model:
+#   - NO service here publishes ports. Public traffic enters only via SWAG.
+#   - `wordpress` joins the shared external `reverse_proxy` network (SWAG
+#     reaches it as http://wordpress:80) plus the private `internal` network.
+#   - db and redis exist ONLY on `internal` (internal: true = no egress,
+#     unreachable from host/internet).
+
+x-wp-env: &wp-env
+  WORDPRESS_DB_HOST: db
+  WORDPRESS_DB_NAME: wordpress
+  WORDPRESS_DB_USER: wordpress
+  WORDPRESS_DB_PASSWORD: ${MARIADB_PASSWORD}
+  WORDPRESS_TABLE_PREFIX: wp_
+  WORDPRESS_CONFIG_EXTRA: |
+    /* TLS terminates at SWAG/Cloudflare — trust X-Forwarded-Proto */
+    if (isset($$_SERVER['HTTP_X_FORWARDED_PROTO']) && $$_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+        $$_SERVER['HTTPS'] = 'on';
+    }
+    define('WP_HOME', 'https://dev.biopentra.eu');
+    define('WP_SITEURL', 'https://dev.biopentra.eu');
+    /* Redis object cache (redis-cache plugin) */
+    define('WP_REDIS_HOST', 'redis');
+    define('WP_REDIS_PORT', 6379);
+    define('WP_REDIS_PASSWORD', '${REDIS_PASSWORD}');
+    /* wp-cron runs from host cron (scripts/wp-cron.sh), not per-request */
+    define('DISABLE_WP_CRON', true);
+    define('WP_MEMORY_LIMIT', '512M');
+    /* M3: mandatory DEV environment for UPR LoggingMailTransport + host mail CLI */
+    define('WP_ENVIRONMENT_TYPE', 'development');
+    /* Private plugin/theme update server (Plugin Update Checker); value from .env */
+    define('PRIVATE_UPDATE_SERVER', '${PRIVATE_UPDATE_SERVER}');
+
+x-wpcli-volumes: &wpcli-volumes
+  - /opt/biopentra/data/wordpress/html:/var/www/html
+  # Custom Biopentra / Magpern plugins (git repos in /opt/biopentra/dev/)
+  - /opt/biopentra/dev/biopentra-custom-plugins/plugins/biopentra-storefront:/var/www/html/wp-content/plugins/biopentra-storefront
+  - /opt/biopentra/dev/biopentra-loop-card:/var/www/html/wp-content/plugins/biopentra-loop-card
+  - /opt/biopentra/dev/bp-ai-article-styles:/var/www/html/wp-content/plugins/bp-ai-article-styles
+  - /opt/biopentra/dev/_release-artifacts/mp-commerce-fulfillment:/var/www/html/wp-content/plugins/mp-commerce-fulfillment
+  - /opt/biopentra/dev/upr-host-adapter:/var/www/html/wp-content/plugins/upr-host-adapter
+  - /opt/biopentra/dev/_release-artifacts/mp-commerce-promotions:/var/www/html/wp-content/plugins/mp-commerce-promotions
+  - /opt/biopentra/dev/_release-artifacts/universal-commerce-bundles:/var/www/html/wp-content/plugins/universal-commerce-bundles
+  - /opt/biopentra/dev/_release-artifacts/universal-commerce-bundles-safety-guard.php:/var/www/html/wp-content/mu-plugins/universal-commerce-bundles-safety-guard.php:ro
+  - /opt/biopentra/dev/fluent-imap-support-desk:/var/www/html/wp-content/plugins/fluent-imap-support-desk
+  - /opt/biopentra/dev/wc-inventory-overview:/var/www/html/wp-content/plugins/wc-inventory-overview
+  - /opt/biopentra/dev/universal-multilingual:/var/www/html/wp-content/plugins/universal-multilingual
+  - /opt/biopentra/dev/universal-multicurrency:/var/www/html/wp-content/plugins/universal-multicurrency
+  - /opt/biopentra/dev/universal-geo-context:/var/www/html/wp-content/plugins/universal-geo-context
+  - /opt/biopentra/dev/universal-telegram:/var/www/html/wp-content/plugins/universal-telegram
+  - /opt/biopentra/dev/universal-support-chat:/var/www/html/wp-content/plugins/universal-support-chat
+  - /opt/biopentra/dev/universal-site-announcements:/var/www/html/wp-content/plugins/universal-site-announcements
+  - /opt/biopentra/dev/universal-product-reviews:/var/www/html/wp-content/plugins/universal-product-reviews
+  - /opt/biopentra/dev/universal-social-proof:/var/www/html/wp-content/plugins/universal-social-proof
+  - /opt/biopentra/dev/biopentra-blocksy-child:/var/www/html/wp-content/themes/blocksy-child
+  - /opt/biopentra/scripts:/scripts:ro
+
+x-wpcli-base: &wpcli-base
+  image: wordpress:cli-2.12.0-php8.4
+  user: "33:33"
+  networks:
+    - internal
+    - reverse_proxy
+  environment: *wp-env
+  volumes: *wpcli-volumes
+  depends_on:
+    db:
+      condition: service_healthy
+
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: biopentra-wordpress:php8.3-redis
+    container_name: wordpress
+    restart: unless-stopped
+    networks:
+      - reverse_proxy
+      - internal
+      - bridge-net
+    environment: *wp-env
+    volumes:
+      - /opt/biopentra/data/wordpress/html:/var/www/html
+      # Custom Biopentra / Magpern plugins (git repos in /opt/biopentra/dev/)
+      - /opt/biopentra/dev/biopentra-custom-plugins/plugins/biopentra-storefront:/var/www/html/wp-content/plugins/biopentra-storefront
+      - /opt/biopentra/dev/biopentra-loop-card:/var/www/html/wp-content/plugins/biopentra-loop-card
+      - /opt/biopentra/dev/bp-ai-article-styles:/var/www/html/wp-content/plugins/bp-ai-article-styles
+      # M3: bind-mount git checkout (includes mpcf_fulfillment_state_changed).
+      - /opt/biopentra/dev/_release-artifacts/mp-commerce-fulfillment:/var/www/html/wp-content/plugins/mp-commerce-fulfillment
+      - /opt/biopentra/dev/upr-host-adapter:/var/www/html/wp-content/plugins/upr-host-adapter
+      - /opt/biopentra/dev/_release-artifacts/mp-commerce-promotions:/var/www/html/wp-content/plugins/mp-commerce-promotions
+      - /opt/biopentra/dev/_release-artifacts/universal-commerce-bundles:/var/www/html/wp-content/plugins/universal-commerce-bundles
+      - /opt/biopentra/dev/_release-artifacts/universal-commerce-bundles-safety-guard.php:/var/www/html/wp-content/mu-plugins/universal-commerce-bundles-safety-guard.php:ro
+      - /opt/biopentra/dev/fluent-imap-support-desk:/var/www/html/wp-content/plugins/fluent-imap-support-desk
+      - /opt/biopentra/dev/wc-inventory-overview:/var/www/html/wp-content/plugins/wc-inventory-overview
+      - /opt/biopentra/dev/universal-multilingual:/var/www/html/wp-content/plugins/universal-multilingual
+      - /opt/biopentra/dev/universal-multicurrency:/var/www/html/wp-content/plugins/universal-multicurrency
+      - /opt/biopentra/dev/universal-geo-context:/var/www/html/wp-content/plugins/universal-geo-context
+      - /opt/biopentra/dev/universal-telegram:/var/www/html/wp-content/plugins/universal-telegram
+      # Universal Support Chat — chat system of record (ADR-0044); UT is its Telegram adapter.
+      - /opt/biopentra/dev/universal-support-chat:/var/www/html/wp-content/plugins/universal-support-chat
+      - /opt/biopentra/dev/universal-site-announcements:/var/www/html/wp-content/plugins/universal-site-announcements
+      - /opt/biopentra/dev/universal-product-reviews:/var/www/html/wp-content/plugins/universal-product-reviews
+      - /opt/biopentra/dev/universal-social-proof:/var/www/html/wp-content/plugins/universal-social-proof
+      # Child theme (Milestone D closure — same bind-mount pattern as plugins)
+      - /opt/biopentra/dev/biopentra-blocksy-child:/var/www/html/wp-content/themes/blocksy-child
+
+  db:
+    image: mariadb:11.8.8
+    container_name: wordpress-db
+    restart: unless-stopped
+    networks:
+      - internal
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    volumes:
+      - /opt/biopentra/data/wordpress/db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  redis:
+    image: redis:8.8.0
+    container_name: wordpress-redis
+    restart: unless-stopped
+    networks:
+      - internal
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}", "--maxmemory", "256mb", "--maxmemory-policy", "allkeys-lru"]
+    volumes:
+      - /opt/biopentra/data/wordpress/redis:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$$REDIS_PWD\" ping | grep -q PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      REDIS_PWD: ${REDIS_PASSWORD}
+
+  # WP-CLI services share mounts/env with `wordpress` (see x-wpcli-base).
+  # Also on reverse_proxy: `internal` has no egress, and WP-CLI needs
+  # wordpress.org for downloads. Neither service publishes ports.
+  #
+  # One-shot (isolated) — profile `tools`:
+  #   docker compose --profile tools run --rm wpcli <command...>
+  #
+  # DEV inspection (reuses one container) — profile `devtools`:
+  #   /opt/biopentra/scripts/dev-wp <command...>
+  #   docker compose --profile devtools exec -T wpcli-dev <command...>
+  wpcli:
+    <<: *wpcli-base
+    profiles: ["tools"]
+
+  wpcli-dev:
+    <<: *wpcli-base
+    profiles: ["devtools"]
+    container_name: wordpress-wpcli-dev
+    init: true
+    restart: "no"
+    entrypoint: ["sleep", "infinity"]
+
+  proton-bridge:
+    image: ghcr.io/magpern/proton-bridge:latest
+    container_name: proton-bridge
+    restart: unless-stopped
+    networks:
+      - bridge-net
+    volumes:
+      - bridge_config:/root/.config/protonmail
+      - bridge_gnupg:/root/.gnupg
+      - bridge_pass:/root/.password-store
+    stdin_open: true
+    tty: true
+
+  biopentra-mail-worker:
+    image: ghcr.io/magpern/proton-mail-worker:latest
+    restart: unless-stopped
+    networks:
+      - internal
+      - bridge-net
+    environment:
+      API_BASE_URL: http://wordpress/wp-json/biopentra-support/v1
+      IMAP_HOST: proton-bridge
+      IMAP_PORT: "2143"
+      IMAP_MAILBOX: INBOX
+      MESSAGE_CAP: "50"
+      POLL_INTERVAL: "300"
+      WORKER_HTTP_PORT: "8080"
+      WORKER_VERSION: "1.0.0"
+    env_file:
+      - .env.worker
+    depends_on:
+      - wordpress
+      - proton-bridge
+
+networks:
+  reverse_proxy:
+    external: true
+  internal:
+    name: wordpress_internal
+    internal: true
+  bridge-net:
+    name: wordpress_bridge-net
+
+volumes:
+  bridge_config:
+  bridge_gnupg:
+  bridge_pass:

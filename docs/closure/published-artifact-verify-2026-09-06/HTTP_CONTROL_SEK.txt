@@ -1,0 +1,3 @@
+control bacteriostatic-water: HTTP 200
+bulk-pricing-fixture: HTTP 200
+bulk ?currency=SEK: HTTP 200 with pdp-bulk markup + SEK/kr signals

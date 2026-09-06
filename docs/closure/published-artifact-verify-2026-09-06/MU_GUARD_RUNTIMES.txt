@@ -1,0 +1,4 @@
+CLI MU=yes ready=1
+WEB MU=yes ready=1
+UCB=0.1.0
+CRON_CONTEXT MU=yes ready=1

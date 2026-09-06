@@ -1,0 +1,17 @@
+ACTIVE universal-commerce-bundles/universal-commerce-bundles.php
+ACTIVE mp-commerce-fulfillment/mp-commerce-fulfillment.php
+ACTIVE mp-commerce-promotions/mp-commerce-promotions.php
+UCB=0.1.0
+MPCF=1.1.0
+MPCP=0.6.0
+MU_guard_file=yes
+ucb_runtime_ready=1
+retired_absent woocommerce-gift-cards
+retired_absent wc-dynamic-pricing
+retired_absent yith-woocommerce-product-bundles
+retired_absent product-bundles
+retired_absent woocommerce-product-bundles
+retired_absent flexible-product-fields
+dir_count_universal-commerce-bundles=1
+dir_count_mp-commerce-fulfillment=1
+dir_count_mp-commerce-promotions=1

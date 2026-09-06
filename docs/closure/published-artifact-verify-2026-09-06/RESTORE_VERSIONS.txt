@@ -1,0 +1,5 @@
+biopentra-storefront	active	0.9.43
+mp-commerce-fulfillment	active	1.1.0
+mp-commerce-promotions	active	0.6.0
+universal-commerce-bundles	active	0.1.0
+universal-commerce-bundles-safety-guard	must-use	
